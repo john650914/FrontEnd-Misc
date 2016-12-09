@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: [
-		'eventsource-polyfill', // 據說可以讓 Webpack 兼容 IE
+		'eventsource-polyfill',
 		'./src/index'
 	],
 	output: {
@@ -24,18 +24,15 @@ module.exports = {
 			},
 			{
 				test: /\.sass$/,
-				loader: 'style!css?sourceMap!sass',
-				exclude: /node_modules/
+				loader: 'style!css?sourceMap!sass'
 			},
 			{
 				test: /\.(jpg|gif|png)$/,
-				loader: "file",
-				exclude: /node_modules/
+				loader: "file"
 			},
 			{
 				test: /\.(jpg|gif|png)$/,
-				loader: "url",
-				exclude: /node_modules/
+				loader: "url"
 			}
 		]
 	},
