@@ -1,0 +1,41 @@
+開一個新的SpreadSheets：
+
+https://docs.google.com/spreadsheets/d/1OU11axyJh4gq3leKxj94sWABdZ9hhdzQ_SyfBUI9GBQ/edit#gid=0
+
+
+
+
+
+
+
+
+Apps Script 印出指定範圍的資料：
+
+function aaa(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheets()[0];
+  var range = sheet.getRange(1, 1, 5, 3);
+  var values = range.getValues();
+
+  // Print values from a 3x3 box.
+  /*for (var row in values) {
+    for (var col in values[row]) {
+      Logger.log(values[row][col]);
+    }
+  }*/
+  Logger.log(values);
+}
+
+
+
+
+
+
+
+https://www.marketersgo.com/marketing-tools/202005/google-sheets-script/
+https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175
+https://tools.wingzero.tw/article/sn/250
+
+https://developers.google.com/apps-script/reference/spreadsheet/
+https://sites.google.com/a/sps.nus.edu.sg/physichronicles/methoughtz/ajax-calling-to-retrieve-gspreadsheet-cellvalue
+https://gist.github.com/mgamini/d549fbcaf960a5ac5551
