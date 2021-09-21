@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="TweenMax.min.js"></script>
+<style>
+	*{margin:0; padding:0;}
+	.div1{width:100px; height:100px; background-color:red; position:absolute; border:30px solid black; box-sizing:border-box;}
+</style>
+<script>
+	$(function(){
+		TweenMax.to('.div1', 1, {left:300, top:'10%', yoyo:true, repeat:2});
+	});
+</script>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>

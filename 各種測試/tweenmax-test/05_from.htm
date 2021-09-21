@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="TweenMax.min.js"></script>
+<style>
+	*{margin:0; padding:0;}
+	.div1{width:100px; height:100px; background-color:red; position:absolute; border:30px solid black; box-sizing:border-box; z-index:5; left:100px; top:100px;}
+</style>
+<script>
+	$(function(){
+		TweenMax.from('.div1', 1, {opacity:0, scale:0, ease:Bounce.easeOut});
+		//TweenMax語法：TweenMax.to(target, duration, {vars});
+		/*
+			和「to」相反
+		*/
+	});
+</script>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>

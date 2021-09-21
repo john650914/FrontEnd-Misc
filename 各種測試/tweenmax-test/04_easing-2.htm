@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="TweenMax.min.js"></script>
+<style>
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	body{}
+	.div{width:100px; height:100px; background-color:red; position:absolute; border:30px solid black; box-sizing:border-box; z-index:5; margin-bottom:10px;}
+	.d1{top:0px;}
+	.d2{top:110px;}
+	.d3{top:220px;}
+	.d4{top:330px;}
+	.d5{top:440px;}
+</style>
+<script>
+	$(function(){
+		TweenMax.to('.d1', 2, {x:600});
+		TweenMax.to('.d2', 2, {x:600, ease:Power0.easeNone});
+		TweenMax.to('.d3', 2, {x:600, ease:Back.easeOut});
+		TweenMax.to('.d4', 2, {x:600, ease:Elastic.easeOut});
+		TweenMax.to('.d5', 2, {x:600, ease:Bounce.easeOut});
+		//TweenMax語法：TweenMax.to(target, duration, {vars});
+		/*
+			ease屬性可以指定ease的種類，指定種類後又可以指定ease如何開始動作，通常是easeOut，
+			所有的ease可以參考GreenSock網站裡的「ease visualizer」，有很好的線形預覽，網址：http://greensock.com/ease-visualizer
+			(看到這裡已經快把CSS3忘光了，要找時間來補)
+			https://greensock.com/docs/#/HTML5/GSAP/Easing/
+		*/
+	});
+</script>
+</head>
+<body>
+	<div class="div d1"></div>
+	<div class="div d2"></div>
+	<div class="div d3"></div>
+	<div class="div d4"></div>
+	<div class="div d5"></div>
+	<div style="position:absolute; top:0; bottom:0; border-right:1px solid gray; left:600px;"></div>
+	<div style="position:absolute; top:0; bottom:0; border-right:1px solid silver; left:700px;"></div>
+</body>
+</html>

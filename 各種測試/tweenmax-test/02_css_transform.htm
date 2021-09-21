@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="TweenMax.min.js"></script>
+<style>
+	*{margin:0; padding:0;}
+	.div1{width:100px; height:100px; background-color:red; position:absolute; border:30px solid black; box-sizing:border-box;}
+</style>
+<script>
+	$(function(){
+		TweenMax.to('.div1', 2, {x:600, rotation:360, scale:0.5});
+		//TweenMax語法：TweenMax.to(target, duration, {vars});
+		/*
+			上面的transforms是greensock網站教學影片裡提供的，經測試，目前的屬性IE8都可以正常執行，但用IE11摸擬的IE8跑起來有問題，還是用IETester測好了
+			{vars}裡的CSS transforms由CSSPlugin(GreenSock包在tm裡的一個plugin)重新定義過，和原本的CSS寫法不同，
+			其目的是簡化語法，所以看到本範例的x、rotation、scale屬性不要覺得奇怪，詳情參考下面的網址：
+			https://greensock.com/docs/#/HTML5/GSAP/Plugins/CSSPlugin/
+		*/
+	});
+</script>
+</head>
+<body>
+	<div class="div1"></div>
+	<h1>中文啊！</h1>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="TweenMax.min.js"></script>
+<style>
+	*{margin:0; padding:0;}
+	.div1{width:100px; height:100px; background-color:red; position:absolute; border:30px solid black; box-sizing:border-box;}
+</style>
+<script>
+	$(function(){
+		TweenMax.to('.div1', 6, {x:600});
+		//TweenMax語法：TweenMax.to(target, duration, {vars});
+		/*
+			如果不指定ease，TweenMax預設的ease是easeOut，也就是動畫結束時會愈來愈慢
+			https://greensock.com/docs/#/HTML5/GSAP/Easing/
+		*/
+	});
+</script>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>
