@@ -294,7 +294,7 @@ transform-origin: 50% 50%; //(y, x)…我覺得啦
 transform: scale(2) rotate(45deg);
 
 2D矩陣：
-transform: matrix(1, -0.3, 0, 1, 0, 0); //看起來不是用deg的單位
+transform: matrix(1, -0.3, 0, 1, 0, 0); //是一個我不懂的矩陣運算，有需要的話還是要去google一下
 matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY());
 
 資源：
@@ -410,6 +410,8 @@ $('.popupbox').gbox('<p>訊息內容可以放HTML</p>', {
 
 ################################## tiny-slider 範例 ##################################
 文件：https://ganlanyuan.github.io/tiny-slider/
+//slide-wrap要指定寬度
+//slide > div要指定高度
 
 <div class="slide-wrap">
 	<div class="slide">
@@ -438,6 +440,7 @@ var slide = tns({
 	gutter: 10,
 	axis: 'vertical',
 	speed: 200,
+	touch: true,
 	lazyload: true,
 	mouseDrag: false,
 	responsive: {
@@ -449,7 +452,11 @@ var slide = tns({
 	},
 	prevButton: '.slide-prev',
 	nextButton: '.slide-next',
-	navContainer: '.slide-dots'
+	navContainer: '.slide-dots',
+	mode: 'gallery', //fade模式
+	navContainer: '.thumbs', //指定點點點容器
+	navAsThumbnails: true, //點點點變縮圖
+	controlsContainer: '.nav' //直接指定上一頁、下一頁的容器，就不用寫prevButton及nextButton
 });
 
 slide.destroy();
@@ -645,6 +652,63 @@ Array.prototype.contains = function(val){
 爆爆王		<script src="https://tw.beanfun.com/BNB/menuBar/topBar.js"></script>
 新龍之谷	<script src="https://tw.beanfun.com/DragonNest/assets/script/topBar.js"></script>
 
+
+################################## RegEXp ##################################
+完整說明：https://john650914.github.io/documentation/RegExp.html
+
+範例：
+re = /^[A-Z]\d{9}$/;
+if (!re.test(input.value)){
+	alert("你的身份證號碼格式不對！");
+}
+
+身份證字號：
+/^[A-Z]\d{9}$/
+
+英文姓名：
+/^[A-Za-z\-]+\s+[A-Za-z\-]+$/;
+/^[A-Za-z\-]+\s+[A-Za-z\-]+\s+[A-Za-z\-]+$/;
+
+信用卡號：
+/^\d{4}-\d{4}-\d{4}-\d{4}$/;
+
+數字及小數點：
+/^\d+(\.\d+)*$/;
+
+只允許英數：
+/^[a-zA-Z0-9]+$/;
+
+電話號碼：
+/^[+]?[(]?[\d]{1,4}[)]?([\d]?[-\s]?[\d]+){2,}$/;
+
+Email：
+/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+中英數：
+/^[^\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u00FF]+$/;
+
+中英數限20字內：
+/^[^\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u00FF]{1,20}$/;
+
+
+################################## IE9 placeholder ##################################
+function doPlaceholder(){
+	if(navigator.userAgent.indexOf('MSIE 9.0') != -1){
+		$('[placeholder]').focus(function(){
+			var input = $(this);
+			if (input.val() == input.attr('placeholder')) {
+				input.val('');
+				input.removeClass('placeholder');
+			}
+		}).blur(function(){
+			var input = $(this);
+			if (input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.addClass('placeholder');
+				input.val(input.attr('placeholder'));
+			}
+		}).blur();
+	}
+}
 
 
 
