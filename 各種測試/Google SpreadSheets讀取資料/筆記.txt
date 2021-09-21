@@ -1,41 +1,109 @@
-開一個新的SpreadSheets：
+做一個簡單的Apps Script範例：
 
+開一個新的SpreadSheets：
 https://docs.google.com/spreadsheets/d/1OU11axyJh4gq3leKxj94sWABdZ9hhdzQ_SyfBUI9GBQ/edit#gid=0
 
+新增以下資料：
+表頭1	表頭2	表頭3
+101		201		301
+102		202		302
+103		203		303
+104		304		304
 
-
-
-
-
-
-
-Apps Script 印出指定範圍的資料：
-
-function aaa(){
+工具 > 指令碼編輯器：
+function myFunction(){
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheets()[0];
-  var range = sheet.getRange(1, 1, 5, 3);
+  var range = sheet.getRange(1, 1, 5, 3); //(列, 欄, 第n列, 第n欄)
   var values = range.getValues();
 
-  // Print values from a 3x3 box.
+  // 逐筆印出資料（很奇怪的for in用法）
   /*for (var row in values) {
     for (var col in values[row]) {
       Logger.log(values[row][col]);
     }
   }*/
+  //逐筆印出資料
+  /*for(var row = 0; row < values.length; row++){
+    for(var col = 0; col < values[row].length; col++){
+      Logger.log(values[row][col]);
+    }
+  }*/
+  //印出values的陣列
   Logger.log(values);
 }
 
+按「執行」log結果如下：
+[[表頭1, 表頭2, 表頭3], [101, 201, 301], [102, 202, 302], [103, 203, 303], [104, 304, 304]]
 
 
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 
+Ajax寫入資料：
 
+調整Apps Script：
+function doPost(e){
+	var params = {col1:'1', col2:'2', col3:'3'};
+	var col1 = params.col1;
+	var col2 = params.col2;
+	var col3 = params.col3;
+
+	var SpreadSheet = SpreadsheetApp.openById('1OU11axyJh4gq3leKxj94sWABdZ9hhdzQ_SyfBUI9GBQ'); //試算表ID，是從spreadsheet的網址取出來的，d/之後到/edit前的字串
+	var Sheet = SpreadSheet.getSheetByName('工作表1'); //頁籤名稱是這個spreadsheet下面的sheet分頁名稱
+	var LastRow = Sheet.getLastRow();
+
+	Sheet.getRange(LastRow+1, 1).setValue(col1);
+	Sheet.getRange(LastRow+1, 2).setValue(col2);
+	Sheet.getRange(LastRow+1, 3).setValue(col3);
+
+	return ContentService.createTextOutput("成功");
+}
+
+按「執行」，回到spreadsheet就會看到新增三筆資料
+
+把var params = {col1:'1', col2:'2', col3:'3'};刪掉
+改為：var params = e.parameter;
+然後部署一個新的版本
+
+「部署」的作業之前已經偷做過了所以略過，但要去「管理部署作業」裡複製API網址
+https://script.google.com/macros/s/AKfycby4hVlT08xsb0J1YBykAUpNnybEBMDt_nijHyKLV1tJAYMuYkv4TYgM464hCOq4-jC4/exec
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+開始使用API：
+
+新增一個html檔，script中輸入：
+$.ajax({
+	type: 'POST',
+	url: 'https://script.google.com/macros/s/AKfycby4hVlT08xsb0J1YBykAUpNnybEBMDt_nijHyKLV1tJAYMuYkv4TYgM464hCOq4-jC4/exec',
+	data: {
+		'col1': 'col1',
+		'col2': 'col2',
+		'col3': 'col3'
+	},
+	success: function(r){
+		if(r == '成功'){
+			console.log('成功新增資料');
+		}
+	}
+});
+
+console.log有值就是成功了
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+參考的資料：
 
 https://www.marketersgo.com/marketing-tools/202005/google-sheets-script/
 https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175
 https://tools.wingzero.tw/article/sn/250
-
 https://developers.google.com/apps-script/reference/spreadsheet/
 https://sites.google.com/a/sps.nus.edu.sg/physichronicles/methoughtz/ajax-calling-to-retrieve-gspreadsheet-cellvalue
 https://gist.github.com/mgamini/d549fbcaf960a5ac5551
