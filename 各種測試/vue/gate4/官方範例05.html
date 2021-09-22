@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="Vue1">
+	<label>
+		<input type="checkbox" v-model="cked" true-value="已選擇" false-value="未選擇">
+		<!--單個checkbox的v-model會綁定為布林值-->
+		{{cked}}
+	</label>
+</div>
+<script>
+new Vue({
+	el: '#Vue1',
+	data: {
+		cked: '已選擇'
+	}
+});
+</script>
+
+
+<hr>
+
+
+<div id="Vue2">
+	<div>
+		<label><input type="radio" value="Jack off" v-model="pickedVal" /> 打手槍</label>
+	</div>
+	<div>
+		<label><input type="radio" value="watching TV" v-model="pickedVal" /> 看電視</label>
+	</div>
+	Picked Value: {{pickedVal}}
+</div>
+<script>
+new Vue({
+	el: '#Vue2',
+	data: {
+		pickedVal: 'Jack off'
+	}
+});
+</script>
+</body>
+</html>

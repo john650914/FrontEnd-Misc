@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+.lightbox{
+	padding: 30px;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	border: 1px solid black;
+	transform: translate(-50%, -50%);
+}
+.content{
+	padding-bottom: 30px;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+
+
+
+
+<div id="app">
+	<lightbox v-if="showHide"></lightbox>
+	<a class="btn" href="javascript:;" onclick="showLightbox({
+		comp: 'content1'
+	})">顯示lightbox</a>
+</div>
+
+
+
+
+<script>
+//Vuex Store
+const lightboxStore = new Vuex.Store({
+	state: {
+		show: 0,
+		//參數全部放這邊：
+		comp: ''
+	},
+	mutations: {
+		toggleShow: state => state.show == 1 ? state.show = 0 : state.show = 1,
+		compName: function(state){
+			state.comp = compName;
+		}
+	}
+});
+
+//醜的function
+var compName = '';
+function showLightbox(p){
+	lightboxStore.commit('toggleShow');
+	compName = p.comp;
+	lightboxStore.commit('compName');
+
+}
+function hideLightbox(){
+	lightboxStore.commit('toggleShow');
+}
+
+//要帶入lightbox的元件
+Vue.component('content1', {
+	template: `
+		<div>
+			<label>序號：</label>
+			<input type="text" placeholder="請輸入序號" />
+		</div>
+	`
+});
+
+//lightbox元件
+Vue.component('lightbox', {
+	template: `
+		<div class="lightbox">
+			<div class="content">
+				<component :is="appendComp"></component>
+			</div>
+			<div class="action">
+				<a class="btn" href="javascript:;" onclick="hideLightbox()">確定</a>
+			</div>
+		</div>
+	`,
+	store: lightboxStore,
+	computed: Vuex.mapState({
+		appendComp: 'comp'
+	})
+});
+
+//建立#app實例
+var app = new Vue({
+	el: '#app',
+	store: lightboxStore,
+	computed: Vuex.mapState({
+		showHide: 'show'
+	})
+});
+</script>
+
+
+
+
+</body>
+</html>

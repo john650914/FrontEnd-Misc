@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+<h2>使用Vue的條件判斷式</h2>
+<p>在HTML中使用v-if指令，它將根據表達式seen的值的真假來插入/移除&lt;p&gt;元素。</p>
+<div id="vm1" class="vue-result">
+	<p v-if="state">如果state值是false你就見不到我了 T_T</p>
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		state: true
+	}
+});
+</script>
+
+
+
+
+<h2>v-else-if和v-else</h2>
+<p>我們可以透過程式般的方式去控制目前要顯示的DOM，要注意的是v-else-if和v-else都是跟著v-if跑的，如果在他們上面沒有v-if，是不會有任何作用的。</p>
+<div id="vm2" class="vue-result">
+	<span v-if="state == '好人'">我是好人</span>
+	<span v-else-if="state == '你爸'">我是你爸</span>
+	<span v-else="'都不是'">我誰都不是</span>
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		state: '你爸'
+	}
+});
+</script>
+
+
+
+
+<h2>使用key屬性讓Vue重新繪製DOM</h2>
+<p>這邊要長篇大論了…</p>
+<p>Vue.js的條件判斷為了更有效率的做切換DOM的動作，如果是目前已經在畫面上的DOM，就不會把他移除再建立一個，而是直接改變兩個DOM不同的地方而已，官方有舉一個例子說明這件事情。</p>
+<p>當使用者按下「切換輸入」的按鈕時會改變status的值，同時input的placeholder屬性值也會變，但是這並不代表他是把input換掉了，這是因為Vue.js為了提高效能只會重新繪製不同的地方，這種做法類似於replace()，可以試著把input填入值，在點擊按鈕切換input會發現我們輸入的value不會消失，他只替換掉placeholder屬性值。</p>
+<p>這樣的做法有好有壞！如果是想要完全獨立兩個input反而會有點麻煩。</p>
+<div id="vm3" class="vue-result">
+	<input v-if="state" placeholder="輸入姓名">
+	<input v-else="state" placeholder="輸入mail">
+	<input type="button" value="切換輸入" @click="changeState">
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		state: true
+	},
+	methods: {
+		changeState: function(){
+			this.state ? this.state = false : this.state = true;
+		}
+	}
+});
+</script>
+<p>為了處理不同的需求，Vue提供了「key」屬性來為每個需要的DOM做一個識別，這裡只需為兩個輸入框加入key屬性並給不同值就會重新繪製了！</p>
+<pre>
+&lt;input v-if="state" placeholder="輸入姓名" key="name"&gt;
+&lt;input v-else="state" placeholder="輸入mail" key="email"&gt;
+</pre>
+<div id="vm4" class="vue-result">
+	<input v-if="state" placeholder="輸入姓名" key="name">
+	<input v-else="state" placeholder="輸入mail" key="email">
+	<input type="button" value="切換輸入" @click="changeState">
+</div>
+<script>
+var vm4 = new Vue({
+	el: '#vm4',
+	data: {
+		state: true
+	},
+	methods: {
+		changeState: function(){
+			this.state ? this.state = false : this.state = true;
+		}
+	}
+});
+</script>
+<p>上例我們成功使用了「key」屬性做到「移除及插入的動作」來更新畫面，但如果我們有輸入資料再做切換會發現我們輸入的資料也一併被移除了, 如果需要保留輸入的資料可以換個做法：使用v-show這個屬性。</p>
+<p>v-show只是單純的使用行內CSS顯示或隱藏DOM元素，不像v-if會有條件的銷毀和重建DOM。</p>
+<p>一般來說，v-if有更高的切換開銷，而v-show有更高的初始渲染開銷。因此，如果需要非常頻繁地切換，則使用v-show較好；如果在運行時條件很少改變，則使用v-if較好。</p>
+<div id="vm5" class="vue-result">
+	<input v-show="state" placeholder="輸入姓名">
+	<input v-show="state == false" placeholder="輸入mail">
+	<input type="button" value="切換輸入" @click="changeState">
+</div>
+<script>
+var vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		state: true
+	},
+	methods: {
+		changeState: function(){
+			this.state ? this.state = false : this.state = true;
+		}
+	}
+});
+</script>
+
+
+
+</body>
+</html>

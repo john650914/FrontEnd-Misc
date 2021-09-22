@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+/* h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+} */
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+<div id="app">
+	<div>KLfjasl;dfjk l;kjf;sdkl fj;</div>
+	<app-header></app-header>
+	<app-content></app-content>
+	<app-footer></app-footer>
+	<app-popup></app-popup>
+</div>
+
+<script>
+/* header component*/
+Vue.component('app-header', {
+	template: `
+		<div>
+			<h1>這是header元件</h1>
+		</div>
+	`
+});
+/* content component*/
+Vue.component('app-content', {
+	template: `
+		<div>
+			<h1>這是content元件</h1>
+		</div>
+	`
+});
+/* footer component*/
+Vue.component('app-footer', {
+	template: `
+		<div>
+			<h1>這是footer元件</h1>
+		</div>
+	`
+});
+/* popup component*/
+Vue.component('app-popup', {
+	template: `
+		<div @click="alertData" v-if="show">
+			<h1>這是popup元件</h1>
+		</div>
+	`,
+	data: function(){
+		return {
+			show: appPopupData.show, //wrong，資料沒有bind
+			name: appPopupData.name //wrong，資料沒有bind
+		}
+	},
+	methods: {
+		alertData: function(){
+			alert(this.show);
+		}
+	}
+});
+
+var appPopupData = {
+	show: false
+}
+
+var app = new Vue({
+	el: '#app',
+	// template: `
+	// 	<div>
+	// 		<app-header></app-header>
+	// 		<app-content></app-content>
+	// 		<app-footer></app-footer>
+	// 		<app-popup></app-popup>
+	// 	</div>
+	// `
+});
+</script>
+
+
+<!-- <div class="h5popup">
+	<div class="h5p-wrap">
+		<div class="h5p-conent">
+			<component :is="appendedComp"></component>
+		</div>
+		<div class="h5p-action"></div>
+		<div class="h5p-close"></div>
+	</div>
+</div> -->
+
+
+
+</body>
+</html>

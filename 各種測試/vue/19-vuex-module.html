@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 3;
+	-moz-tab-size: 3;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+
+
+
+
+<h2>為什麼需要module</h2>
+<p>當一個專案比較大時，所有的狀態都集中在一起會得到一個比較大的物件，進而顯得臃腫，難以維護。為了解決這個問題，Vuex允許我們將store分割成模塊（module），每個module有自己的state，mutation，action，getter，甚至還可以往下嵌套模塊，下面我們看一個典型的模塊化例子</p>
+<div id="vm1" class="vue-result">
+	<div>moduleA_s1：{{moduleA_s1}}</div>
+	<div>vm1Store_s1：{{vm1Store_s1}}</div>
+</div>
+<script>
+const moduleA = {
+	state: {
+		moduleA_s1: 1,
+	}
+}
+const vm1_store = new Vuex.Store({
+	state: {
+		vm1Store_s1: 3
+	},
+	modules: {
+		moduleA: moduleA
+	}
+});
+let vm1 = new Vue({
+	el: '#vm1',
+	store: vm1_store,
+	computed: {
+		moduleA_s1(){
+			return this.$store.state.moduleA.moduleA_s1;
+		},
+		vm1Store_s1(){
+			return this.$store.state.vm1Store_s1;
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>mocule 內mutation 和getter 的第一個參數</h2>
+<p>對於模塊內部的 mutation 和 getter，接收的第一個參數是模塊的局部state物件。</p>
+<div id="vm2" class="vue-result">
+	<div>moduleB_g：{{moduleB_getter}}</div>
+	<button @click="moduleB_s_add_1">moduleB_s * 2</button>
+</div>
+<script>
+const moduleB = {
+	state: {
+		moduleB_s: 1
+	},
+	mutations: {
+		moduleB_m(s){
+			s.moduleB_s++;
+		}
+	},
+	getters: {
+		moduleB_g(s){
+			return s.moduleB_s * 2;
+		}
+	}
+}
+const vm2_store = new Vuex.Store({
+	state: {
+		vm2Store_s: 10
+	},
+	modules: {
+		moduleB: moduleB
+	}
+});
+let vm2 = new Vue({
+	el: '#vm2',
+	store: vm2_store,
+	computed: {
+		moduleB_getter(){
+			return this.$store.getters.moduleB_g;
+		}
+	},
+	methods: {
+		moduleB_s_add_1(){
+			this.$store.commit('moduleB_m');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>module 內actions 的context</h2>
+<p>模塊內部的 action，局部state通過 context.state 暴露出來，根節點state則為 context.rootState：</p>
+<div id="vm3" class="vue-result">
+	<div>{{moduleC_s}}</div>
+	<button @click="commitModuleC_a">點我觸發moduleC的action</button>
+</div>
+<script>
+const moduleC = {
+	state: {
+		moduleC_s: 1,
+		isCommitAction: true
+	},
+	mutations: {
+		moduleC_m(s){
+			return s.moduleC_s++;
+		}
+	},
+	actions: {
+		moduleC_a({state, commit, rootState}){
+			if(state.isCommitAction && rootState.isCommitAction){
+				commit('moduleC_m');
+			}
+		}
+		// moduleC_a(c){
+		// 	c.commit('moduleC_m');
+		// }
+	}
+}
+const vm3Store = new Vuex.Store({
+	state: {
+		isCommitAction: true
+	},
+	modules: {
+		moduleC: moduleC
+	}
+});
+let vm3 = new Vue({
+	el: '#vm3',
+	store: vm3Store,
+	computed: {
+		moduleC_s(){
+			return this.$store.state.moduleC.moduleC_s;
+		}
+	},
+	methods: {
+		commitModuleC_a(){
+			this.$store.dispatch('moduleC_a');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>module 內的根節點參數</h2>
+<p>對於模塊內部的getter，根節點狀態會作為第三個參數暴露出來：</p>
+<div id="vm4" class="vue-result">
+	{{moduleD_g2}}
+</div>
+<script>
+const moduleD = {
+	state: {
+		moduleD_s: 1
+	},
+	getters: {
+		moduleD_g1(s){
+			return s.moduleD_s + 1;
+		},
+		moduleD_g2(s, g, r){
+			return s.moduleD_s + g.moduleD_g1 + r.vm4Store_s;
+		}
+	}
+}
+const vm4Store = new Vuex.Store({
+	state: {
+		vm4Store_s: 1
+	},
+	modules: {
+		moduleD: moduleD
+	}
+});
+let vm4 = new Vue({
+	el: '#vm4',
+	store: vm4Store,
+	computed: {
+		moduleD_g2(){
+			return this.$store.getters.moduleD_g2;
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>命名空間</h2>
+<p>默認情況下，模塊內部的 action、mutation 和 getter 是註冊在全局命名空間的——這樣使得多個模塊能夠對同一 mutation 或 action 作出響應。</p>
+<p>如果希望你的模塊具有更高的封裝度和復用性，你可以通過添加 namespaced: true 的方式使其成為帶命名空間的模塊。當模塊被註冊後，它的所有 getter、action 及 mutation 都會自動根據模塊註冊的路徑調整命名。例如：</p>
+<div id="vm5" class="vue-result">
+	<div>{{fruitSentence}}</div>
+	<button @click="triggerAction">點我換水果</button>
+</div>
+<script>
+const fmA = {
+	namespaced: true,
+	state: {
+		fruit: 'apple'
+	},
+	mutations: {
+		changeFruit(s, a){
+			return s.fruit = a;
+		}
+	},
+	getters: {
+		makeSentence(s){
+			return 'I like ' + s.fruit + ', it tastes good!'
+		}
+	},
+	actions: {
+		asyncAction(c){
+			//ajax...
+			var newFruit = 'banana';
+			c.commit('changeFruit', newFruit);
+		}
+	}
+}
+const fruitStoreA = new Vuex.Store({
+	state: {
+		text: '這是個無用Store，只是用來練習module'
+	},
+	modules: {
+		fruitModuleA: fmA
+	}
+});
+let vm5 = new Vue({
+	el: '#vm5',
+	store: fruitStoreA,
+	/* methods: {
+		triggerAction(){
+			this.$store.dispatch('fruitModuleA/asyncAction');
+		}
+	}, */
+	/* methods: Vuex.mapActions({
+		triggerAction: 'fruitModuleA/asyncAction'
+	}), */
+	methods: {
+		...Vuex.mapActions({
+			triggerAction: 'fruitModuleA/asyncAction'
+		})
+	},
+	/* methods: {
+		...Vuex.mapActions('fruitModuleA', [
+			'triggerAction' //這個寫法的話action跟computed的名字要取一樣喔，這個範例沒取一樣會報錯
+		])
+	}, */
+
+	/* computed: {
+		fruitSentence(){
+			return this.$store.getters['fruitModuleA/makeSentence'];
+		}
+	} */
+	/* computed: Vuex.mapGetters({
+		fruitSentence: 'fruitModuleA/makeSentence'
+	}) */
+	/* computed: {
+		...Vuex.mapGetters({
+			fruitSentence: 'fruitModuleA/makeSentence'
+		})
+	} */
+	computed: {
+		...Vuex.mapGetters('fruitModuleA', {
+			fruitSentence: 'makeSentence'
+		})
+	}
+	/* computed: {
+		...Vuex.mapGetters('fruitModuleA', [
+			'fruitSentence' //這個寫法的話getter跟computed的名字要取一樣喔，這個範例沒取一樣會報錯
+		])
+	} */
+});
+</script>
+<p>官網範例：</p>
+<pre>
+const store = new Vuex.Store({
+	modules: {
+		account: {
+			namespaced: true,
+
+			// 模塊內容（module assets）
+			state: { ... }, // 模塊內的狀態已經是嵌套的了，使用 `namespaced` 屬性不會對其產生影響
+			getters: {
+				isAdmin () { ... } // -> getters['account/isAdmin']
+			},
+			actions: {
+				login () { ... } // -> dispatch('account/login')
+			},
+			mutations: {
+				login () { ... } // -> commit('account/login')
+			},
+
+			// 嵌套模塊
+			modules: {
+				// 繼承父模塊的命名空間
+				myPage: {
+					state: { ... },
+					getters: {
+						profile () { ... } // -> getters['account/profile']
+					}
+				},
+
+				// 進一步嵌套命名空間
+				posts: {
+					namespaced: true,
+
+					state: { ... },
+					getters: {
+						popular () { ... } // -> getters['account/posts/popular']
+					}
+				}
+			}
+		}
+	}
+})
+</pre>
+
+
+
+
+<h2>帶命名空間的綁定函數</h2>
+<p>當使用 mapState, mapGetters, mapActions 和 mapMutations 這些函數來綁定命名空間模塊時，寫起來可能比較繁瑣：</p>
+<pre>
+computed: {
+	...mapState({
+		a: state => state.some.nested.module.a,
+		b: state => state.some.nested.module.b
+	})
+},
+methods: {
+	...mapActions([
+		'some/nested/module/foo',
+		'some/nested/module/bar'
+	])
+}
+</pre>
+<p>為了簡化這樣的情況，我們可以將模塊的空間名稱字串作為第一個參數傳遞給上述函數：</p>
+<pre>
+computed: {
+	...mapState('some/nested/module', {
+		a: state => state.a,
+		b: state => state.b
+	})
+},
+methods: {
+	...mapActions('some/nested/module', [
+		'foo',
+		'bar'
+	])
+}
+</pre>
+
+
+
+
+
+
+
+</body>
+</html>

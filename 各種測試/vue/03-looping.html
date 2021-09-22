@@ -1,0 +1,586 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+	-moz-tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+<h2>v-for的使用方法</h2>
+<p>重要資料：https://cn.vuejs.org/v2/guide/list.html</p>
+<p>我們可以用v-for指令基於一個陣列來渲染一個列表：</p>
+<p>渲染出來的列表是被data中的資料所綁定的，我們可以使用各種更新陣列內容的方法（例如push(), reverse()等…）來觀察綁定的狀況，例如在console中輸入：「vm1.names.push('Jackson');」可以看到網頁中立刻多了一個Jackson的項目。</p>
+<div id="vm1" class="vue-result">
+	<ul>
+		<li v-for="v in names">{{v}}</li>
+	</ul>
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		names: [
+			'JOHN',
+			'JOE',
+			'JOJO'
+		]
+	}
+});
+</script>
+<p>另外我們也可以加入索引值，以及在迴圈綁定陣列以外的資料：</p>
+<div id="vm2" class="vue-result">
+	<ul>
+		<li v-for="(v, i) in names">{{label}}({{i+1}})：{{v}}</li>
+	</ul>
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		label: '小組成員的名字',
+		names: [
+			'JOHN',
+			'JOE',
+			'JOJO'
+		]
+	}
+});
+</script>
+<p>PS. Vue可以用of替代in作為分隔符：</p>
+<pre>
+&lt;li v-for="v of names"&gt;{{v}}&lt;/li&gt;
+</pre>
+
+
+
+
+<h2>在v-for裡使用物件</h2>
+<p>我們也可以用v-for來遍歷一個物件的屬性（只是我自己覺得不太直覺應該不會這樣用吧）：</p>
+<div id="vm3" class="vue-result">
+	<ul>
+		<li v-for="v of personalData">{{v}}</li>
+	</ul>
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		personalData: {
+			name: 'JOHN',
+			nationality: 'Taiwan',
+			birth: '65/09/14'
+		}
+	}
+});
+</script>
+<p>加入key的名稱及索引：</p>
+<div id="vm4" class="vue-result">
+	<ul>
+		<li v-for="(v, k, i) of personalData">{{i+1}}. {{k}}：{{v}}</li>
+	</ul>
+</div>
+<script>
+var vm4 = new Vue({
+	el: '#vm4',
+	data: {
+		personalData: {
+			name: 'JOHN',
+			nationality: 'Taiwan',
+			birth: '65/09/14'
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>陣列的異動</h2>
+<p>Vue的設計在預設情況下，如果數據項的順序被改變，Vue將不會移動DOM元素來匹配數據項的順序，而是就地更新每個元素，如此可以獲得最好的效能，例如下例將反轉陣列內容的順序，我們可以在開發工具中觀察，只有placeholder的值被更新：</p>
+<div id="vm5" class="vue-result">
+	<div v-for="v of hints">
+		<input type="text" :placeholder="'請輸入'+v.hint" />
+	</div>
+	<button @click="reverseAry">反轉陣列</button>
+</div>
+<script>
+var vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		hints: [
+			{hint: '姓名'},
+			{hint: '信箱'},
+			{hint: '電話'}
+		]
+	},
+	methods: {
+		reverseAry: function(){
+			this.hints.reverse();
+		}
+	}
+});
+</script>
+<p>雖說上例可以在效能很高的狀態下更新網頁，但如果我們輸入了內容再按下反轉陣列的按鈕會發現輸入的資料都沒有更新，這是因為Vue只更新了placeholder的值而沒有更新整個DOM內容。</p>
+<p>為了給Vue一個提示，以便它能跟踪每個節點的身份，從而重用和重新排序現有元素，你需要為每項提供一個唯一「key」屬性；建議盡可能在使用v-for時提供keyattribute，除非遍歷輸出的DOM內容非常簡單，或者是刻意只更新部份內容以獲取性能上的提升。</p>
+<p>我們在下例hints陣列裡的每個項目加入一個id的鍵與值，在開發工具中觀察可以發現當我們按下反轉陣列按鈕時&lt;input&gt;都被更新了。</p>
+<div id="vm6" class="vue-result">
+	<div v-for="v of hints">
+		<input type="text" :placeholder="'請輸入'+v.hint" :key="v.id" />
+	</div>
+	<button @click="reverseAry">反轉陣列</button>
+</div>
+<script>
+var vm6 = new Vue({
+	el: '#vm6',
+	data: {
+		hints: [
+			{id: 1, hint: '姓名'},
+			{id: 2, hint: '信箱'},
+			{id: 3, hint: '電話'}
+		]
+	},
+	methods: {
+		reverseAry: function(){
+			this.hints.reverse();
+		}
+	}
+});
+</script>
+<p>上例我們使用key屬性成功更新了DOM，但發現個問題，如果input中有輸入資料再按反轉按鈕資料就都不見了，教學也沒說怎麼辦…我來試試看用v-model能不能解決這問題：</p>
+<p>（看起來好像成功ㄟ，而且我連key都拔掉了…，但有沒有什麼其它的問題以後再說囉）</p>
+<div id="vm7" class="vue-result">
+	<div v-for="v of hints">
+		<input type="text" :placeholder="'請輸入'+v.hint" v-model="v.val" />
+	</div>
+	<button @click="reverseAry">反轉陣列</button>
+</div>
+<script>
+var vm7 = new Vue({
+	el: '#vm7',
+	data: {
+		hints: [
+			{hint: '姓名', val: ''},
+			{hint: '信箱', val: ''},
+			{hint: '電話', val: ''}
+		]
+	},
+	methods: {
+		reverseAry: function(){
+			this.hints.reverse();
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>替換陣列</h2>
+<p>前面範例使用了一些直接更新被綁定的陣列的方法，使用這些方法同時也會更新網頁上的內容，這些方法如下：</p>
+<ul>
+	<li>push()</li>
+	<li>pop()</li>
+	<li>shift()</li>
+	<li>unshift()</li>
+	<li>splice()</li>
+	<li>sort()</li>
+	<li>reverse()</li>
+</ul>
+<p>上述的方法會改變原始的陣列，但也有一些處理陣列的方法不會改變原始的陣列而是傳回一個新的陣列，這些方法如下：</p>
+<ul>
+	<li>filter()</li>
+	<li>concat()</li>
+	<li>slice()</li>
+</ul>
+<p>而使用方法非常簡單，就把處理後的資料指定回去而已，下例以concat()方法做示範：</p>
+<div id="vm8" class="vue-result">
+	<div v-for="v of hints">
+		<input type="text" :placeholder="'請輸入'+v.hint" />
+	</div>
+	<button @click="concatAry">連接陣列</button>
+</div>
+<script>
+var addlData = [
+	{hint: '身高'},
+	{hint: '體重'}
+];
+var vm8 = new Vue({
+	el: '#vm8',
+	data: {
+		hints: [
+			{hint: '姓名'},
+			{hint: '信箱'},
+			{hint: '電話'}
+		]
+	},
+	methods: {
+		concatAry: function(){
+			this.hints = this.hints.concat(addlData);
+		}
+	}
+});
+</script>
+<p>再補一個filter()的範例當作複習filter()：</p>
+<div id="vm9" class="vue-result">
+	<div v-for="v of names">{{v}}</div>
+	<button @click="filterAry">刪掉名字裡沒有「O」的名字</button>
+</div>
+<script>
+var vm9 = new Vue({
+	el: '#vm9',
+	data: {
+		names: [
+			'JOHN',
+			'Jackson',
+			'Johnny',
+			'Black',
+			'Lee'
+		]
+	},
+	methods: {
+		filterAry: function(){
+			this.names = this.names.filter(function(v){
+				return v.match(/o/i);
+			});
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>更新陣列項目的內容</h2>
+<p>一般在更新data資料時我們寫成「vm.someData = newData;」，但在更新陣列項目的內容時千萬不要寫成「vm.someAry[0] = {key1: 'val1', key2: 'val2'}」，這樣「會讓Vue無法動態刷新畫面」。</p>
+<p>官方教學指出由於JavaScript的限制，Vue不能檢測上述的內容變動，或是直接修改陣列的長度（vm.someAry.length = newLength）也是無法自動更新畫面的。</p>
+<pre>
+var vm = new Vue({
+	data: {
+		items: ['a', 'b', 'c']
+	}
+})
+vm.items[1] = 'x' // 不是響應式的
+vm.items.length = 2 // 不是響應式的
+</pre>
+<p>想要動態修改陣列項目的內容可以使用下列兩種方法：</p>
+<p>1. 使用Vue.set()方法：<br>PS. 官方教學還有提到全域的vm.$set()方法，不太知道他是什麼意思。</p>
+<pre>
+Vue.set(vm.items, indexOfItem, newValue)
+</pre>
+<div id="vm10" class="vue-result">
+	<div v-for="v of myAry">{{v}}</div>
+	<button @click="updateMyAry">更新第一筆資料</button>
+</div>
+<script>
+var vm10 = new Vue({
+	el: '#vm10',
+	data: {
+		myAry: [
+			'Value01',
+			'Value02',
+			'Value03',
+			'Value04'
+		]
+	},
+	methods: {
+		updateMyAry: function(){
+			Vue.set(vm10.myAry, 0, '值零壹');
+		}
+	}
+});
+</script>
+<p>2. 使用陣列的splice()方法：</p>
+<pre>
+vm.items.splice(indexOfItem, 1, newValue)
+//語法：splice(index, count_to_remove, addelement1, addelement2, ...);
+</pre>
+<div id="vm11" class="vue-result">
+	<div v-for="v of myAry">{{v}}</div>
+	<button @click="updateMyAry">移除2、3筆資料，並插入新的資料</button>
+</div>
+<script>
+var vm11 = new Vue({
+	el: '#vm11',
+	data: {
+		myAry: [
+			'Value01',
+			'Value02',
+			'Value03',
+			'Value04'
+		]
+	},
+	methods: {
+		updateMyAry: function(){
+			vm11.myAry.splice(1, 2, '中間值01', '中間值02', '中間值03');
+		}
+	}
+});
+</script>
+<p>想要改變陣列長度也可以使用splice()方法：</p>
+<div id="vm12" class="vue-result">
+	<div v-for="v of myAry">{{v}}</div>
+	<button @click="updateMyAry1">移除第一筆後的資料</button>
+	<button @click="updateMyAry2">移除第二到第4筆資料</button>
+</div>
+<script>
+var vm12 = new Vue({
+	el: '#vm12',
+	data: {
+		myAry: [
+			'Value01',
+			'Value02',
+			'Value03',
+			'Value04',
+			'Value05'
+		]
+	},
+	methods: {
+		updateMyAry1: function(){
+			vm12.myAry.splice(1);
+		},
+		updateMyAry2: function(){
+			vm12.myAry.splice(1,3);
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>避免v-if和v-for用在一起</h2>
+<p>官方教學說了一堆關於效能的事，說v-if加錯地方的話沒有必要遍歷的項目也會加進來做遍歷影響效能，反正就照著他的教學做吧。</p>
+<p>一般我們在兩種常見的情況下會把v-if和v-for用在一起：</p>
+<ol>
+	<li>為了過濾一個列表中的項目(比如v-for="user in users" v-if="user.isActive")。在這種情形下，請將users替換為一個計算屬性(computed)(比如activeUsers)，讓其返回過濾後的列表。</li>
+	<li>為了避免渲染本應該被隱藏的列表(比如v-for="user in users" v-if="shooldShowUsers")。這種情形下，請將v-if移動至容器元素上(比如ul, ol)。</li>
+</ol>
+<p>情況1錯誤範例：</p>
+<pre>
+&lt;div id="vm13" class="vue-result"&gt;
+	&lt;ul&gt;
+		&lt;li v-for="v of users" v-if="v.isActive"&gt;{{v.name}}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var vm13 = new Vue({
+	el: '#vm13',
+	data: {
+		users: [
+			{name: 'JOHN', isActive: true},
+			{name: 'Johnny', isActive: false},
+			{name: 'Jonson', isActive: true}
+		]
+	}
+});
+&lt;/script&gt;
+</pre>
+<div id="vm13" class="vue-result">
+	<ul>
+		<li v-for="v of users" v-if="v.isActive">{{v.name}}</li>
+	</ul>
+</div>
+<script>
+var vm13 = new Vue({
+	el: '#vm13',
+	data: {
+		users: [
+			{name: 'JOHN', isActive: true},
+			{name: 'Johnny', isActive: false},
+			{name: 'Jonson', isActive: true}
+		]
+	}
+});
+</script>
+<p>情況1正確範例：</p>
+<pre>
+&lt;div id="vm14" class="vue-result"&gt;
+	&lt;ul&gt;
+		&lt;li v-for="v of activeUsers"&gt;{{v.name}}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var vm14 = new Vue({
+	el: '#vm14',
+	data: {
+		users: [
+			{name: 'JOHN', isActive: true},
+			{name: 'Johnny', isActive: false},
+			{name: 'Jonson', isActive: true}
+		]
+	},
+	computed: {
+		activeUsers: function(){
+			return this.users.filter(function(v){
+				return v.isActive;
+			});
+		}
+	}
+});
+&lt;/script&gt;
+</pre>
+<div id="vm14" class="vue-result">
+	<ul>
+		<li v-for="v of activeUsers">{{v.name}}</li>
+	</ul>
+</div>
+<script>
+var vm14 = new Vue({
+	el: '#vm14',
+	data: {
+		users: [
+			{name: 'JOHN', isActive: true},
+			{name: 'Johnny', isActive: false},
+			{name: 'Jonson', isActive: true}
+		]
+	},
+	computed: {
+		activeUsers: function(){
+			return this.users.filter(function(v){
+				return v.isActive;
+			});
+		}
+	}
+});
+</script>
+<p>情況2錯誤範例：</p>
+<pre>
+&lt;div id="vm15" class="vue-result"&gt;
+	&lt;ul&gt;
+		&lt;li v-for="v of users" v-if="shouldShowUsers"&gt;{{v.name}}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var vm15 = new Vue({
+	el: '#vm15',
+	data: {
+		shouldShowUsers: true,
+		users: [
+			{name: 'JOHN'},
+			{name: 'Johnny'},
+			{name: 'Jonson'}
+		]
+	}
+});
+&lt;/script&gt;
+</pre>
+<div id="vm15" class="vue-result">
+	<ul>
+		<li v-for="v of users" v-if="shouldShowUsers">{{v.name}}</li>
+	</ul>
+</div>
+<script>
+var vm15 = new Vue({
+	el: '#vm15',
+	data: {
+		shouldShowUsers: true,
+		users: [
+			{name: 'JOHN'},
+			{name: 'Johnny'},
+			{name: 'Jonson'}
+		]
+	}
+});
+</script>
+<p>情況2正確範例：</p>
+<pre>
+&lt;div id="vm16" class="vue-result"&gt;
+	&lt;ul v-if="shouldShowUsers"&gt;
+		&lt;li v-for="v of users"&gt;{{v.name}}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var vm16 = new Vue({
+	el: '#vm16',
+	data: {
+		shouldShowUsers: true,
+		users: [
+			{name: 'JOHN'},
+			{name: 'Johnny'},
+			{name: 'Jonson'}
+		]
+	}
+});
+&lt;/script&gt;
+</pre>
+<div id="vm16" class="vue-result">
+	<ul v-if="shouldShowUsers">
+		<li v-for="v of users">{{v.name}}</li>
+	</ul>
+</div>
+<script>
+var vm16 = new Vue({
+	el: '#vm16',
+	data: {
+		shouldShowUsers: true,
+		users: [
+			{name: 'JOHN'},
+			{name: 'Johnny'},
+			{name: 'Jonson'}
+		]
+	}
+});
+</script>
+
+
+
+
+<h2>在組件上使用 v-for</h2>
+<p>在自定義組件上，你可以像在任何普通元素上一樣使用 v-for（這個範例有index）：</p>
+<div id="vm17" class="vue-result">
+	<my-component v-for="(v, i) of myArray" :index="i" :item="v" :end-mark="i+1 < myArray.length && '　|　'" :key="v"></my-component>
+</div>
+<script>
+Vue.component('my-component', {
+	props: ['item', 'index', 'endMark'],
+	template: `
+		<span>玩家{{index+1}}: {{item}}{{endMark}}</span>
+	`
+});
+var vm17 = new Vue({
+	el: '#vm17',
+	data: {
+		myArray: ['John', 'Fred', 'Luigi']
+	}
+});
+</script>
+
+
+
+
+</body>
+</html>

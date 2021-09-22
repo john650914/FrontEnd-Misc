@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>h2{padding-top:20px;border-top:1px solid black;}h2:first-child{padding:0;border: none;}.vue-result{color:deepskyblue;}.vue-result input[type=text]{border:1px solid deepskyblue;}</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+	
+<h2>一個基本watch範例</h2>
+<p>Watch可讓我們監視某個值，當這個值變動的時候，就去做某些事情。</p>
+<div id="vm1" class="vue-result">
+    <p>
+        <input type="text" v-model="name">
+    </p>
+    <div>{{noteMsg}}</div>
+</div>
+<script>
+var vm1 = new Vue({
+    el: '#vm1',
+    data: {
+        name: '',
+        noteMsg: '請輸入名稱，開頭不可為數字'
+    },
+    watch: {
+        name: function(newVal, oldVal){
+            if(/^[0-9]/.test(newVal)){
+                this.noteMsg = '使用者名稱開頭不可為數字';
+            }else{
+                this.noteMsg = '合法的使用者名稱';
+            }
+            console.log(oldVal);
+        }
+    }
+});
+</script>
+
+
+
+
+<h2>官方網站的一個實用範例</h2>
+<p>下面的範例使用v-model綁定input的值為question，當使用者輸入問題時會執行watch的question函式，並執行getAnswer，再送出AJAX去取得問題的答案。</p>
+<p>在這個範例發現他用「lodash」中「_」物件的debounce方法，去查了一下watch的鍵除了可以代入一個function，也可以是方法名、物件，這是不是代表可以直接指定一個setTimouot()？找時間來試試</p>
+<p>同時他還用了axios這個套件來寫ajax，看起來實在很好用也要來研究一下。</p>
+<div id="vm2" class="vue-result">
+    <p>
+        Ask a yes/no question:
+        <input type="text" v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#vm2',
+  data: {
+    question: '',
+    answer: 'I cannot give you an answer until you ask a question!'
+  },
+  watch: {
+    // whenever question changes, this function will run
+    question: function (newQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.getAnswer()
+    }
+  },
+  methods: {
+     getAnswer: _.debounce(
+      function () {
+        if (this.question.indexOf('?') === -1) {
+          this.answer = 'Questions usually contain a question mark. ;-)'
+          return
+        }
+        this.answer = 'Thinking...'
+        var vm = this
+        axios.get('https://yesno.wtf/api')
+          .then(function (response) {
+            vm.answer = _.capitalize(response.data.answer)
+          })
+          .catch(function (error) {
+            vm.answer = 'Error! Could not reach the API. ' + error
+          })
+      },
+      500
+    )
+  }
+})
+</script>
+
+
+
+
+<h2>immediate屬性</h2>
+<p>watch在最初綁定時是不會執行的，要等到被監視的值改變時才會執行計算；如果我們想要一開始綁定時就執行的話就要使用immediate屬性並將值設定為true，使用時必需撘配一個handler：</p>
+<div id="vm3" class="vue-result">
+    <p>
+        <input type="number" v-model="inputNumber" id="aaa"> + 1 = {{result}}
+    </p>
+</div>
+<script>
+var vm1 = new Vue({
+    el: '#vm3',
+    data: {
+        inputNumber: 1,
+        result: 1
+    },
+    watch: {
+      inputNumber: {
+        handler(n, o){
+          this.result = Number(this.inputNumber) + 1;
+        },
+        immediate: true
+      }
+    }
+});
+</script>
+
+
+
+
+<h2>watch的其它功能</h2>
+<p>deep屬性，暫時應該還用不到，而且現在在趕進度，先把目前看到的一些連結記下來之後再來補：</p>
+<ul>
+    <li>https://juejin.im/post/5ae91fa76fb9a07aa7677543</li>
+    <li>https://blog.csdn.net/itKingOne/article/details/69568498</li>
+    <li>https://cythilya.github.io/2017/04/15/vue-watch/</li>
+    <li>https://juejin.im/post/5ae91fa76fb9a07aa7677543</li>
+    <li>https://ithelp.ithome.com.tw/articles/10198961</li>
+</ul>
+</body>
+</html>

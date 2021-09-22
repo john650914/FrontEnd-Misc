@@ -1,0 +1,613 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+	-moz-tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+
+
+
+
+
+
+<!-- <script>
+const MyStore = new Vuex.Store({
+	state: {
+		count: 0
+	},
+	mutations: {
+		increment(s){
+			s.count++
+		}
+	}
+})
+</script> -->
+
+
+
+
+
+
+
+
+<h2>認識Vuex</h2>
+<p>Vuex可以把資料集中保管在myStore這個Vuex物件中，解決了在不同Vue實例或是元件中溝通資料難以處理的問題；<strike>還可以處理一個以上的Store</strike>（這觀念好像是不對的）。</p>
+<!-- <div id="vm1" class="vue-result">
+	{{count}}
+	<button @click="increment">+</button>
+	<button @click="decrement">-</button>
+</div>
+<script>
+const myStore = new Vuex.Store({
+	state: {
+		count: 0
+	},
+	mutations: {
+		increment: state => state.count++,
+		decrement: state => state.count--,
+	}
+});
+var count = new Vue({
+	el: '#vm1',
+	computed: {
+		count(){
+			return myStore.state.count
+		}
+	},
+	methods: {
+		increment(){
+			myStore.commit('increment');
+		},
+		decrement(){
+			myStore.commit('decrement');
+		}
+	}
+});
+</script> -->
+<div id="vm1" class="vue-result">
+	{{count}}
+	<button @click="increment">+</button>
+	<button @click="decrement">-</button>
+</div>
+<script>
+const myStore = new Vuex.Store({
+	state: {
+		count: 0
+	},
+	mutations: {
+		incrementt: state => state.count++,
+		decrementt: state => state.count--,
+	}
+});
+
+var myMethods = {
+	increment(){
+		this.$store.commit('incrementt');
+	},
+	decrement(){
+		this.$store.commit('decrementt');
+	}
+}
+
+var vm1 = new Vue({
+	el: '#vm1',
+	store: myStore,
+	computed: {
+		count(){
+			return this.$store.state.count;
+		}
+	},
+	methods: myMethods
+});
+
+/*myStore.commit('incrementt');*/
+</script>
+
+
+
+
+<h2>試試在comopnent中改變myStore的資料</h2>
+<p>不用寫那些$emit看不懂的東西ㄟ！</p>
+<p>Vuex的state和vue的data有很多相似之處，都是用於存儲一些數據，或者說狀態值。這些值都將被掛載數據和dom的雙向綁定事件，也就是當你改變值的時候可以觸發dom的更新。</p>
+<p>雖然state和data有很多相似之處，但state在使用的時候一般被掛載到子組件的computed計算屬性上，這樣有利於state的值發生改變的時候及時響應給子組件。如果你用data去接收$store.state，當然可以接收到值，但由於這只是一個簡單的賦值操作，因此state中的狀態改變的時候不能被vue中的data監聽到。</p>
+<div id="vm2" class="vue-result">
+	父：{{count}}
+	<my-counter></my-counter>
+</div>
+<script>
+const vm2Store = new Vuex.Store({
+	state: {
+		count: 0
+	},
+	mutations: {
+		increment: state => state.count++,
+		decrement: state => state.count--,
+	}
+});
+
+Vue.component('my-counter', {
+	template: `
+		<span>
+			子：{{count222}}
+			<button @click="increment">+</button>
+			<button @click="decrement">-</button>
+		</span>
+	`,
+	methods: {
+		increment(){
+			vm2Store.commit('increment');
+		},
+		decrement(){
+			vm2Store.commit('decrement');
+		}
+	},
+	computed: {
+		count222(){
+			return this.$store.state.count
+		}
+	}
+});
+
+var vm2 = new Vue({
+	el: '#vm2',
+	store: vm2Store,
+	computed: {
+		count(){
+			return vm2Store.state.count
+		},
+	}
+});
+</script>
+
+
+
+
+<h2>mapState()</h2>
+<p>當一個組件需要獲取多個狀態時候，將這些狀態都聲明為計算屬性會有些重複和冗餘。為了解決這個問題，我們可以使用mapState輔助函數幫助我們生成計算屬性，讓你少按幾次鍵：</p>
+<div id="vm3" class="vue-result">
+	<div>
+		computed00：{{computed00}}
+	</div>
+	<div>
+		computed01：{{computed01}}
+	</div>
+	<div>
+		computed02：{{computed02}}
+	</div>
+	<div>
+		computed03：{{computed03}}
+	</div>
+</div>
+<script>
+const vm3Store = new Vuex.Store({
+	state: {
+		count: 0
+	}
+});
+var vm3 = new Vue({
+	el: '#vm3',
+	store: vm3Store,
+	computed: Vuex.mapState({
+		//原本的寫法：看起來又臭又長
+		computed00: function(){
+			return this.$store.state.count
+		},
+
+		//第一種寫法：'count' 等於 state => state.count
+		computed01: 'count',
+
+		//第二種寫法：箭頭函式（看起來上面那個就是縮寫了）
+		computed02: state => state.count,
+
+		//第三種寫法：為了能夠使用'this'獲取局部狀態必須使用常規函式（就是非箭頭函式）
+		computed03(state){
+			return state.count + this.localCount;
+		}
+	}),
+	created(){
+		this.localCount = 1;
+	}
+});
+</script>
+<p>當映射的計算屬性的名稱與state的子節點名稱相同時，我們也可以給mapState傳一個字符串數組。</p>
+<p>另外，這個例子把store放在「person」這個元件裡，代表Vuex真是好方便好棒棒。</p>
+<div id="vm4" class="vue-result">
+	<person></person>
+</div>
+<script>
+const vm4Store = new Vuex.Store({
+	state: {
+		name: 'defaultName',
+		age: 0,
+		gender: 'defaultGender',
+		nationality: 'defaultNationality'
+	}
+});
+Vue.component('person', {
+	template: `
+		<div>
+			<div>{{name}}</div>
+			<div>{{age}}</div>
+			<div>{{gender}}</div>
+			<div>{{nationality}}</div>
+		</div>
+	`,
+	store: vm4Store,
+	computed: Vuex.mapState([
+		'name',
+		'age',
+		'gender',
+		'nationality'
+	])
+});
+var vm4 = new Vue({
+	el: '#vm4'
+});
+</script>
+<p>computed不會因為引入mapState輔助函數而失去原有的功能，如果我們之前已經寫了一大堆的computed計算屬性，做了一半發現你要引入vuex，又想使用方便的mapState()，我們可以直接把舊的計算屬性直接貼到mapState中：</p>
+<div id="vm5" class="vue-result">
+	<!-- 原本計算屬性的值： -->
+	<div>{{dataCount}}</div>
+	<div>{{DataCount_add_1}}</div>
+	<!-- 後來加入Vuex新增計算屬性的值： -->
+	<div>{{dataCount_add_storeCount}}</div>
+</div>
+<script>
+const vm5Store = new Vuex.Store({
+	state: {
+		count: 10
+	}
+});
+let vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		count: 1
+	},
+	// 原本的計算屬性
+	/* computed: {
+		dataCount(){
+			return this.count;
+		},
+		DataCount_add_1(){
+			return this.count + 1;
+		}
+	}, */
+	// 加入store
+	store: vm5Store,
+	// 後來加入Vuex並使用mapState方法：
+	computed: Vuex.mapState({
+		//直接把舊的計算屬性copy進來：
+		dataCount(){
+			return this.count;
+		},
+		DataCount_add_1(){
+			return this.count + 1;
+		},
+		//開始使用Vuex：
+		dataCount_add_storeCount(state){
+			return this.count + state.count;
+		}
+	})
+});
+</script>
+<p>對mapState使用「...」展開運算子；mapState()傳回的是一個物件，上例中我們把舊的計算屬性中的資料copy到一個新的算計屬性中來使用mapState()，這樣搬來搬去的的做法實在不體面要做註解說明也說不明道不清，取而代之我們直接保留舊的程式碼，在計算屬性中直接展開mapState()會是比較聰明的做法：</p>
+<div id="vm6" class="vue-result">
+	<!-- 原本計算屬性的值： -->
+	<div>{{dataCount}}</div>
+	<div>{{DataCount_add_1}}</div>
+	<!-- 後來加入Vuex新增計算屬性的值： -->
+	<div>{{dataCount_add_storeCount}}</div>
+</div>
+<script>
+const vm6Store = new Vuex.Store({
+	state: {
+		count: 10
+	}
+});
+let vm6 = new Vue({
+	el: '#vm6',
+	data: {
+		count: 1
+	},
+	// 加入store
+	store: vm6Store,
+	computed: {
+		dataCount(){
+			return this.count;
+		},
+		DataCount_add_1(){
+			return this.count + 1;
+		},
+		...Vuex.mapState({
+			dataCount_add_storeCount(state){
+				return this.count + state.count;
+			}
+		})
+	}
+});
+</script>
+
+
+
+
+<h2>Getter</h2>
+<p>vuex本身就提供了類似於計算屬性的方式，getters可以讓你從store的state中派生出一些新的狀態，當然如果不是多個組件要用到這個狀態，或者說每個子組件用到的派生屬性不一樣，那麼，你完全可以不用getters。</p>
+<P>例如有時候我們需要從store 中的state 中派生出一些狀態，例如對列表進行過濾併計數：</P>
+<pre>
+	computed: {
+		doneTodosCount () {
+			return this.$store.state.todos.filter(todo => todo.done).length
+		}
+	}
+</pre>
+<p>Vuex 允許我們在store 中定義“getter”（可以認為是store 的計算屬性）。就像計算屬性一樣，getter 的返回值會根據它的依賴被緩存起來，且只有當它的依賴值發生了改變才會被重新計算。說白了就是vue的computed，如果你了解computed的話，那你可以像使用computed一樣去使用getters，當然還是有點區別的。</p>
+<p>Getter 接受state 作為其第一個參數：</p>
+<div id="vm7" class="vue-result">
+	{{doneTodos}}
+</div>
+<script>
+const vm7Store = new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		doneTodos: state => {
+			return state.todos.filter(todo => todo.done)
+		}
+	}
+})
+var vm7 = new Vue({
+	el: '#vm7',
+	store: vm7Store,
+	computed: {
+		doneTodos(){
+			return this.$store.getters.doneTodos;
+		}
+	}
+});
+</script>
+<p>續上例，Getter會暴露為store.getters物件，你可以以屬性的形式訪問這些值：</p>
+<pre>
+vm7Store.getters.doneTodos;
+</pre>
+<p>Getter 也可以接受其他getter 作為第二個參數：</p>
+<div id="vm8" class="vue-result">
+	完成的數量：{{aaa}}
+</div>
+<script>
+const vm8Store = new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		doneTodos: state => {
+			return state.todos.filter(todo => todo.done)
+		},
+		doneTodosCount: (state, getters) => {
+			return getters.doneTodos.length
+		}
+	}
+})
+var vm8 = new Vue({
+	el: '#vm8',
+	store: vm8Store,
+	computed: {
+		aaa(){
+			return this.$store.getters.doneTodosCount;
+		}
+	}
+});
+</script>
+<p>實現傳參數給getter：</p>
+<p>我們可以通過讓getter 返回一個函數，來實現給getter 傳參。在你對store 裡的陣列進行查詢時非常有用。</p>
+<p>但是要注意，getter 在通過方法訪問時，每次都會去進行調用，而不會緩存結果。</p>
+<div id="vm9" class="vue-result">
+	{{getItemById}}
+</div>
+<script>
+const vm9Store = new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		getItemById: state => passId => {
+			return state.todos.find(v => v.id == passId);
+		}
+	}
+})
+var vm9 = new Vue({
+	el: '#vm9',
+	store: vm9Store,
+	computed: {
+		getItemById(){
+			return this.$store.getters.getItemById(3);
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>mapGetters輔助函數</h2>
+<p>將store 中的getter 映射到局部計算屬性：</p>
+<p>用法跟mapState一樣（但覺得應該沒什麼用）</p>
+<div id="vm10" class="vue-result">
+	<div>{{doneTodos}}</div>
+	<div>{{doneTodosCount}}</div>
+</div>
+<script>
+const vm10Store = new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		doneTodos: state => {
+			return state.todos.filter(todo => todo.done)
+		},
+		doneTodosCount: (state, getters) => {
+			return getters.doneTodos.length
+		}
+	}
+})
+var vm10 = new Vue({
+	el: '#vm10',
+	store: vm10Store,
+	computed: {
+		//使用展開運算子將getter加入computed物件中
+		...Vuex.mapGetters([
+			'doneTodos',
+			'doneTodosCount'
+		])
+	}
+});
+</script>
+<p>如果你想將一個getter 屬性另取一個名字，使用物件形式：</p>
+<pre>
+mapGetters({
+	// 把 `this.doneCount` 映射为 `this.$store.getters.doneTodosCount`
+	doneCount: 'doneTodosCount',
+	done: 'doneTodos'
+})
+</pre>
+
+
+
+
+<h2>各種傳參數</h2>
+<p>看看就好：</p>
+<div id="vmX" class="vue-result">
+	<div>{{fruitSentence}}</div>
+	<button @click="triggerAction('banana')">點我換水果</button>
+</div>
+<script>
+const fmA = {
+	namespaced: true,
+	state: {
+		fruit: 'apple'
+	},
+	mutations: {
+		changeFruit(s, a){
+			return s.fruit = a;
+		}
+	},
+	getters: {
+		makeSentence(s){
+			return 'I like ' + s.fruit + ', it tastes good!'
+		}
+	},
+	actions: {
+		asyncAction({state, commit, rootState}, a){
+			commit('changeFruit', a);
+		}
+	}
+}
+const fruitStoreA = new Vuex.Store({
+	state: {
+		text: '這是個無用Store，只是用來練習module'
+	},
+	modules: {
+		fruitModuleA: fmA
+	}
+});
+let vmX = new Vue({
+	el: '#vmX',
+	store: fruitStoreA,
+	methods: {
+		triggerAction(a){
+			this.$store.dispatch('fruitModuleA/asyncAction', a);
+		}
+	},
+	computed: {
+		fruitSentence(){
+			return this.$store.getters['fruitModuleA/makeSentence'];
+		}
+	}
+});
+</script>
+
+
+
+
+
+
+
+<p>https://blog.csdn.net/dkr380205984/article/list/3?</p>
+
+
+
+
+
+
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+
+<p>https://www.u3xyz.com/detail/39</p>
+
+
+https://jeremysu0131.github.io/Vue-js-Vuex-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-9-modules-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/
+
+
+
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+
+
+
+</body>
+</html>

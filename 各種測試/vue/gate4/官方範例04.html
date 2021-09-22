@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!---------------------------------------------------------------------->
+<div id="Vue1">
+	<div>
+		<select v-model="sletdVal">
+			<option value="" disabled>請選擇</option>
+			<option value="A">選項A</option>
+			<option value="B">選項B</option>
+			<option value="C">選項C</option>
+		</select>
+	</div>
+	選擇的項目為：{{sletdVal}}
+</div>
+<hr>
+<script>
+new Vue({
+	el: '#Vue1',
+	data: {
+		sletdVal: ''
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+<div id="Vue2">
+	<div>
+		<select multiple v-model="sletdVal">
+			<option value="A">選項A</option>
+			<option value="B">選項B</option>
+			<option value="C">選項C</option>
+		</select>
+		<!--多選的select v-model綁定為一個陣列-->
+	</div>
+	選擇的項目為：{{sletdVal}}
+</div>
+<hr>
+<script>
+new Vue({
+	el: '#Vue2',
+	data: {
+		sletdVal: ['B']
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+<div id="Vue3">
+	<div>
+		<select v-model="sltdVal">
+			<option value="" disabled>請選擇</option>
+			<option v-for="v in options" :value="v.val">{{v.text}}</option>
+		</select>
+	</div>
+	選擇的項目為：{{sltdVal}}
+</div>
+<hr>
+<script>
+new Vue({
+	el: '#Vue3',
+	data: {
+		sltdVal: 'B',
+		options: [
+			{val:'A', text:'選項A'},
+			{val:'B', text:'選項B'},
+			{val:'C', text:'選項C'}
+		]
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+<div id="Vue4">
+	<div>
+		<select v-model="sletdVal">
+			<option value="" disabled>請選擇</option>
+			<option :value="{val:'A', text:'選項A'}">選項A</option>
+			<option :value="{val:'B', text:'選項B'}">選項B</option>
+			<option :value="{val:'C', text:'選項C'}">選項C</option>
+		</select>
+	</div>
+	<p>選擇的值為：{{sletdVal.val}}</p>
+	<p>選擇的項目文字為：{{sletdVal.text}}</p>
+</div>
+<hr>
+<script>
+new Vue({
+	el: '#Vue4',
+	data: {
+		sletdVal: ''
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+</body>
+</html>

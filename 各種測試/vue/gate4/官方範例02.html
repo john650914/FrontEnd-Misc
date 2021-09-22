@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="Vue1">
+	<label>
+		<input type="checkbox" v-model="cked" @change="changed">
+		<!--單個checkbox的v-model會綁定為布林值-->
+		{{message}}
+	</label>
+</div>
+<hr>
+<div id="Vue2">
+	<div>
+		<label><input type="checkbox" value="John" v-model="checkedNames" />John</label>
+	</div>
+	<div>
+		<label><input type="checkbox" value="Master" v-model="checkedNames" />Master</label>
+	</div>
+	<div>
+		<label><input type="checkbox" value="Monster" v-model="checkedNames" />Monster</label>
+	</div>
+	<!--多個checkbox的v-model會綁定為一個陣列，官方文件說到checkd屬性沒用，所以要預選就直接在data裡給值-->
+	Checked Names: {{checkedNames}}
+</div>
+<script>
+new Vue({
+	el: '#Vue1',
+	data: {
+		cked: false,
+		message: ''
+	},
+	created: function(){
+		this.cked ? this.message = '已核選' : this.message = '未核選'
+	},
+	methods: {
+		changed(){
+			this.cked ? this.message = '已核選' : this.message = '未核選'
+		}
+	}
+});
+new Vue({
+	el: '#Vue2',
+	data: {
+		checkedNames: ['Master']
+	}
+})
+</script>
+</body>
+</html>

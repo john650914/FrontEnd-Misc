@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+<h2>創建一個Vue實例</h2>
+<p>每個Vue應用都是通過用Vue函數創建一個新的Vue實例開始的；<br>當一個Vue實例被創建時，它將「data」對像中的所有的屬性加入到Vue的響應式系統中。當這些屬性的值發生改變時，視圖將會產生“響應”，即匹配更新為新的值。</p>
+<p>我們可以在console中觀察此範例的資訊，例如輸入「vm.a == data.a」會得到true，代表data物件中的資料和vm實例中的data是完全相同的。</p>
+<p>再來我們輸入「vm.a = 2」，試著改變vm實例的值，再輸入「data.a」，發現傳回2，代表這些資料都已存在Vue的響應式系統中了。</p>
+<p>反過來輸入「data.a = 3」，再輸入 「vm.a」也會得到同樣的效果。</p>
+<pre>
+//數據物件
+var data = { a: 1 };
+
+//該物件被加到Vue的實例中
+var vm = new Vue({
+	data: data
+})
+</pre>
+<script>
+//數據物件
+var data = { a: 1 };
+
+//該物件被加到Vue的實例中
+var vm = new Vue({
+	data: data
+})
+</script>
+<p>注意的是只有當實例被創建時就已經存在於data中的屬性才是響應式的，如果你知道你會在晚些時候需要一個屬性，但是一開始它為空或不存在，那麼你僅需要設置一些初始值。比如：</p>
+<pre>
+data: {
+	newTodoText: '',
+	visitCount: 0,
+	hideCompletedTodos: false,
+	todos: [],
+	error: null
+}
+</pre>
+
+
+
+
+<h2>綁定數據</h2>
+<p>首先在HTML中使用兩個大括號來標記要繫結資料的物件key值，再來在JavaScript中建構一個Vue物件，並且在el屬性中指定這個Vue物件要連繫的DOM id；data屬性內是個物件，裡面包含了我們要綁定到HTML的資料，在這裡的content值為Hello world!，該值會被綁到{{}}中的content。</p>
+<p>先前提到Vue實例中的資料是響應式的，也就是說是動態綁定的，我們在console中輸入「vm1.content = 'changed text!'」就會發現網頁中的字串也跟著改變了。</p>
+<div id="vm1" class="vue-result">
+	{{content}}
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		content: 'Hellow world!'
+	}
+});
+</script>
+
+
+
+
+
+<h2>綁定屬性</h2>
+<p>除了可以用來繫結資料外，他也可以使用v-bind直接綁定DOM的屬性，原理和上方綁定數據一樣，首先在HTML中使用v-bind去設定該DOM的屬性，這裡是綁定title屬性。</p>
+<div id="vm2" class="vue-result" v-bind:title="newDate">
+	將滑鼠移到這裡顯示Title內容
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		newDate: 'Title：' + new Date()
+	}
+});
+</script>
+<p>這個v-bind是可以使用縮寫的：</p>
+<pre>
+&lt;div id="vm2" class="vue-result" :title="newDate"&gt;
+	將滑鼠移到這裡顯示Title內容
+&lt;/div&gt;
+</pre>
+
+
+
+
+<h2>綁定屬性為布林值時</h2>
+<p>disabled、checked等的值可以用布林值來指定：</p>
+<div id="vm101" class="vue-result">
+	<div>
+		<input type="checkbox" :checked="isChecked" />
+		isChecked的值決定checkbox是否被選中
+	</div>
+	<div>
+		<select>
+			<option value="1">11111</option>
+			<option value="2" :selected="isSelected">22222</option>
+			<option value="3">33333</option>
+		</select>
+		isSelected的值決定第二個option是否被選中
+	</div>
+</div>
+<script>
+var vm101 = new Vue({
+	el: '#vm101',
+	data: {
+		isChecked: true,
+		isSelected: true
+	}
+});
+</script>
+
+
+
+
+<h2>使用JavaScript表達式</h2>
+<p>迄今為止，在我們的模板中，我們一直都只綁定簡單的屬性鍵值。但實際上，對於所有的數據綁定，Vue.js都提供了完全的JavaScript表達式支持。</p>
+<p>PS. 表達式跟陳述式不一樣喔，千萬不要認為可以在表達式裡宣告變數</p>
+<div id="vm102" class="vue-result">
+	<div :title="numberVal + stringVal">div的title是：mumberVal + stringVal</div>
+	<div>{{numberVal + 999}}</div>
+	<div>{{stringVal + 'ttt'}}</div>
+</div>
+<script>
+var vm102 = new Vue({
+	el: '#vm102',
+	data: {
+		numberVal: 1,
+		stringVal: 'text'
+	}
+});
+</script>
+
+
+
+
+https://cn.vuejs.org/v2/guide/syntax.html#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0
+
+
+
+
+<h2>綁定含html的資料</h2>
+<p>雙大括號會將數據解釋為普通文本，而非HTML代碼。為了輸出真正的HTML，你需要使用v-html指令：</p>
+<p>網站內動態渲染的任意HTML可能會非常危險，因為它很容易導致XSS攻擊。請只對可信內容使用HTML插值，絕不要對用戶提供的內容使用插值。</p>
+<div id="vm3" class="vue-result">
+	<div>{{myHTML}}</div>
+	<div v-html="myHTML"></div>
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		myHTML: '<b>這是用html標籤加粗的文字</b>'
+	}
+});
+</script>
+
+
+
+
+<h2>執行一次性的插值</h2>
+<p>通過使用v-once指令，你也能執行一次性地插值，當數據改變時，插值處的內容不會更新（但請留心這會影響到該節點上的其它數據綁定），如下例：</p>
+<div id="vm4" class="vue-result" :title="boundVal" v-once>
+	{{boundVal}}
+</div>
+<script>
+var vm4 = new Vue({
+	el: '#vm4',
+	data: {
+		boundVal: '一開始的文字'
+	},
+	mounted: function(){
+		this.boundVal = '改變他！'
+		console.log(this.boundVal);
+	}
+});
+</script>
+
+
+
+
+<h2>綁定事件</h2>
+<p>數據和屬性都有了，絕對少不了事件，vue.js提供了v-on來綁定DOM的事件，我們直接修改上面的範例，讓他變成透過click事件顯示時間。</p>
+<div id="vm5" class="vue-result" v-on:click="getNowTime">
+	{{content}}
+</div>
+<script>
+var mv4 = new Vue({
+	el: '#vm5',
+	data: {
+		content: '點我顯示現在時間'
+	},
+	methods: {
+		getNowTime: function(){
+			alert(new Date());
+		}
+	}
+});
+</script>
+<p>至於v-on也是有縮寫可以用的，他的縮寫寫法是@，可以把HTML改成下方的樣子</p>
+<pre>
+&lt;div id="vm4" class="vue-result" @:click="getNowTime"&gt;
+	{{content}}
+&lt;/div&gt;
+</pre>
+
+
+
+
+</body>
+</html>

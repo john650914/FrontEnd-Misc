@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>h2{padding-top:20px;border-top:1px solid black;}h2:first-child{padding:0;border: none;}.vue-result{color:deepskyblue;}</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+<!-- ---------------------------------------------------------------------------------------- -->
+<style>
+.textRed{color:red;}
+.textItalic{font-style:italic;}
+</style>
+<!-- ---------------------------------------------------------------------------------------- -->
+
+
+
+	
+<h2>用v-bind綁定class的值</h2>
+<p>這個範例極其無用，就當開場白了；但也不是完全無用，至少我們看到「v-bind:class」跟「class」是不衝突的。</p>
+<div id="vm1" class="vue-result" :class="msgClass">
+	{{message}}
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		message: '這是警告文字',
+		msgClass: 'textRed'
+	}
+});
+</script>
+
+
+
+	
+<h2>使用陣列綁定多個class</h2>
+<p>算是爲了後面的範例鋪路</p>
+<div id="vm2" class="vue-result" :class="['textRed','textItalic']">
+	{{message}}
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		message: '這是警告文字'
+	}
+});
+</script>
+
+
+
+	
+<h2>也可以將所有要綁定的class存在data中</h2>
+<div id="vm3" class="vue-result" :class="msgClass">
+	{{message}}
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		message: '這是警告文字',
+		msgClass: ['textRed','textItalic']
+	}
+});
+</script>
+
+
+
+	
+<h2>我們也可以把每個值拆開為不同的data屬性</h2>
+<p>反正就是可以用的方法很多很靈活就是了</p>
+<div id="vm4" class="vue-result" :class="[style1, style2]">
+	{{message}}
+</div>
+<script>
+var vm4 = new Vue({
+	el: '#vm4',
+	data: {
+		message: '這是警告文字',
+		style1: 'textRed',
+		style2: 'textItalic'
+	}
+});
+</script>
+
+
+
+	
+<h2>在v-bind中使用表達式</h2>
+<p>單向綁定可以在{{}}內使用表達式，而class的陣列內也一樣做的到。</p>
+<p>注意，在這個範例中我們只操作陣列中的第一個索引，所以style2不會受影響！</p>
+<div id="vm5" class="vue-result" :class="[state ? style1 : '', style2]">
+	{{message}}
+</div>
+<script>
+var vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		message: '這是警告文字',
+		style1: 'textRed',
+		style2: 'textItalic',
+		state: 0
+	}
+});
+</script>
+
+
+
+
+<h2>改用computed來處理這個範例</h2>
+<p>這…就當作是復習吧…</p>
+<div id="vm6" class="vue-result" :class="getClasses">
+	{{message}}
+</div>
+<script>
+var vm6 = new Vue({
+	el: '#vm6',
+	data: {
+		message: '這是警告文字',
+		style1: 'textRed',
+		style2: 'textItalic',
+		state: 0
+	},
+	computed: {
+		getClasses: function(){
+			return [this.state ? this.style1 : '', this.style2];
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>物件的特殊用法</h2>
+<p>當我們使用物件設定class的時候，key是class的名稱，value則是該class的啟用狀態，true為啟用、false關閉。</p>
+<div id="vm7" class="vue-result" :class="{'textRed':true, 'textItalic':false}">
+	{{message}}
+</div>
+<script>
+var vm7 = new Vue({
+	el: '#vm7',
+	data: {
+		message: '這是警告文字'
+	}
+});
+</script>
+
+
+
+
+<h2>續上例，將該物件存放於data中</h2>
+<p>當我們使用物件設定class的時候，key是class的名稱，value則是該class的啟用狀態，true為啟用、false關閉。</p>
+<p>我們可以試試在console中輸入「vm8.classObj.textItalic = true;」, 警告文字就變斜體了。</p>
+<div id="vm8" class="vue-result" :class="classObj">
+	{{message}}
+</div>
+<script>
+var vm8 = new Vue({
+	el: '#vm8',
+	data: {
+		message: '這是警告文字',
+		classObj: {
+			'textRed':true,
+			'textItalic':false
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>續上例，將該物件存放於data中</h2>
+<div id="vm9" class="vue-result" :class="classObj">
+	{{message}}
+</div>
+<script>
+var vm9 = new Vue({
+	el: '#vm9',
+	data: {
+		message: '這是警告文字',
+		classObj: {
+			textRed: true,
+			textItalic: false
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>…再來一次computed…</h2>
+<div id="vm10" class="vue-result" :class="getClasses">
+	{{message}}
+</div>
+<script>
+var vm10 = new Vue({
+	el: '#vm10',
+	data: {
+		message: '這是警告文字',
+		textRedState: true,
+		textItalicState: false
+	},
+	computed: {
+		getClasses: function(){
+			return classObj = {
+				textRed: this.textRedState,
+				textItalic: this.textItalicState
+			}
+		}
+	}
+});
+</script>
+
+
+
+
+</body>
+</html>

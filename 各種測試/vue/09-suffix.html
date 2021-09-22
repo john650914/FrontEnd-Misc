@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>h2{padding-top:20px;border-top:1px solid black;}h2:first-child{padding:0;border: none;}.vue-result{color:deepskyblue;}</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+</head>
+<body>
+
+
+
+	
+<h2>.stop後綴詞</h2>
+<p>防止事件冒泡，除了在事件中添加event.stopPropagation()阻止事件冒泡外，在Vue中也提供了stop修飾事件。</p>
+<div id="vm1" class="vue-result">
+	<div class="outside" @click="clickOutside">
+		<div class="inside" @click="clickInside">
+			<input type="button" value="點我" @click.stop="clickMe" />
+		</div>
+	</div>
+</div>
+<style>
+.inside{background:red; width:80px; height:40px;}
+.outside{background:blue; width:120px; height:60px;}
+</style>
+<script>
+let vm1 = new Vue({
+	el: '#vm1',
+	methods: {
+		clickMe: function(){
+			console.log('按鈕');
+		},
+		clickInside: function(){
+			//e.stopPropagation();
+			console.log('裡面');
+		},
+		clickOutside: function(){
+			console.log('外面');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>.capture後綴詞</h2>
+<p>感覺是一個不會去用的功能…</p>
+<p>當有冒泡事件的情況發生時，有指定.capture的元素會最先被執行。</p>
+<div id="vm2" class="vue-result">
+	<div class="outside" @click.capture="clickOutside">
+		<div class="inside" @click="clickInside">
+			<input type="button" value="點我" @click="clickMe" />
+		</div>
+	</div>
+</div>
+<script>
+let vm2 = new Vue({
+	el: '#vm2',
+	methods: {
+		clickMe: function(){
+			console.log('按鈕');
+		},
+		clickInside: function(){
+			//e.stopPropagation();
+			console.log('裡面');
+		},
+		clickOutside: function(){
+			console.log('外面');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>.self後綴詞</h2>
+<p>這個修飾詞會去判斷滑鼠觸發DOM事件的範圍內是否有子元素事件，如果有就執行子元素的事件，不會執行自身擁有.self修飾符的元素事件，換個說法，擁有.self的元素只會在確定點到自身DOM的時候才觸發事件，例如我們在最外層的div加上.self。</p>
+<div id="vm3" class="vue-result">
+	<div class="outside" @click.self="clickOutside">
+		<div class="inside" @click="clickInside">
+			<input type="button" value="點我" @click="clickMe" />
+		</div>
+	</div>
+</div>
+<script>
+let vm3 = new Vue({
+	el: '#vm3',
+	methods: {
+		clickMe: function(){
+			console.log('按鈕');
+		},
+		clickInside: function(){
+			console.log('裡面');
+		},
+		clickOutside: function(){
+			console.log('外面');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>.once後綴詞</h2>
+<p>這個後綴詞會讓事件只被觸發一次。</p>
+<div id="vm4" class="vue-result">
+	<div class="outside" @click="clickOutside">
+		<input type="button" value="點我" @click.once="clickMe" />
+	</div>
+</div>
+<script>
+let vm4 = new Vue({
+	el: '#vm4',
+	methods: {
+		clickMe: function(){
+			console.log('按鈕');
+		},
+		clickOutside: function(){
+			console.log('外面');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>.prevent後綴詞</h2>
+<p>讓DOM失去原本的功能，只執行我們幫他設定的事件，例如當我們在a標籤下事件時，不跳轉到href設定的網址，效果同event.preventDefault()。</p>
+<div id="vm5" class="vue-result">
+	<a :href="urlText" @click.prevent="clickMe">我是連結</a>
+</div>
+<script>
+let vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		urlText: 'https://www.google.com'
+	},
+	methods: {
+		clickMe: function(){
+			console.log('觸發事件卻不轉跳');
+		}
+	}
+});
+</script>
+<p>若在表單上使用.prevent，例如：&lt;form @submit.prevent="submitFN"&gt;&lt;/form&gt;，Vue官網是說會防止畫面reload，但我想應該是防止submit事件觸發的意思吧。</p>
+
+
+
+
+<h2>.passive後綴詞</h2>
+<p>看不太懂這個要幹嘛，以下是直接貼網路的教學（Vue官網講的東西也是差不多的）。</p>
+<p>這個修飾符和.prevent的作用相反，一個會取消DOM的預設功能也就是preventDefault()，而.passive是死也不會讓preventDefault()執行。</p>
+<p>.passive可以大大的提升在手機上使用的效能，主要用在捲軸的onscroll事件上，避免滑動的時候卡卡的。</p>
+<p>注意如果在有.passive的情況下使用.prevent或preventDefault()那瀏覽器會出現警告哦！</p>
+
+
+
+
+<h2>只設定修飾符不綁定function</h2>
+<p>完全不知道這樣要幹嘛</p>
+<div id="vm9" class="vue-result">
+	<a :href="urlText" @click.prevent>點我不會發生任何事</a>
+</div>
+<script>
+let vm9 = new Vue({
+	el: '#vm9',
+	data: {
+		urlText: 'https://www.google.com'
+	}
+});
+</script>
+
+
+
+
+<h2>連接修飾符</h2>
+<p>能同時連接多個修飾符，例如同時得到.stop和.prevent的效果；注意多個修飾符是會按照順序執行的</p>
+<pre>
+&lt;a href="https://www.google.com" @click.stop.prevent="clickMe"&gt;&lt;/a&gt;
+</pre>
+
+
+
+
+<h2>按鍵修飾符</h2>
+<p>因為所有的鍵盤按鍵實在是太多了，所以Vue.js只預設幾個比較常用的按鍵別名，當然那些不常用的也可以另外用Vue.js的全域屬性keyCode做設定，以下是現成的按鍵修飾符：<br>.enter、.tab、.delete、.esc、.space、.up、.down、.left、.right</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>https://ithelp.ithome.com.tw/articles/10198986</p>
+<p>https://ithelp.ithome.com.tw/articles/10199021?sc=pt</p>
+
+
+</body>
+</html>

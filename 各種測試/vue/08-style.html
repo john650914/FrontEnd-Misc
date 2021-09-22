@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>h2{padding-top:20px;border-top:1px solid black;}h2:first-child{padding:0;border: none;}.vue-result{color:deepskyblue;}</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+	
+<h2>使用Vue來控制CSS</h2>
+<p>就是像寫Javascript一樣以物件的方式輸入各種Style屬性及值，概然要像JS的寫法，Style的屬性要就寫成Camel型式，或是以字串型式做為key備值。</p>
+<div id="vm1" class="vue-result" :style="{color:textColor, fontStyle:'italic'}">
+	{{msg1}}，<span :style="styleObj">{{msg2}}</span>
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		msg1: '用Vue的方式來寫行內CSS',
+		msg2: '官方比較推薦先寫好一個CSS物件再綁定到:style上',
+		textColor: 'red',
+		styleObj: {
+			color: 'green',
+			'font-size': '22px',
+			fontWeight: 'bold'
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>使用陣列來綁定多個樣式物件</h2>
+<p>Vue會自動幫我們整理好樣式的物件再輸出</p>
+<div id="vm2" class="vue-result" :style="[styleObj1, styleObj2]">
+	{{msg1}}
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		msg1: '用Vue的方式來寫行內CSS',
+		styleObj1: {
+			color: 'blue',
+			textDecoration: 'underline'
+		},
+		styleObj2: {
+			color: 'orange',
+			fontSize: '13px'
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>以computed的方式撰寫</h2>
+<p>如此可以在computed的function中做出判斷要如何顯示樣式</p>
+<div id="vm3" class="vue-result" :style="computedStyle">
+	{{msg1}}
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		msg1: '用Vue的方式來寫行內CSS',
+		textStyle: {
+			color:'blue',
+			fontWeight: 'bold'
+		},
+		otherStyle: {
+			border: '2px solid blue',
+			background: 'silver'
+		}
+	},
+	computed: {
+		computedStyle: function(){
+			return [
+				this.textStyle,
+				this.otherStyle
+			];
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>備註：</h2>
+<p>官方文件中有一個類似Hack的東西，就是可以指定多個CSS值，再派給該瀏覽器有支援的值，如下面的寫法：</p>
+<pre>&lt;div :style=&quot;{display: ['-webkit-box', '-ms-flexbox', 'flex']}&quot;&gt;&lt;/div&gt;</pre>
+<p>覺得實用性不高就先不做範例了。</p>
+</body>
+</html>

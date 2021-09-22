@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!---------------------------------------------------------------------->
+<div id="Vue1">
+	<input type="text" v-model="message" placeholder="Edit Me" @input="consoleLogVal" />
+	<p>The message is: {{message}}</p>
+</div>
+<hr>
+<script>
+new Vue({
+	el: '#Vue1',
+	data: {
+		message: ''
+	},
+	methods: {
+		consoleLogVal(){
+			console.log(this.message);
+		}
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+<div id="Vue2">
+	<textarea v-model="message" rows="10" cols="50" placeholder="Enter textarea Message"></textarea>
+	<pre>The message is: {{message}}</p>
+</div>
+<script>
+new Vue({
+	el: '#Vue2',
+	data: {
+		message: '預設的Value'
+	}
+});
+</script>
+<!---------------------------------------------------------------------->
+</body>
+</html>

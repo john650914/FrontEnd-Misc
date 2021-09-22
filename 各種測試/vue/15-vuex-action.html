@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+	-moz-tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+
+
+
+
+<div id="vm3" class="vue-result">
+	<div>{{vm3Store_s}}</div>
+	<button @click="vm3Store_a">點我觸發action</button>
+</div>
+<script>
+const vm3Store = new Vuex.Store({
+	state: {
+		vm3Store_s: 1
+	},
+	mutations: {
+		vm3Store_m(s){
+			s.vm3Store_s++;
+		}
+	},
+	actions: {
+		vm3Store_a(c){
+			c.commit('vm3Store_m');
+		}
+	}
+});
+let vm3 = new Vue({
+	el: '#vm3',
+	store: vm3Store,
+	computed: {
+		vm3Store_s(){
+			return this.$store.state.vm3Store_s;
+		}
+	},
+	methods: {
+		vm3Store_a(){
+			this.$store.dispatch('vm3Store_a');
+		}
+	}
+});
+</script>
+
+
+
+
+<p>https://blog.csdn.net/dkr380205984/article/details/82347910</p>
+
+
+
+
+</body>
+</html>

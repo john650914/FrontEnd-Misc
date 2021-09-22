@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+
+
+
+<h2>一個基本的Vue組件範例</h2>
+<p>有幾個要注意的地方：</p>
+<p>第一是在Vue.component()中的「inputName」使用了駝峰命名法，而在HTML中用了短橫線命名法的「custom-input」這是因為DOM中只支援短橫線命名法，但在Vue創件組件可以使用駝峰命名法，為何要這樣設計我也不清楚。</p>
+<p>第二，Vue.component和其他Vue物件一樣，都擁有data、methods、computed和watch，但是他並不是對某個DOM建立實體，所以他不會有el。</p>
+<p>第三，當組件中不只有一個DOM元素時，必須包在一個div或任何父元素內，因為每個組件都只能擁有一個根元素。</p>
+<p>data的寫法跟一般Vue物件的寫法不一樣。</p>
+<div id="vm1" class="vue-result">
+	<custom-input></custom-input>
+</div>
+<script type="text/babel">
+Vue.component('customInput', {
+	data: function(){
+		return {
+			label: '姓名：',
+			placeholder: '請輸入你的全名'
+		}
+	},
+	template: `
+		<div>
+			{{label}}
+			<input type="text" :placeholder="placeholder" />
+		</div>`
+});
+var vm1 = new Vue({
+	el: '#vm1'
+});
+</script>
+
+
+
+
+<h2>重複使用同一個組件</h2>
+<p>data的值必須要是方法的回傳值；而回傳的是一個物件，這樣會讓每次創建一個組件實體的時候，都會重新new一個新的data，讓每次使用的相同組件都擁有自己獨立的data；由這個範例可以發現我們重複使用了三次同一個組件，但是他們的count卻不是共用，而是獨立的。</p>
+<div id="vm2" class="vue-result">
+	<count-me></count-me>
+	<count-me></count-me>
+</div>
+<div id="vm22" class="vue-result">
+	<count-me></count-me>
+</div>
+<script type="text/babel">
+Vue.component('count-me', {
+	data: function(){
+		return {
+			count: 0
+		}
+	},
+	template: `
+		<div>
+			<button @click="count++">點我加1</button>
+			<span>目前count的值是：{{count}}</span>
+		</div>
+	`
+});
+var vm2 = new Vue({
+	el: '#vm2'
+});
+var vm2 = new Vue({
+	el: '#vm22'
+});
+</script>
+
+
+
+
+<h2>區域組件</h2>
+<p>組件並不是只能在全域中建立而已，他也可以針對某一個Vue物件建立，而用這種方式的話，該組件就只能夠在該DOM使用而已</p>
+<div id="vm3" class="vue-result">
+	<custom-input2></custom-input2>
+</div>
+<div id="vm33" class="vue-result">
+	<!-- <custom-input2></custom-input2> -->
+</div>
+<script type="text/babel">
+var vm3 = new Vue({
+	el: '#vm3',
+	components: {
+		customInput2: {
+			data: function(){
+				return {
+					label: '姓名：'
+				}
+			},
+			template: `
+				<div>
+					<span>{{label}}</span>
+					<input type="text" />
+				</div>
+			`
+		}
+	}
+});
+var vm33 = new Vue({
+	el: '#vm33'
+});
+</script>
+
+
+
+
+<h2>父子關係的組件</h2>
+<p></p>
+<div id="vm4" class="vue-result">
+	<parent-div></parent-div>
+</div>
+<script type="text/babel">
+Vue.component('parentDiv', {
+	components: {
+		childDiv: {
+			data: function(){
+				return {
+					childStyle: {
+						width: '50px',
+						height: '50px',
+						background: 'orange'
+					}
+				}
+			},
+			template: `<div :style="childStyle"></div>`
+		}
+	},
+	data: function(){
+		return {
+			parentStyle: {
+				width: '100px',
+				height: '100px',
+				background: 'black'
+			}
+		}
+	},
+	template: `<div :style="parentStyle"><child-div></child-div></div>`,
+});
+var vm4 = new Vue({
+	el: '#vm4'
+});
+</script>
+
+
+
+
+<h2>props</h2>
+<p>在介紹props之前，先看這個範例，範例中有宣告兩個非常相似的組件，但他們明明就差不多卻因為某些地方不同，就要再另外新建立一個組件真的有點煩人。</p>
+<div id="vm5" class="vue-result">
+	<input-comp1></input-comp1>
+	<input-comp2></input-comp2>
+</div>
+<script type="text/babel">
+Vue.component('inputComp1', {
+	data: function(){
+		return {
+			label: '姓名',
+			placeholder: '請輸入姓名'
+		}
+	},
+	template: `
+		<div>
+			<span>{{label}}：</span>
+			<input type="text" :placeholder="placeholder" />
+		</div>
+	`
+});
+Vue.component('inputComp2', {
+	data: function(){
+		return {
+			label: '暱稱',
+			placeholder: '請輸入暱稱'
+		}
+	},
+	template: `
+		<div>
+			<span>{{label}}：</span>
+			<input type="text" :placeholder="placeholder" />
+		</div>
+	`
+});
+var vm5 = new Vue({
+	el: '#vm5'
+});
+</script>
+<p>為了改善這個狀況，我們使用Props將不同的資料帶入同一個compoent。</p>
+<p>使用props接收參數的值，陣列中的值是key對應屬性傳過來的資料，順序沒關係。</p>
+<div id="vm6" class="vue-result">
+	<input-comp3 label="姓名" placeholder="請輸入姓名"></input-comp3>
+	<input-comp3 label="暱稱" placeholder="請輸入暱稱"></input-comp3>
+</div>
+<script type="text/babel">
+Vue.component('inputComp3', {
+	props: ['label', 'placeholder'],
+	template: `
+		<div>
+			<span>{{label}}：</span>
+			<input type="text" :placeholder="placeholder" />
+		</div>
+	`
+});
+var vm6 = new Vue({
+	el: '#vm6'
+});
+</script>
+
+
+
+
+<h2>用迴圈來產生compoents</h2>
+<div id="vm7" class="vue-result">
+	<input-comp4 v-for="v in Ary" :label="v.label" :placeholder="v.placeholder" :key="v.label"></input-comp4>
+</div>
+<script type="text/babel">
+Vue.component('inputComp4', {
+	props: ['label', 'placeholder'],
+	template: `
+		<div>
+			<span>{{label}}：</span>
+			<input type="text" :placeholder="placeholder" />
+		</div>
+	`
+});
+var vm7 = new Vue({
+	el: '#vm7',
+	data: {
+		Ary: [
+			{label: '姓名', placeholder: '請輸入姓名'},
+			{label: '暱稱', placeholder: '請輸入暱稱'},
+		]
+	}
+});
+</script>
+
+
+
+
+<h2>簡化Javascript及HTML</h2>
+<p>直接把整個物件帶進props內；component內的bind就是由「:bind」傳進去的「Ary[index]」，也就是有title、place的單個物件</p>
+<div id="vm8" class="vue-result">
+    <input-data v-for="v in Ary" :bind="v" :key="v.title"></input-data>
+</div>
+<script type="text/babel">
+Vue.component('input-data',{
+    props:['bind'],
+    template:`<div>
+                  <span>請輸入{{bind.title}}：</span>
+                  <input type="text" :placeholder="bind.place" />
+              </div>`
+})
+
+let vm8 = new Vue({
+    el:'#vm8',
+    data:{
+        Ary:[
+            {title:'姓名',place:'Name'},
+            {title:'暱稱',place:'Nicename'}
+        ]
+    }
+})
+</script>
+
+
+
+
+<h2>對父級做事件處理</h2>
+<p>aaa</p>
+<div id="vm9" class="vue-result">
+	<child-input :user-name="initial_input" @update-text="getChildText"></child-input>
+	{{initial_input}}
+</div>
+<script type="text/babel">
+Vue.component("child-input", {
+	template: `
+		<div class="form-group mt-3">
+			<label>Name</label>
+			<input v-model="childUserName" @input="sendToParent" type="text"/>
+		</div>
+		`,
+	props: {
+		userName: String
+	},
+	data: function() {
+		return {
+			childUserName: this.userName
+		};
+	},
+	methods: {
+		sendToParent: function() {
+			this.$emit("update-text", this.childUserName);
+		}
+	}
+});
+var vm9 = new Vue({
+	el: "#vm9",
+	data: {
+		initial_input: "Annie"
+	},
+	methods: {
+		getChildText: function(value) {
+			this.initial_input = value;
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>加11-slot</h2>
+<p>Slot 是一種 內容分配（Content Distribution） 的元件。通常在實務使用上，元件應用錯綜複雜，元件包著元件使用是常見的問題，而 Slot 就像一種插槽，可以將你想要的內容直接嵌入預留的空間。</p>
+<div id="vm10" class="vue-result">
+	<the-parent>
+		<the-child slot="for_child"></the-child>
+	</the-parent>
+</div>
+<script type="text/babel">
+Vue.component('theParent', {
+	template: `
+		<div>
+			<div>這是Parent</div>
+			<slot name="for_child"></slot>
+		</div>
+	`
+});
+Vue.component('theChild', {
+	template: `
+		<div>這是Child</div>
+	`
+});
+const vm10 = new Vue({
+	el: '#vm10'
+});
+</script>
+
+
+
+
+<h2>測試測試測試測試測試</h2>
+<div id="vmN" class="vue-result">
+	<the-parent2 v-for="v in myArray">
+		<li slot="for_child2">
+			{{v.name}}
+			<the-child2 slot="for_childli"></the-child2>
+		</li>
+	</the-parent2>
+</div>
+<script type="text/babel">
+Vue.component('theParent2', {
+	template: `
+		<ul>
+			<slot name="for_child2"></slot>
+		</ul>
+	`
+});
+Vue.component('theChild2', {
+	template: `
+		<div>
+			<div>子comp</div>
+			<slot name="for_childli"></slot>	
+		</div>
+	`
+});
+const vmN = new Vue({
+	el: '#vmN',
+	data: {
+		myArray: [
+			{
+				name: '魔力寶貝M',
+				buff: true,
+				gameAccounts: ['小美', '車尾燈艾麗緹', '塘果']
+			},
+			{
+				name: '新瑪奇',
+				buff: false,
+				gameAccounts: ['爪哇藍蕉', '吃我下麵']
+			},
+			{
+				name: '跑跑卡丁車',
+				buff: false,
+				gameAccounts: ['安安你好', '低能兒', '智障']
+			}
+		]
+	}
+});
+</script>
+
+
+
+
+</body>
+</html>

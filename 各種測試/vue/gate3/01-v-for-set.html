@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="myInputList">
+	<div class="repeatMe" v-for="v in inputAry">
+		<input type="text" :placeholder="v.inputType" :key="v.inputType" />
+	</div>
+	<div class="reverseTrigger">
+		<a href="javascript:;" @click="reverser">反轉順序</a>
+	</div>
+	<div class="changeItemTrigger">
+		<a href="javascript:;" @click="change">改變</a>
+	</div>
+</div>
+<script>
+var inputData = {
+	titleInit: '請輸入',
+	inputAry: [
+		{inputType: '姓名'},
+		{inputType: '電話'},
+		{inputType: '信箱'}
+	]
+}
+var inputFNs = {
+	reverser: function(){
+		inputData.inputAry.reverse();
+	},
+	change: function(){
+		Vue.set(inputData.inputAry, 1, {inputType: 'AAAAAAA'});
+	}
+}
+var inputList = new Vue({
+	el: '#myInputList',
+	data: inputData,
+	methods: inputFNs
+});
+</script>
+</body>
+</html>

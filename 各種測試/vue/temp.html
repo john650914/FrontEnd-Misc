@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+h2{
+	padding-top:20px;
+	border-top:1px solid black;
+}
+h2:first-child{
+	padding:0;
+	border: none;
+}
+.vue-result, .vue-result *{
+	color:deepskyblue;
+}
+pre{
+	color: gray;
+	tab-size: 4;
+}
+.vue-result input[type=text]{
+	border:1px solid deepskyblue;
+}
+.vue-result button{
+	color: #fff;
+	border:1px solid #fff;
+	outline: none;
+	background: deepskyblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+
+
+
+<a id="vm" href="javascript:;" ref="theBtn" @click="showlightbox"
+	data-lightbox-par='{
+		"goto":"http://www.yahoo.com.tw",
+		"showCancelBtn":true,
+		"childComp":"compEnterUserId"
+}'>取得goto資料</a>
+
+<script>
+var vm = new Vue({
+	el: '#vm',
+	data: {
+		goto: ''
+	},
+	methods: {
+		showlightbox: function(){
+			var theButton = this.$refs.theBtn;
+			var lightboxPar = JSON.parse(theButton.dataset.lightboxPar);
+			this.goto = lightboxPar.showCancelBtn;
+			alert(typeof this.goto);
+		}
+	}
+});
+</script>
+
+
+
+
+
+
+
+
+<!-- <div id="vm">
+	<input-comp @update-val="getChildVal"></input-comp>
+	<div>{{receivedText}}</div>
+</div>
+<script>
+Vue.component('inputComp', {
+	template: `
+		<div>
+			<label>{{this.label}}</label>
+			<input type="text" v-model="val" :placeholder="holder" @input="sendToParent" />
+		</div>
+	`,
+	data: function(){
+		return {
+			label: '電子信箱',
+			holder: '請輸入電子信箱',
+			val: ''
+		}
+	},
+	methods: {
+		sendToParent: function(){
+			this.$emit('update-val', this.val);
+		}
+	}
+});
+var vm = new Vue({
+	el: '#vm',
+	data: {
+		receivedText: ''
+	},
+	methods: {
+		getChildVal: function(p){
+			this.receivedText = p;
+		}
+	}
+});
+</script> -->
+
+
+
+
+</body>
+</html>

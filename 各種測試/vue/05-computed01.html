@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>h2{padding-top:20px;border-top:1px solid black;}h2:first-child{padding:0;border: none;}.vue-result{color:deepskyblue;}</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+
+	
+<h2>在{{}}中加入表達式</h2>
+<p>但不能在{{}}中加入敘述句喔，例如宣告變數</p>
+<div id="vm1" class="vue-result">
+	{{message.split('').reverse().join('')}}
+</div>
+<script>
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		message: 'Hello World'
+	}
+});
+</script>
+
+
+
+
+<h2>使用computed屬性傳回計算過的數據</h2>
+<div id="vm2" class="vue-result">
+	{{reversedMessage}}
+</div>
+<script>
+var vm2 = new Vue({
+	el: '#vm2',
+	data: {
+		message: 'Hello World'
+	},
+	computed: {
+		reversedMessage: function(){
+			return this.message.split('').reverse().join('');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>使用methods改寫上例，也能得到相同的效果</h2>
+<p>不同的是，computed是根據相依的資料改變時才做計算，而methods是不管有無相依都會計算，是因為computed有暫存資料的特性。</p>
+<div id="vm3" class="vue-result">
+	{{reversedMessage()}}
+</div>
+<script>
+var vm3 = new Vue({
+	el: '#vm3',
+	data: {
+		message: 'Hello World'
+	},
+	methods: {
+		reversedMessage: function(){
+			return this.message.split('').reverse().join('');
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>觀察computed的暫存特性</h2>
+<p>這個範例在一開始執行時看不出computed和methods的效果有什麼差異，但我們在console中輸入「vm4.message = 'Hi! Earth'」，在改變vm的資料時我們會看到使用methods傳回的資料改變了，而computed中的相依數據沒有被改變所以它傳回的值也沒有任何變化，這就是computed的暫存特性。</p>
+<p>但我個人目前的理解：與其說computed有暫存特性，不如說Vue物件內的methods和watch在vm中資料有變動時都會被執行，而computed不會（因為computed可以視為一個值而不是函式）所以computed會有暫存的特性，但這也是我目前的理解，未來有新的看法再來更新</p>
+<div id="vm4" class="vue-result">
+	<p>message(data)：{{message}}</p>
+	<p>computed：{{now}}</p>
+	<p>methods：{{getNow()}}</p>
+</div>
+<script>
+var vm4 = new Vue({
+	el: '#vm4',
+	data: {
+		message: 'Hello World'
+	},
+	computed: {
+		now: function(){
+			return Date.now();
+		}
+	},
+	methods: {
+		getNow: function(){
+			return Date.now();
+		}
+	}
+});
+</script>
+
+
+
+
+<h2>重設computed的setter</h2>
+<p>computed預設有get、set兩個屬性，當使用computed時getter就會被覆寫，如果有需要我們也可以重設setter的內容。</p>
+<p>console中輸入「vm5.lastName」，lastName的值得到「Chen」。</p>
+<p>console中輸入「vm5.fullName = 'Gary Lu'」更改fullName的值</p>
+<P>console中輸入「vm5.lastName」，</P>
+<p>但我覺得好像用不到…先把範例貼上來…</p>
+<div id="vm5" class="vue-result">
+	<p>fullName (computed)：{{fullName}}</p>
+</div>
+<script>
+var vm5 = new Vue({
+	el: '#vm5',
+	data: {
+		firstName: 'Bill',
+		lastName: 'Chen'
+	},
+	computed: {
+		fullName: {
+			get: function() {
+				return this.firstName + ' ' + this.lastName;
+			},
+			set: function(newValue) {
+				var name = newValue.split(' ');
+				this.firstName = name[0];
+				this.lastName = name[1];
+			}
+		}
+	}
+});
+</script>
+
+
+
+
+</body>
+</html>

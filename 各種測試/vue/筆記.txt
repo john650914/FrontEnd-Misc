@@ -1,0 +1,107 @@
+https://ithelp.ithome.com.tw/articles/10198843
+https://ithelp.ithome.com.tw/articles/10198881
+https://ithelp.ithome.com.tw/articles/10198895
+https://ithelp.ithome.com.tw/articles/10198927?sc=rss.qu (https://ithelp.ithome.com.tw/articles/10204614)(https://cythilya.github.io/2017/04/14/vue-data-v-model/)
+https://ithelp.ithome.com.tw/articles/10198945?sc=pt  
+https://ithelp.ithome.com.tw/articles/10198961
+https://ithelp.ithome.com.tw/articles/10198969?sc=pt
+https://ithelp.ithome.com.tw/articles/10198976
+https://ithelp.ithome.com.tw/articles/10198986
+https://ithelp.ithome.com.tw/articles/10199021?sc=pt
+https://ithelp.ithome.com.tw/articles/10199022
+https://ithelp.ithome.com.tw/articles/10199044?sc=pt
+
+官方文件：https://cn.vuejs.org/v2/guide/forms.html
+
+
+
+Vue.js 30天隨身包：
+https://ithelp.ithome.com.tw/users/20107673/ironman/1470
+
+Day19 - [Components] 動態元件
+https://ithelp.ithome.com.tw/articles/10196305
+
+資料傳遞：
+https://chenuin.blogspot.com/2019/01/vuejs-propsemit.html
+
+
+
+State：
+https://vuex.vuejs.org/zh/guide/state.html
+https://www.u3xyz.com/detail/39
+
+
+
+Vue物件的屬性：
+	● el：Vue要抓的html元件最外層，(((接受一個CSS選擇器的字串)))
+	● data：Vue所需要的資料，(((接受一個JS物件)))，此物件中的key就沒有命名限制了；其值可以是字串、boolean值、陣列等等…
+	● methods：存放自訂的方法，(((接受一個JS物件)))
+	● computed：return一個經過計算的值（在computed物件內指定），可以加入data裡的資料做計算；該值具有緩存的特性
+	● watch：監聽一個特定的值，當該值有變化時做特定的事
+
+Vue物件的方法：
+	● created()：字面上看起來是Vue物件被建立後執行的方法（自己猜的）
+
+
+
+
+
+
+
+
+
+
+https://ithelp.ithome.com.tw/articles/10193270
+https://jsfiddle.net/mani04/9b7n3qmt/
+
+
+
+computed和watch到底有什麼不同：
+JOHN自己的看法：
+● computed就是return一個經過計算的值（在computed物件內指定），可以加入data裡的資料做計算
+● watch是監聽一個特定的值，當該值有變化時做特定的事
+
+var var vm = new Vue({
+  el: '#demo',
+  data: {
+    firstName: 'Foo',
+    lastName: 'Bar'
+  },
+  computed: {
+    fullName: function () {
+      return this.firstName + ' ' + this.lastName
+    }
+  }
+})
+計算屬性顧名思義就是通過其他變數計算得來的另一個屬性，
+fullName在它所依賴firstName、lastName這兩個變數變化時重新計算自己的值。c
+
+另外，計算屬性具有緩存。
+計算屬性是基於它們的依賴進行緩存的。計算屬性只有在它的相關依賴發生改變時才會重新求值。
+這就意味著只要lastName和firstName都沒有發生改變，
+多次訪問fullName計算屬性會立即返回之前的計算結果，而不必再次執行函數。
+
+
+var var vm = new Vue({
+  el: '#demo',
+  data: {
+    firstName: 'Foo',
+    lastName: 'Bar',
+    fullName: 'Foo Bar'
+  },
+  watch: {
+    firstName: function (val) {
+      this.fullName = val + ' ' + this.lastName
+    },
+    lastName: function (val) {
+      this.fullName = this.firstName + ' ' + val
+    }
+  }
+})
+而偵聽器watch是偵聽一個特定的值，當該值變化時執行特定的函數。
+例如分頁組件中，我們可以監聽當前頁碼，當頁碼變化時執行對應的獲取數據的函數。
+
+
+
+
+
