@@ -8,38 +8,31 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-<div id="test">
-	<ul>
-		<list-item v-for="v in itemList" :item="v" :key="v.id"></list-item>
-	</ul>
-</div>
+<a class="btn" href="javascript:;">點我</a>
 <script>
-Vue.component('list-item', {
-	props: ['item'],
-	template: '<li>{{item.number}} {{item.name}}(s)</li>'
+
+
+
+var myEl = document.createElement("div");
+myEl.id = 'root';
+myEl.innerHTML = '{{msg}}';
+
+
+
+document.querySelector('.btn').addEventListener('click', function(){
+	
+	document.querySelector('body').append(myEl);
+
+	var vm1 = new Vue({
+		el: '#root',
+		data: {
+			msg: '訊息文字'
+		}
+	});
+
 });
-var vm1 = new Vue({
-	el: '#test',
-	data: {
-		itemList: [
-			{
-				name: 'book',
-				number: 2,
-				id: 0
-			},
-			{
-				name: 'fruit',
-				number: 6,
-				id: 1
-			},
-			{
-				name: 'animal',
-				number: 2,
-				id: 2
-			},
-		]
-	}
-});
+
+
 </script>
 </body>
 </html>
