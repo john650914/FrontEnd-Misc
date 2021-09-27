@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<h2>component的生命周期</h2>
+<p>在console中輸入vm1.state = true</p>
+-------------------------
+<div id="vm1">
+	<component1 title="元件1" v-if="state"></component1>
+</div>
+<script>
+Vue.component('component1', {
+	props: ['title'],
+	template: `
+		<div>
+			<h3>{{title}}</h3>
+			<p>{{content}}</p>
+		</div>
+	`,
+	data: function(){
+		return {
+			content: 'Original text'
+		}
+	},
+	/* created(){
+		var self = this;
+		window.setTimeout(function(){
+			self.content = 'Created text'
+		}, 1000);
+	} */
+	mounted(){
+		var self = this;
+		window.setTimeout(function(){
+			self.content = 'Mounted text'
+		}, 1000);
+	}
+});
+var vm1 = new Vue({
+	el: '#vm1',
+	data: {
+		state: false
+	}
+});
+</script>
+
+</body>
+</html>

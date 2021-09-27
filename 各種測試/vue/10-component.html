@@ -33,6 +33,7 @@ pre{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
@@ -279,10 +280,11 @@ var vm7 = new Vue({
 <script type="text/babel">
 Vue.component('input-data',{
     props:['bind'],
-    template:`<div>
-                  <span>請輸入{{bind.title}}：</span>
-                  <input type="text" :placeholder="bind.place" />
-              </div>`
+    template:`
+		<div>
+            <span>請輸入{{bind.title}}：</span>
+            <input type="text" :placeholder="bind.place" />
+        </div>`
 })
 
 let vm8 = new Vue({
@@ -299,8 +301,7 @@ let vm8 = new Vue({
 
 
 
-<h2>對父級做事件處理</h2>
-<p>aaa</p>
+<h2>對父級做事件處理(1)</h2>
 <div id="vm9" class="vue-result">
 	<child-input :user-name="initial_input" @update-text="getChildText"></child-input>
 	{{initial_input}}
@@ -343,9 +344,74 @@ var vm9 = new Vue({
 
 
 
+<h2>對父級做事件處理(2)</h2>
+<p>依照computed的值決定執行指定的父級method</p>
+<div id="vm10">
+	<!-- <my-component btntext="TEXT" @emitfn="emitname"></my-component>
+	<my-component btntext="TEXT" @emitfn="$options.methods[emitname]"></my-component> -->
+	<my-component btntext="TEXT" @emitfn="emitfn"></my-component><br>
+	<a @click="commitM1" href="javascript:;">store.commit('m1')</a>
+	<a @click="commitM2" href="javascript:;">store.commit('m2')</a>
+</div>
+<script>
+const store = new Vuex.Store({
+	state: {
+		fn: 'fn1'
+	},
+	mutations: {
+		m1: state => state.fn = 'fn1',
+		m2: state => state.fn = 'fn2'
+	}
+});
+Vue.component('myComponent', {
+	props: ['btntext'],
+	template: '<button @click="childFN">{{btntext}}</button>',
+	methods: {
+		childFN: function(){
+			//this.$emit("emitfn");
+			this.$emit("emitfn", this.emitname);
+		}
+	},
+	/*data: function(){
+		return {
+			emitname: this.$store.state.fn
+		}
+	}*/
+	computed: {
+		emitname(){
+			return this.$store.state.fn
+		}
+	}
+});
+var vm10 = new Vue({
+	el: '#vm10',
+	store,
+	methods: {
+		fn1: function(){
+			alert('fn1');
+		},
+		fn2: function(){
+			alert('fn2');
+		},
+		emitfn(emitname) {
+			this.$options.methods[emitname]();
+		},
+		commitM1(){
+			this.$store.commit('m1');
+		},
+		commitM2(){
+			this.$store.commit('m2');
+		}
+	}
+});
+</script>
+
+
+
+
 <h2>加11-slot</h2>
 <p>Slot 是一種 內容分配（Content Distribution） 的元件。通常在實務使用上，元件應用錯綜複雜，元件包著元件使用是常見的問題，而 Slot 就像一種插槽，可以將你想要的內容直接嵌入預留的空間。</p>
-<div id="vm10" class="vue-result">
+<div id="vm11" class="vue-result">
 	<the-parent>
 		<the-child slot="for_child"></the-child>
 	</the-parent>
@@ -364,8 +430,8 @@ Vue.component('theChild', {
 		<div>這是Child</div>
 	`
 });
-const vm10 = new Vue({
-	el: '#vm10'
+const vm11 = new Vue({
+	el: '#vm11'
 });
 </script>
 

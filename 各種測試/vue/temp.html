@@ -6,33 +6,70 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
 </head>
 <body>
-<a class="btn" href="javascript:;">點我</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 依照computed的值決定執行指定的父級method -->
+<!-- <div id="root">
+	<my-component btntext="TEXT" @emitfn="emitfn"></my-component>
+</div>
 <script>
-
-
-
-var myEl = document.createElement("div");
-myEl.id = 'root';
-myEl.innerHTML = '{{msg}}';
-
-
-
-document.querySelector('.btn').addEventListener('click', function(){
-	
-	document.querySelector('body').append(myEl);
-
-	var vm1 = new Vue({
-		el: '#root',
-		data: {
-			msg: '訊息文字'
-		}
-	});
-
+const store = new Vuex.Store({
+	state: {
+		fn: 'fn1'
+	},
+	mutations: {
+		m1: state => state.fn = 'fn1',
+		m2: state => state.fn = 'fn2'
+	}
 });
+Vue.component('myComponent', {
+	props: ['btntext'],
+	template: '<button @click="childFN">{{btntext}}</button>',
+	methods: {
+		childFN: function(){
+			this.$emit("emitfn", this.emitname);
+		}
+	},
+	computed: {
+		emitname(){
+			return this.$store.state.fn
+		}
+	}
+});
+var vm = new Vue({
+	el: '#root',
+	store,
+	methods: {
+		fn1: function(){
+			alert('fn1');
+		},
+		fn2: function(){
+			alert('fn2');
+		},
+		emitfn(emitname) {
+			this.$options.methods[emitname]();
+		}
+	}
+});
+</script> -->
 
 
-</script>
 </body>
 </html>
