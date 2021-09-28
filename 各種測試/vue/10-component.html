@@ -438,6 +438,47 @@ const vm11 = new Vue({
 
 
 
+<h2>用Vuex的資料來變更component？</h2>
+<div id="vm12">
+	<outer></outer>
+</div>
+<script>
+const store2 = new Vuex.Store({
+	state: {
+		comp: 'inner1',
+	}
+});
+Vue.component('outer', {
+	template: `
+		<div>
+			<h3>這是outer</h3>
+			<component :is="this.$store.state.comp" />
+		</div>
+	`
+});
+Vue.component('inner1', {
+	template: `
+		<div>
+			<h3>這是inner1</h3>
+		</div>
+	`
+});
+Vue.component('inner2', {
+	template: `
+		<div>
+			<h3>這是inner2</h3>
+		</div>
+	`
+});
+var vm12 = new Vue({
+	el: '#vm12',
+	store: store2
+});
+</script>
+
+
+
+
 <h2>測試測試測試測試測試</h2>
 <div id="vmN" class="vue-result">
 	<the-parent2 v-for="v in myArray">
