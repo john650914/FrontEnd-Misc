@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+
+<div id="root" class="vue-result">
+	{{getItemById}}
+</div>
+<script>
+const store = new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		getItemById: state => id => {
+			return state.todos.find(v => v.id == id);
+		}
+	}
+})
+var vm = new Vue({
+	el: '#root',
+	store,
+	computed: {
+		getItemById(){
+			return this.$store.getters.getItemById(3);
+		}
+	}
+});
+</script>
+
+</body>
+</html>
