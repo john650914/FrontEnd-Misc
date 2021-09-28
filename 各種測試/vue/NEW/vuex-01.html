@@ -197,11 +197,11 @@ const store = new Vuex.Store({
 var vm = new Vue({
 	....
 	store,
-	computed: Vuex.mapState({
+	computed: Vuex.mapState([
 		'name',
 		'age',
 		'gender'
-	})
+	])
 });
 </pre>
 <p>computed 不會因為引入 mapState 輔助函數而失去原有的功能，如果我們之前已經寫了一大堆的 computed 計算屬性，做了一半發現你要引入 vuex，又想使用方便的 mapState()，我們可以直接把舊的計算屬性直接貼到 mapState 中：</p>
