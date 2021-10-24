@@ -9,22 +9,29 @@
 </head>
 <body>
 
+<a class="sendAjax" href="javascript:;">執行AJAX</a>
 
 <script>
-$.ajax({
-	type: 'POST',
-	url: 'https://script.google.com/macros/s/AKfycby4hVlT08xsb0J1YBykAUpNnybEBMDt_nijHyKLV1tJAYMuYkv4TYgM464hCOq4-jC4/exec',
-	data: {
-		'col1': 'col1',
-		'col2': 'col2',
-		'col3': 'col3'
-	},
-	success: function(r){
-		if(r == '成功'){
-			console.log('成功新增資料');
+$('.sendAjax').on('click', function(){
+	$.ajax({
+		type: 'POST',
+	  //url: 'https://script.google.com/macros/s/AKfycby4hVlT08xsb0J1YBykAUpNnybEBMDt_nijHyKLV1tJAYMuYkv4TYgM464hCOq4-jC4/exec',
+		url: 'https://script.google.com/macros/s/AKfycbwZjpkvrHjo0ssdJoN2tM9zCOIfx0hQUTvFyhUdMhrZSULPk5NSvAMlowIZjP_KJQE/exec',
+		data: {
+			'col1': 'JOHN',
+			'col2': 'Master',
+			'col3': 'Cool'
+		},
+		success: function(r){
+			/* if(r == '成功'){
+				console.log('回傳資料 : '+r);
+			} */
+			console.log(r);
 		}
-	}
+	});
 });
+
+
 </script>
 </body>
 </html>

@@ -67,8 +67,10 @@ function doPost(e){
 改為：var params = e.parameter;
 然後部署一個新的版本
 
-「部署」的作業之前已經偷做過了所以略過，但要去「管理部署作業」裡複製API網址
-https://script.google.com/macros/s/AKfycby4hVlT08xsb0J1YBykAUpNnybEBMDt_nijHyKLV1tJAYMuYkv4TYgM464hCOq4-jC4/exec
+「部署」的作業之前已經偷做過了所以略過，
+
+但要去「管理部署作業」裡複製API網址，然後貼到ajax的url才會是最新部屬的那個版本
+https://script.google.com/macros/s/[72碼的識別碼]/exec
 
 
 ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -88,7 +90,7 @@ $.ajax({
 	},
 	success: function(r){
 		if(r == '成功'){
-			console.log('成功新增資料');
+			console.log('回傳訊息 : 'r);
 		}
 	}
 });
@@ -98,6 +100,40 @@ console.log有值就是成功了
 
 ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+修改Apps Script回傳剛才寫入的資料：
+
+function doPost(e){
+  //ajax請求傳來的data：
+	var params = e.parameter;
+	var col1 = params.col1;
+	var col2 = params.col2;
+	var col3 = params.col3;
+
+	var SpreadSheet = SpreadsheetApp.openById('1OU11axyJh4gq3leKxj94sWABdZ9hhdzQ_SyfBUI9GBQ'); //d/之後到/edit前的字串
+	var Sheet = SpreadSheet.getSheetByName('工作表1'); //spreadsheet下面的sheet分頁名稱。
+	var LastRow = Sheet.getLastRow();
+
+	Sheet.getRange(LastRow+1, 1).setValue(col1);
+	Sheet.getRange(LastRow+1, 2).setValue(col2);
+	Sheet.getRange(LastRow+1, 3).setValue(col3);
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheets()[0];
+  var lastRowCol1 = sheet.getRange(LastRow+1,1).getDisplayValue();
+  var lastRowCol2 = sheet.getRange(LastRow+1,2).getDisplayValue();
+  var lastRowCol3 = sheet.getRange(LastRow+1,3).getDisplayValue();
+
+	return ContentService.createTextOutput(lastRowCol1+', '+lastRowCol2+', '+lastRowCol3);
+}
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+
+
+
 
 參考的資料：
 
