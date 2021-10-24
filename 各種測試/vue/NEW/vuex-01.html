@@ -197,11 +197,11 @@ const store = new Vuex.Store({
 var vm = new Vue({
 	....
 	store,
-	computed: Vuex.mapState({
+	computed: Vuex.mapState([
 		'name',
 		'age',
 		'gender'
-	})
+	])
 });
 </pre>
 <p>computed 不會因為引入 mapState 輔助函數而失去原有的功能，如果我們之前已經寫了一大堆的 computed 計算屬性，做了一半發現你要引入 vuex，又想使用方便的 mapState()，我們可以直接把舊的計算屬性直接貼到 mapState 中：</p>
@@ -238,13 +238,22 @@ var vm = new Vue({
 <h2>對象展開運算符</h2>
 <p>對 mapState 使用「...」展開運算子；mapState 傳回的是一個物件，上例中我們把舊的計算屬性中的資料複製到一個新的算計屬性中來使用 mapState，這樣搬來搬去的的做法實在不體面要做註解說明也說不明道不清，取而代之我們直接保留舊的程式碼，在計算屬性中直接展開 mapState 會是比較聰明的做法：</p>
 <pre>
-computed: {
-	localComputed () { /* ... */ },
-	// 使用对象展开运算符将此对象混入到外部对象中
-	...mapState({
-		// ...
-	})
-}
+var vm = new Vue({
+	data: {
+		count: 1
+	},
+	store,
+	computed: {
+		dataCount(){
+			return this.count;
+		},
+		...Vuex.mapState({ // 使用對象展開運算符將此對象混入到外部對象中
+			mixedData(state){
+				return this.count + state.count;
+			}
+		})
+	}
+});
 </pre>
 <h2>組件仍然保有局部狀態</h2>
 <p>使用 Vuex 並不意味著你需要將所有的狀態放入 Vuex。雖然將所有的狀態放到 Vuex 會使狀態變化更顯式和易調試，但也會使代碼變得冗長和不直觀。如果有些狀態嚴格屬於單個組件，最好還是作為組件的局部狀態。你應該根據你的應用開發需要進行權衡和確定。</p>
@@ -353,9 +362,45 @@ var vm = new Vue({
 });
 &lt;/script&gt;
 </pre>
+<h2>mapGetters 辅助函数</h2>
+<p>mapGetters 輔助函數僅僅是將 store 中的 getter 映射到局部計算屬性：</p>
+<pre>
+const store ; new Vuex.Store({
+	state: {
+		todos: [
+			{ id: 1, text: 'buy milk', done: true },
+			{ id: 2, text: 'take out garbage', done: true },
+			{ id: 3, text: 'do the dish', done: false }
+		]
+	},
+	getters: {
+		doneTodos: state => {
+			return state.todos.filter(todo => todo.done)
+		},
+		doneTodosCount: (state, getters) => {
+			return getters.doneTodos.length
+		}
+	}
+});
+var vm = new Vue({
+	store,
+	computed: {
+		...Vuex.mapGetters([ // 使用對象展開運算符將getter混入computed對象中
+			'doneTodos',
+			'doneTodosCount'
+		])
+	}
+});
 
-
-
+</pre>
+<p>如果你想將一個getter 屬性另取一個名字，使用物件形式：</p>
+<pre>
+mapGetters({
+	// 把 `this.doneCount` 映射为 `this.$store.getters.doneTodosCount`
+	done: 'doneTodos',
+	doneCount: 'doneTodosCount'
+})
+</pre>
 
 
 
