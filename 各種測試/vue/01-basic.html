@@ -241,5 +241,27 @@ var mv4 = new Vue({
 
 
 
+//////////////////////////////////////////////////////////////////////////<br>
+
+<div class="vue-result">
+	<a id="vv" href="javascript:;" @click="aaa">
+		<img src="dora.png" />
+	</a>
+</div>
+<script>
+var vv = new Vue({
+	el: '#vv',
+	methods: {
+		aaa: function(e){
+			alert(e.target.id);
+		}
+	}
+});
+</script>
+
+
+
+
+
 </body>
 </html>
