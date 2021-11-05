@@ -715,11 +715,7 @@ function doPlaceholder(){
 function clean(node){
 	for(var n = 0; n < node.childNodes.length; n ++){
 		var child = node.childNodes[n];
-		if(
-			child.nodeType === 8 
-			|| 
-			(child.nodeType === 3 && !/\S/.test(child.nodeValue))
-		){
+		if(child.nodeType === 8 || (child.nodeType === 3 && !/\S/.test(child.nodeValue))){
 			node.removeChild(child);
 			n --;
 		}else if(child.nodeType === 1){
@@ -728,6 +724,10 @@ function clean(node){
 	}
 }
 clean(document.body);
+
+//搭配其它空格服用（如果有需要，因為clean()把&nbsp;清掉了，但有替代的空格可用）
+&ensp; 半形空格
+&emsp; 全形空格
 
 
 
