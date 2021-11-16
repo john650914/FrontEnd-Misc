@@ -144,6 +144,24 @@ selector{
 }
 
 
+################################################# box-shadow #################################################
+box-shadow: none | 水平偏移 垂直偏移 模糊 擴散 顏色 | inset | initial | inherit;
+
+可以用逗點分隔寫多個box-shadow，先寫的shadow會疊在後寫的上面，如下例：
+
+selector{
+	box-shadow:
+		0 0 12px rgba(0,0,0,.8),
+		0 0 0 2px #fff inset,
+		0 0 0 3px #000 inset,
+		0 0 12px rgba(0,0,0,.8) inset,
+		0 0 0 10px #fff inset,
+		0 0 0 11px rgba(0,0,0,.5) inset;
+}
+
+jsfiddle：https://jsfiddle.net/john650914/c2u0yLdn/10/
+
+
 ################################################# 多重背景 multi background #################################################
 //先設定的背景會疊在後設定的背景之上
 .container{
@@ -651,15 +669,8 @@ function returnQuerystringValue(key, url) {
 }
 
 
-################################################# 以key的名稱和值尋找陣列中的物件中的其它key的值…看範例好了… #################################################
-/* 
-var myAry = [
-	{a:1, b:2, c:3},
-	{a:11, b:22, f:33}
-]
-console.log(returnAryObjVal('b','22','f', myAry)); //傳回33
-*/
-
+################################################# 以key的名稱和值尋找陣列中的物件中的其它key的值… #################################################
+//看範例好了…
 function returnAryObjVal(specKey, specKeyValue, TargetKey, array){
 	for(let i in array){
 		if(array[i][specKey] == specKeyValue){
@@ -667,6 +678,12 @@ function returnAryObjVal(specKey, specKeyValue, TargetKey, array){
 		}
 	}
 }
+
+var myAry = [
+	{a:1, b:2, c:3},
+	{a:11, b:22, f:33}
+]
+console.log(returnAryObjVal('b','22','f', myAry)); //傳回33
 
 
 ################################################# IE相容的includes() #################################################
