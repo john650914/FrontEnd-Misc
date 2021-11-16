@@ -1,15 +1,64 @@
-################################## metadata參考 ##################################
+################################################# html template #################################################
+<!DOCTYPE HTML>
+<html lang="zh-Hant">
+<head>
+<title>TITLE</title>
+<meta name="description" content="DESCRIPTION">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+<!-- <meta name="viewport" content="width=1200"> -->
+<meta name="format-detection" content="telephone=no">
+<meta name="open-default-browser" content="true">
+
+<!-- 社群資訊 -->
+<meta property="og:title" content="TITLE" />
+<meta property="og:description" content="DESCRIPTION" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="" />
+<meta property="og:image" content="f_b.jpg" /><!-- 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 -->
+
+<!-- 外連檔案 -->
+<link rel="stylesheet" type="text/css" href="assets/css/default.css">
+<script src="https://tw.hicdn.beanfun.com/plugins/isMobile/isMobile.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/jquery/jquery-migrate.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/gbox/gbox.js"></script>
+<script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/game-footer.js" id="game-footer" prod="" theme="dark"></script>
+<script type="text/javascript" src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/topBar/topbar.js" id="top-bar" prod="" ></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/loadingProgress/loadingProgress.js"></script>
+<script src="https://tw.beanfun.com/js/GA_CodeNew.js"></script>
+
+<!-- GTM -->
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-1234567');</script> -->
+
+</head>
+<body>
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-1234567" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+
+<div class="container">web template</div>
+
+<script src="assets/js/default.js"></script>
+</body>
+</html>
 
 
-################################## media query ##################################
+################################################# normalize.css #################################################
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:0;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+
+
+################################################# media query #################################################
 @media screen and (min-width: 769px) { /*大於等於769px*/ }
 @media screen and (max-width: 768px) { /*小於等於768px*/ }
 
 
-################################## sass常用function ##################################
+################################################# sass常用function #################################################
 @function vw($size, $breakpoint:768) {
 	@return ($size / $breakpoint) * 100vw;
 }
@@ -32,7 +81,7 @@
 }
 
 
-################################## css常用設定 ##################################
+################################################# css常用設定 #################################################
 body, input, button, textarea, select, optgroup{
 	font-family: "PingFangTC-Regular", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
@@ -52,11 +101,11 @@ input, button, textarea, select, optgroup{
 }
 
 
-################################## -ms-設定 ##################################
+################################################# -ms-設定 #################################################
 
 
 
-################################## 漸層 ##################################
+################################################# 漸層 #################################################
 .selector{
 	background-image: linear-gradient(red, yellow); /*寫background-image應該是個選項吧，直接寫background也可以*/
 }
@@ -89,13 +138,13 @@ input, button, textarea, select, optgroup{
 NOTE：色碼可接受8個數字，前兩碼代表透明度，後6碼代表16進位色碼，GradientType 0為垂直，GradientType 1為水平
 
 
-################################## 背景靠右 ##################################
+################################################# 背景靠右 #################################################
 selector{
 	background: url(arrow.png) top 50% right 10px no-repeat;
 }
 
 
-################################## 多重背景 multi background ##################################
+################################################# 多重背景 multi background #################################################
 //先設定的背景會疊在後設定的背景之上
 .container{
 	padding: 20px 0;
@@ -107,7 +156,7 @@ selector{
 }
 
 
-################################## flex ##################################
+################################################# flex #################################################
 // 容器屬性：
 display			// flex︱inline-flex
 flex-direction	// row(預設)︱column︱row-reverse︱column-reverse
@@ -128,7 +177,7 @@ order			// 數值，預設為0
 註：IE9不支援；網路上好像說IE10要寫-ms-？
 
 
-################################## css placeholder ##################################
+################################################# 設定 placeholder 樣式 #################################################
 input::placeholder{
 	color: #f9daac;
 }
@@ -137,7 +186,7 @@ input:-ms-input-placeholder{ /*IE要分開寫*/
 }
 
 
-################################## input 及 select 清樣式 ##################################
+################################################# input 及 select 清樣式 #################################################
 // 基本清樣式：
 input, select, button, textarea{
 	padding: 0;
@@ -209,7 +258,7 @@ input[type=checkbox]:checked, input[type=radio]:checked{
 }
 
 
-################################## 預設 .btn 樣式 ##################################
+################################################# 預設 .btn 樣式 #################################################
 .btn{
 	padding: 26px 30px;
 	color: #FFFFFF;
@@ -228,7 +277,7 @@ input[type=checkbox]:checked, input[type=radio]:checked{
 }
 
 
-################################## 文字…... ##################################
+################################################# 文字…... #################################################
 width: 100%;
 white-space: nowrap;
 overflow: hidden;
@@ -236,14 +285,16 @@ text-overflow: ellipsis;
 display: block;
 
 
-################################## table ##################################
+################################################# table #################################################
 table {
 	border-collapse: collapse;
 	table-layout: fixed;
 }
 
 
-################################## animation ##################################
+################################################# animation #################################################
+※IE9不支援
+
 縮寫語法：
 selector{
 	animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction];
@@ -260,11 +311,10 @@ animation-iteration-count	number | infinite
 animation-direction			normal | alternate
 animation-play-state		paused | running
 
-※IE9不支援
 ※animation-fill-mode: forwards; //讓動畫停在最後一格
 
 
-################################## transform ##################################
+################################################# transform #################################################
 /*有的瀏覽器對行內元素無效*/
 
 縮放：
@@ -301,13 +351,26 @@ matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY());
 https://webcode.tools/css-generator/perspective
 
 
-################################## transition ##################################
+################################################# transition #################################################
 selector{
 	transition: all 1s; //基本用法；漸變前、後的選擇器都加才會有「來、回」的效果
 }
 
 
-################################## list counter ##################################
+################################################# list counter 自訂義列表數字的樣式 #################################################
+ol{
+	list-style: none;
+	counter-reset: myCounter;
+	li{
+		counter-increment: myCounter;
+		&:before{
+			content: "Q"counter(myCounter)".";
+			color: red;
+		}
+	}
+}
+
+//一般 html 標籤也可以使用
 <div>
 	<span></span>
 	<span></span>
@@ -321,21 +384,7 @@ span:before{
 }
 
 
-################################## 自訂義列表數字的樣式 ##################################
-ol{
-	list-style: none;
-	counter-reset: myCounter;
-	li{
-		counter-increment: myCounter;
-		&:before{
-			content: "Q"counter(myCounter)".";
-			color: red;
-		}
-	}
-}
-
-
-################################## gbox 清樣式 ##################################
+################################################# gbox 清樣式 #################################################
 #gbox{
 	.gbox-wrap{
 		width: auto;
@@ -374,7 +423,7 @@ ol{
 }
 
 
-################################## gbox 所有參數（大部份的值為預設值） ##################################
+################################################# gbox 所有參數（大部份的值為預設值） #################################################
 $('.popupbox').gbox('<p>訊息內容可以放HTML</p>', {
 	addClass: null, //接受字串
 	titleBar: null, //接受字串
@@ -408,7 +457,7 @@ $('.popupbox').gbox('<p>訊息內容可以放HTML</p>', {
 });
 
 
-################################## tiny-slider 範例 ##################################
+################################################# tiny-slider 範例 #################################################
 文件：https://ganlanyuan.github.io/tiny-slider/
 //slide-wrap要指定寬度
 //slide > div要指定高度
@@ -463,13 +512,14 @@ slide.destroy();
 $('.slide').empty(); //如果要在.slide繼續做tns()的話
 
 
-################################## 控制動態載入的html ##################################
+################################################# 控制動態載入的html #################################################
 $(document).on('click', '.my-class', function(){
 	alert(1234);
 });
 
 
-################################## click outside of an element and do something(1) ##################################
+################################################# click outside of an element and do something #################################################
+//version 1：
 $(window).click(function(){
 	alert('外面被點了');
 });
@@ -477,8 +527,7 @@ $('.inner').click(function(e){
 	e.stopPropagation();
 });
 
-
-################################## click outside of an element and do something(2) ##################################
+//version 2：
 $(document).click(function(event){
 	var $target = $(event.target);
 	if(!$target.closest('.inner').length && $('.inner').is(":visible")){
@@ -487,27 +536,27 @@ $(document).click(function(event){
 });
 
 
-################################## 取得select下拉選單的索引值 ##################################
+################################################# 取得select下拉選單的索引值 #################################################
 $('.my-select')[0].selectedIndex;
 $('.my-select').prop('selectedIndex');
 
 
-################################## 取得同class命名但在不同父層的index ##################################
+################################################# 取得同class命名但在不同父層的index #################################################
 $('.btn').click(function(){
 	var idx = $('body .btn').index(this);
 	alert(idx);
 });
 
 
-################################## ?sec=sec1 範例（btn click/pageload） ##################################
+################################################# ?sec=sec1 範例（btn click/pageload） #################################################
 
 
-################################## scrollTo套件 ##################################
+################################################# scrollTo套件 #################################################
 //https://demos.flesler.com/jquery/scrollTo/
 //Copyright (c) 2007-2015 Ariel Flesler - aflesler<a>gmail<d>com | http://flesler.blogspot.com* Licensed under MIT *author Ariel Flesler *version 2.1.2
 ;(function(f){"use strict";"function"===typeof define&&define.amd?define(["jquery"],f):"undefined"!==typeof module&&module.exports?module.exports=f(require("jquery")):f(jQuery)})(function($){"use strict";function n(a){return!a.nodeName||-1!==$.inArray(a.nodeName.toLowerCase(),["iframe","#document","html","body"])}function h(a){return $.isFunction(a)||$.isPlainObject(a)?a:{top:a,left:a}}var p=$.scrollTo=function(a,d,b){return $(window).scrollTo(a,d,b)};p.defaults={axis:"xy",duration:0,limit:!0};$.fn.scrollTo=function(a,d,b){"object"=== typeof d&&(b=d,d=0);"function"===typeof b&&(b={onAfter:b});"max"===a&&(a=9E9);b=$.extend({},p.defaults,b);d=d||b.duration;var u=b.queue&&1<b.axis.length;u&&(d/=2);b.offset=h(b.offset);b.over=h(b.over);return this.each(function(){function k(a){var k=$.extend({},b,{queue:!0,duration:d,complete:a&&function(){a.call(q,e,b)}});r.animate(f,k)}if(null!==a){var l=n(this),q=l?this.contentWindow||window:this,r=$(q),e=a,f={},t;switch(typeof e){case "number":case "string":if(/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(e)){e= h(e);break}e=l?$(e):$(e,q);case "object":if(e.length===0)return;if(e.is||e.style)t=(e=$(e)).offset()}var v=$.isFunction(b.offset)&&b.offset(q,e)||b.offset;$.each(b.axis.split(""),function(a,c){var d="x"===c?"Left":"Top",m=d.toLowerCase(),g="scroll"+d,h=r[g](),n=p.max(q,c);t?(f[g]=t[m]+(l?0:h-r.offset()[m]),b.margin&&(f[g]-=parseInt(e.css("margin"+d),10)||0,f[g]-=parseInt(e.css("border"+d+"Width"),10)||0),f[g]+=v[m]||0,b.over[m]&&(f[g]+=e["x"===c?"width":"height"]()*b.over[m])):(d=e[m],f[g]=d.slice&& "%"===d.slice(-1)?parseFloat(d)/100*n:d);b.limit&&/^\d+$/.test(f[g])&&(f[g]=0>=f[g]?0:Math.min(f[g],n));!a&&1<b.axis.length&&(h===f[g]?f={}:u&&(k(b.onAfterFirst),f={}))});k(b.onAfter)}})};p.max=function(a,d){var b="x"===d?"Width":"Height",h="scroll"+b;if(!n(a))return a[h]-$(a)[b.toLowerCase()]();var b="client"+b,k=a.ownerDocument||a.document,l=k.documentElement,k=k.body;return Math.max(l[h],k[h])-Math.min(l[b],k[b])};$.Tween.propHooks.scrollLeft=$.Tween.propHooks.scrollTop={get:function(a){return $(a.elem)[a.prop]()}, set:function(a){var d=this.get(a);if(a.options.interrupt&&a._last&&a._last!==d)return $(a.elem).stop();var b=Math.round(a.now);d!==b&&($(a.elem)[a.prop](b),a._last=this.get(a))}};return p});
 
-[go top]
+[back to top]
 $('.goTop').click(function(){
 	$('body').scrollTo(0, 800);
 });
@@ -532,7 +581,7 @@ $(...).scrollTo('li:eq(15)', 1000, {offset: {top:-5, left:-30} });
 [還有很多功能去這邊看：https://demos.flesler.com/jquery/scrollTo/]
 
 
-################################## go top功能 ##################################
+################################################# go top功能 #################################################
 $(window).on('scroll', function(){
 	var wh = $(window).height();
 	if($(this).scrollTop() > wh){
@@ -546,7 +595,7 @@ $('.go-top').on('click', function(){
 });
 
 
-################################## cookie教學 ##################################
+################################################# cookie教學 #################################################
 [建立cookie]
 document.cookie = "username=John Doe"; //預設在關掉瀏覽器後就消失
 [加上到期時間(UTC time)]
@@ -563,7 +612,7 @@ document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; /
 我們應該要指派cookie的path值，以免我們刪錯cookie；如果沒有指派，有的瀏覽器會不讓我們刪cookie
 
 
-################################## 常用cookie function ##################################
+################################################# 常用cookie function #################################################
 //建立一個cookie
 function setCookie(cookie_name, cvalue, exdays) {
 	var d = new Date();
@@ -590,7 +639,7 @@ function getCookie(cookie_name) {
 }
 
 
-################################## 傳回querystring的值 ##################################
+################################################# 傳回querystring的值 #################################################
 function returnQuerystringValue(key, url) {
 	if (!url) url = window.location.href;
 	key = key.replace(/[\[\]]/g, '\\$&').toLowerCase();
@@ -602,7 +651,7 @@ function returnQuerystringValue(key, url) {
 }
 
 
-################################## 以key的名稱和值尋找陣列中的物件中的其它key的值…看範例好了… ##################################
+################################################# 以key的名稱和值尋找陣列中的物件中的其它key的值…看範例好了… #################################################
 /* 
 var myAry = [
 	{a:1, b:2, c:3},
@@ -620,13 +669,13 @@ function returnAryObjVal(specKey, specKeyValue, TargetKey, array){
 }
 
 
-################################## IE相容的includes() ##################################
+################################################# IE相容的includes() #################################################
 Array.prototype.contains = function(val){
 	return this.indexOf(val) >= 0;
 }
 
 
-################################## 臉書開啟app ##################################
+################################################# 臉書開啟app #################################################
 //ios
   var IOS_SITE = "fb://page/?id=103801226391404";
 //Android
@@ -635,12 +684,12 @@ Array.prototype.contains = function(val){
 查ID：https://tw.piliapp.com/facebook/id/?url=https%3A%2F%2Fwww.facebook.com%2FkartriderTW%2F
 
 
-################################## 橘子footer ##################################
+################################################# 橘子footer #################################################
 <script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/game-footer.js" id="game-footer" prod="新瑪奇B" theme="dark"></script>
 天堂M | 魔力寶貝M | 天堂 | 天堂國際服 | 天堂免服 | 新楓之谷 | 絕對武力 | 絕對武力2 | 新瑪奇B | 跑跑卡丁車 | 艾爾之光 | 爆爆王 | 泡泡大亂鬥 | 勁舞團 | 召喚圖板 | 發射吧少女 | 便利商店口袋版 | bf!遊戲 | 新龍之谷 | AURORA7 | 龍之谷新世界 | 月光雕刻師 | 彈射世界
 
 
-################################## topbar.js ##################################
+################################################# topbar.js #################################################
 新楓之谷	<script src="https://tw.beanfun.com/MapleStory/menuBar/topBar.js"></script>
 跑跑卡丁車	<script src="https://tw.beanfun.com/kartrider/menuBar/topBar.js"></script>
 天堂免服	<script src="https://tw.beanfun.com/lineagefree/menuBar/topBar.js"></script>
@@ -653,7 +702,7 @@ Array.prototype.contains = function(val){
 新龍之谷	<script src="https://tw.beanfun.com/DragonNest/assets/script/topBar.js"></script>
 
 
-################################## RegEXp ##################################
+################################################# RegEXp #################################################
 完整說明：https://john650914.github.io/documentation/RegExp.html
 
 範例：
@@ -691,7 +740,7 @@ Email：
 /^[^\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u00FF]{1,20}$/;
 
 
-################################## IE9 placeholder ##################################
+################################################# IE9 placeholder #################################################
 function doPlaceholder(){
 	if(navigator.userAgent.indexOf('MSIE 9.0') != -1){
 		$('[placeholder]').focus(function(){
@@ -711,7 +760,7 @@ function doPlaceholder(){
 }
 
 
-################################## 清除空的node ##################################
+################################################# 清除空的node #################################################
 function clean(node){
 	for(var n = 0; n < node.childNodes.length; n ++){
 		var child = node.childNodes[n];
