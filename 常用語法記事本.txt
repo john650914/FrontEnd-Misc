@@ -208,7 +208,7 @@ input:-ms-input-placeholder{ /*IE要分開寫*/
 // 基本清樣式：
 input, select, button, textarea{
 	padding: 0;
-	color: balck;
+	color: black;
 	font-size: 16px;
 	line-height: 1;
 	outline: none;
