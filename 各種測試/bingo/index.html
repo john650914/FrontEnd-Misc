@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<title>HTML5</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+var MainArr = [
+	false, true, true, true, true,
+	true, false, true, true, false,
+	true, true, false, true, false,
+	true, true, true, true, false,
+	true, true, false, true, true
+];
+var Sq = Math.sqrt(MainArr.length);
+
+var HLines = [];
+for(var i = 0; i < Sq; i++){
+	HLines[i] = MainArr.slice(i * Sq, Sq * (i+1));
+	if(HLines[i].every(function(x){return x == true})){
+		console.log('水平第'+(i+1)+'條連線了');
+	}
+}
+
+var VLines = [];
+for (var i = 0; i < Sq; i++){
+	var result = MainArr.filter(function(item, index){
+		return index % Sq == i; //這邊直接回傳一個陣列了，比reduce還快
+	});
+	VLines.push(result)
+	if(VLines[i].every(function(x){return x == true})){
+		console.log('垂直第'+(i+1)+'條連線了');
+	}
+}
+
+var BackLine = [];
+for(var i = 0; i < MainArr.length; i++){
+	if(i % (Sq+1) == 0){
+		BackLine.push(MainArr[i]);
+	}
+}
+if(BackLine.every(function(x){return x == true})){
+	console.log('左上右下連線了');
+}
+
+var SlashLine = [];
+for(var i = 1; i < MainArr.length-(Sq-1); i++){
+	if(i % (Sq-1) == 0){
+		SlashLine.push(MainArr[i]);
+	}
+}
+if(SlashLine.every(function(x){return x == true})){
+	console.log('右上左下連線了');
+}
+
+
+
+
+
+
+
+/* const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const result = arr.reduce((array, item, index) => { 
+	const chunkIdx = Math.floor(index % 3);
+	if (!array[chunkIdx]) {
+		array[chunkIdx] = []
+	}
+	array[chunkIdx].push(item)
+	return array;
+}, [])
+
+console.log(result) */
+
+
+
+
+/* const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const result = arr.reduce((array, item, index) => {
+	const chunkIdx = index % 3;
+	if (!array[chunkIdx]) { //如果array中[chunkIdx]沒有東西
+		array[chunkIdx] = [] //就新增一個[]
+	}
+	array[chunkIdx].push(item)
+	return array;
+}, [])
+console.log(result) */
+/* 
+array[0],   array[0] = [],
+array[0],   array[0].push(1)   [[1]]
+array[1],   array[1].push(2)   [[1], [2]]
+array[2],   array[2].push(3)   [[1], [2], [3]]
+array[0],   array[0].push(4)   [[1, 4], [2], [3]]
+array[1],   array[1].push(5)   [[1, 4], [2, 5], [3]]
+array[2],   array[2].push(6)   [[1, 4], [2, 5], [3, 6]]
+array[0],   array[0].push(7)   [[1, 4, 7], [2, 5], [3, 6]]
+array[1],   array[1].push(8)   [[1, 4, 7], [2, 5, 8], [3, 6]]
+array[2],   array[2].push(9)   [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+*/
+
+
+
+
+
+/* const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const chunk = function(array, length) {
+	return array.reduce(
+		(a, v, i) => (a[i % length].push(v), a), 
+		Array.from({ length }, _ => [])
+	)
+}
+
+console.log(chunk(array, 3)) */
+
+
+
+/* 
+var VArr = [];
+var temp = 0;
+VArr[temp] = [];
+for(var i = 0; i < MainArr.length; i++){
+	if(i % Sq == temp){
+		VArr[temp] = MainArr[i];
+		if(temp >= Sq-1){
+			temp = 0;
+		}else{
+			temp++;
+		}
+	}
+}
+console.log(VArr);
+ */
+
+
+
+
+
+
+/*  var fruits = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
+var array1=[];
+var array2=[];
+var array3=[];
+
+
+for (var i=0;i<fruits.length;i++)
+{
+	if (i%3 == 0)
+	{
+			array1.push(fruits[i]);
+	}
+			else if (i%3 ==1)
+	{
+		array2.push(fruits[i]);
+	}
+	else if (i%3 ==2)
+	//alert(fruits[i]%3)
+	{
+		array3.push(fruits[i]);
+	}
+
+}
+
+var array4 = [];
+array4.push(array1,array2,array3);
+
+console.log(array4); */
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
