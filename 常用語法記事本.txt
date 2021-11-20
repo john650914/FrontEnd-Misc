@@ -686,6 +686,13 @@ var myAry = [
 console.log(returnAryObjVal('b','22','f', myAry)); //傳回33
 
 
+################################################# 取得剪貼簿資料 #################################################
+$(document).on('paste', function(e){
+	var clipboard = e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
+	alert('剪貼簿資料：'+clipboard.getData('Text'));
+});
+
+
 ################################################# IE相容的includes() #################################################
 Array.prototype.contains = function(val){
 	return this.indexOf(val) >= 0;
