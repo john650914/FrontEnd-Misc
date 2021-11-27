@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>維護公告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
+</head>
+<body>
+<a class="aaa" href="javascript:;">按我</a>
+<script>
+$('.aaa').on('click', function(){
+  fetch("spotlight.jpg").then(function(response) {
+    return response.blob()
+  }).then(function(blob){
+    var file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
+    var filesArray = [file];
+    if(navigator.canShare && navigator.canShare({ files: filesArray })) {
+      navigator.share({
+        text: 'some_text',
+        files: filesArray,
+        title: 'some_title',
+        url: 'https://stackoverflow.com'
+      });
+    }
+  })
+});
+
+</script>
+</body>
+</html>

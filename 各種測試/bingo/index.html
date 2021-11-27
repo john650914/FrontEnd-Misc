@@ -10,53 +10,87 @@
 <body>
 
 <script>
+
+
+
+
+UserBoardObj = {
+	FinishedCount: '4',
+	BoardType: 'MS',
+	Nickname: 'JOHN',
+	GlobalNo: [
+		{No:'32', avlb:true},
+		{No:'12', avlb:true},
+	],
+	MagicBean: true,
+	Board: [
+		{No:'30', checked:true, Pos:'1'}, {No:'2', checked:true, Pos:'2'}, {No:'8', checked:true, Pos:'3'}, {No:'56', checked:true, Pos:'4'}, {No:'98', checked:true, Pos:'5'},
+		{No:'23', checked:true, Pos:'6'}, {No:'7', checked:false, Pos:'7'}, {No:'47', checked:true, Pos:'8'}, {No:'96', checked:true, Pos:'9'}, {No:'66', checked:true, Pos:'10'},
+		{No:'84', checked:true, Pos:'11'}, {No:'36', checked:false, Pos:'12'}, {No:'10', checked:true, Pos:'13'}, {No:'41', checked:true, Pos:'14'}, {No:'54', checked:true, Pos:'15'},
+		{No:'27', checked:false, Pos:'16'}, {No:'35', checked:true, Pos:'17'}, {No:'88', checked:true, Pos:'18'}, {No:'75', checked:true, Pos:'19'}, {No:'64', checked:false, Pos:'20'},
+		{No:'28', checked:true, Pos:'21'}, {No:'6', checked:true, Pos:'22'}, {No:'74', checked:true, Pos:'23'}, {No:'18', checked:true, Pos:'24'}, {No:'66', checked:true, Pos:'25'}
+	],
+	Pool: ['魔法豆','魔法豆','魔法豆','魔法豆', '2', '45', '83', '32', '36', '36', '36', '36', '36', '36', '36', '36', '64', '12', '73', '99', '35', '62', '63', '63', '98', '77', '72', '16', '65', '23', '62', '16', '94', '23', '51', '82', '12', '99', '34', '92', '75', '66', '23', '2', '83', '6', '49', '30', '21', '33', '72', '89'],
+}
+
+MarqueeObj = [
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+	{name:'台北叫小豪', count:'3'},
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
 /****************** 原始資料 /******************/
-var board = [
-	{No:'30', checked:true},
-	{No:'2', checked:true},
-	{No:'8', checked:true},
-	{No:'56', checked:true},
-	{No:'98', checked:true},
-	{No:'23', checked:true},
-	{No:'7', checked:false},
-	{No:'47', checked:true},
-	{No:'96', checked:true},
-	{No:'66', checked:true},
-	{No:'84', checked:true},
-	{No:'36', checked:true},
-	{No:'10', checked:true},
-	{No:'41', checked:true},
-	{No:'54', checked:true},
-	{No:'27', checked:false},
-	{No:'35', checked:true},
-	{No:'88', checked:true},
-	{No:'75', checked:true},
-	{No:'64', checked:false},
-	{No:'28', checked:true},
-	{No:'6', checked:true},
-	{No:'74', checked:true},
-	{No:'18', checked:true},
-	{No:'66', checked:true}
+var Board = [
+	{No:'30', checked:true}, {No:'2', checked:true}, {No:'8', checked:true}, {No:'56', checked:true}, {No:'98', checked:true},
+	{No:'23', checked:true}, {No:'7', checked:false}, {No:'47', checked:true}, {No:'96', checked:true}, {No:'66', checked:true},
+	{No:'84', checked:true}, {No:'36', checked:true}, {No:'10', checked:true}, {No:'41', checked:true}, {No:'54', checked:true},
+	{No:'27', checked:true}, {No:'35', checked:true}, {No:'88', checked:true}, {No:'75', checked:true}, {No:'64', checked:false},
+	{No:'28', checked:true}, {No:'6', checked:true}, {No:'74', checked:true}, {No:'18', checked:true}, {No:'66', checked:true}
 ]
 
-var pool = ['2', '45', '83', '36', '36', '36', '36', '36', '36', '36', '36', '36', '64', '12', '73', '99', '35', '62', '63', '63', '98', '77', '72', '16', '65', '23', '62', '16', '94', '23', '51', '82', '12', '99', '34', '92', '75', '66', '23', '2', '83', '6', '49', '30', '21', '33', '72', '89']
+var Pool = ['2', '45', '83', '36', '36', '36', '36', '36', '36', '36', '36', '36', '64', '12', '73', '99', '35', '62', '63', '63', '98', '77', '72', '16', '65', '23', '62', '16', '94', '23', '51', '82', '12', '99', '34', '92', '75', '66', '23', '2', '83', '6', '49', '30', '21', '33', '72', '89']
+
+var MagicBean = true;
+
+var GlobalEventNo = '32';
+
+
+
+
 
 /**********************************************************************************************************************************************************************/
 //號碼池排除重覆的數字
-var PoolUniqNo = pool.filter(function(item, index){
-	return pool.indexOf(item) == index;
+var PoolUniqNo = Pool.filter(function(item, index){
+	return Pool.indexOf(item) == index;
 });
 
 //號碼池格式化 // [{2:1}, {45:2}, {83:1}.........
 var PoolFormat = [];
 PoolUniqNo.forEach(function(item, index){
-	var occur = countOccurrences(pool, item);
+	var occur = countOccurrences(Pool, item);
 	PoolFormat[index] = {};
 	PoolFormat[index][item] = occur;
 });
 
 //比對賓果盤有沒有號碼池裡的號碼，再加入UserBoard的陣列
-var UserBoard = board.map(function(item, index){
+var UserBoard = Board.map(function(item, index){
 	var aaa = PoolUniqNo.some(function(item2){
 		return item2 == item.No;
 	});
@@ -64,17 +98,16 @@ var UserBoard = board.map(function(item, index){
 });
 
 
+console.log(BingoLines(Board));
 
 
-
-
-function BingoLines(board){
-	var Sq = Math.sqrt(board.length);
+function BingoLines(Board){
+	var Sq = Math.sqrt(Board.length);
 	var Lines = [];
 	//水平連線
 	var HLines = [];
 	for(var i = 0; i < Sq; i++){
-		HLines[i] = board.slice(i * Sq, Sq * (i+1));
+		HLines[i] = Board.slice(i * Sq, Sq * (i+1));
 		if(HLines[i].every(function(x){return x.checked == true})){
 			Lines.push({dir: 'horz', pos: i+1});
 		}
@@ -82,7 +115,7 @@ function BingoLines(board){
 	//垂直連線
 	var VLines = [];
 	for (var i = 0; i < Sq; i++){
-		var result = board.filter(function(item, index){
+		var result = Board.filter(function(item, index){
 			return index % Sq == i; //這邊直接回傳一個陣列了，比reduce還快
 		});
 		VLines.push(result)
@@ -92,9 +125,9 @@ function BingoLines(board){
 	}
 	//左上右下連線
 	var BackLine = [];
-	for(var i = 0; i < board.length; i++){
+	for(var i = 0; i < Board.length; i++){
 		if(i % (Sq+1) == 0){
-			BackLine.push(board[i]);
+			BackLine.push(Board[i]);
 		}
 	}
 	if(BackLine.every(function(x){return x.checked == true})){
@@ -102,9 +135,9 @@ function BingoLines(board){
 	}
 	//右上左下連線
 	var SlashLine = [];
-	for(var i = 1; i < board.length-(Sq-1); i++){
+	for(var i = 1; i < Board.length-(Sq-1); i++){
 		if(i % (Sq-1) == 0){
-			SlashLine.push(board[i]);
+			SlashLine.push(Board[i]);
 		}
 	}
 	if(SlashLine.every(function(x){return x.checked == true})){

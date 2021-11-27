@@ -95,6 +95,7 @@ console.log(result) */
 
 
 
+
 /* const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const result = arr.reduce((array, item, index) => {
 	const chunkIdx = index % 3;
@@ -117,6 +118,20 @@ array[0],   array[0].push(7)   [[1, 4, 7], [2, 5], [3, 6]]
 array[1],   array[1].push(8)   [[1, 4, 7], [2, 5, 8], [3, 6]]
 array[2],   array[2].push(9)   [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 */
+
+/* const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const Sq = Math.sqrt(arr.length);
+
+var result = arr.reduce((sum, v, i) => {
+		let chunkIndex = i % Sq;
+	if(!sum[chunkIndex]){
+		sum[chunkIndex] = [];
+	}
+	sum[chunkIndex].push(v);
+	return sum;
+}, []);
+
+console.log(result); */
 
 
 
