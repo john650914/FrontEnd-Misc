@@ -241,19 +241,24 @@ var mv4 = new Vue({
 
 
 
-//////////////////////////////////////////////////////////////////////////<br>
-
+<h2>取得event.target</h2>
+<p>vue處理事件有很多眉角ㄟ</p>
+<p>如果getTarget沒有帶任何參數可以直接取到event物件</p>
+<p>如果getTarget需要取到event物件又要帶別的參數必需使用vue的「$event」變數</p>
+<p>如果觸發事件的元素裡還有其它元素，使用event.target vue會抓到內層的元素，改用event.currentTarget就可以抓到正確的元素</p>
 <div class="vue-result">
-	<a id="vv" href="javascript:;" @click="aaa">
-		<img src="dora.png" />
+	<a id="doraWrap" href="javascript:;" @click="getTarget($event, '1234')">
+		<img id="dora" src="dora.png" />
 	</a>
 </div>
 <script>
-var vv = new Vue({
-	el: '#vv',
+var vm5 = new Vue({
+	el: '#doraWrap',
 	methods: {
-		aaa: function(e){
+		getTarget(e, p){
+			alert(p);
 			alert(e.target.id);
+			alert(e.currentTarget.id);
 		}
 	}
 });
