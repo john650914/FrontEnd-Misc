@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<style>
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:0;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+body{font-size:14px;}
+*{margin-top:0;font-family:"微軟正黑體";line-height:1.5}
+
+body{
+	padding: 28px 30px;
+	background: #f0f1f3;
+	display: flex;
+}
+nav{
+	width: 220px;
+	padding-right: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+nav h3{
+	margin: 22px 0 4px 0;
+}
+nav h3:first-child{
+	margin-top: 0;
+}
+nav a{
+	padding: 0 10px 4px 6px;
+	color: #727272;
+	text-decoration: none;
+}
+nav a:hover{
+	color: #00a4e6;
+}
+article{
+	padding: 22px 28px;
+	font-size: 15px;
+	box-shadow: 0 0 10px rgba(0,0,0,.05);
+	flex: 1;
+    background: #fff;
+}
+/* h1{
+	margin-bottom: 20px;
+	font-size: 50px;
+}
+ul, ol{
+	padding-left: 2em;
+}
+pre{
+	padding: 10px 15px;
+	font-size: 13px;
+	color: #fff;
+	tab-size: 3;
+	background: rgb(70, 70, 70);
+	border-radius: 6px;
+}
+hr{
+	margin: 80px 0 60px 0;
+} */
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+<nav>
+	<h3>Vue入門概述</h3>
+		<a href="#basic_create">創建一個Vue實例</a>
+		<a href="#basic_bind_data">綁定數據</a>
+		<a href="#basic_bind_property">綁定屬性</a>
+		<a href="#basic_bind_boolean">綁定屬性為布林值</a>
+		<a href="#basic_bind_html">綁定含html的資料</a>
+		<a href="#basic_javascript_expression">使用JavaScript表達式</a>
+		<a href="#basic_v_once">執行一次性的插值</a>
+		<a href="#basic_bind_event">綁定事件</a>
+		<a href="#basic_event_target">取得event.target</a>
+	<h3>條件判斷</h3>
+		<a href="#condition_v_if">使用Vue的條件判斷式</a>
+		<a href="#condition_v_else_if">v-else-if和v-else</a>
+		<a href="#condition_key">使用key屬性重新繪製DOM</a>
+	<h3>迴圈</h3>
+		<a href="#loop_v_for">使用Vue的條件判斷式</a>
+		<a href="#loop_v_for_object">在v-for裡使用物件</a>
+		<a href="#loop_array_modification">陣列的異動</a>
+		<a href="#loop_array_replacement">替換陣列</a>
+		<a href="#loop_array_update">更新陣列項目的內容</a>
+		<a href="#loop_avoid_v_if_with_v_for">避免v-if和v-for用在一起</a>
+		<a href="#loop_with_component">在組件上使用 v-for</a>
+	<h3>雙向數據綁定</h3>
+		<a href="#v_model_basic">v-model基本介紹</a>
+		<a href="#v_model_input">input使用v-model</a>
+		<a href="#v_model_textarea">textarea使用v-model</a>
+		<a href="#v_model_checkbox">checkbox使用v-model</a>
+		<a href="#v_model_radio">radio使用v-model</a>
+		<a href="#v_model_select">select使用v-model</a>
+		<a href="#v_model_bind_balue">綁定值</a>
+		<a href="#v_model_modifier">修飾符</a>
+		<a href="#v_model_component">在元件上使用v-model</a>
+	<h3>計算屬性</h3>
+		<a href="#computed_basic">computed基本介紹</a>
+		<a href="#computed_cache">觀察computed的暫存特性</a>
+		<a href="#computed_setter">重設computed的setter</a>
+	<h3>監聽器</h3>
+		<a href="#watch_basic">watch基本介紹</a>
+		<a href="#watch_officail_example">官網範例</a>
+		<a href="#watch_immediate">immediate屬性</a>
+		<a href="#watch_vs_computed">計算屬性vs監聽器</a>
+		<a href="#watch_vs_etc">watch的其它功能</a>
+	<h3>class</h3>
+		<a href="#class_bind">用v-bind綁定class的值</a>
+		<a href="#class_multiple">使用陣列綁定多個class</a>
+		<a href="#class_array_in_data">將陣列存在data中</a>
+		<a href="#class_object_value">使用物件的value</a>
+		<a href="#class_expression">使用表達式</a>
+		<a href="#class_computed">使用computed處理表達式</a>
+		<a href="#class_boolean">使用布林值當作class的開關</a>
+		<a href="#class_boolean_in_data">布林值存放於data中</a>
+		<a href="#class_boolean_in_computed">布林值存放於computed中</a>
+	<h3>使用Vue來控制CSS</h3>
+		<a href="#style_basic">style基本介紹</a>
+		<a href="#style_array">使用陣列來綁定多個樣式</a>
+		<a href="#style_computed">使用computed</a>
+		<a href="#style_hack">CSS hack</a>
+	<h3>事件修飾符</h3>
+		<a href="#modifier_basic">事件修飾符基本介紹</a>
+		<a href="#modifier_stop">.stop修飾符</a>
+		<a href="#modifier_capture">.capture修飾符</a>
+		<a href="#modifier_self">.self修飾符</a>
+		<a href="#modifier_once">.once修飾符</a>
+		<a href="#modifier_prevent">.prevent修飾符</a>
+		<a href="#modifier_passive">.passive修飾符</a>
+		<a href="#modifier_no_function">只設定修飾符不綁定function</a>
+		<a href="#modifier_keycode">按鍵修飾符</a>
+	<h3>元件</h3>
+		<a href="#component_basic">元件基本介紹</a>
+		<a href="#component_reuse">重複使用同一個組件</a>
+		<a href="#component_local">區域元件</a>
+		<a href="#component_props">透過props向子元件傳遞數據</a>
+		<a href="#component_loop">用迴圈來產生compoents</a>
+		<a href="#component_simplify">簡化Javascript及HTML</a>
+		<a href="#component_listen_child_comp">監聽子元件事件</a>
+		<a href="#component_v_model">在元件上使用v-model</a>
+		<a href="#component_slot">透過插槽分配内容</a>
+		<a href="#component_is">動態元件</a>
+	<h3>生命周期</h3>
+		<a href="#lifecycle_basic">生命周期基本介紹</a>
+		<a href="#lifecycle_indv">各個生命周期階段的特性</a>
+		<a href="#lifecycle_test">測試範例</a>
+	<h3>Vuex</h3>
+		<a href="#vuex_basic">Vuex基本介紹</a>
+		<a href="#vuex_state">State</a>
+		<a href="#vuex_getter">Getter</a>
+		<a href="#vuex_mutation">Mutation</a>
+		<a href="#vuex_action">Action</a>
+		<a href="#vuex_module">Module</a>
+	<h3>過渡效果</h3>
+		<a href="#transition_basic">概述</a>
+		<a href="#transition_dom_comp">DOM/元件的過渡</a>
+		<a href="#transition_class">class名稱</a>
+		<a href="#transition_transition">CSS過渡</a>
+		<a href="#transition_animation">CSS動畫</a>
+		<a href="#transition_custom_class">自定義class名稱</a>
+		<a href="#transition_transition_animation">同時使用過渡和動畫</a>
+		<a href="#transition_duration">過渡的持續時間</a>
+		<a href="#transition_......">......</a>
+</nav>
+
+
+<article id="root">
+	<div class="aaa">這是aaa</div>
+	<div class="aaa">這是aaa</div>
+	<div class="aaa">這是aaa</div>
+	<div class="aaa">這是aaa</div>
+	<section id="basic_create">
+		<h2>創建一個Vue實例</h2>
+		<p>每個Vue應用都是通過用Vue函數創建一個新的Vue實例開始的；當一個Vue實例被創建時，它將「data」對像中的所有的屬性加入到Vue的響應式系統中。當這些屬性的值發生改變時，視圖將會產生“響應”，即匹配更新為新的值。</p>
+		<p>我們可以在console中觀察此範例的資訊，例如輸入「vm.a == data.a」會得到true，代表data物件中的資料和vm實例中的data是完全相同的。</p>
+		<p>再來我們輸入「vm.a = 2」，試著改變vm實例的值，再輸入「data.a」，發現傳回2，代表這些資料都已存在Vue的響應式系統中了。</p>
+		<p>反過來輸入「data.a = 3」，再輸入 「vm.a」也會得到同樣的效果。</p>
+	</section>
+	<section id="basic_bind_data"></section>
+	<section id="basic_bind_property"></section>
+	<section id="basic_bind_boolean"></section>
+	<section id="basic_bind_html"></section>
+	<section id="basic_javascript_expression"></section>
+	<section id="basic_v_once"></section>
+	<section id="basic_bind_event"></section>
+	<section id="basic_event_target"></section>
+	<section id="condition_v_if"></section>
+	<section id="condition_v_else_if"></section>
+	<section id="condition_key"></section>
+	<section id="loop_v_for"></section>
+	<section id="loop_v_for_object"></section>
+	<section id="loop_array_modification"></section>
+	<section id="loop_array_replacement"></section>
+	<section id="loop_array_update"></section>
+	<section id="loop_avoid_v_if_with_v_for"></section>
+	<section id="loop_with_component"></section>
+	<section id="v_model_basic"></section>
+	<section id="v_model_input"></section>
+	<section id="v_model_textarea"></section>
+	<section id="v_model_checkbox"></section>
+	<section id="v_model_radio"></section>
+	<section id="v_model_select"></section>
+	<section id="v_model_bind_balue"></section>
+	<section id="v_model_modifier"></section>
+	<section id="v_model_component"></section>
+	<section id="computed_basic"></section>
+	<section id="computed_cache"></section>
+	<section id="computed_setter"></section>
+	<section id="watch_basic"></section>
+	<section id="watch_officail_example"></section>
+	<section id="watch_immediate"></section>
+	<section id="watch_vs_computed"></section>
+	<section id="watch_vs_etc"></section>
+	<section id="class_bind"></section>
+	<section id="class_multiple"></section>
+	<section id="class_array_in_data"></section>
+	<section id="class_object_value"></section>
+	<section id="class_expression"></section>
+	<section id="class_computed"></section>
+	<section id="class_boolean"></section>
+	<section id="class_boolean_in_data"></section>
+	<section id="class_boolean_in_computed"></section>
+	<section id="style_basic"></section>
+	<section id="style_array"></section>
+	<section id="style_computed"></section>
+	<section id="style_hack"></section>
+	<section id="modifier_basic"></section>
+	<section id="modifier_stop"></section>
+	<section id="modifier_capture"></section>
+	<section id="modifier_self"></section>
+	<section id="modifier_once"></section>
+	<section id="modifier_prevent"></section>
+	<section id="modifier_passive"></section>
+	<section id="modifier_no_function"></section>
+	<section id="modifier_keycode"></section>
+	<section id="component_basic"></section>
+	<section id="component_reuse"></section>
+	<section id="component_local"></section>
+	<section id="component_props"></section>
+	<section id="component_loop"></section>
+	<section id="component_simplify"></section>
+	<section id="component_listen_child_comp"></section>
+	<section id="component_v_model"></section>
+	<section id="component_slot"></section>
+	<section id="component_is"></section>
+	<section id="lifecycle_basic"></section>
+	<section id="lifecycle_indv"></section>
+	<section id="lifecycle_test"></section>
+	<section id="vuex_basic"></section>
+	<section id="vuex_state"></section>
+	<section id="vuex_getter"></section>
+	<section id="vuex_mutation"></section>
+	<section id="vuex_action"></section>
+	<section id="vuex_module"></section>
+	<section id="transition_basic"></section>
+	<section id="transition_dom_comp"></section>
+	<section id="transition_class"></section>
+	<section id="transition_transition"></section>
+	<section id="transition_animation"></section>
+	<section id="transition_custom_class"></section>
+	<section id="transition_transition_animation"></section>
+	<section id="transition_duration"></section>
+	<section id="transition_......"></section>
+</article>
+
+
+
+<script>
+	document.querySelectorAll('.aaa')[0].classList.add("myStyle");
+	document.querySelectorAll('.aaa')[0].classList.add("myStyle");
+</script>
+</body>
+</html>
