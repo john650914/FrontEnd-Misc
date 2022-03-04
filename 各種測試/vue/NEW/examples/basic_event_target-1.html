@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="../assets/css/example.css">
+<script src="../assets/js/vue.min.js"></script>
+<script src="../assets/js/vuex.min.js"></script>
+</head>
+<body>
+    <div id="app" v-on:click="getTarget('我是FN帶的參數', $event)">
+        <a id="inner" href="javascript:;">點我(click事件在外層)</a>
+    </div>
+<script>
+var vm = new Vue({
+	el: '#app',
+	methods: {
+		getTarget(p, e){
+			alert(p);
+			alert(e.target.id);
+			alert(e.currentTarget.id);
+		}
+	}
+});
+</script>
+</body>
+</html>

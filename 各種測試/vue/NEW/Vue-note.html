@@ -1,0 +1,2523 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/css/default.css">
+<script src="https://tw.hicdn.beanfun.com/plugins/vue/2.6.10/vue.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/vuex/3.1.1/vuex.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+</head>
+<body>
+<div id="loadingProgress" class="loadingProgress loadingio-spinner-spinner-vtomc4kx3wi"><div class="ldio-x8u79v579re"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><style type="text/css">@keyframes ldio-x8u79v579re{0%{background:#404040;}100%{background:#fff;}}.ldio-x8u79v579re div{left:44px;top:2px;position:absolute;animation:ldio-x8u79v579re linear 1s infinite;background:#fff;width:14px;height:14px;border-radius:100px;transform-origin:6px 48px;}.ldio-x8u79v579re div:nth-child(1){transform:rotate(0deg);animation-delay:-0.9s;background:#fff;}.ldio-x8u79v579re div:nth-child(2){transform:rotate(36deg);animation-delay:-0.8s;background:#fff;}.ldio-x8u79v579re div:nth-child(3){transform:rotate(72deg);animation-delay:-0.7s;background:#fff;}.ldio-x8u79v579re div:nth-child(4){transform:rotate(108deg);animation-delay:-0.6s;background:#fff;}.ldio-x8u79v579re div:nth-child(5){transform:rotate(144deg);animation-delay:-0.5s;background:#fff;}.ldio-x8u79v579re div:nth-child(6){transform:rotate(180deg);animation-delay:-0.4s;background:#fff;}.ldio-x8u79v579re div:nth-child(7){transform:rotate(216deg);animation-delay:-0.3s;background:#fff;}.ldio-x8u79v579re div:nth-child(8){transform:rotate(252deg);animation-delay:-0.2s;background:#fff;}.ldio-x8u79v579re div:nth-child(9){transform:rotate(288deg);animation-delay:-0.1s;background:#fff;}.ldio-x8u79v579re div:nth-child(10){transform:rotate(324deg);animation-delay:0s;background:#fff;}.loadingio-spinner-spinner-vtomc4kx3wi{width:100%;height:100%;display:inline-block;overflow:hidden;background:rgba(0,0,0,0.75);position:fixed;left:0;top:0;z-index:999999;}.ldio-x8u79v579re{width:100px;height:100px;position:absolute;left:50%;top:50%;transform:translateZ(0) scale(0.64) translate(-50%,-50%);backface-visibility:hidden;transform-origin:0 0;}.ldio-x8u79v579re div{box-sizing:content-box;}</style>
+<nav>
+	<h3><a href="#basic">簡介</a></h3>
+		<a href="#basic_hello_world">Hello World!</a>
+		<a href="#basic_reactivity">Vue的響應式系統</a>
+		<a href="#basic_bind_data">綁定數據</a>
+		<a href="#basic_bind_property">綁定屬性</a>
+		<a href="#basic_bind_boolean">綁定屬性為布林值</a>
+		<a href="#basic_bind_html">綁定含html的資料</a>
+		<a href="#basic_javascript_expression">使用JavaScript表達式</a>
+		<a href="#basic_v_once">執行一次性的插值</a>
+		<a href="#basic_bind_event">綁定事件</a>
+		<a href="#basic_event_target">取得event.target</a>
+	<h3><a href="#condition">條件判斷</a></h3>
+		<a href="#condition_v_if">使用Vue的條件判斷式</a>
+		<a href="#condition_v_else_if">v-else-if和v-else</a>
+		<a href="#condition_key">使用key屬性重新繪製DOM</a>
+	<h3><a href="#loop">迴圈</a></h3>
+		<a href="#loop_v_for">v-for的基本使用方法</a>
+		<a href="#loop_modify">修改陣列的內容</a>
+		<a href="#loop_replace">替換整個陣列</a>
+		<a href="#loop_dom_modification">DOM的異動</a>
+		<a href="#loop_avoid_v_if_with_v_for">避免v-if和v-for用在一起</a>
+		<a href="#loop_with_component">在組件上使用 v-for</a>
+	<h3><a href="#v_model">雙向數據綁定</a></h3>
+		<a href="#v_model_basic">v-model基本介紹</a>
+		<a href="#v_model_input">input使用v-model</a>
+		<a href="#v_model_textarea">textarea使用v-model</a>
+		<a href="#v_model_checkbox">checkbox使用v-model</a>
+		<a href="#v_model_radio">radio使用v-model</a>
+		<a href="#v_model_select">select使用v-model</a>
+		<a href="#v_model_bind_balue">綁定值</a>
+		<a href="#v_model_modifier">修飾符</a>
+		<a href="#v_model_component">在元件上使用v-model</a>
+	<h3><a href="#computed">計算屬性</a></h3>
+		<a href="#computed_basic">computed基本介紹</a>
+		<a href="#computed_cache">觀察computed的暫存特性</a>
+		<a href="#computed_setter">重設computed的setter</a>
+	<h3><a href="#watch">監聽器</a></h3>
+		<a href="#watch_basic">watch基本介紹</a>
+		<a href="#watch_officail_example">官網範例</a>
+		<a href="#watch_immediate">immediate屬性</a>
+		<a href="#watch_vs_computed">計算屬性vs監聽器</a>
+		<a href="#watch_vs_etc">watch的其它功能</a>
+	<h3><a href="#class">class</a></h3>
+		<a href="#class_bind">用v-bind綁定class的值</a>
+		<a href="#class_multiple">使用陣列綁定多個class</a>
+		<a href="#class_array_in_data">將陣列存在data中</a>
+		<a href="#class_object_value">使用物件的value</a>
+		<a href="#class_expression">使用表達式</a>
+		<a href="#class_computed">使用computed處理表達式</a>
+		<a href="#class_boolean">使用布林值當作class的開關</a>
+		<a href="#class_boolean_in_data">布林值存放於data中</a>
+		<a href="#class_boolean_in_computed">布林值存放於computed中</a>
+	<h3><a href="#style">使用Vue來控制CSS</a></h3>
+		<a href="#style_basic">style基本介紹</a>
+		<a href="#style_array">使用陣列來綁定多個樣式</a>
+		<a href="#style_computed">使用computed</a>
+		<a href="#style_hack">CSS hack</a>
+	<h3><a href="#modifier">事件修飾符</a></h3>
+		<a href="#modifier_basic">事件修飾符基本介紹</a>
+		<a href="#modifier_stop">.stop修飾符</a>
+		<a href="#modifier_capture">.capture修飾符</a>
+		<a href="#modifier_self">.self修飾符</a>
+		<a href="#modifier_once">.once修飾符</a>
+		<a href="#modifier_prevent">.prevent修飾符</a>
+		<a href="#modifier_passive">.passive修飾符</a>
+		<a href="#modifier_no_function">只設定修飾符不綁定function</a>
+		<a href="#modifier_keycode">按鍵修飾符</a>
+	<h3><a href="#component">元件</a></h3>
+		<a href="#component_basic">元件基本介紹</a>
+		<a href="#component_reuse">重複使用同一個組件</a>
+		<a href="#component_local">區域元件</a>
+		<a href="#component_props">透過props向子元件傳遞數據</a>
+		<a href="#component_loop">用迴圈來產生compoents</a>
+		<a href="#component_simplify">簡化Javascript及HTML</a>
+		<a href="#component_listen_child_comp">監聽子元件事件</a>
+		<a href="#component_v_model">在元件上使用v-model</a>
+		<a href="#component_slot">透過插槽分配内容</a>
+		<a href="#component_is">動態元件</a>
+	<h3><a href="#lifecycle">生命周期</a></h3>
+		<a href="#lifecycle_basic">生命周期基本介紹</a>
+		<a href="#lifecycle_indv">各個生命周期階段的特性</a>
+		<a href="#lifecycle_test">測試範例</a>
+	<h3><a href="#vuex">Vuex</a></h3>
+		<a href="#vuex_basic">Vuex基本介紹</a>
+		<a href="#vuex_state">State</a>
+		<a href="#vuex_getter">Getter</a>
+		<a href="#vuex_mutation">Mutation</a>
+		<a href="#vuex_action">Action</a>
+		<a href="#vuex_module">Module</a>
+	<h3><a href="#transition">過渡效果</a></h3>
+		<a href="#transition_basic">概述</a>
+		<a href="#transition_dom_comp">DOM/元件的過渡</a>
+		<a href="#transition_class">class名稱</a>
+		<a href="#transition_transition">CSS過渡</a>
+		<a href="#transition_animation">CSS動畫</a>
+		<a href="#transition_custom_class">自定義class名稱</a>
+		<a href="#transition_transition_animation">同時使用過渡和動畫</a>
+		<a href="#transition_duration">過渡的持續時間</a>
+		<a href="#transition_......">......</a>
+</nav>
+
+
+<article>
+
+	<h1 id="basic">簡介</h1>
+	<section>
+		<span id="basic_hello_world" class="anchor-offset"></span>
+		<h2>Hello World!</h2>
+		<p>Vue.js的核心是一個採用模板語法來聲明式地將數據渲染進DOM的系統，現在直接來看一個最基本的範例：</p>
+		<pre><code>
+			//HTML
+			<div id="app">
+				{{ message }}
+			</div>
+		</code></pre>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello World!'
+				}
+			})
+		</code></pre>
+		<p>※ 文章中的範例都可以貼到：<a href="https://jsfiddle.net/john650914/ut5zmx3q/16/">https://jsfiddle.net/john650914/ut5zmx3q/16/</a>來做測試 ※</p>
+	</section>
+
+
+	<section>
+		<span id="basic_reactivity" class="anchor-offset"></span>
+		<h2>Vue的響應式系統</h2>
+		<p>每個Vue應用都是通過創建一個新的Vue實例開始的；當一個Vue實例被創建時，它將「data」對像中的所有的屬性加入到Vue的響應式系統中。當這些屬性的值發生改變時，視圖將會產生"響應"，即匹配更新為新的值。</p>
+		<p>我們可以在console中觀察此範例的資訊，例如輸入<code>vm.a == data.a</code>會得到<code>true</code>，代表data物件中的資料和vm實例中的data是完全相同的。</p>
+		<p>再來我們輸入<code>vm.a = 2</code>，試著改變vm實例的值，再輸入<code>data.a</code>，發現傳回<code>2</code>，代表這些資料都已存在Vue的響應式系統中了。</p>
+		<p>反過來輸入<code>data.a = 3</code>，再輸入<code>vm.a</code>也會得到同樣的效果。</p>
+		<pre><code>
+			//數據物件
+			var data = { a: 1 };
+
+			//該物件被加到Vue的實例中
+			var vm = new Vue({
+				data: data
+			})
+		</code></pre>
+		<p>注意的是只有當實例被創建時就已經存在於data中的屬性才是響應式的，如果你知道你會在晚些時候需要一個屬性，但是一開始它為空或不存在，那麼你僅需要設置一些初始值。比如：</p>
+		<pre><code>
+			data: {
+				newTodoText: '',
+				visitCount: 0,
+				hideCompletedTodos: false,
+				todos: [],
+				error: null
+			}
+		</code></pre>
+	</section>
+
+
+	<section>
+		<span id="basic_bind_data" class="anchor-offset"></span>
+		<h2>綁定數據</h2>
+		<p>首先在HTML中使用兩個大括號來標記要繫結資料的物件key值，再來在JavaScript中建構一個Vue物件，並且在el屬性中指定這個Vue物件要連繫的DOM id；data屬性內是個物件，裡面包含了我們要綁定到HTML的資料，在這裡的content值為Hello world!，該值會被綁到 {{ }} 中的content。</p>
+		<p>先前提到Vue實例中的資料是響應式的，也就是說是動態綁定的，我們在console中輸入<code>vm1.content = 'changed text!'</code>就會發現網頁中的字串也跟著改變了。</p>
+		<pre><code>
+			//HTML
+			<div id="app">
+				{{ message }}
+			</div>
+		</code></pre>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello World!'
+				}
+			})
+		</code></pre>
+	</section>
+
+
+	<section>
+		<span id="basic_bind_property" class="anchor-offset"></span>
+		<h2>綁定屬性</h2>
+		<p>除了綁定數據外，Vue也可以使用<code>v-bind</code>直接綁定DOM的屬性，原理和上方綁定數據一樣，首先在HTML中使用<code>v-bind</code>去設定該DOM的屬性，這裡是綁定<code>title</code>屬性。
+		<div class="example">
+			<div id="app1" v-bind:title="newDate">
+				將滑鼠移到這裡顯示Title內容
+			</div>
+			<script>
+				var vm1 = new Vue({
+					el: '#app1',
+					data: {
+						newDate: 'Title：' + new Date()
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app" v-bind:title="newDate">
+				將滑鼠移到這裡顯示Title內容
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					newDate: 'Title：' + new Date()
+				}
+			});
+		</pre></code>
+		<p><code>v-bind</code>可以直接以一個「<code>:</code>」表示縮寫，例如上例的<code>v-bind:title="newDate"</code>可以寫成<code>:title="newDate"</code>。</p>
+	</section>
+
+
+	<section>
+		<span id="basic_bind_boolean" class="anchor-offset"></span>
+		<h2>綁定屬性為布林值</h2>
+		<p><code>disabled</code>、<code>checked</code>等的值可以用布林值來指定：</p>
+		<div class="example">
+			<div id="app2">
+				<p>
+					<input type="checkbox" :checked="isChecked" />
+					isChecked的值決定checkbox是否被選中
+				</p>
+				<p>
+					<select>
+						<option value="1">11111</option>
+						<option value="2" :selected="isSelected">22222</option>
+						<option value="3">33333</option>
+					</select>
+					isSelected的值決定第二個option是否被選中
+				</p>
+			</div>
+			<script>
+				var vm2 = new Vue({
+					el: '#app2',
+					data: {
+						isChecked: true,
+						isSelected: true
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<p>
+					<input type="checkbox" :checked="isChecked" />
+					isChecked的值決定checkbox是否被選中
+				</p>
+				<p>
+					<select>
+						<option value="1">11111</option>
+						<option value="2" :selected="isSelected">22222</option>
+						<option value="3">33333</option>
+					</select>
+					isSelected的值決定第二個option是否被選中
+				</p>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					isChecked: true,
+					isSelected: true
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="basic_bind_html" class="anchor-offset"></span>
+		<h2>綁定含html的資料</h2>
+		<p>雙大括號會將數據解釋為普通內文，而非HTML代碼。為了輸出真正的HTML，你需要使用<code>v-html</code>指令：</p>
+		<p>網站內動態渲染的任意HTML可能會非常危險，因為它很容易導致XSS攻擊。請只對可信內容使用HTML插值，絕不要對用戶提供的內容使用插值。</p>
+		<div class="example">
+			<div id="app3">
+				<div>{{myHTML}}</div>
+				<div v-html="myHTML"></div>
+			</div>
+			<script>
+				var vm3 = new Vue({
+					el: '#app3',
+					data: {
+						myHTML: '<b>這是用html標籤加粗的文字</b>'
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div>{{myHTML}}</div>
+				<div v-html="myHTML"></div>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					myHTML: '<b>這是用html標籤加粗的文字</b>'
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="basic_javascript_expression" class="anchor-offset"></span>
+		<h2>使用JavaScript表達式</h2>
+		<p>迄今為止，在我們的模板中，我們一直都只綁定簡單的屬性鍵值。但實際上，對於所有的數據綁定，Vue.js都提供了完全的JavaScript表達式支持。</p>
+		<p>PS. 表達式跟陳述式不一樣喔，千萬不要認為可以在表達式裡宣告變數</p>
+		<div class="example">
+			<div id="app4">
+				<div :title="numberVal + stringVal">div的title是：mumberVal + stringVal</div>
+				<div>{{numberVal + 999}}</div>
+				<div>{{stringVal + 'ttt'}}</div>
+			</div>
+			<script>
+				var vm4 = new Vue({
+					el: '#app4',
+					data: {
+						numberVal: 1,
+						stringVal: 'text'
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div :title="numberVal + stringVal">div的title是：mumberVal + stringVal</div>
+				<div>{{numberVal + 999}}</div>
+				<div>{{stringVal + 'ttt'}}</div>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					numberVal: 1,
+					stringVal: 'text'
+				}
+			});
+		</pre></code>
+		<p>Vue的模板還可以做到「動態參數」，但覺得用到的機會不高就不做筆記了，參考網址：https://cn.vuejs.org/v2/guide/syntax.html#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0</p>
+	</section>
+
+
+	<section>
+		<span id="basic_v_once" class="anchor-offset"></span>
+		<h2>執行一次性的插值</h2>
+		<p>透過使用<code>v-once</code>指令，你也能執行一次性地插值，當數據改變時，插值處的內容不會更新（但請留心這會影響到該節點上的其它數據綁定），如下例<code>mounted</code>時改變了<code>boundVal</code>的值是不會有作用的，在console裡下<code>app.boundVal</code>也不會改變一開始的值：</p>
+		<div class="example">
+			<div id="app5" :title="boundVal" v-once>
+				{{boundVal}}
+			</div>
+			<script>
+				var vm5 = new Vue({
+					el: '#app5',
+					data: {
+						boundVal: '一開始的文字'
+					},
+					mounted: function(){
+						this.boundVal = '改變他！'
+						console.log(this.boundVal);
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app" :title="boundVal" v-once>
+				{{boundVal}}
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					boundVal: '一開始的文字'
+				},
+				mounted: function(){
+					this.boundVal = '改變他！'
+					console.log(this.boundVal);
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="basic_bind_event" class="anchor-offset"></span>
+		<h2>綁定事件</h2>
+		<p>數據和屬性都有了，絕對少不了事件，vue.js提供了<code>v-on</code>來綁定DOM的事件，我們直接修改上面「綁定屬性」的範例，讓他變成透過<code>click</code>事件顯示時間。</p>
+		<div class="example">
+			<div id="app6" v-on:click="getNowTime">
+				{{content}}
+			</div>
+			<script>
+				var vm6 = new Vue({
+					el: '#app6',
+					data: {
+						content: '點我顯示現在時間'
+					},
+					methods: {
+						getNowTime: function(){
+							alert(new Date());
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app" v-on:click="getNowTime">
+				{{content}}
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					content: '點我顯示現在時間'
+				},
+				methods: {
+					getNowTime: function(){
+						alert(new Date());
+					}
+				}
+			});
+		</pre></code>
+		<p><code>v-on</code>也是供了<code>@</code>做為簡寫，上例的<code>v-on:click="getNowTime"</code>就可以寫成<code>@click="getNowTime"</code></p>
+	</section>
+
+
+	<section>
+		<span id="basic_event_target" class="anchor-offset"></span>
+		<h2>取得event.target</h2>
+		<p>Vue處理事件有很多眉角，以下例的<code>getTarget</code>來說：</p>
+		<ul>
+			<li>如果<code>getTarget</code>沒有帶任何參數可以直接取到event物件</li>
+			<li>如果<code>getTarget</code>需要帶參數又要取到event物件必需使用vue的<code>$event</code>變數</li>
+			<li>如果觸發事件的元素裡還有其它元素，使用<code>event.target</code>時vue會抓到內層的元素，改用<code>event.currentTarget</code>就可以抓到正確的元素</li>
+		</ul>
+		<div class="example">
+			<div id="app7" v-on:click="getTarget('我是FN帶的參數', $event)">
+				<a ID="inner" href="javascript:;">點我(click事件在外層)</a>
+			</div>
+			<script>
+				var vm7 = new Vue({
+					el: '#app7',
+					methods: {
+						getTarget(p, e){
+							alert(p);
+							alert(e.target.id);
+							alert(e.currentTarget.id);
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app" v-on:click="getTarget('我是FN帶的參數', $event)">
+				<a ID="inner" href="javascript:;">點我(click事件在外層)</a>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				methods: {
+					getTarget(p, e){
+						alert(p);
+						alert(e.target.id);
+						alert(e.currentTarget.id);
+					}
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<h1 id="condition">條件判斷</h1>
+
+
+	<section>
+		<span id="condition_v_if" class="anchor-offset"></span>
+		<h2>使用Vue的條件判斷式</h2>
+		<p>在HTML中使用<code>v-if</code>指令，它將根據表達式<code>visibility</code>值的真偽來宣染是否顯示<code>&lt;p&gt;</code>元素。</p>
+		<div class="example">
+			<div id="app8">
+				<p v-if="visibility">如果visibility的值是false你就見不到我了 T_T</p>
+			</div>
+			<script>
+				var vm8 = new Vue({
+					el: '#app8',
+					data: {
+						visibility: true
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<p v-if="visibility">如果visibility的值是false你就見不到我了 T_T</p>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					visibility: true
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="condition_v_else_if" class="anchor-offset"></span>
+		<h2>v-else-if和v-else</h2>
+		<p>我們可以透過程式般的方式去控制目前要顯示的DOM，要注意的是<code>v-else-if</code>和<code>v-else</code>都是跟著<code>v-if</code>一起運作的，如果在他們上面沒有<code>v-if</code>，<code>v-else</code>是不會有任何作用的。</p>
+		<div class="example">
+			<div id="app9">
+				<span v-if="person == '好人'">我是好人</span>
+				<span v-else-if="person == '你爸'">我是你爸</span>
+				<span v-else="'都不是'">我誰都不是</span>
+			</div>
+			<script>
+				var vm9 = new Vue({
+					el: '#app9',
+					data: {
+						person: '你爸'
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<span v-if="person == '好人'">我是好人</span>
+				<span v-else-if="person == '你爸'">我是你爸</span>
+				<span v-else="'都不是'">我誰都不是</span>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					person: '你爸'
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="condition_key" class="anchor-offset"></span>
+		<h2>使用key屬性重新繪製DOM</h2>
+		<p>這邊要長篇大論了；Vue的條件判斷為了更有效率的做切換DOM的動作，如果是目前已經在畫面上的DOM，就不會把他移除再建立一個，而是直接改變兩個DOM不同的地方而已，官方有舉一個例子說明這件事情：</p>
+		<p>當使用者按下「切換輸入」的按鈕時會改變<code>state</code>的值，同時input的<code>placeholder</code>屬性值也會變，但是這並不代表他是把input換掉了，這是因為Vue.js為了提高效能只會重新繪製不同的地方，這種做法類似於<code>replace()</code>，可以試著把input填入值，在點擊按鈕切換input會發現我們輸入的value不會消失，他只替換掉<code>placeholder</code>屬性值。</p>
+		<p>這樣的做法有好有壞！如果是想要完全獨立兩個input反而會有點麻煩。</p>
+		<div class="example">
+			<div id="app10">
+				<input v-if="state" placeholder="輸入姓名">
+				<input v-else="state" placeholder="輸入mail">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+			<script>
+				var vm10 = new Vue({
+					el: '#app10',
+					data: {
+						state: true
+					},
+					methods: {
+						changeState: function(){
+							this.state ? this.state = false : this.state = true;
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<input v-if="state" placeholder="輸入姓名">
+				<input v-else="state" placeholder="輸入mail">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					state: true
+				},
+				methods: {
+					changeState: function(){
+						this.state ? this.state = false : this.state = true;
+					}
+				}
+			});
+		</pre></code>
+		<p>為了處理不同的需求，Vue提供了「<code>key</code>」屬性來為每個需要的DOM做一個識別，這裡只需為兩個輸入框加入<code>key</code>屬性並給不同值就會重新繪製了！</p>
+		<div class="example">
+			<div id="app11">
+				<input v-if="state" placeholder="輸入姓名" key="name">
+				<input v-else="state" placeholder="輸入mail" key="email">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+			<script>
+				var vm11 = new Vue({
+					el: '#app11',
+					data: {
+						state: true
+					},
+					methods: {
+						changeState: function(){
+							this.state ? this.state = false : this.state = true;
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<input v-if="state" placeholder="輸入姓名" key="name">
+				<input v-else="state" placeholder="輸入mail" key="email">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					state: true
+				},
+				methods: {
+					changeState: function(){
+						this.state ? this.state = false : this.state = true;
+					}
+				}
+			});
+		</pre></code>
+		<p>上例我們成功使用了<code>key</code>屬性做到「移除及插入的動作」來更新畫面，但如果我們有輸入資料再做切換會發現我們輸入的資料也一併被移除了, 如果需要保留輸入的資料可以換個做法：使用「<code>v-show</code>」這個屬性。</p>
+		<p><code>v-show</code>只是單純的使用行內CSS顯示或隱藏DOM元素，不像<code>v-if</code>會有條件的銷毀和重建DOM。</p>
+		<p>一般來說，<code>v-if</code>有更高的切換開銷，而<code>v-show</code>有更高的初始渲染開銷。因此，如果需要非常頻繁地切換，則使用<code>v-show</code>較好；如果在運行時條件很少改變，則使用<code>v-if</code>較好。</p>
+		<div class="example">
+			<div id="app12">
+				<input v-show="state" placeholder="輸入姓名">
+				<input v-show="state == false" placeholder="輸入mail">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+			<script>
+				var vm12 = new Vue({
+					el: '#app12',
+					data: {
+						state: true
+					},
+					methods: {
+						changeState: function(){
+							this.state ? this.state = false : this.state = true;
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<input v-show="state" placeholder="輸入姓名">
+				<input v-show="state == false" placeholder="輸入mail">
+				<input type="button" value="切換輸入" @click="changeState">
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					state: true
+				},
+				methods: {
+					changeState: function(){
+						this.state ? this.state = false : this.state = true;
+					}
+				}
+			});
+		</pre></code>
+		<p>我自己的看法，大部份的情況下只要綁定屬性的值就可以處理這種切換input的情境了，但上面那些範例可以幫助理解Vue在處理DOM的原理。</p>
+	</section>
+
+
+	<h1 id="loop">迴圈</h1>
+
+
+	<section>
+		<span id="loop_v_for" class="anchor-offset"></span>
+		<h2>v-for的基本使用方法</h2>
+		<p>我們可以用<code>v-for</code>指令基於一個陣列來渲染一個列表，如下例：</p>
+		<div class="example">
+			<div id="app13">
+				<ul>
+					<li v-for="v in names">{{v}}</li>
+				</ul>
+			</div>
+			<script>
+				var vm13 = new Vue({
+					el: '#app13',
+					data: {
+						names: [
+							'JOHN',
+							'JOE',
+							'JOJO'
+						]
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="v in names">{{v}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					names: [
+						'JOHN',
+						'JOE',
+						'JOJO'
+					]
+				}
+			});
+		</pre></code>
+		<p>也可以加入<code>索引值</code>，以及在迴圈綁定陣列以外的資料：</p>
+		<div class="example">
+			<div id="app14">
+				<ul>
+					<li v-for="(v, i) in names">{{label}}({{i+1}})：{{v}}</li>
+				</ul>
+			</div>
+			<script>
+				var vm14 = new Vue({
+					el: '#app14',
+					data: {
+						label: '成員',
+						names: [
+							'JOHN',
+							'JOE',
+							'JOJO'
+						]
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="(v, i) in names">{{label}}({{i+1}})：{{v}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					label: '成員',
+					names: [
+						'JOHN',
+						'JOE',
+						'JOJO'
+					]
+				}
+			});
+		</pre></code>
+		<p>PS. Vue可以用<code>of</code>替代<code>in</code>作為分隔符：</p>
+		<pre><code>
+			<li v-for="v of names">{{v}}</li>
+		</pre></code>
+		<p>另外<code>v-for</code>也接受物件，下例以一個物件的<code>鍵</code>、<code>值</code>、<code>索引值</code>來渲染畫面：</p>
+		<div class="example">
+			<div id="app15">
+				<ul>
+					<li v-for="(value, key, index) of personalData">{{index+1}}. {{key}}：{{value}}</li>
+				</ul>
+			</div>
+			<script>
+				var vm15 = new Vue({
+					el: '#app15',
+					data: {
+						personalData: {
+							name: 'JOHN',
+							nationality: 'Taiwan',
+							birth: '65/09/14'
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="(value, key, index) of personalData">{{index+1}}. {{key}}：{{value}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					personalData: {
+						name: 'JOHN',
+						nationality: 'Taiwan',
+						birth: '65/09/14'
+					}
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="loop_modify" class="anchor-offset"></span>
+		<h2>修改陣列的內容</h2>
+		<p>一般在測試更新data資料時我們可以在console裡輸入<code>vm.someData = newData;</code>指令，但在更新陣列項目的內容時千萬不要寫成<code>vm.someAry[0] = newData;</code>，這種做法是無法更新畫面的，因為Vue的底層機制就是這樣設計的，我們無法直接改變data中的陣列某個ietm的值或是直接修改陣列的長度來更新畫面；以下介紹如何正確修改陣列資料的方式。</p>
+		<p>Vue將原本Javascript修改陣列的幾個方法做了包裝，使用這些方法也將會觸發畫面更新。這些被包裝過的方法包括：</p>
+		<ul>
+			<li><code>push()</code></li>
+			<li><code>pop()</code></li>
+			<li><code>shift()</code></li>
+			<li><code>unshift()</code></li>
+			<li><code>splice()</code></li>
+			<li><code>sort()</code></li>
+			<li><code>reverse()</code></li>
+		</ul>
+		<p>可以發現上列的方法都是呼叫後會直接改變原始陣列的，所以Vue包裝這些方法用來更新陣列內容不無道理；以「v-for的基本使用方法」的第一個例子來說，我們可以在console中輸入下方語法來新增一個陣列的item並同時更新畫面（但是jsfiddle怪怪的，第一次<code>push</code>會出現兩個Jordan）：</p>
+		<pre><code>
+			vm.names.push('Jordan');
+		</pre></code>
+		<p>接著我們用陣列的<code>splice()</code>方法來看一個實例：</p>
+		<div class="example">
+			<div id="app16">
+				<div v-for="v of myAry">{{v}}</div>
+				<button @click="fn1">移除2、3筆資料，並插入新的資料</button>
+				<button @click="fn2">移除第一筆資料</button>
+			</div>
+			<script>
+				var vm16 = new Vue({
+					el: '#app16',
+					data: {
+						myAry: [
+							'Value01',
+							'Value02',
+							'Value03',
+							'Value04'
+						]
+					},
+					methods: {
+						fn1: function(){
+							this.myAry.splice(1, 2, '值01', '值02', '值03');
+						},
+					fn2: function(){
+							this.myAry.splice(0, 1);
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div v-for="v of myAry">{{v}}</div>
+				<button @click="fn1">移除2、3筆資料，並插入新的資料</button>
+				<button @click="fn2">移除第一筆資料</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					myAry: [
+						'Value01',
+						'Value02',
+						'Value03',
+						'Value04'
+					]
+				},
+				methods: {
+					fn1: function(){
+						this.myAry.splice(1, 2, '值01', '值02', '值03');
+					},
+				fn2: function(){
+						this.myAry.splice(0, 1);
+					}
+				}
+			});
+		</pre></code>
+		<p>除了內建的陣列方法外Vue還提供了<code>Vue.set()</code>方法用來修改指定的item內容：</p>
+		<div class="example">
+			<div id="app17">
+				<div v-for="v of myAry">{{v}}</div>
+				<button @click="fn1">更新第一筆資料</button>
+			</div>
+			<script>
+				var vm17 = new Vue({
+				el: '#app17',
+				data: {
+					myAry: [
+						'Value01',
+						'Value02',
+						'Value03'
+					]
+				},
+				methods: {
+					fn1: function(){
+						Vue.set(this.myAry, 0, '值01');
+					}
+				}
+			});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div v-for="v of myAry">{{v}}</div>
+				<button @click="fn1">更新第一筆資料</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					myAry: [
+						'Value01',
+						'Value02',
+						'Value03'
+					]
+				},
+				methods: {
+					fn1: function(){
+						Vue.set(this.myAry, 0, '值01');
+					}
+				}
+			});
+		</pre></code>
+		<p>PS. 官方教學還有提到全域的<code>vm.$set()</code>方法，再找時間來把內容補上。</p>
+	</section>
+
+
+	<section>
+		<span id="loop_replace" class="anchor-offset"></span>
+		<h2>替換整個陣列</h2>
+		<p>修改陣列內容可以使用許多直接更新被綁定的陣列的方法（如<code>push()</code>, <code>reverse()</code>等…），但也有一些處理陣列的方法不會改變原始的陣列而是傳回一個新的陣列，這些方法如下：</p>
+		<ul>
+			<li><code>filter()</code></li>
+			<li><code>concat()</code></li>
+			<li><code>slice()</code></li>
+		</ul>
+		<p>而使用方法非常簡單，就把處理後的資料指定回去而已，下例以<code>concat()</code>方法做示範：</p>
+		<div class="example">
+			<div id="app18">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" />
+				</div>
+				<button @click="concatAry">連接陣列</button>
+			</div>
+			<script>
+				var addlData = [
+					{hint: '身高'},
+					{hint: '體重'}
+				];
+				var vm18 = new Vue({
+					el: '#app18',
+					data: {
+						hints: [
+							{hint: '姓名'},
+							{hint: '電話'}
+						]
+					},
+					methods: {
+						concatAry: function(){
+							this.hints = this.hints.concat(addlData);
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" />
+				</div>
+				<button @click="concatAry">連接陣列</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var addlData = [
+				{hint: '身高'},
+				{hint: '體重'}
+			];
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					hints: [
+						{hint: '姓名'},
+						{hint: '電話'}
+					]
+				},
+				methods: {
+					concatAry: function(){
+						this.hints = this.hints.concat(addlData);
+					}
+				}
+			});
+		</pre></code>
+		<p>有時，我們想要顯示一個經過過濾或排序後的陣列，而不實際變更或重置原始陣列。在這種情況下，可以創建一個計算屬性（<code>computed</code>），來返回過濾或排序後的陣列（原來<code>0</code>是偶數啊）。</p>
+		<div class="example">
+			<div id="app19">
+				<span v-for="v in evenNumbers">{{v}} </span>
+			</div>
+			<script>
+				var vm19 = new Vue({
+					el: '#app19',
+					data: {
+						numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+					},
+					computed: {
+						evenNumbers: function() {
+							return this.numbers.filter(function(n) {
+								return n % 2 == 0;
+							});
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<span v-for="v in evenNumbers">{{v}} </span>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+				},
+				computed: {
+					evenNumbers: function() {
+						return this.numbers.filter(function(n) {
+							return n % 2 == 0;
+						});
+					}
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="loop_dom_modification" class="anchor-offset"></span>
+		<h2>DOM的異動</h2>
+		<p>Vue的設計在預設情況下，如果數據項的順序被改變，Vue將不會移動DOM元素來匹配數據項的順序，而是就地更新每個元素，如此可以獲得最好的效能，例如下例將反轉陣列內容的順序，我們可以在開發工具中觀察，只有<code>placeholder</code>的值被更新：</p>
+		<div class="example">
+			<div id="app20">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+			<script>
+				var vm20 = new Vue({
+					el: '#app20',
+					data: {
+						hints: [
+							{hint: '姓名'},
+							{hint: '信箱'},
+							{hint: '電話'}
+						]
+					},
+					methods: {
+						reverseAry: function(){
+							this.hints.reverse();
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					hints: [
+						{hint: '姓名'},
+						{hint: '信箱'},
+						{hint: '電話'}
+					]
+				},
+				methods: {
+					reverseAry: function(){
+						this.hints.reverse();
+					}
+				}
+			});
+		</pre></code>
+		<p>雖說上例可以在效能很高的狀態下更新網頁，但如果我們輸入了內容再按下反轉陣列的按鈕會發現輸入的資料都沒有更新，這是因為Vue只更新了<code>placeholder</code>的值而沒有更新整個DOM內容。</p>
+		<p>為了給Vue一個提示，以便它能跟踪每個節點的身份，從而重用和重新排序現有元素，你需要為每項提供一個唯一「<code>key</code>」屬性；建議盡可能在使用<code>v-for</code>時提供<code>key</code>屬性，除非遍歷輸出的DOM內容非常簡單，或者是刻意只更新部份內容以獲取性能上的提升。</p>
+		<p>我們在下例<code>hints</code>陣列裡的每個項目加入一個<code>id</code>的<code>鍵</code>與<code>值</code>，在開發工具中觀察可以發現當我們按下反轉陣列按鈕時<code>&lt;input&gt;</code>都被更新了。</p>
+		<div class="example">
+			<div id="app21">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" :key="v.id" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+			<script>
+				var vm21 = new Vue({
+					el: '#app21',
+					data: {
+						hints: [
+							{id: 1, hint: '姓名'},
+							{id: 2, hint: '信箱'},
+							{id: 3, hint: '電話'}
+						]
+					},
+					methods: {
+						reverseAry: function(){
+							this.hints.reverse();
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" :key="v.id" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					hints: [
+						{id: 1, hint: '姓名'},
+						{id: 2, hint: '信箱'},
+						{id: 3, hint: '電話'}
+					]
+				},
+				methods: {
+					reverseAry: function(){
+						this.hints.reverse();
+					}
+				}
+			});
+		</pre></code>
+		<p>上例使用<code>key</code>屬性成功更新了DOM，但發現個問題，如果input中有輸入資料再按反轉按鈕資料就都不見了，也找不到相關說明，後來用<code>v-model</code>來修改這個範例可以達到預期效果：</p>
+		<div class="example">
+			<div id="app22" class="vue-result">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" v-model="v.val" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+			<script>
+				var vm22 = new Vue({
+					el: '#app22',
+					data: {
+						hints: [
+							{hint: '姓名', val: ''},
+							{hint: '信箱', val: ''},
+							{hint: '電話', val: ''}
+						]
+					},
+					methods: {
+						reverseAry: function(){
+							this.hints.reverse();
+						}
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app" class="vue-result">
+				<div v-for="v of hints">
+					<input type="text" :placeholder="'請輸入'+v.hint" v-model="v.val" />
+				</div>
+				<button @click="reverseAry">反轉陣列</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					hints: [
+						{hint: '姓名', val: ''},
+						{hint: '信箱', val: ''},
+						{hint: '電話', val: ''}
+					]
+				},
+				methods: {
+					reverseAry: function(){
+						this.hints.reverse();
+					}
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="loop_avoid_v_if_with_v_for" class="anchor-offset"></span>
+		<h2>避免v-if和v-for用在一起</h2>
+		<p>基於宣染效能的考量，永遠不要把<code>v-if</code>和<code>v-for</code>同時用在同一個元素上，一般我們在兩種常見的情況下會想要這樣做：</p>
+		<ol>
+			<li>為了過濾一個列表中的項目（比如<code>v-for="user in users" v-if="user.isActive"</code>）。在這種情形下，請將<code>users</code>替換為一個計算屬性（比如<code>activeUsers</code>），讓其返回過濾後的列表。</li>
+			<li>為了避免渲染本應該被隱藏的列表（比如<code>v-for="user in users" v-if="shouldShowUsers"</code>）。這種情形下，請將<code>v-if</code>移動至容器元素上（比如<code>ul</code>、<code>ol</code>）。</li>
+		</ol>
+		<p>情況1錯誤範例，將<code>v-if</code>和<code>v-for</code>寫在一起：</p>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="v of users" v-if="v.isActive">{{v.name}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					users: [
+						{name: 'JOHN', isActive: true},
+						{name: 'Johnny', isActive: false},
+						{name: 'Jonson', isActive: true}
+					]
+				}
+			});			
+		</pre></code>
+		<p>情況1正確範例，使用<code>計算屬性</code>先過濾需要的資料：</p>
+		<div class="example">
+			<div id="app23">
+				<ul>
+					<li v-for="v of activeUsers">{{v.name}}</li>
+				</ul>
+			</div>
+			<script>
+				var vm23 = new Vue({
+				el: '#app23',
+				data: {
+					users: [
+						{name: 'JOHN', isActive: true},
+						{name: 'Johnny', isActive: false},
+						{name: 'Jonson', isActive: true}
+					]
+				},
+				computed: {
+					activeUsers: function(){
+						return this.users.filter(function(v){
+							return v.isActive;
+						});
+					}
+				}
+			});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="v of activeUsers">{{v.name}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					users: [
+						{name: 'JOHN', isActive: true},
+						{name: 'Johnny', isActive: false},
+						{name: 'Jonson', isActive: true}
+					]
+				},
+				computed: {
+					activeUsers: function(){
+						return this.users.filter(function(v){
+							return v.isActive;
+						});
+					}
+				}
+			});
+		</pre></code>
+		<p>情況2錯誤範例，將是否顯示整個列表的判斷和<coe>v-for</coe>寫在一起：</p>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul>
+					<li v-for="v of users" v-if="shouldShowUsers">{{v.name}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					shouldShowUsers: true,
+					users: [
+						{name: 'JOHN'},
+						{name: 'Johnny'},
+						{name: 'Jonson'}
+					]
+				}
+			});
+		</pre></code>
+		<p>情況2正確範例，將是否顯示整個列表的判斷寫在父層（視情況也可以使用陣列的長度來做到這個效果，例如長度為0則不顯示）：</p>
+		<div class="example">
+			<div id="app24">
+				<ul v-if="shouldShowUsers">
+					<li v-for="v of users">{{v.name}}</li>
+				</ul>
+			</div>
+			<script>
+				var vm24 = new Vue({
+					el: '#app24',
+					data: {
+						shouldShowUsers: true,
+						users: [
+							{name: 'JOHN'},
+							{name: 'Johnny'},
+							{name: 'Jonson'}
+						]
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<ul v-if="shouldShowUsers">
+					<li v-for="v of users">{{v.name}}</li>
+				</ul>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					shouldShowUsers: true,
+					users: [
+						{name: 'JOHN'},
+						{name: 'Johnny'},
+						{name: 'Jonson'}
+					]
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="loop_with_component" class="anchor-offset"></span>
+		<h2>在組件上使用 v-for</h2>
+		<p>https://jsfiddle.net/john650914/ut5zmx3q/74/</p>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="v_model">雙向數據綁定</h1>
+
+
+	<section>
+		<span id="v_model_basic" class="anchor-offset"></span>
+		<h2>v-model基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_input" class="anchor-offset"></span>
+		<h2>input使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_textarea" class="anchor-offset"></span>
+		<h2>textarea使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_checkbox" class="anchor-offset"></span>
+		<h2>checkbox使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_radio" class="anchor-offset"></span>
+		<h2>radio使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_select" class="anchor-offset"></span>
+		<h2>select使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_bind_balue" class="anchor-offset"></span>
+		<h2>綁定值</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_modifier" class="anchor-offset"></span>
+		<h2>修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="v_model_component" class="anchor-offset"></span>
+		<h2>在元件上使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="computed">計算屬性</h1>
+
+
+	<section>
+		<span id="computed_basic" class="anchor-offset"></span>
+		<h2>computed基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="computed_cache" class="anchor-offset"></span>
+		<h2>觀察computed的暫存特性</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="computed_setter" class="anchor-offset"></span>
+		<h2>重設computed的setter</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="watch">監聽器</h1>
+
+
+	<section>
+		<span id="watch_basic" class="anchor-offset"></span>
+		<h2>watch基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="watch_officail_example" class="anchor-offset"></span>
+		<h2>官網範例</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="watch_immediate" class="anchor-offset"></span>
+		<h2>immediate屬性</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="watch_vs_computed" class="anchor-offset"></span>
+		<h2>計算屬性vs監聽器</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="watch_vs_etc" class="anchor-offset"></span>
+		<h2>watch的其它功能</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="class">class</h1>
+
+
+	<section>
+		<span id="class_bind" class="anchor-offset"></span>
+		<h2>用v-bind綁定class的值</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_multiple" class="anchor-offset"></span>
+		<h2>使用陣列綁定多個class</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_array_in_data" class="anchor-offset"></span>
+		<h2>將陣列存在data中</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_object_value" class="anchor-offset"></span>
+		<h2>使用物件的value</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_expression" class="anchor-offset"></span>
+		<h2>使用表達式</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_computed" class="anchor-offset"></span>
+		<h2>使用computed處理表達式</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_boolean" class="anchor-offset"></span>
+		<h2>使用布林值當作class的開關</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_boolean_in_data" class="anchor-offset"></span>
+		<h2>布林值存放於data中</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="class_boolean_in_computed" class="anchor-offset"></span>
+		<h2>布林值存放於computed中</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="style">使用Vue來控制CSS</h1>
+
+
+	<section>
+		<span id="style_basic" class="anchor-offset"></span>
+		<h2>style基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="style_array" class="anchor-offset"></span>
+		<h2>使用陣列來綁定多個樣式</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="style_computed" class="anchor-offset"></span>
+		<h2>使用computed</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="style_hack" class="anchor-offset"></span>
+		<h2>CSS hack</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="modifier">事件修飾符</h1>
+
+
+	<section>
+		<span id="modifier_basic" class="anchor-offset"></span>
+		<h2>事件修飾符基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_stop" class="anchor-offset"></span>
+		<h2>.stop修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_capture" class="anchor-offset"></span>
+		<h2>.capture修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_self" class="anchor-offset"></span>
+		<h2>.self修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_once" class="anchor-offset"></span>
+		<h2>.once修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_prevent" class="anchor-offset"></span>
+		<h2>.prevent修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_passive" class="anchor-offset"></span>
+		<h2>.passive修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_no_function" class="anchor-offset"></span>
+		<h2>只設定修飾符不綁定function</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="modifier_keycode" class="anchor-offset"></span>
+		<h2>按鍵修飾符</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="component">元件</h1>
+
+
+	<section>
+		<span id="component_basic" class="anchor-offset"></span>
+		<h2>元件基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_reuse" class="anchor-offset"></span>
+		<h2>重複使用同一個組件</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_local" class="anchor-offset"></span>
+		<h2>區域元件</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_props" class="anchor-offset"></span>
+		<h2>透過props向子元件傳遞數據</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_loop" class="anchor-offset"></span>
+		<h2>用迴圈來產生compoents</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_simplify" class="anchor-offset"></span>
+		<h2>簡化Javascript及HTML</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_listen_child_comp" class="anchor-offset"></span>
+		<h2>監聽子元件事件</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_v_model" class="anchor-offset"></span>
+		<h2>在元件上使用v-model</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_slot" class="anchor-offset"></span>
+		<h2>透過插槽分配内容</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="component_is" class="anchor-offset"></span>
+		<h2>動態元件</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="lifecycle">生命周期</h1>
+
+
+	<section>
+		<span id="lifecycle_basic" class="anchor-offset"></span>
+		<h2>生命周期基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="lifecycle_indv" class="anchor-offset"></span>
+		<h2>各個生命周期階段的特性</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="lifecycle_test" class="anchor-offset"></span>
+		<h2>測試範例</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="vuex">Vuex</h1>
+
+
+	<section>
+		<span id="vuex_basic" class="anchor-offset"></span>
+		<h2>Vuex基本介紹</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="vuex_state" class="anchor-offset"></span>
+		<h2>State</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="vuex_getter" class="anchor-offset"></span>
+		<h2>Getter</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="vuex_mutation" class="anchor-offset"></span>
+		<h2>Mutation</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="vuex_action" class="anchor-offset"></span>
+		<h2>Action</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="vuex_module" class="anchor-offset"></span>
+		<h2>Module</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<h1 id="transition">過渡效果</h1>
+
+
+	<section>
+		<span id="transition_basic" class="anchor-offset"></span>
+		<h2>概述</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_dom_comp" class="anchor-offset"></span>
+		<h2>DOM/元件的過渡</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_class" class="anchor-offset"></span>
+		<h2>class名稱</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_transition" class="anchor-offset"></span>
+		<h2>CSS過渡</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_animation" class="anchor-offset"></span>
+		<h2>CSS動畫</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_custom_class" class="anchor-offset"></span>
+		<h2>自定義class名稱</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_transition_animation" class="anchor-offset"></span>
+		<h2>同時使用過渡和動畫</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_duration" class="anchor-offset"></span>
+		<h2>過渡的持續時間</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_......" class="anchor-offset"></span>
+		<h2>......</h2>
+		<pre><code>
+			//HTML
+			
+		</pre></code>
+		<pre><code>
+			//Javascript
+			
+		</pre></code>
+	</section>
+
+
+</article>
+
+
+<script>
+/* let navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(function(v, i){
+	v.addEventListener('click', function(){
+		(document.querySelector('.active')) ? document.querySelector('.active').classList.remove('active') : '';
+		this.classList.add('active');
+	});
+}); */
+
+$('nav a').on('click', function(){
+	$('nav a').removeClass('active');
+	$(this).not('nav h3 a').addClass('active');
+});
+
+
+
+
+
+$("pre code").each(function(){
+	var html = $(this).html();
+	var pattern = html.match(/\s*\n[\t\s]*/);
+	$(this).html(html.replace(new RegExp(pattern, "g"),'\n').slice(1, -2).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+});
+
+
+
+
+
+$('nav').mCustomScrollbar({
+	theme: 'minimal-dark',
+	scrollInertia: 100,
+	mouseWheel:{ scrollAmount: 100 }
+});
+
+
+
+
+
+
+
+$('nav').on('mouseenter', function(){
+	disableScroll();
+});
+
+$('nav').on('mouseleave', function(){
+	enableScroll();
+});
+
+
+
+
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+
+function preventDefault(e) {
+	e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+	if (keys[e.keyCode]) {
+		preventDefault(e);
+		return false;
+	}
+}
+
+// modern Chrome requires { passive: false } when adding event
+var supportsPassive = false;
+try {
+	window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+		get: function () { supportsPassive = true; }
+	}));
+} catch (e) { }
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+// call this to Disable
+function disableScroll() {
+	window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+	window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+	window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+	window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+// call this to Enable
+function enableScroll() {
+	window.removeEventListener('DOMMouseScroll', preventDefault, false);
+	window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+	window.removeEventListener('touchmove', preventDefault, wheelOpt);
+	window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+
+
+
+
+$(window).on('load', function(){
+	$('#loadingProgress').hide();
+});
+
+
+</script>
+</body>
+</html>

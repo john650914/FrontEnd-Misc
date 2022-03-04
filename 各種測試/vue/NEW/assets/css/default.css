@@ -1,0 +1,130 @@
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:0;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+body{font-size:14px;}
+*{margin-top:0;font-family:"微軟正黑體";line-height:1.5}
+
+html{scroll-behavior:smooth}
+body{
+	padding: 28px 30px;
+	background: #f0f1f3;
+}
+body.noscroll{
+	padding-right: 47px;
+	overflow: hidden;
+}
+h1{
+	font-size: 2.2em;
+	margin: 0 0 26px 0;
+	color: #ffffff;
+	padding: 8px 16px;
+	background: #585858;
+	border-radius: 10px;
+}
+p code, li code{
+	padding: 0 3px;
+	color: #14c5ac;
+}
+a{
+	color: #00a4e6;
+}
+ul{
+	padding-left: 2em;
+}
+nav{
+	width: 220px;
+	height: calc(100% - 28px);
+	padding-right: 10px;
+	position: fixed;
+	top: 28px;
+	left: 30px;
+}
+nav .mCSB_container{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+nav h3{
+	margin: 22px 0 4px 0;
+	cursor: pointer;
+}
+nav h3:first-child{
+	margin-top: 0;
+}
+nav h3 a{
+	padding: 0;
+	color: black;
+}
+nav a{
+	padding: 0 10px 4px 6px;
+	color: #727272;
+	text-decoration: none;
+}
+nav a:hover{
+	color: #00a4e6;
+}
+article{
+	padding-left: 240px;
+	font-size: 15px;
+}
+section{
+	padding: 22px 28px 28px 28px;
+	margin-bottom: 26px;
+	box-shadow: 0 0 10px rgba(0,0,0,.05);
+	border-radius: 10px;
+	background: #fff;
+}
+section+h1{
+	margin-top: 60px;
+}
+section .anchor-offset{
+	position: relative;
+	top: -46px;
+}
+.anchor-offset:target+h2:before{
+	content: '# ';
+}
+section h2{
+	color: #00a4e6;
+}
+section :last-child{
+	margin-bottom: 0;
+}
+nav .active{
+	color: #00a4e6;
+}
+pre{
+	padding: .8em 1.2em;
+	margin: 0 0 1.4em 0;
+	color: #7c7c7c;
+	font-size: 13px;
+	white-space: pre-wrap;
+	background: #f5f5f5;
+}
+pre code{
+	tab-size: 3;
+	display: block;
+}
+
+.example{
+	padding-top: 46px;
+	margin-bottom: 1.5em;
+	position: relative;
+}
+.example:before{
+	content: "Result";
+	padding: 4px 8px;
+	font-size: 14px;
+	font-family: "Segoe UI";
+	border-bottom: 3px solid #00a4e6;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+}
+.example:after{
+	content: "";
+	width: 100%;
+	position: absolute;
+	top: 31px;
+	left: 0;
+	border-bottom: 1px solid #e5e5e5;
+}

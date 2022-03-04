@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="../assets/css/example.css">
+<script src="../assets/js/vue.min.js"></script>
+<script src="../assets/js/vuex.min.js"></script>
+</head>
+<body>
+    <div id="app" class="vue-result">
+        <input v-show="state" placeholder="輸入姓名">
+        <input v-show="state == false" placeholder="輸入mail">
+        <input type="button" value="切換輸入" @click="changeState">
+    </div>
+<script>
+var vm = new Vue({
+	el: '#app',
+	data: {
+		state: true
+	},
+	methods: {
+		changeState: function(){
+			this.state ? this.state = false : this.state = true;
+		}
+	}
+});
+</script>
+</body>
+</html>

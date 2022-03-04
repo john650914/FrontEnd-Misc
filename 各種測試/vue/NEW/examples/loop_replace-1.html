@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="../assets/css/example.css">
+<script src="../assets/js/vue.min.js"></script>
+<script src="../assets/js/vuex.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="v of hints">
+            <input type="text" :placeholder="'請輸入'+v.hint">
+        </div>
+        <button @click="concatAry">連接陣列</button>
+    </div>
+<script>
+var addlData = [
+	{hint: '身高'},
+	{hint: '體重'}
+];
+var vm = new Vue({
+	el: '#app',
+	data: {
+		hints: [
+			{hint: '姓名'},
+			{hint: '電話'}
+		]
+	},
+	methods: {
+		concatAry: function(){
+			this.hints = this.hints.concat(addlData);
+		}
+	}
+});
+</script>
+</body>
+</html>

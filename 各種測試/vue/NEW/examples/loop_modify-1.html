@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="../assets/css/example.css">
+<script src="../assets/js/vue.min.js"></script>
+<script src="../assets/js/vuex.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="v of myAry">{{v}}</div>
+        <button @click="fn1">移除2、3筆資料，並插入新的資料</button>
+        <button @click="fn2">移除第一筆資料</button>
+    </div>
+<script>
+var vm = new Vue({
+	el: '#app',
+	data: {
+		myAry: [
+			'Value01',
+			'Value02',
+			'Value03',
+			'Value04'
+		]
+	},
+	methods: {
+		fn1: function(){
+			this.myAry.splice(1, 2, '值01', '值02', '值03');
+		},
+	fn2: function(){
+			this.myAry.splice(0, 1);
+		}
+	}
+});
+</script>
+</body>
+</html>

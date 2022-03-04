@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="../assets/css/example.css">
+<script src="../assets/js/vue.min.js"></script>
+<script src="../assets/js/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<p>
+		<input type="checkbox" :checked="isChecked">
+		isChecked的值決定checkbox是否被選中
+	</p>
+	<p>
+		<select>
+			<option value="1">11111</option>
+			<option value="2" :selected="isSelected">22222</option>
+			<option value="3">33333</option>
+		</select>
+		isSelected的值決定第二個option是否被選中
+	</p>
+</div>
+
+<script>
+var vm = new Vue({
+	el: '#app',
+	data: {
+		isChecked: true,
+		isSelected: true
+	}
+});
+</script>
+</body>
+</html>
