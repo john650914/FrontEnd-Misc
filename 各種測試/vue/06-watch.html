@@ -15,26 +15,26 @@
 
 	
 <h2>一個基本watch範例</h2>
-<p>Watch可讓我們監視某個值，當這個值變動的時候，就去做某些事情。</p>
+<p>Watch可讓我們監視某個值，當這個值變動的時候，就更新畫面或去做某些事情。</p>
 <div id="vm1" class="vue-result">
     <p>
-        <input type="text" v-model="name">
+        <input type="text" v-model="name" />
     </p>
-    <div>{{noteMsg}}</div>
+    <div>{{msg}}</div>
 </div>
 <script>
 var vm1 = new Vue({
     el: '#vm1',
     data: {
         name: '',
-        noteMsg: '請輸入名稱，開頭不可為數字'
+        msg: '請輸入名稱，開頭不可為數字'
     },
     watch: {
         name: function(newVal, oldVal){
             if(/^[0-9]/.test(newVal)){
-                this.noteMsg = '使用者名稱開頭不可為數字';
+                this.msg = '使用者名稱開頭不可為數字';
             }else{
-                this.noteMsg = '合法的使用者名稱';
+                this.msg = '合法的使用者名稱';
             }
             console.log(oldVal);
         }
@@ -99,7 +99,7 @@ var watchExampleVM = new Vue({
 
 
 <h2>immediate屬性</h2>
-<p>watch在最初綁定時是不會執行的，要等到被監視的值改變時才會執行計算；如果我們想要一開始綁定時就執行的話就要使用immediate屬性並將值設定為true，使用時必需撘配一個handler：</p>
+<p>watch在最初綁定時是不會執行的，要等到被監視的值改變時才會執行計算；如果我們想要一開始綁定時就執行的話就要使用immediate屬性並將值設定為true，使用時必需撘配一個handler（其實預設的watch方法寫的就是這個handler）：</p>
 <div id="vm3" class="vue-result">
     <p>
         <input type="number" v-model="inputNumber" id="aaa"> + 1 = {{result}}

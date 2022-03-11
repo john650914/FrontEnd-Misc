@@ -22,6 +22,7 @@ h1{
 p code, li code{
 	padding: 0 3px;
 	color: #14c5ac;
+	white-space: nowrap;
 }
 a{
 	color: #00a4e6;
@@ -88,6 +89,13 @@ section h2{
 section :last-child{
 	margin-bottom: 0;
 }
+hr{
+	padding: 0;
+	margin: 0 0 1em 0;
+	border: none;
+	border-bottom: 1px solid #c1c1c1;
+	outline: none;
+}
 nav .active{
 	color: #00a4e6;
 }
@@ -108,6 +116,9 @@ pre code{
 	padding-top: 46px;
 	margin-bottom: 1.5em;
 	position: relative;
+}
+.example *{
+	margin-bottom: 2px;
 }
 .example:before{
 	content: "Result";
