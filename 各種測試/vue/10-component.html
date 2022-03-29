@@ -314,9 +314,7 @@ Vue.component("child-input", {
 			<input v-model="childUserName" @input="sendToParent" type="text"/>
 		</div>
 		`,
-	props: {
-		userName: String
-	},
+	props: ['userName'],
 	data: function() {
 		return {
 			childUserName: this.userName
@@ -344,11 +342,9 @@ var vm9 = new Vue({
 
 
 
-<h2>對父級做事件處理(2)</h2>
+<!-- <h2>對父級做事件處理(2)</h2>
 <p>依照computed的值決定執行指定的父級method</p>
 <div id="vm10">
-	<!-- <my-component btntext="TEXT" @emitfn="emitname"></my-component>
-	<my-component btntext="TEXT" @emitfn="$options.methods[emitname]"></my-component> -->
 	<my-component btntext="TEXT" @emitfn="emitfn"></my-component><br>
 	<a @click="commitM1" href="javascript:;">store.commit('m1')</a>
 	<a @click="commitM2" href="javascript:;">store.commit('m2')</a>
@@ -404,7 +400,7 @@ var vm10 = new Vue({
 		}
 	}
 });
-</script>
+</script> -->
 
 
 
@@ -438,7 +434,7 @@ const vm11 = new Vue({
 
 
 
-<h2>用Vuex的資料來變更component？</h2>
+<!-- <h2>用Vuex的資料來變更component？</h2>
 <div id="vm12">
 	<outer></outer>
 </div>
@@ -474,7 +470,7 @@ var vm12 = new Vue({
 	el: '#vm12',
 	store: store2
 });
-</script>
+</script> -->
 
 
 

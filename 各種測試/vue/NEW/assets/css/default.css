@@ -11,7 +11,7 @@ body.noscroll{
 	padding-right: 47px;
 	overflow: hidden;
 }
-h1{
+article > h1{
 	font-size: 2.2em;
 	margin: 0 0 26px 0;
 	color: #ffffff;
@@ -21,7 +21,7 @@ h1{
 }
 p code, li code{
 	padding: 0 3px;
-	color: #14c5ac;
+	color: #00a4e6;
 	white-space: nowrap;
 }
 a{
@@ -29,6 +29,9 @@ a{
 }
 ul{
 	padding-left: 2em;
+}
+ul.spaced li, ol.spaced li{
+	margin-bottom: .5em;
 }
 nav{
 	width: 220px;
@@ -66,6 +69,14 @@ article{
 	padding-left: 240px;
 	font-size: 15px;
 }
+article h3{
+	padding: 5px 10px;
+	font-size: 15px;
+	color: #1c80a9;
+	border-radius: 5px;
+	background: #e4f2f7;
+	display: block;
+}
 section{
 	padding: 22px 28px 28px 28px;
 	margin-bottom: 26px;
@@ -85,6 +96,7 @@ section .anchor-offset{
 }
 section h2{
 	color: #00a4e6;
+	font-size: 26px;
 }
 section :last-child{
 	margin-bottom: 0;
