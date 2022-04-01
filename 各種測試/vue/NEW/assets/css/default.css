@@ -19,7 +19,22 @@ article > h1{
 	background: #585858;
 	border-radius: 10px;
 }
-p code, li code{
+table{
+	margin-bottom: 1.4em;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+th, td{
+	padding: 8px 10px;
+	border: 1px solid #d7d7d7;
+}
+th{
+	background: #f1f1f1;
+}
+img{
+	width: 100%;
+}
+p code, li code, td code{
 	padding: 0 3px;
 	color: #00a4e6;
 	white-space: nowrap;
@@ -69,7 +84,7 @@ article{
 	padding-left: 240px;
 	font-size: 15px;
 }
-article h3{
+article > h3{
 	padding: 5px 10px;
 	font-size: 15px;
 	color: #1c80a9;

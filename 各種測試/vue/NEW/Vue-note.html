@@ -19,7 +19,7 @@
 <nav>
 	<h3><a href="#basic">簡介</a></h3>
 		<a href="#basic_hello_world">Hello World!</a>
-		<a href="#basic_reactivity">Vue的響應式系統</a>
+		<a href="#basic_reactivity">Vue的數據響應系統</a>
 		<a href="#basic_bind_data">綁定數據</a>
 		<a href="#basic_bind_property">綁定屬性</a>
 		<a href="#basic_bind_boolean">綁定屬性為布林值</a>
@@ -81,9 +81,10 @@
 		<a href="#component_is">動態元件</a>
 		<a href="#component_local">區域元件</a>
 	<h3><a href="#lifecycle">生命周期</a></h3>
-		<a href="#lifecycle_basic">生命周期基本介紹</a>
-		<a href="#lifecycle_indv">各個生命周期階段的特性</a>
-		<a href="#lifecycle_test">測試範例</a>
+		<a href="#lifecycle_basic">元件的生命週期與更新機制</a>
+		<a href="#lifecycle_create">Vue實體的建立</a>
+		<a href="#lifecycle_update">狀態的更新與畫面的同步</a>
+		<a href="#lifecycle_destroy">Vue實體的銷毀</a>
 	<h3><a href="#vuex">Vuex</a></h3>
 		<a href="#vuex_basic">Vuex基本介紹</a>
 		<a href="#vuex_state">State</a>
@@ -132,7 +133,7 @@
 
 	<section>
 		<span id="basic_reactivity" class="anchor-offset"></span>
-		<h2>Vue的響應式系統</h2>
+		<h2>Vue的數據響應系統</h2>
 		<p>每個Vue應用都是通過創建一個新的Vue實例開始的；當一個Vue實例被創建時，它將「data」對像中的所有的屬性加入到Vue的響應式系統中。當這些屬性的值發生改變時，視圖將會產生"響應"，即匹配更新為新的值。</p>
 		<p>我們可以在console中觀察此範例的資訊，例如輸入<code>vm.a == data.a</code>會得到<code>true</code>，代表data物件中的資料和vm實例中的data是完全相同的。</p>
 		<p>再來我們輸入<code>vm.a = 2</code>，試著改變vm實例的值，再輸入<code>data.a</code>，發現傳回<code>2</code>，代表這些資料都已存在Vue的響應式系統中了。</p>
@@ -4199,28 +4200,233 @@
 	<section>
 		<span id="component_is" class="anchor-offset"></span>
 		<h2>動態元件</h2>
+		<p>有的時候我們會想以動態的方式切換不同的元件，例如點擊頁籤時更換頁面內容，這時可以使用Vue的<code>&lt;component&gt;</code>元素，再搭配一個特殊的<code>is</code>屬性來實現，如下例當點擊頁籤時更新<code>is</code>屬性的值：</p>
+		<div class="example">
+			<style>.active{color:blue;}</style>
+			<div id="app72">
+				<button v-for="tab in tabs" @click="switchTab(tab)" :class="{active: currentTab == tab}">{{tab}}</button>
+				<component :is="currentTabComp"></component>
+			</div>
+			<script>
+				Vue.component('content-about', {
+					template: `<div>Home content!</div>`
+				});
+				Vue.component('content-products', {
+					template: `<div>Products content!</div>`
+				});
+				Vue.component('content-contact', {
+					template: `<div>Contact content!</div>`
+				});
+				var vm72 = new Vue({
+					el: '#app72',
+					data: {
+						tabs: ['about', 'products', 'contact'],
+						currentTab: 'about'
+					},
+					computed: {
+						currentTabComp: function(){
+							return 'content-' + this.currentTab;
+						}
+					},
+					methods: {
+						switchTab: function(v){
+							this.currentTab = v;
+						}
+					}
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<style>.active{color:blue;}</style>
+			<div id="app">
+				<button v-for="tab in tabs" @click="switchTab(tab)" :class="{active: currentTab == tab}">{{tab}}</button>
+				<component :is="currentTabComp"></component>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			Vue.component('content-about', {
+				template: `<div>Home content!</div>`
+			});
+			Vue.component('content-products', {
+				template: `<div>Products content!</div>`
+			});
+			Vue.component('content-contact', {
+				template: `<div>Contact content!</div>`
+			});
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					tabs: ['about', 'products', 'contact'],
+					currentTab: 'about'
+				},
+				computed: {
+					currentTabComp: function(){
+						return 'content-' + this.currentTab;
+					}
+				},
+				methods: {
+					switchTab: function(v){
+						this.currentTab = v;
+					}
+				}
+			});
 		</pre></code>
+		<p><code>is</code>屬性可以用於常規HTML元素（div、li、input…），但這些元素將被視為元件，這代表所有的<code>attribute</code>都會作為DOM attribute被綁定。對於像<code>value</code>這樣的<code>property</code>，若想讓其如預期般工作，我們需要使用<code>.prop</code>修飾符。個人認為應該很難遇到這個狀況，需要更詳細的資訊可以再到這裡參考：https://cn.vuejs.org/v2/api/#v-bind。</p>
 	</section>
 
 
 	<section>
 		<span id="component_local" class="anchor-offset"></span>
 		<h2>區域元件</h2>
+		<p>到目前為止，我們都是用<code>Vue.component</code>來建立元件：</p>
+		<pre><code>
+			Vue.component('my-component-name', {
+				// ... ...
+			})
+		</pre></code>
+		<p>這些元件是全域註冊的。也就是說它們在註冊之後可以用在任何新建立的Vue根實例（new Vue）的模板中，例如：</p>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<component-a></component-a>
+				<component-b></component-b>
+				<component-c></component-c>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			Vue.component('component-a', { /* ... */ })
+			Vue.component('component-b', { /* ... */ })
+			Vue.component('component-c', { /* ... */ })
+
+			new Vue({ el: '#app' })
 		</pre></code>
+		<p>在所有子元件件中也是如此，也就是說這三個元件在各自內部也都可以相互使用。</p>
+		<br>
+		<h3>區域註冊</h3>
+		<p>上述的全域註冊有時是不夠理想的。如果我們使用一個像webpack這樣的構建系統，在所有全域註冊的元件之中即始包含某些我們不再需要的元件，它仍然會被包含在我們最終輸出的結果中，造成了用戶下載了多餘的Javacript程式。</p>
+		<p>在這些情況下，我們可以使用普通的Javascript物件來定義元件，然後在<code>components</code>中定義我們想要使用的元件：</p>
+		<pre><code>
+			var ComponentA = { /* ... */ }
+			var ComponentB = { /* ... */ }
+			var ComponentC = { /* ... */ }
+		</pre></code>
+		<pre><code>
+			new Vue({
+				el: '#app',
+				components: {
+					'component-a': ComponentA,
+					'component-b': ComponentB
+				}
+			})
+		</pre></code>
+		<p>對於<code>components</code>物件中的每個property來說，其<code>property名</code>就是自定義元素的名字，其<code>property值</code>就是這個元件的選項物件。</p>
+		<p>注意區域註冊的元件在其子元件中不可用。例如，如果我們想要在<code>ComponentB</code>中使用<code>ComponentA</code>，則需要這樣寫：</p>
+		<pre><code>
+			var ComponentA = { /* ... */ }
+
+			var ComponentB = {
+				components: {
+					'component-a': ComponentA
+				},
+				// ...
+			}
+		</pre></code>
+		<p>或者如果我們透過Babel和webpack使用ES2015模組，那麼程式看起來會是這樣：</p>
+		<pre><code>
+			//HTML
+			import ComponentA from './ComponentA.vue'
+
+			export default {
+				components: {
+					ComponentA
+				},
+				// ...
+			}
+		</pre></code>
+		<p>（在ES2015+的語法，上述的<code>ComponentA</code>變數其實是<code>ComponentA: ComponentA</code>的縮寫，即這個變數名同時是用在模板中的自定義元素的名稱，以及包含了這個元件選項的變數）</p>
+		<br>
+		<h3>模組系統</h3>
+		<p>如果我們使用了Babel和webpack的模組系統。在這些情況下會比較推薦建立一個<code>components</code>目錄，並將每個元件放置在其各自的文件中。</p>
+		<p>然後需要在區域註冊之前導入每個想使用的元件。例如在一個假設的<code>ComponentB.js</code>或<code>ComponentB.vue</code>文件中：</p>
+		<pre><code>
+			import ComponentA from './ComponentA'
+			import ComponentC from './ComponentC'
+
+			export default {
+				components: {
+					ComponentA,
+					ComponentC
+				},
+				// ...
+			}
+		</pre></code>
+		<p>現在<code>ComponentA</code>和<code>ComponentC</code>都可以在<code>ComponentB</code>的模板中使用了。</p>
+		<br>
+		<p>這裡遇到了一個問題，如果我有一些元件內只包含了一個輸入框或一個按鈕，而這些元件是相對需要被共用的；這些會被頻繁使用的元件我們把它們稱為基礎元件，而這些基礎元件常常導致很多組件裡都會有一個包含基礎組件的冗長列表：</p>
+		<pre><code>
+			import BaseButton from './BaseButton.vue'
+			import BaseIcon from './BaseIcon.vue'
+			import BaseInput from './BaseInput.vue'
+
+			export default {
+				components: {
+					BaseButton,
+					BaseIcon,
+					BaseInput
+				}
+			}
+		</pre></code>
+		<p>而使用時只是模板中的一小部分：</p>
+		<pre><code>
+			<!-- <BaseInput v-model="searchText" @keydown.enter="search"/>
+			<BaseButton @click="search">
+				<BaseIcon name="search"/>
+			</BaseButton> -->
+		</pre></code>
+		<p>以webpack為例，就可以使用<code>require.context</code>只全域註冊這些常被使用的基礎元件來解決導入列表過長的問題，下面的範例是在應用入口文件（比如<code>src/main.js</code>）中全域導入基礎元件的示範：</p>
+		<pre><code>
+			import Vue from 'vue'
+			import upperFirst from 'lodash/upperFirst'
+			import camelCase from 'lodash/camelCase'
+
+			const requireComponent = require.context(
+				// 其元件目錄的相對路徑
+				'./components',
+				// 是否查詢其子目錄
+				false,
+				// 匹配基礎元件文件名的正規式
+				/Base[A-Z]\w+\.(vue|js)$/
+			)
+
+			requireComponent.keys().forEach(fileName => {
+				// 獲取元件配置
+				const componentConfig = requireComponent(fileName)
+
+				// 獲取元件的PascalCase命名
+				const componentName = upperFirst(
+					camelCase(
+						// 獲取和目錄深度無關的文件名
+						fileName
+							.split('/')
+							.pop()
+							.replace(/\.\w+$/, '')
+					)
+				)
+
+				// 全域註冊元件
+				Vue.component(
+					componentName,
+					// 如果這個元件選項是通過`export default`導出的，
+					// 那麼就會優先使用`.default`，
+					// 否則回退到使用模組的根。
+					componentConfig.default || componentConfig
+				)
+			})
+		</pre></code>
+		<p>記住全域註冊的行為必須在根Vue實例（通過new Vue）創建之前發生。這裡有一個真實項目情景下的示例：https://github.com/bencodezen/vue-enterprise-boilerplate/blob/main/src/components/_globals.js</p>
 	</section>
 
 
@@ -4229,7 +4435,319 @@
 
 	<section>
 		<span id="lifecycle_basic" class="anchor-offset"></span>
-		<h2>生命周期基本介紹</h2>
+		<h2>元件的生命週期與更新機制</h2>
+		<p>資料來源：https://book.vue.tw/CH1/1-7-lifecycle.html</p>
+		<p>一個Vue.js的網頁應用程式是由各種大小元件組合而成，而每個Vue的實體物件，實際上就是一個元件，而每個Vue元件從建立、掛載、更新，到銷毀移除，都有它的生命週期階段，這一連串的過程，我們將它稱作生命週期。在這個過程中，Vue.js提供了開發者在這些週期階段做對應處理的callback function，這些callback function我們就稱它叫生命週期的Hooks function。</p>
+		<p><img src="assets/img/lifecycle.png" /></p>
+		<p>Vue.js提供的Hooks function主要有下列幾種，這裡也將對應至Vue 3.x Composition API的版本一並列出來做對照：</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Hooks名稱（Vue 2.x/3.x）</th>
+					<th>Hooks名稱（對應Vue 3.0 Composition API）</th>
+					<th>說明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>beforeCreate</code></td>
+					<td><code>setup()</code></td>
+					<td>Vue實體被建立，狀態與事件都尚未初始化</td>
+				</tr>
+				<tr>
+					<td><code>created</code></td>
+					<td><code>setup()</code></td>
+					<td>Vue實體已建立，狀態與事件已初始化完成(<code>prop</code>、<code>data</code>、<code>computed</code>等屬性已建立，<code>vm.$el</code>屬性無法使用 )</td>
+				</tr>
+				<tr>
+					<td><code>beforeMount</code></td>
+					<td><code>onBeforeMonut</code></td>
+					<td>Vue實體尚未與模板(DOM 節點)綁定</td>
+				</tr>
+				<tr>
+					<td><code>mounted</code></td>
+					<td><code>onMounted</code></td>
+					<td>Vue實體與掛載完成，<code>el</code>的目標DOM被<code>$el</code>所替換(可以視作jQuery的 Ready)</td>
+				</tr>
+				<tr>
+					<td><code>beforeUpdate</code></td>
+					<td><code>onBeforeUpdate</code></td>
+					<td>當狀態被變動時，畫面同步更新前</td>
+				</tr>
+				<tr>
+					<td><code>updated</code></td>
+					<td><code>onUpdated</code></td>
+					<td>當狀態被變動時，畫面已同步更新完成</td>
+				</tr>
+				<tr>
+					<td><code>beforeDestroy</code>(2.x)</td>
+					<td><code>onBeforeUnmount</code></td>
+					<td>Vue實體物件被銷毀前</td>
+				</tr>
+				<tr>
+					<td><code>beforeUnmount</code>(3.0)</td>
+					<td><code>onBeforeUnmount</code></td>
+					<td>Vue實體物件被銷毀前</td>
+				</tr>
+				<tr>
+					<td><code>destroyed</code>(2.x)</td>
+					<td><code>onUnmounted</code></td>
+					<td>Vue實體物件被銷毀完畢</td>
+				</tr>
+				<tr>
+					<td><code>unmounted</code>(3.0)</td>
+					<td><code>onUnmounted</code></td>
+					<td>Vue實體物件被銷毀完畢</td>
+				</tr>
+				<tr>
+					<td><code>errorCaptured</code></td>
+					<td><code>onErrorCaptured</code></td>
+					<td>子/孫代元件的錯誤被捕獲時觸發</td>
+				</tr>
+				<tr>
+					<td><code>activated</code></td>
+					<td>--</td>
+					<td>Vue元件被啟動時觸發，搭配<code>keep-alive</code>使用</td>
+				</tr>
+				<tr>
+					<td><code>deactivated</code></td>
+					<td>--</td>
+					<td>Vue元件被解除時觸發，搭配<code>keep-alive</code>使用</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<p>使用方式也很直觀，就在Vue實體的屬性裡加入對應名稱的hooks function，這樣Vue實體進行至不同生命週期的階段時，就會自動觸發這個hooks function：</p>
+		<pre><code>
+			// for Vue 3.x
+			const vm = Vue.createApp({
+				data () {
+					return {
+						msg: 'Hello Vue.js!'
+					}
+				},
+				created () {
+					console.log('created');
+				},
+				mounted () {
+					console.log('mounted');
+				},
+				unmounted () {
+					console.log('unmounted');
+				},
+			});
+
+			// 注意！ 若未執行 mount 動作，
+			// 則後續所有的 lifecycle hook 都將不會繼續執行！
+			vm.mount('#app');
+		</pre></code>
+		<p>教學網頁也提供了一個很棒的真實範例，讓我們可以動態的觀察各個hooks的作用：</p>
+		<div class="example">
+			<div id="app73">
+				<h3>修改內容來觀察 Vue 實體的生命週期</h3>
+				<hr>
+				<div class="wrap">
+					<div class="demo">
+						<demo-app v-if="isActive" @update="pushMsg" />
+					</div>
+			
+					<div class="inspector">
+						<div v-for="(m, idx) in msg" :class="{ 'highlight' : m.isHighlight }" :key="m.msg + idx">{{ m.msg }}</div>
+					</div>
+				</div>
+				<hr>
+				<button @click="toggle">{{ (!isActive) ? 'Active' : 'Destroy' }} the Vue instance</button>
+				<button @click="empty">Empty the inspector</button>
+			</div>
+			<script>
+				const vm73 = new Vue({
+					el: '#app73',
+					data() {
+						return {
+							msg: [],
+							isActive: false
+						}
+					},
+					methods: {
+						toggle() {
+							if (!this.isActive) {
+								this.empty();
+							}
+							this.isActive = !this.isActive;
+						},
+						empty() {
+							this.msg = [];
+						},
+						pushMsg(msg) {
+							this.msg.push({
+								isHighlight: (msg.includes('===')),
+								msg: msg
+							});
+				
+							this.$nextTick(() => {
+								const inspector = document.querySelector('.inspector');
+								inspector.scrollTop = inspector.scrollHeight;
+							});
+						},
+					}
+				});
+				
+				Vue.component('demo-app', {
+					template: `<div id="demoApp">
+						<h3>{{ msg }}</h3>
+						<input v-model="msg">
+					</div>`,
+					data() {
+						return {
+							msg: 'Hello Vue.js!'
+						}
+					},
+					beforeCreate() {
+						this.$emit('update', '=== beforeCreate! === ');
+						this.$emit('update', `this.msg: ${this.msg}`);
+						this.$emit('update', `this.$el: ${this.$el}`);
+					},
+					created() {
+						this.$emit('update', '=== created! === ');
+						this.$emit('update', `this.msg: ${this.msg}`);
+						this.$emit('update', `this.$el: ${this.$el}`);
+					},
+					beforeMount() {
+						this.$emit('update', '=== beforeMount! === ');
+						this.$emit('update', `this.msg: ${this.msg}`);
+						this.$emit('update', `this.$el: ${this.$el}`);
+					},
+					mounted() {
+						this.$emit('update', '=== mounted! === ');
+						this.$emit('update', `this.msg: ${this.msg}`);
+						this.$emit('update', `this.$el.id: ${this.$el.id}`);
+					},
+					beforeUpdate() {
+						this.$emit('update', '=== beforeUpdate! === ');
+						this.$emit('update', `msg in view: ${this.$el.querySelector('h3').innerText}`);
+						this.$emit('update', `this.msg: ${this.msg}`);
+					},
+					updated() {
+						this.$emit('update', '=== updated! === ');
+						this.$emit('update', `msg in view: ${this.$el.querySelector('h3').innerText}`);
+						this.$emit('update', `this.msg: ${this.msg}`);
+					},
+					beforeUnmount() {
+						this.$emit('update', `=== beforeUnmount! === `);
+					},
+					unmounted() {
+						this.$emit('update', `=== unmount! === `);
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<h3>修改內容來觀察 Vue 實體的生命週期</h3>
+				<hr>
+				<div class="wrap">
+					<div class="demo">
+						<demo-app v-if="isActive" @update="pushMsg" />
+					</div>
+			
+					<div class="inspector">
+						<div v-for="(m, idx) in msg" :class="{ 'highlight' : m.isHighlight }" :key="m.msg + idx">{{ m.msg }}</div>
+					</div>
+				</div>
+				<hr>
+				<button @click="toggle">{{ (!isActive) ? 'Active' : 'Destroy' }} the Vue instance</button>
+				<button @click="empty">Empty the inspector</button>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			const vm = new Vue({
+				el: '#app',
+				data() {
+					return {
+						msg: [],
+						isActive: false
+					}
+				},
+				methods: {
+					toggle() {
+						if (!this.isActive) {
+							this.empty();
+						}
+						this.isActive = !this.isActive;
+					},
+					empty() {
+						this.msg = [];
+					},
+					pushMsg(msg) {
+						this.msg.push({
+							isHighlight: (msg.includes('===')),
+							msg: msg
+						});
+			
+						this.$nextTick(() => {
+							const inspector = document.querySelector('.inspector');
+							inspector.scrollTop = inspector.scrollHeight;
+						});
+					},
+				}
+			});
+			
+			Vue.component('demo-app', {
+				template: `<div id="demoApp">
+					<h3>{{ msg }}</h3>
+					<input v-model="msg">
+				</div>`,
+				data() {
+					return {
+						msg: 'Hello Vue.js!'
+					}
+				},
+				beforeCreate() {
+					this.$emit('update', '=== beforeCreate! === ');
+					this.$emit('update', `this.msg: ${this.msg}`);
+					this.$emit('update', `this.$el: ${this.$el}`);
+				},
+				created() {
+					this.$emit('update', '=== created! === ');
+					this.$emit('update', `this.msg: ${this.msg}`);
+					this.$emit('update', `this.$el: ${this.$el}`);
+				},
+				beforeMount() {
+					this.$emit('update', '=== beforeMount! === ');
+					this.$emit('update', `this.msg: ${this.msg}`);
+					this.$emit('update', `this.$el: ${this.$el}`);
+				},
+				mounted() {
+					this.$emit('update', '=== mounted! === ');
+					this.$emit('update', `this.msg: ${this.msg}`);
+					this.$emit('update', `this.$el.id: ${this.$el.id}`);
+				},
+				beforeUpdate() {
+					this.$emit('update', '=== beforeUpdate! === ');
+					this.$emit('update', `msg in view: ${this.$el.querySelector('h3').innerText}`);
+					this.$emit('update', `this.msg: ${this.msg}`);
+				},
+				updated() {
+					this.$emit('update', '=== updated! === ');
+					this.$emit('update', `msg in view: ${this.$el.querySelector('h3').innerText}`);
+					this.$emit('update', `this.msg: ${this.msg}`);
+				},
+				beforeUnmount() {
+					this.$emit('update', `=== beforeUnmount! === `);
+				},
+				unmounted() {
+					this.$emit('update', `=== unmount! === `);
+				}
+			});
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="lifecycle_create" class="anchor-offset"></span>
+		<h2>Vue實體的建立</h2>
 		<pre><code>
 			//HTML
 			
@@ -4242,8 +4760,8 @@
 
 
 	<section>
-		<span id="lifecycle_indv" class="anchor-offset"></span>
-		<h2>各個生命周期階段的特性</h2>
+		<span id="lifecycle_update" class="anchor-offset"></span>
+		<h2>狀態的更新與畫面的同步</h2>
 		<pre><code>
 			//HTML
 			
@@ -4256,8 +4774,8 @@
 
 
 	<section>
-		<span id="lifecycle_test" class="anchor-offset"></span>
-		<h2>測試範例</h2>
+		<span id="lifecycle_destroy" class="anchor-offset"></span>
+		<h2>Vue實體的銷毀</h2>
 		<pre><code>
 			//HTML
 			
@@ -4507,7 +5025,7 @@ $('nav a').on('click', function(){
 
 
 $("pre code").each(function(){
-	var html = $(this).html();
+	var html = $(this).html().replace('<!-- ', '').replace(' -->', '');
 	var pattern = html.match(/\s*\n[\t\s]*/);
 	$(this).html(html.replace(new RegExp(pattern, "g"),'\n').slice(1, -2).replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 });
@@ -4535,10 +5053,6 @@ $('nav').on('mouseenter', function(){
 $('nav').on('mouseleave', function(){
 	enableScroll();
 });
-
-
-
-
 
 // left: 37, up: 38, right: 39, down: 40,
 // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
