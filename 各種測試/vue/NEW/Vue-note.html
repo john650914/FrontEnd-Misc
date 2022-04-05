@@ -4742,48 +4742,124 @@
 				}
 			});
 		</pre></code>
+		<br>
+		<p>補充說明：</p>
+		<ul class="spaced">
+			<li>Vue Composition API是Vue.js 3.0開始提供的新特性，Vue.js 3.0針對多數2.x的語法提供了向下相容，所以在本節介紹Vue.js 2.x Options API的生命週期Hooks到了3.0依然可以繼續使用</li>
+			<li>Composition API的Hook名稱除了beforeCreate與created由新的setup()所取代，以及元件銷毀的beforeDestroy與destroyed改為onBeforeUnmount與onUnmounted之外，多數都是在原有名稱加上on來表示</li>
+			<li>由於需透過this存取實體，所以與mehtods同樣也無法使用箭頭函數</li>
+		</ul>
 	</section>
 
 
 	<section>
 		<span id="lifecycle_create" class="anchor-offset"></span>
 		<h2>Vue實體的建立</h2>
-		<pre><code>
-			//HTML
-			
-		</pre></code>
-		<pre><code>
-			//Javascript
-			
-		</pre></code>
+		<p>Vue的實體從建立、掛載到渲染至各位的瀏覽器畫面上，會經歷這幾個階段：<code>beforeCreate</code>、<code>created</code>、<code>beforeMount</code>、<code>mounted</code>。</p>
+		<p>在<code>beforeCreate</code>期間，Vue實體剛被建立，狀態與事件都尚未初始化，此時我們還無法取得<code>data</code>、<code>prop</code>、<code>computed</code>等屬性。</p>
+		<p>直到Vue實體內的各種屬性、狀態的偵測(<code>getter</code>與<code>setter</code>)都已經初始化完成後，這才進入了<code>created</code>階段。換句話說，若是我們需要透過遠端API來取得資料，至少得在<code>created</code>階段以後才能存取實體的<code>data</code>屬性。</p>
+		<p>當<code>created</code>階段完成後，Vue的實體尚未與模板結合綁定，這個時候Vue實體會去尋找<code>el</code>(2.x)指定的節點或<code>template</code>屬性來作為元件的模板。（Vue的單一元件檔(Single File Component, SFC)則無需加入el或template屬性，它會自動將.vue檔案內 &lt;template&gt;標籤的內容作為模板。）</p>
+		<p>而到了Vue3.0則是需要在執行<code>vm.mount(...)</code>之後才會開始<code>beforeCreate</code>的階段。</p>
+		<p>取得了模板內容，並進行編譯後，會先進入<code>beforeMount</code>階段。就在Vue.js的實體將網頁上實際節點的內容替換完成後，這才進入了<code>mounted</code>，也就是各位看到的最終結果。以jQuery來比喻，這階段就像是Vue實體的DOMReady。</p>
+		<p>直到<code>mounted</code>階段，Vue.js才正式將網頁上的DOM節點、事件都綁定至Vue的實體。也就是說，如果我們基於某些原因需要手動操作DOMAPI，如<code>querySelector</code>或<code>addEventlistener</code>等，最好在<code>mounted</code>階段完成後進行操作，以免操作的DOM節點被Vue.js替換掉。</p>
 	</section>
 
 
 	<section>
 		<span id="lifecycle_update" class="anchor-offset"></span>
 		<h2>狀態的更新與畫面的同步</h2>
+		<p>在 Vue 實體生命週期中，我們可以透過<code>beforeUpdate</code>與<code>updated</code>兩個Hooks來觀察到實體狀態的更新，而它們的執行會根據模板的畫面更新前/後時機來觸發。</p>
+		<p>可是，如果只需要觀察<code>data</code>或<code>computed</code>內某個狀態的時候，使用<code>beforeUpdate</code>又顯得太麻煩，這個時候我們就可以透過<code>watch</code>屬性來處理：</p>
+		<p>要注意的是DOM的更新動作在Vue.js裡是非同步執行的，當<code>setter</code>偵測到狀態被更新時，就會啟動一個排隊的隊伍（Queue），並且對同一個事件循環（Event Loop）內發生的所有變更進行緩衝，這樣做的好處，是若同一個<code>watch</code>在短時間內被多次觸發，它只會被送進等待隊伍一次，可以省去多餘重複的計算次數，直到下一個事件循環（Vue官方稱<code>tick</code>）才會刷新重整在等待隊伍內的任務，更新並且同步Vue實體內的DOM。</p>
+		<p>這樣的說法可能不容易理解，直接來看個例子：</p>
+		<div class="example">
+			<style>
+				#app74 *{margin:0;padding:0;font-size:14px;line-height:initial;}
+				.ofmi{width:200px;display:block;box-sizing:border-box;}
+				.overflow-msgs{height:60px;width:200px;border:1px solid black;overflow-y:scroll;display:block;box-sizing:border-box;}
+			</style>
+			<div id="app74">
+				<input class="ofmi" placeholder="輸入後按下enter鍵" v-model.trim="msg" @keydown.enter="addToMessages">
+				<div class="overflow-msgs">
+					<div v-for="m in messages">{{ m }}</div>
+				</div>
+			</div>
+			<script>
+				var vm74 = new Vue({
+					el: '#app74',
+						data () {
+						return {
+							msg: '',
+						messages: ['Hello', 'Aloha', 'Hafa Adai']
+						}
+					},
+					methods: {
+						addToMessages() {
+							this.messages.push(this.msg);
+							this.msg = '';
+							let el = this.$el.querySelector('.overflow-msgs');
+							el.scrollTop = el.scrollHeight;
+						}
+					}
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<style>
+				#app *{margin:0;padding:0;font-size:14px;line-height:initial;}
+				.ofmi{width:180px;display:block;box-sizing:border-box;}
+				.overflow-msgs{height:60px;width:180px;border:1px solid black;overflow-y:scroll;display:block;box-sizing:border-box;}
+			</style>
+			<div id="app">
+				<input class="ofmi" placeholder="輸入後按下enter鍵" v-model.trim="msg" @keydown.enter="addToMessages">
+				<div class="overflow-msgs">
+					<div v-for="m in messages">{{ m }}</div>
+				</div>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			var vm = new Vue({
+				el: '#app',
+					data () {
+					return {
+						msg: '',
+					messages: ['Hello', 'Aloha', 'Hafa Adai']
+					}
+				},
+				methods: {
+					addToMessages() {
+						this.messages.push(this.msg);
+						this.msg = '';
+						let el = this.$el.querySelector('.overflow-msgs');
+						el.scrollTop = el.scrollHeight;
+					}
+				}
+			});
 		</pre></code>
+		<p>在這個例子中當使用者按下enter鍵時會將輸入的文字送進<code>data</code>的<code>messages</code>陣列，並且當訊息增加的時候，訊息列表的捲軸自動捲至最底。</p>
+		<p>但當我們操作時會發現輸入訊息後雖然<code>messages</code>的內容增加了，但是捲軸長度始終與DOM實際的<code>scrollHeight</code>有一行的落差。</p>
+		<p>原因前面說過，雖然我們<code>data</code>裡的<code>messages</code>已經更新了，但是執行到<code>el.scrollTop = el.scrollHeight</code>的時候，畫面還未更新，所以這時的<code>el.scrollHeight</code>總是會取得更新前的數字。</p>
+		<p>使用Vue.js的<code>vm.$nextTick()</code>就可以解決這個問題，它會確保畫面都更新結束後才執行<code>$nextTick()</code>方法裡面callback function，讓我們將程式調整一下就可以如預期般的運作了：</p>
+		<pre><code>
+			//Javascript
+			.........
+			this.$nextTick(() => {
+				let el = this.$el.querySelector('.overflow-msgs');
+				el.scrollTop = el.scrollHeight;
+			});
+			.........
+		</pre></code>
+		<p>簡單來說，<code>$nextTick</code>的使用時機在當狀態更新時，需要手動存取DOM的時候，需要確保畫面都已更新完成。雖說Vue.js開發大多都將關注點放在狀態管理上，但有時候我們還是需要自行處理DOM API，這時<code>$nextTick</code>的重要性便不言而喻。</p>
+		<p>疑？說好的watch跟Queue呢？？算了作者的重點應該是放在不使用生命週期時處理DOM搭配$nextTick的做法。</p>
 	</section>
 
 
 	<section>
 		<span id="lifecycle_destroy" class="anchor-offset"></span>
 		<h2>Vue實體的銷毀</h2>
-		<pre><code>
-			//HTML
-			
-		</pre></code>
-		<pre><code>
-			//Javascript
-			
-		</pre></code>
+		<p>Vue實體在銷毀的時候，會先觸發<code>beforeUnmount</code> Hook，然後將實體內的各種事件、狀態的<code>watcher</code>、子元件（如果有）通通卸除，完成後觸發<code>unmount</code>Hook，結束這個實體的一生。此時，我們就再也無法對這個實體進行任何操作了。</p>
 	</section>
 
 
