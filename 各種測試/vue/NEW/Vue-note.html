@@ -4869,27 +4869,409 @@
 	<section>
 		<span id="vuex_basic" class="anchor-offset"></span>
 		<h2>Vuex基本介紹</h2>
+		<p>Vuex用一個物件就包含了全部應用層級的狀態，所以它就是一個「唯一數據源」的存在。這也代表，每個應用將僅僅包含一個store實例。</p>
+		<p>每一個Vuex應用的核心就是一個store（倉庫），它基本上就是一個容器，集中管理我們應用程式中大部分的狀態(state)，這簡化了在不同Vue實例或是元件中資料的溝通。Vuex和單純的全域物件有以下兩點不同：</p>
+		<ul class="spaced">
+			<li>Vuex的狀態存儲是響應式的。Vue元件在store中讀取狀態的時候，若store中的狀態發生變化，那麽相應的元件也會相應地得到更新。</li>
+			<li>我們不能直接改變store中的狀態。改變store中的狀態的唯一途徑就是提交（commit）一個mutation。</li>
+		</ul>
+		<p>讓我們來建立一個基本的Vuex store，首先提供一個初始state物件和一些mutation：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				},
+				mutations: {
+					increment (state) {
+						state.count++;
+					}
+				}
+			})
+		</pre></code>
+		<p>現在，我們可以使用瀏覽器的開發工具執行store.commit方法觸發狀態變更，以及store.state來讀取狀態內容：</p>
+		<pre><code>
+			store.commit('increment');
+			store.state.count // 1
+		</pre></code>
+		<p>Vuex為Vue實例提供了一個store的選項，透過這個選項可以將我們的store（定義好的store物件）帶入Vue的元件及其子元件，如此我們便可以在元件中透過this.$store來訪問store物件：</p>
+		<pre><code>
+			new Vue({
+				el: '#app',
+				store: store,
+				methods: {
+					increment() {
+						this.$store.commit('increment')
+						console.log(this.$store.state.count)
+					}
+				}
+			})
+		</pre></code>
+		<p>以下為結合了上述的各項重點的基本範例：</p>
+		<div class="example">
+			<div id="app75">
+				<button @click="increment">+</button>
+				{{store75.state.count}}
+			</div>
+			<script>
+				const store75 = new Vuex.Store({
+					state: {
+						count: 0
+					},
+					mutations: {
+						increment (state) {
+							state.count++;
+						}
+					}
+				})
+				
+				var vm75 = new Vue({
+					el: '#app75',
+					store: store75,
+					methods: {
+						increment(){
+							this.$store.commit('increment');
+						}
+					}
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button @click="increment">+</button>
+				{{store.state.count}}
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				},
+				mutations: {
+					increment (state) {
+						state.count++;
+					}
+				}
+			})
 			
+			var vm = new Vue({
+				el: '#app',
+				store: store,
+				methods: {
+					increment(){
+						this.$store.commit('increment');
+					}
+				}
+			});
 		</pre></code>
+		<p>以store選項帶入store的元件，其子元件皆能透過this.$store訪問到該store，例如：</p>
+		<div class="example">
+			<div id="app77">
+				<increase-btn></increase-btn>
+			</div>
+			<script>
+				const store77 = new Vuex.Store({
+					state: {
+						count: 0
+					},
+					mutations: {
+						increment (state) {
+							state.count++;
+						}
+					}
+				})
+				
+				Vue.component('increase-btn', {
+					template: `<div>
+						<button @click="increase">+</button>
+						{{count}}
+					</div>
+					`,
+					methods: {
+						increase: function(){
+							this.$store.commit('increment');
+						}
+					},
+					computed: {
+						count(){
+							return this.$store.state.count
+						},
+					}
+				});
+				
+				var vm77 = new Vue({
+					el: '#app77',
+					store: store77
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<increase-btn></increase-btn>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				},
+				mutations: {
+					increment (state) {
+						state.count++;
+					}
+				}
+			})
+			
+			Vue.component('increase-btn', {
+				template: `<div>
+					<button @click="increase">+</button>
+					{{count}}
+				</div>
+				`,
+				methods: {
+					increase: function(){
+						this.$store.commit('increment');
+					}
+				},
+				computed: {
+					count(){
+						return this.$store.state.count
+					},
+				}
+			});
+			
+			var vm = new Vue({
+				el: '#app',
+				store: store
+			});
+		</pre></code>
+		<br>
+		※ 使用Vuex並不代表我們一定要將所有的狀態放入Vuex；雖然這樣做非常方便，但也會使程式變得冗長和不直觀。如果有些狀態嚴格屬於某個元件，最好還是將他們設計為元件的局部狀態；總之我們應該根據開發需要進行權衡來做規劃。
 	</section>
 
 
 	<section>
 		<span id="vuex_state" class="anchor-offset"></span>
 		<h2>State</h2>
+		<p>Vuex的state和vue的data有很多相似之處，都是用於存儲一些數據或是狀態。這些數據都和DOM做了綁定，也就是當你改變值的時候可以觸發DOM的更新。</p>
+		<p>儘管state和data非常相似，但state在使用的時候一般被掛載到元件的computed（計算屬性）上，這樣有利於state的值發生改變的時候做到及時響應。如果你用data去接收$store.state，當然可以接收到值，但由於這只是一個簡單的賦值操作，因此state中的狀態改變的時候不能被vue中的data監聽到。</p>
+		<p>下例我們使用count計算屬性中返回狀態，每當store.state.count變化的時候，都會重新求取計算屬性，並且觸發更新相關聯的DOM：</p>
+		<div class="example">
+			<div id="app76">
+				<button @click="increment">+</button>
+				{{count}}
+			</div>
+			<script>
+				const store76 = new Vuex.Store({
+					state: {
+						count: 0
+					},
+					mutations: {
+						increment (state) {
+							state.count++;
+						}
+					}
+				})
+				
+				var vm76 = new Vue({
+					el: '#app76',
+					store: store76,
+					methods: {
+						increment(){
+							this.$store.commit('increment');
+						}
+					},
+					computed: {
+						count(){
+							return this.$store.state.count
+						}
+					}
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button @click="increment">+</button>
+				{{count}}
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				},
+				mutations: {
+					increment (state) {
+						state.count++;
+					}
+				}
+			})
 			
+			var vm = new Vue({
+				el: '#app',
+				store: store,
+				methods: {
+					increment(){
+						this.$store.commit('increment');
+					}
+				},
+				computed: {
+					count(){
+						return this.$store.state.count
+					}
+				}
+			});
+		</pre></code>
+		<br>
+		<h3>mapState輔助函式</h3>
+		<p>當一個組件需要獲取多個狀態時候，將這些狀態都聲明為計算屬性會有些重複和冗餘。為了解決這個問題，我們可以使用mapState輔助函數幫助我們生成計算屬性，讓我們少打幾個字：</p>
+		<div class="example">
+			<div id="app78">
+				<div>count1: {{count1}}</div>
+				<div>count2: {{count2}}</div>
+				<div>count3: {{count3}}</div>
+				<div>count4: {{count4}}</div>
+			</div>
+			<script>
+				const store78 = new Vuex.Store({
+					state: {
+						count: 0
+					}
+				})
+				var vm78 = new Vue({
+					el: '#app78',
+					store: store78,
+					computed: Vuex.mapState({
+						// 傳統的寫法：要寫很長一串
+						count1: function(){
+							return this.$store.state.count
+						},
+						// 第二種寫法：箭頭函式，精簡一些了
+						count2: state => state.count,
+						// 第三種寫法：'count' 等於 state => state.count
+						count3: 'count',
+						// 為了能夠使用this獲取局部狀態必須使用常規函式（非箭頭函式）
+						count4(state){
+							return state.count + this.localCount;
+						}
+					}),
+					created(){
+						this.localCount = 1;
+					}
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<div>count1: {{count1}}</div>
+				<div>count2: {{count2}}</div>
+				<div>count3: {{count3}}</div>
+				<div>count4: {{count4}}</div>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				store,
+				computed: Vuex.mapState({
+					// 傳統的寫法：要寫很長一串
+					count1: function(){
+						return this.$store.state.count
+					},
+					// 第二種寫法：箭頭函式，精簡一些了
+					count2: state => state.count,
+					// 第三種寫法：'count' 等於 state => state.count
+					count3: 'count',
+					// 為了能夠使用this獲取局部狀態必須使用常規函式（非箭頭函式）
+					count4(state){
+						return state.count + this.localCount;
+					}
+				}),
+				created(){
+					this.localCount = 1;
+				}
+			});
+		</pre></code>
+		<p>另外，當計算屬性的名稱與state的子節點名稱相同時，我們也可以給mapState傳一個字串陣列：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					name: 'defaultName',
+					age: 0,
+					gender: 'defaultGender'
+				}
+			});
+			var vm = new Vue({
+				....
+				store,
+				computed: Vuex.mapState([
+					'name',
+					'age',
+					'gender'
+				])
+			});
+		</pre></code>
+		<p>computed不會因為引入mapState方法而失去原有的功能，如果我們之前已經寫了一大堆的computed計算屬性，做了一半發現想要引入vuex，又想使用mapState()，我們可以直接把舊的計算屬性直接貼到mapState中：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					count: 1
+				}
+			});
+			var vm = new Vue({
+				....
+				data: {
+					count: 1
+				},
+				// 原本的計算屬性
+				/* computed: {
+					dataCount(){
+						return this.count;
+					}
+				} */
+				store, //後來想加入Vuex
+				computed: Vuex.mapState({ //並使用mapState方法
+					//直接把舊的計算屬性copy進來：
+					dataCount(){
+						return this.count;
+					},
+					//開始使用Vuex
+					dataCount_add_storeCount(state){
+						return this.count + state.count;
+					}
+				})
+			});
+		</pre></code>
+		<p>mapState傳回的是一個物件，上例中我們把舊的計算屬性中的資料複製到一個新的算計屬性中來使用mapState，這樣搬來搬去的的做法實在不體面要做註解也很難說的清楚，取而代之我們直接保留舊的程式碼，在計算屬性中直接展開mapState也是一個聰明的做法：</p>
+		<pre><code>
+			var vm = new Vue({
+				data: {
+					count: 1
+				},
+				store,
+				computed: {
+					dataCount(){
+						return this.count;
+					},
+					...Vuex.mapState({ // 使用對象展開運算符將此對象混入到外部對象中
+						mixedData(state){
+							return this.count + state.count;
+						}
+					})
+				}
+			});
 		</pre></code>
 	</section>
 
@@ -4897,13 +5279,167 @@
 	<section>
 		<span id="vuex_getter" class="anchor-offset"></span>
 		<h2>Getter</h2>
+		<p>vuex本身就提供了類似於計算屬性的方式，getters可以讓你從store的state中派生出一些新的狀態，當然如果不是多個組件要用到這個狀態，或者說每個子組件用到的派生屬性不一樣，那麼，你完全可以不用getters。</p>
+		<p>例如有時候我們需要從store中的state中派生出一些狀態，例如對列表進行過濾併計數：</p>
+		<pre><code>
+			computed: {
+				doneTodosCount () {
+					return this.$store.state.todos.filter(todo => todo.done).length
+				}
+			}
+		</pre></code>
+		<p>如果有多個組件需要用到此屬性，我們要嘛複製這個函數，或者抽取到一個共享函數然後在多處導入它，無論哪種方式都不是很理想。</p>
+		<p>Vuex允許我們在store中定義getter（可以理解為是store的計算屬性）。就像計算屬性一樣，getter的返回值會根據它的依賴被緩存起來，且只有當它的依賴值發生了改變才會被重新計算。說白了就是vue的computed，如果你了解computed的話，那你可以像使用computed一樣去使用getters，當然還是有點區別的。</p>
+		<p>Getter接受state作為其第一個參數：</p>
+		<div class="example">
+			<div id="app79">
+				<ul>
+					<li v-for="v in doneTodos">{{v.text}}</li>
+				</ul>
+			</div>
+			<script>
+				const store79 = new Vuex.Store({
+					state: {
+						todos: [
+							{ id: 1, text: 'buy milk', done: true },
+							{ id: 2, text: 'take out garbage', done: true },
+							{ id: 3, text: 'do the dish', done: false }
+						]
+					},
+					getters: {
+						doneTodos: state => {
+							return state.todos.filter(todo => todo.done)
+						}
+					}
+				})
+				var vm79 = new Vue({
+					el: '#app79',
+					store: store79,
+					computed: {
+						doneTodos(){
+							return this.$store.getters.doneTodos;
+						}
+					}
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<ul>
+					<li v-for="v in doneTodos">{{v.text}}</li>
+				</ul>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			const store = new Vuex.Store({
+				state: {
+					todos: [
+						{ id: 1, text: 'buy milk', done: true },
+						{ id: 2, text: 'take out garbage', done: true },
+						{ id: 3, text: 'do the dish', done: false }
+					]
+				},
+				getters: {
+					doneTodos: state => {
+						return state.todos.filter(todo => todo.done)
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				store,
+				computed: {
+					doneTodos(){
+						return this.$store.getters.doneTodos;
+					}
+				}
+			});
+		</pre></code>
+		<p>也可以從store物件直接訪問到getters的值：<br>（訪問getters時它是作為Vue的響應式系統的一部分緩存其中的）</p>
+		<pre><code>
+			store.getters.doneTodos; //[{"id":1,"text":"buy milk","done":true},{"id":2,"text":"take out garbage","done":true}]
+		</pre></code>
+		<p>Getter也可以接受其他getter作為第二個參數：</p>
+		<pre><code>
+			getters: {
+				doneTodos: state => {
+					return state.todos.filter(todo => todo.done);
+				},
+				donTodoCount: (state, getters) => {
+					return getters.doneTodos.length;
+				}
+			}
+		</pre></code>
+		<pre><code>
+			store.getters.doneTodoCount //2
+		</pre></code>
+		<p>如果需要對某個getter傳遞參數，可以透過讓getter返回一個函式的方式帶入；這個做法在我們對store裡的陣列進行查詢時非常有用：<br>（但是要注意的是getter在通過方法訪問時，每次都會去進行調用，而不會緩存結果）</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					todos: [
+						{ id: 1, text: 'buy milk', done: true },
+						{ id: 2, text: 'take out garbage', done: true },
+						{ id: 3, text: 'do the dish', done: false }
+					]
+				},
+				getters: {
+					getItemById: state => id => {
+						return state.todos.find(v => v.id == id);
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#root',
+				store,
+				computed: {
+					getItemById(){
+						return this.$store.getters.getItemById(3);
+					}
+				}
+			});
+		</pre></code>
+		<p>備註一下：範例中的state => id => {...}看起來是柯里化(curried function)的結構，想瞭解的話再去google一下吧</p>
+		<br>
+		<h3>mapGetters輔助函式</h3>
+		<p>mapGetters輔助函數僅僅是將store中的getter映射到局部計算屬性：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					todos: [
+						{ id: 1, text: 'buy milk', done: true },
+						{ id: 2, text: 'take out garbage', done: true },
+						{ id: 3, text: 'do the dish', done: false }
+					]
+				},
+				getters: {
+					doneTodos: state => {
+						return state.todos.filter(todo => todo.done)
+					},
+					doneTodosCount: (state, getters) => {
+						return getters.doneTodos.length
+					}
+				}
+			});
+			var vm = new Vue({
+				store,
+				computed: {
+					...Vuex.mapGetters([ // 使用對象展開運算符將getter混入computed對象中
+						'doneTodos',
+						'doneTodosCount'
+					])
+				}
+			});
+		</pre></code>
+		<p>如果你想將一個getter屬性另取一個名字，使用物件形式：</p>
+		<pre><code>
+			mapGetters({
+				// 把this.doneCount映射為this.$store.getters.doneTodosCount
+				done: 'doneTodos',
+				doneCount: 'doneTodosCount'
+			})
 		</pre></code>
 	</section>
 
@@ -4911,14 +5447,230 @@
 	<section>
 		<span id="vuex_mutation" class="anchor-offset"></span>
 		<h2>Mutation</h2>
+		<p>更改Vuex store中的狀態的唯一方法是提交mutation；每個mutation都有一個回調函式，這個回調函式就是我們實際進行狀態更改的地方，並且它會接受state作為第一個參數：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					count: 1
+				},
+				mutations: {
+					increment (state) {
+						state.count++ //變更狀態
+					}
+				}
+			})
+		</pre></code>
+		<p>我們不能直接呼叫mutation的函式，只能透過store的commit方法：</p>
+		<pre><code>
+			store.commit('increment')
+		</pre></code>
+		<p>可以在commit的時候將額外的參數（即mutation的payload載荷）帶入mutation的函式；這邊來補一個完整的範例：</p>
+		<div class="example">
+			<div id="app80">
+				<button @click="increment(1)">+</button>
+				{{count}}
+			</div>
+			<script>
+				const store80 = new Vuex.Store({
+					state: {
+						count: 1
+					},
+					mutations: {
+						increment (state, n) {
+							state.count += n;
+						}
+					}
+				})
+				var vm80 = new Vue({
+					el: '#app80',
+					store: store80,
+					methods: {
+						increment: function(n){
+							this.$store.commit('increment', n);
+						}
+					},
+					computed: Vuex.mapState([
+						'count'
+					])
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button @click="increment(1)">+</button>
+				{{count}}
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			const store = new Vuex.Store({
+				state: {
+					count: 1
+				},
+				mutations: {
+					increment (state, n) {
+						state.count += n;
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				store,
+				methods: {
+					increment: function(n){
+						this.$store.commit('increment', n);
+					}
+				},
+				computed: Vuex.mapState([
+					'count'
+				])
+			});
 		</pre></code>
+		<p>官方對於帶入mutation的載荷撰寫風格有以下兩點建議：</p>
+		<ol class="spaced">
+			<li>使用物件方式帶入，如此可以一次帶入多個參數，在撰mutation回調函式時較為單純，並且也增加函式內程式的易讀性；此外，如果我們的程式有使用到mapMutations，Vuex預設就會帶入state跟另一個載荷的參數，如果要帶入多個值就必需要用物件型式帶入了</li>
+			<li>mutation的設計方式和事件非常相似，所有的mutaiton名稱都可視為一個事件，所以我們可以在第一點的物件中加入type屬性來優化commit的提交</li>
+		</ol>
+		<pre><code>
+			mutations: {
+				increment (state, payload) {
+					state.count += payload.amount
+				}
+			}
+		</pre></code>
+		<pre><code>
+			store.commit({
+				type: 'increment',
+				amount: 10
+			})
+		</pre></code>
+		<br>
+		<h3>mapMutations</h3>
+		<p>我們可以在組件中使用this.$store.commit('xxx')提交mutation，或者使用mapMutations輔助函數將組件中的methods映射為store.commit調用（需要在根節點注入store）。</p>
+		<pre><code>
+			methods: {
+				...mapMutations([
+					'increment', // 將this.increment()映射為this.$store.commit('increment')
+			
+					//mapMutations也支持載荷：
+					'incrementBy' // 將this.incrementBy(amount)映射為this.$store.commit('incrementBy', amount)
+				]),
+				...mapMutations({
+					add: 'increment' // 將this.add()映射為this.$store.commit('increment')
+				})
+			}
+		</pre></code>
+		<p>來看一個實際範例：</p>
+		<div class="example">
+			<div id="app81">
+				<button @click="increment">++</button>
+				<button @click="add">add</button>
+				<button @click="incrementBy({amount:2})">+n</button>
+				{{count}}
+			</div>
+			<script>
+				const store81 = new Vuex.Store({
+					state: {
+						count: 1
+					},
+					mutations: {
+						increment(state){
+							state.count++
+						},
+						incrementBy(state, payload){
+							state.count += payload.amount
+						}
+					}
+				})
+				var vm81 = new Vue({
+					el: '#app81',
+					store: store81,
+					methods: {
+						...Vuex.mapMutations([
+							'increment',
+							'incrementBy'
+					]),
+						...Vuex.mapMutations({
+							add: 'increment'
+						})
+					},
+					computed: Vuex.mapState([
+						'count'
+					])
+				});
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<button @click="increment">++</button>
+				<button @click="add">add</button>
+				<button @click="incrementBy({amount:2})">+n</button>
+				{{count}}
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			const store = new Vuex.Store({
+				state: {
+					count: 1
+				},
+				mutations: {
+					increment(state){
+						state.count++
+					},
+					incrementBy(state, payload){
+						state.count += payload.amount
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				store,
+				methods: {
+					...Vuex.mapMutations([
+						'increment',
+						'incrementBy'
+				]),
+					...Vuex.mapMutations({
+						add: 'increment'
+					})
+				},
+				computed: Vuex.mapState([
+					'count'
+				])
+			});
+		</pre></code>
+		<br>
+		<h3>Mutation需遵守Vue的響應規則</h3>
+		<p>Vuex的store中的狀態是響應式的，那麼當我們變更狀態時，監視Vuex狀態的Vue元件也會自動更新。這也意味著Vuex中的mutation也需要與使用Vue一樣遵守一些注意事項：</p>
+		<ul class="spaced">
+			<li>提前在store中初始化好所有所需屬性</li>
+			<li>新增或修改狀態內容時必需使用Vue.set()方法</li>
+			<li>新增狀態內容也可使用展開運算子直接替換舊的狀態物件</li>
+			<li>（其實我自已不管是新增或是修改都直接用新的物件整個替換掉，比較少在用展開或是Vue.set()）</li>
+		</ul>
+		<pre><code>
+			Vue.set(obj, 'newProp', 123)
+		</pre></code>
+		<pre><code>
+			state.obj = { ...state.obj, newProp: 123 }
+		</pre></code>
+		<br>
+		<h3>Mutation必須是同步函式</h3>
+		<p>Mutation必須是同步函式，這是Vuex運作的一個重要原則；官網的說明有點太深入，總之意思就是：mutation不能進行非同步工作，如果要非同步處理資料就得使用可進行非同步操作的action，在action處理完非同步的作業後再進行mutation的提交。</p>
+		<p>以下為官方的說明，先參考下面的範例：</p>
+		<pre><code>
+			mutations: {
+				someMutation (state) {
+					api.callAsyncMethod(() => {
+						state.count++
+					})
+				}
+			}
+		</pre></code>
+		<p>現在想像，我們正在debug一個app並且觀察devtool中的mutation記錄。每一條mutation被記錄，devtools都需要捕捉到前一狀態和後一狀態的快照。然而，在上面的例子中mutation中的異步函數中的回調讓這不可能完成：因為當mutation觸發的時候，回調函式還沒有被調用，devtools不知道什麼時候回調函式實際上被調用——實質上任何在回調函數中進行的狀態的改變都是不可追蹤的。</p>
 	</section>
 
 

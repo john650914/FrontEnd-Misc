@@ -33,7 +33,7 @@ pre{
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vuex"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/vuex/3.1.1/vuex.min.js"></script>
 </head>
 <body>
 
@@ -143,7 +143,7 @@ var vm1 = new Vue({
 <p>Vuex的state和vue的data有很多相似之處，都是用於存儲一些數據，或者說狀態值。這些值都將被掛載數據和dom的雙向綁定事件，也就是當你改變值的時候可以觸發dom的更新。</p>
 <p>雖然state和data有很多相似之處，但state在使用的時候一般被掛載到子組件的computed計算屬性上，這樣有利於state的值發生改變的時候及時響應給子組件。如果你用data去接收$store.state，當然可以接收到值，但由於這只是一個簡單的賦值操作，因此state中的狀態改變的時候不能被vue中的data監聽到。</p>
 <div id="vm2" class="vue-result">
-	父：{{count}}
+	父：{{count}}<br>
 	<my-counter></my-counter>
 </div>
 <script>

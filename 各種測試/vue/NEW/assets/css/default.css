@@ -42,7 +42,7 @@ p code, li code, td code{
 a{
 	color: #00a4e6;
 }
-ul{
+ul, ol{
 	padding-left: 2em;
 }
 ul.spaced li, ol.spaced li{
@@ -84,7 +84,7 @@ article{
 	padding-left: 240px;
 	font-size: 15px;
 }
-article > h3{
+section > h3{
 	padding: 5px 10px;
 	font-size: 15px;
 	color: #1c80a9;
