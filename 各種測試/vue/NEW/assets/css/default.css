@@ -57,6 +57,7 @@ nav{
 	left: 30px;
 }
 nav .mCSB_container{
+	padding-bottom: 28px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

@@ -94,14 +94,12 @@
 		<a href="#vuex_module">Module</a>
 	<h3><a href="#transition">過渡效果</a></h3>
 		<a href="#transition_basic">概述</a>
-		<a href="#transition_dom_comp">DOM/元件的過渡</a>
-		<a href="#transition_class">class名稱</a>
-		<a href="#transition_transition">CSS過渡</a>
-		<a href="#transition_animation">CSS動畫</a>
-		<a href="#transition_custom_class">自定義class名稱</a>
-		<a href="#transition_transition_animation">同時使用過渡和動畫</a>
-		<a href="#transition_duration">過渡的持續時間</a>
-		<a href="#transition_......">......</a>
+		<a href="#transition_single_ele">單一元素/元件的過渡</a>
+		<a href="#transition_animation">以CSS animation設計過渡</a>
+		<a href="#transition_multiple_ele">多個元素的過渡</a>
+		<a href="#transition_multiple_comp">多個元件的過渡</a>
+		<a href="#transition_custom_class">自定義過渡的class名稱</a>
+		<a href="#transition_js_hooks">Javascript勾子</a>
 </nav>
 
 
@@ -326,13 +324,24 @@
 				<div :title="numberVal + stringVal">div的title是：mumberVal + stringVal</div>
 				<div>{{numberVal + 999}}</div>
 				<div>{{stringVal + 'ttt'}}</div>
+				<button @click="alert1(1)">aler1</button>
+				<button @click="alert2({num:numData})">aler2</button>
 			</div>
 			<script>
 				var vm4 = new Vue({
 					el: '#app4',
 					data: {
 						numberVal: 1,
-						stringVal: 'text'
+						stringVal: 'text',
+						numData: 2
+					},
+					methods: {
+						alert1(v){
+							alert(v);
+						},
+						alert2(v){
+							alert(v.num);
+						}
 					}
 				});
 			</script>
@@ -343,6 +352,8 @@
 				<div :title="numberVal + stringVal">div的title是：mumberVal + stringVal</div>
 				<div>{{numberVal + 999}}</div>
 				<div>{{stringVal + 'ttt'}}</div>
+				<button @click="alert1(1)">aler1</button>
+				<button @click="alert2({num:numData})">aler2</button>
 			</div>
 		</pre></code>
 		<pre><code>
@@ -351,7 +362,16 @@
 				el: '#app',
 				data: {
 					numberVal: 1,
-					stringVal: 'text'
+					stringVal: 'text',
+					numData: 2
+				},
+				methods: {
+					alert1(v){
+						alert(v);
+					},
+					alert2(v){
+						alert(v.num);
+					}
 				}
 			});
 		</pre></code>
@@ -1662,7 +1682,7 @@
 		</pre></code>
 		<br>
 		<h3>input[type=radio]</h3>
-		<p>綁定被選中的值：</p>
+		<p>綁定被選中的值（value）：</p>
 		<div class="example">
 			<div id="app29">
 				<input type="radio" id="one" value="One" v-model="picked">
@@ -2977,7 +2997,7 @@
 				}
 			});
 		</pre></code>
-		<p>直接綁定到一個物件對象通常更好，這會讓模板更清晰：</p>
+		<p>直接綁定到一個物件物件通常更好，這會讓模板更清晰：</p>
 		<pre><code>
 			//HTML
 			<div v-bind:style="styleObject"></div>
@@ -5265,7 +5285,7 @@
 					dataCount(){
 						return this.count;
 					},
-					...Vuex.mapState({ // 使用對象展開運算符將此對象混入到外部對象中
+					...Vuex.mapState({ // 使用物件展開運算符將此物件混入到外部物件中
 						mixedData(state){
 							return this.count + state.count;
 						}
@@ -5426,7 +5446,7 @@
 			var vm = new Vue({
 				store,
 				computed: {
-					...Vuex.mapGetters([ // 使用對象展開運算符將getter混入computed對象中
+					...Vuex.mapGetters([ // 使用物件展開運算符將getter混入computed物件中
 						'doneTodos',
 						'doneTodosCount'
 					])
@@ -5677,27 +5697,509 @@
 	<section>
 		<span id="vuex_action" class="anchor-offset"></span>
 		<h2>Action</h2>
+		<p>Action使用起來很像mutation，但取向完全不同；action是用來執行非同步操作，完成非同步操作後再提交mutation來更新state；下面先介紹一下基本語法。</p>
+		<p>註冊一下action</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				state: {
+					count: 0
+				},
+				mutations: {
+					increment (state) {
+						state.count++
+					}
+				},
+				actions: {
+					increment (context) {
+						context.commit('increment')
+					}
+				}
+			})
+		</pre></code>
+		<p>Action函式接受一個與store實例具有相同方法和屬性的context物件，因此你可以調用context.commit提交一個mutation，或者通過context.state和context.getters來獲取state和getters。</p>
+		<p>我們會經常用到ES2015的參數解構來簡化程式（特別是我們需要調用commit很多次的時候）：</p>
+		<pre><code>
+			actions: {
+				increment ({ commit }) {
+					commit('increment')
+				}
+			}
+		</pre></code>
+		<p>Action透過store.dispatch()方法觸發：</p>
+		<pre><code>
+			store.dispatch('increment')
+		</pre></code>
+		<p>乍看之下感覺多此一舉，直接提交mutation不是簡省一個步驟？事實並非如此，mutation只能執行同步作業（前面的段落有作說明），而action就是專門用來執行非同步的操作，例如當我們的應用需要呼叫非同步的api再更新狀態時，就需要在action裡處完資料再交由mutation更新狀態：</p>
+		<pre><code>
+			actions: {
+				incrementAsync ({ commit }) {
+					setTimeout(() => {
+						commit('increment')
+					}, 1000)
+				}
+			}
+		</pre></code>
+		<p>dispatch()方法也接受載荷參數：</p>
+		<pre><code>
+			store.dispatch('incrementAsync', {
+				amount: 10
+			})
+			
+			//或是：
+			store.dispatch({
+				type: 'incrementAsync',
+				amount: 10
+			})
+		</pre></code>
+		<p>下例是官網的一個購物車範例，它示範了調用異步API和分發多個mutation：</p>
+		<pre><code>
+			actions: {
+				checkout ({ commit, state }, products) {
+					// 把當前購物車的物品備份起來
+					const savedCartItems = [...state.cart.added]
+					// 發出結賬請求，然後樂觀地清空購物車
+					commit(types.CHECKOUT_REQUEST)
+					// 購物 API 接受一個成功回調和一個失敗回調
+					shop.buyProducts(
+						products,
+						// 成功操作
+						() => commit(types.CHECKOUT_SUCCESS),
+						// 失敗操作
+						() => commit(types.CHECKOUT_FAILURE, savedCartItems)
+					)
+				}
+			}
+		</pre></code>
+		<p>官網的範例有許多自訂的資料及方法，還是自己來做一個比較完整的：</p>
+		<div class="example">
+			<div id="app82">
+				<button @click="dispatchAction">取得前5筆資料</button>
+				<ul>
+					<student v-for="v of studentList" :info="v"></student>
+				</ul>
+			</div>
+			<script>
+				const store82 = new Vuex.Store({
+					state: {
+						list: []
+					},
+					mutations: {
+						updateLlist(state, list){
+							state.list = list;
+						}
+					},
+					actions: {
+						getList({commit}){
+							let url = 'https://625ccdc44c36c753576a3a4f.mockapi.io/test1/testList?page=1&limit=5';
+							axios.get(url).then((response) => {
+								commit('updateLlist', response.data);
+							})
+						}
+					}
+				})
+				Vue.component('student', {
+					props: ['info'],
+					template: `
+						<li>{{info.name}} - {{info.time}}</li>
+					`
+				});
+				var vm82 = new Vue({
+					el: '#app82',
+					store: store82,
+					methods: {
+						dispatchAction(){
+							this.$store.dispatch('getList');
+						}
+					},
+					computed: Vuex.mapState({
+						studentList: 'list'
+					})
+				});
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button @click="dispatchAction">取得前5筆資料</button>
+				<ul>
+					<student v-for="v of studentList" :info="v"></student>
+				</ul>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			const store = new Vuex.Store({
+				state: {
+					list: []
+				},
+				mutations: {
+					updateLlist(state, list){
+						state.list = list;
+					}
+				},
+				actions: {
+					getList({commit}){
+						let url = 'https://625ccdc44c36c753576a3a4f.mockapi.io/test1/testList?page=1&limit=5';
+						axios.get(url).then((response) => {
+							commit('updateLlist', response.data);
+						})
+					}
+				}
+			})
+			Vue.component('student', {
+				props: ['info'],
+				template: `
+					<li>{{info.name}} - {{info.time}}</li>
+				`
+			});
+			var vm = new Vue({
+				el: '#app',
+				store,
+				methods: {
+					dispatchAction(){
+						this.$store.dispatch('getList');
+					}
+				},
+				computed: Vuex.mapState({
+					studentList: 'list'
+				})
+			});
 		</pre></code>
+		<br>
+		<h3>mapActions</h3>
+		<p>我們可以在組件中使用this.$store.dispatch('xxx')分發action，或者使用mapActions輔助函數將組件中的methods映射為store.dispatch調用（需要在根節點注入store）。</p>
+		<pre><code>
+			methods: {
+				...mapActions([
+					'increment', // 將this.increment()映射為this.$store.dispatch('increment')
+			
+					//mapActions也支持載荷：
+					'incrementBy' // 將this.incrementBy(amount)映射為this.$store.dispatch('incrementBy', amount)
+				]),
+				...mapActions({
+					add: 'increment' // 將this.add()映射為this.$store.dispatch('increment')
+				})
+			}
+		</pre></code>
+		<br>
+		<h3>Action的Promise</h3>
+		<p>Action通常是異步的，那麼如何知道action什麼時候結束呢？首先我們要知道action被觸發時可以返回的Promise：</p>
+		<pre><code>
+			actions: {
+				actionA ({ commit }) {
+					return new Promise((resolve, reject) => {
+						setTimeout(() => {
+							commit('someMutation')
+							resolve()
+						}, 1000)
+					})
+				}
+			}
+		</pre></code>
+		<p>現在我們可以這樣做：</p>
+		<pre><code>
+			store.dispatch('actionA').then(() => {
+				// ...
+			})
+		</pre></code>
+		<p>在另外一個action中也可以：</p>
+		<pre><code>
+			actions: {
+				// ...
+				actionB ({ dispatch, commit }) {
+					return dispatch('actionA').then(() => {
+						commit('someOtherMutation')
+					})
+				}
+			}
+		</pre></code>
+		<p>最後，如果我們利用async/await，我們可以如下組合action：</p>
+		<pre><code>
+			// 假設getData()和getOtherData()返回的是Promise
+
+			actions: {
+				async actionA ({ commit }) {
+					commit('gotData', await getData())
+				},
+				async actionB ({ dispatch, commit }) {
+					await dispatch('actionA') // 等待actionA完成
+					commit('gotOtherData', await getOtherData())
+				}
+			}
+		</pre></code>
+		<p>※一個store.dispatch在不同模組（指的應該是Module吧）中可以觸發多個action函數。在這種情況下，只有當所有觸發函數完成後，返回的Promise才會執行。</p>
 	</section>
 
 
 	<section>
 		<span id="vuex_module" class="anchor-offset"></span>
 		<h2>Module</h2>
+		<p>由於使用單一狀態樹，應用的所有狀態會集中到一個比較大的物件。當應用變得非常複雜時，store物件就有可能變得相當臃腫。</p>
+		<p>為了解決以上問題，Vuex允許我們將store分割成模組（module）。每個模組擁有自己的state、mutation、action、getter、甚至是嵌套子模組——從上至下進行同樣方式的分割：</p>
 		<pre><code>
-			//HTML
+			const moduleA = {
+				state: () => ({ ... }),
+				mutations: { ... },
+				actions: { ... },
+				getters: { ... }
+			}
 			
+			const moduleB = {
+				state: () => ({ ... }),
+				mutations: { ... },
+				actions: { ... }
+			}
+			
+			const store = new Vuex.Store({
+				modules: {
+					a: moduleA,
+					b: moduleB
+				}
+			})
+			
+			store.state.a // -> moduleA的狀態
+			store.state.b // -> moduleB的狀態
 		</pre></code>
+		<p>對於模組內部的mutation 和getter，接收的第一個參數是模組的局部狀態物件：</p>
 		<pre><code>
-			//Javascript
+			const moduleA = {
+				state: () => ({
+					count: 0
+				}),
+				mutations: {
+					increment (state) {
+						// 這裡的state物件是模組的局部狀態
+						state.count++
+					}
+				},
 			
+				getters: {
+					doubleCount (state) {
+						return state.count * 2
+					}
+				}
+			}
+		</pre></code>
+		<p>同樣，對於模組內部的action，局部狀態通過context.state暴露出來，根節點狀態則為context.rootState：</p>
+		<pre><code>
+			const moduleA = {
+				// ...
+				actions: {
+					incrementIfOddOnRootSum ({ state, commit, rootState }) {
+						if ((state.count + rootState.count) % 2 === 1) {
+							commit('increment')
+						}
+					}
+				}
+			}
+		</pre></code>
+		<p>對於模組內部的getter，根節點狀態會作為第三個參數暴露出來：</p>
+		<pre><code>
+			const moduleA = {
+				// ...
+				getters: {
+					sumWithRootCount (state, getters, rootState) {
+						return state.count + rootState.count
+					}
+				}
+			}
+		</pre></code>
+		<br>
+		<h3>命名空間</h3>
+		<p>默認情況下，模組內部的action、mutation 和getter是註冊在全局命名空間的——這樣使得多個模組能夠對同一mutation或action作出響應。</p>
+		<p>如果希望你的模組具有更高的封裝度和復用性，你可以通過添加namespaced:true的方式使其成為帶命名空間的模組。當模組被註冊後，它的所有getter、action 及mutation都會自動根據模組註冊的路徑調整命名。例如：</p>
+		<pre><code>
+			const store = new Vuex.Store({
+				modules: {
+					account: {
+						namespaced: true,
+			
+						// 模組內容（module assets）
+						state: () => ({ ... }), // 模組內的狀態已經是嵌套的了，使用 `namespaced` 屬性不會對其產生影響
+						getters: {
+							isAdmin () { ... } // -> getters['account/isAdmin']
+						},
+						actions: {
+							login () { ... } // -> dispatch('account/login')
+						},
+						mutations: {
+							login () { ... } // -> commit('account/login')
+						},
+			
+						// 嵌套模組
+						modules: {
+							// 繼承父模組的命名空間
+							myPage: {
+								state: () => ({ ... }),
+								getters: {
+									profile () { ... } // -> getters['account/profile']
+								}
+							},
+			
+							// 進一步嵌套命名空間
+							posts: {
+								namespaced: true,
+			
+								state: () => ({ ... }),
+								getters: {
+									popular () { ... } // -> getters['account/posts/popular']
+								}
+							}
+						}
+					}
+				}
+			})
+		</pre></code>
+		<p>啟用了命名空間的getter和action會收到局部化的getter，dispatch和commit。換言之，你在使用模組內容（module assets）時不需要在同一模組內額外添加空間名前綴。更改namespaced屬性後不需要修改模組內的代碼。</p>
+		<p>在帶命名空間的模組內訪問全局內容（Global Assets）；如果你希望使用全局state 和getter，rootState和 rootGetters 會作為第三和第四參數傳入getter，也會通過 context 物件的屬性傳入action。</p>
+		<p>若需要在全局命名空間內分發action 或提交mutation，將{root:true}作為第三參數傳給dispatch或commit即可：</p>
+		<pre><code>
+			modules: {
+				foo: {
+					namespaced: true,
+			
+					getters: {
+						// 在這個模組的 getter 中，`getters` 被局部化了
+						// 你可以使用 getter 的第四個參數來調用 `rootGetters`
+						someGetter (state, getters, rootState, rootGetters) {
+							getters.someOtherGetter // -> 'foo/someOtherGetter'
+							rootGetters.someOtherGetter // -> 'someOtherGetter'
+						},
+						someOtherGetter: state => { ... }
+					},
+			
+					actions: {
+						// 在這個模組中， dispatch 和 commit 也被局部化了
+						// 他們可以接受 `root` 屬性以訪問根 dispatch 或 commit
+						someAction ({ dispatch, commit, getters, rootGetters }) {
+							getters.someGetter // -> 'foo/someGetter'
+							rootGetters.someGetter // -> 'someGetter'
+			
+							dispatch('someOtherAction') // -> 'foo/someOtherAction'
+							dispatch('someOtherAction', null, { root: true }) // -> 'someOtherAction'
+			
+							commit('someMutation') // -> 'foo/someMutation'
+							commit('someMutation', null, { root: true }) // -> 'someMutation'
+						},
+						someOtherAction (ctx, payload) { ... }
+					}
+				}
+			}
+		</pre></code>
+		<p>在帶命名空間的模組註冊全局action；若需要在帶命名空間的模組註冊全局action，你可添加root:true，並將這個action的定義放在函數handler中。例如：</p>
+		<pre><code>
+			{
+				actions: {
+					someOtherAction ({dispatch}) {
+						dispatch('someAction')
+					}
+				},
+				modules: {
+					foo: {
+						namespaced: true,
+			
+						actions: {
+							someAction: {
+								root: true,
+								handler (namespacedContext, payload) { ... } // -> 'someAction'
+							}
+						}
+					}
+				}
+			}
+		</pre></code>
+		<p>帶命名空間的綁定函數；當使用mapState, mapGetters, mapActions和mapMutations這些函數來綁定帶命名空間的模組時，寫起來可能比較繁瑣：</p>
+		<pre><code>
+			computed: {
+				...mapState({
+					a: state => state.some.nested.module.a,
+					b: state => state.some.nested.module.b
+				})
+			},
+			methods: {
+				...mapActions([
+					'some/nested/module/foo', // -> this['some/nested/module/foo']()
+					'some/nested/module/bar' // -> this['some/nested/module/bar']()
+				])
+			}
+		</pre></code>
+		<p>對於這種情況，你可以將模組的空間名稱字符串作為第一個參數傳遞給上述函數，這樣所有綁定都會自動將該模組作為上下文。於是上面的例子可以簡化為：</p>
+		<pre><code>
+			computed: {
+				...mapState('some/nested/module', {
+					a: state => state.a,
+					b: state => state.b
+				})
+			},
+			methods: {
+				...mapActions('some/nested/module', [
+					'foo', // -> this.foo()
+					'bar' // -> this.bar()
+				])
+			}
+		</pre></code>
+		<p>而且，你可以通過使用createNamespacedHelpers創建基於某個命名空間輔助函數。它返回一個物件，物件裡有新的綁定在給定命名空間值上的元件綁定輔助函數：</p>
+		<pre><code>
+			import { createNamespacedHelpers } from 'vuex'
+
+			const { mapState, mapActions } = createNamespacedHelpers('some/nested/module')
+
+			export default {
+				computed: {
+					// 在some/nested/module中查找
+					...mapState({
+						a: state => state.a,
+						b: state => state.b
+					})
+				},
+				methods: {
+					// 在some/nested/module中查找
+					...mapActions([
+						'foo',
+						'bar'
+					])
+				}
+			}
+		</pre></code>
+		<br>
+		<h3>模組動態註冊</h3>
+		<p>在store創建之後，你可以使用store.registerModule方法註冊模組：</p>
+		<pre><code>
+			import Vuex from 'vuex'
+
+			const store = new Vuex.Store({ /* 選項 */ })
+
+			// 註冊模組myModule
+			store.registerModule('myModule', {
+			// ...
+			})
+			// 註冊模組模块nested/myModule
+			store.registerModule(['nested', 'myModule'], {
+			// ...
+			})
+		</pre></code>
+		<p>之後就可以通過store.state.myModule和store.state.nested.myModule訪問模組的狀態。</p>
+		<p>模組動態註冊功能使得其他Vue插件可以通過在store中附加新模組的方式來使用Vuex管理狀態。例如，vuex-router-sync（打開新窗口）插件就是通過動態註冊模組將vue-router和vuex結合在一起，實現應用的路由狀態管理。</p>
+		<p>你也可以使用store.unregisterModule(moduleName)來動態卸載模組。注意，你不能使用此方法卸載靜態模組（即創建store時聲明的模組）。</p>
+		<p>注意，你可以通過store.hasModule(moduleName)方法檢查該模組是否已經被註冊到store。</p>
+		<p>保留state；在註冊一個新module時，你很有可能想保留過去的state，例如從一個服務端渲染的應用保留state。你可以通過preserveState選項將其歸檔：store.registerModule('a',module,{preserveState:true})。</p>
+		<p>當你設置preserveState:true時，該模組會被註冊，action、mutation和getter會被添加到store中，但是state不會。這裡假設store的state已經包含了這個module的state並且你不希望將其覆寫。</p>
+		<br>
+		<h3>模組重覆用</h3>
+		<p>有時我們可能需要創建一個模組的多個實例，例如：</p>
+		<ul class="spaced">
+			<li>創建多個store，他們公用同一個模組（例如當runInNewContext選項是false或'once'時，為了在服務端渲染中避免有狀態的單例）</li>
+			<li>在一個store中多次註冊同一個模組</li>
+		</ul>
+		<p>如果我們使用一個純物件來聲明模組的狀態，那麼這個狀態物件會通過引用被共享，導致狀態對像被修改時store 或模組間數據互相污染的問題。</p>
+		<p>實際上這和Vue 組件內的 data 是同樣的問題。因此解決辦法也是相同的——使用一個函數來聲明模組狀態（僅2.3.0+ 支持）：</p>
+		<pre><code>
+			const MyReusableModule = {
+				state: () => ({
+					foo: 'bar'
+				}),
+				// mutation, action 和 getter 等等...
+			}
 		</pre></code>
 	</section>
 
@@ -5708,125 +6210,689 @@
 	<section>
 		<span id="transition_basic" class="anchor-offset"></span>
 		<h2>概述</h2>
-		<pre><code>
-			//HTML
-			
-		</pre></code>
-		<pre><code>
-			//Javascript
-			
-		</pre></code>
+		<p>我們常常會使用v-if或v-show控制元素的顯示與否，而顯示與不顯示的過程中，可以使用vue提供的transition元件協助我們控制過渡效果。</p>
+		<p>在官網文件中，清楚繪製出了Vue的過渡會有以下幾個過程（如字面所示，enter就是進入過渡、leave就是離開過渡）：</p>
+		<p><img src="assets/img/transition.png" /></p>
+		<ul class="spaced">
+			<li>v-enter於元素被插入之前生效，並於元素插入後移除。</li>
+			<li>v-enter-to於元素被插入後生效，直到過渡效果完成後移除。</li>
+			<li>而這整個過程為v-enter-active，可於此定義整個過渡的效果，離開過渡時同理。</li>
+		</ul>
+		<p>使用transition元件會將上述的各個過程自動加入相對應的class名稱，例如元素出現時會自動加上v-enter-active的class，這個過程可以在後面的範例做觀察，如此我們便可以在CSS中定義想要的過渡樣式；以CSS的透明度(Opacity)為例，在元素被插入前，過渡的起始v-enter設定元素的透明度為0，而元素插入後，v-enter-to設定元素的透明度為1，而v-enter-active則設定透明度從0到1的過渡過程會如何呈現，例如時間、延遲、曲線等。Leave可以此類推。</p>
+		<br>
+		<h3>transtion元件可設定的屬性</h3>
+		<p>可以為transtion元件設置各種屬性來達到特定的功能，以下為所有可以設定的屬性：</p>
+		<ul class="spaced">
+			<li>name<br>產生CSS過渡動畫的class名稱，自動變成前綴。例如設定name:'fade'，則上述六個過渡狀態，會變為.fade-enter、.fade-enter-active、.fade-enter-to、.fade-leave、.fade-leave-active、.fade-leave-to。若沒有設定此屬性，默認值為v</li>
+			<li>appear<br>是否在初始渲染時使用過渡效果，默認值為false</li>
+			<li>css<br>在transition元件中，可以使用CSS類別或是JSHook控制過渡效果。預設為true，使用CSS類別</li>
+			<li>type<br>設定過渡事件類型，監聽過渡事件何時结束</li>
+			<li>mode<br>當有多個元素需進行過渡效果時，可以使用此參數設定元素依序進入與離開的效果，可設定值為out-in和in-out，默認同時進行</li>
+			<li>duration<br>指定過渡的持續時間，單位為毫秒</li>
+			<li>過渡CSS類別設定<br>可依照狀況(例如：使用第三方動畫庫時)，設定每一個過渡CSS名稱。可設定類別名稱為：enter-class、leave-class、appear-class、enter-to-class、leave-to-class、appear-to-class、enter-active-class、leave-active-class、appear-active-class</li>
+		</ul>
+		<br>
+		<p>以上即為Vue過渡效果的大概功能介紹，接下來的說明會以常用的範例方式進行，其它細節有需要可以到官網參考：https://cn.vuejs.org/v2/guide/transitions.html。</p>
 	</section>
 
 
 	<section>
-		<span id="transition_dom_comp" class="anchor-offset"></span>
-		<h2>DOM/元件的過渡</h2>
+		<span id="transition_single_ele" class="anchor-offset"></span>
+		<h2>單一元素/元件的過渡</h2>
+		<p>使用transition封裝元件在下例情形中，可以給任何元素和元件添加進入/離開過渡</p>
+		<ul>
+			<li>條件渲染（使用v-if）</li>
+			<li>條件顯示（使用v-show）</li>
+			<li>動態元件</li>
+			<li>元件根節點</li>
+		</ul>
+		<p>馬上來看一個基本的範例：</p>
+		<div class="example">
+			<div id="app83">
+				<button v-on:click="show = !show">切換</button>
+				<transition name="my">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
+			<style>
+				.my-enter-active, .my-leave-active{
+					transition: opacity .5s;
+				}
+				.my-enter, .my-leave-to{
+					opacity: 0;
+				}
+			</style>
+			<script>
+				var vm83 = new Vue({
+					el: '#app83',
+					data: {
+						show: true
+					}
+				})
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button v-on:click="show = !show">切換</button>
+				<transition name="my">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
-		</pre></code>
-	</section>
-
-
-	<section>
-		<span id="transition_class" class="anchor-offset"></span>
-		<h2>class名稱</h2>
-		<pre><code>
-			//HTML
-			
+			new Vue({
+				el: '#app',
+				data: {
+					show: true
+				}
+			})
 		</pre></code>
 		<pre><code>
-			//Javascript
-			
+			//CSS
+			.my-enter-active, .my-leave-active{
+				transition: opacity .5s;
+			}
+			.my-enter, .my-leave-to{
+				opacity: 0;
+			}
 		</pre></code>
-	</section>
-
-
-	<section>
-		<span id="transition_transition" class="anchor-offset"></span>
-		<h2>CSS過渡</h2>
+		<p>這個範例就展示了當<code>插入/移除</code>在transition元件中的元素時，Vue就會針對在的動作<code>添加/刪除</code>對應的class名稱，例如在顯示出&lt;p&gt;元素的過程時會加上my-enter-active及my-enter-to的class名稱。</p>
+		<p>範例中的CSS其實省略了許多設置，完整Vue的過渡設置如下：</p>
 		<pre><code>
-			//HTML
-			
+			.my-enter-active{
+				transition: opacity .5s;
+			}
+			.my-enter{
+				opacity: 0;
+			}
+			.my-enter-to{
+				opacity: 1;
+			}
+			.my-leave-active{
+				transition: opacity .5s;
+			}
+			.my-leave{
+				opacity: 1;
+			}
+			.my-leave-to{
+				opacity: 0;
+			}
 		</pre></code>
+		<p>這就代表我們可以為過渡的每個階段計計不同的樣式，例如在離開時調整transition的時間，以及timing-function：</p>
 		<pre><code>
-			//Javascript
-			
+			.my-leave-active{
+				transition: opacity 2s cubic-bezier(0, 1, 1, 0);
+			}
+		</pre></code>
+		<p>由於過渡完成後會將過渡的class名稱移除掉，如果希望&lt;p&gt;在my-enter-to移除後維持某種樣式（例如opacity:.5），就要在CSS中預先定義&lt;p&gt;的樣式：</p>
+		<pre><code>
+			p{
+				opacity: .5;
+			}
+			...
+			.my-enter-to{
+				opacity: .5;
+			}
 		</pre></code>
 	</section>
 
 
 	<section>
 		<span id="transition_animation" class="anchor-offset"></span>
-		<h2>CSS動畫</h2>
+		<h2>以CSS animation設計過渡</h2>
+		<p>CSS動畫用法同CSS過渡，區別是在動畫中v-enter的class名稱在節點插入DOM後不會立即刪除，而是在animationend事件觸發時刪除，範例：</p>
+		<div class="example">
+			<div id="app84" class="app84">
+				<button v-on:click="show = !show">切換</button>
+				<br>
+				<transition name="bounce">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
+			<style>
+				.app84 p {
+					display: inline-block;
+				}
+				.bounce-enter-active {
+					animation: bounce-in .5s;
+				}
+				.bounce-leave-active {
+					animation: bounce-in .5s reverse;
+				}
+				@keyframes bounce-in {
+					0% {
+						transform: scale(0);
+					}
+					50% {
+						transform: scale(3);
+					}
+					100% {
+						transform: scale(1);
+					}
+				}
+			</style>
+			<script>
+				var vm84 = new Vue({
+					el: '#app84',
+					data: {
+						show: true
+					}
+				})
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button v-on:click="show = !show">切換</button>
+				<br>
+				<transition name="bounce">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					show: true
+				}
+			})
+		</pre></code>
+		<pre><code>
+			//CSS
+			p {
+				display: inline-block;
+			}
+			.bounce-enter-active {
+				animation: bounce-in .5s;
+			}
+			.bounce-leave-active {
+				animation: bounce-in .5s reverse;
+			}
+			@keyframes bounce-in {
+				0% {
+					transform: scale(0);
+				}
+				50% {
+					transform: scale(3);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+		</pre></code>
+	</section>
+
+
+	<section>
+		<span id="transition_multiple_ele" class="anchor-offset"></span>
+		<h2>多個元素的過渡</h2>
+		<p>對於原生html元素可以使用v-if/v-else產生過渡。最常見的多元素過渡是一個列表和描述這個列表為空消息的內容：</p>
+		<pre><code>
+			<transition>
+				<ul v-if="items.length > 0">
+					<!-- ... -->
+				</ul>
+				<p v-else>Sorry, no items found.</p>
+			</transition>
+		</pre></code>
+		<p>上例的操作沒有什麼問題，但是有一點需要注意：</p>
+		<p>當有相同元素名的元素切換時，需要通過key attribute設置唯一的值來標記以讓Vue區分它們，否則Vue為了效率只會替換相同元素內部的內容。即使在技術上沒有必要，給在transition元件中的多個元素設置key才是一個正確的做法：</p>
+		<pre><code>
+			<transition>
+				<button v-if="isEditing" key="save">
+					Save
+				</button>
+				<button v-else key="edit">
+					Edit
+				</button>
+			</transition>
+		</pre></code>
+		<p>在某些情況下，也可以給同一個元素的key attribute設定不同的狀態來代替v-if和v-else，上面的例子可以重寫為：</p>
+		<pre><code>
+			<transition>
+				<button v-bind:key="isEditing">
+					{{ isEditing ? 'Save' : 'Edit' }}
+				</button>
+			</transition>
+		</pre></code>
+		<p>使用多個v-if的多個元素的過渡可以重寫為綁定了動態property的單個元素過渡。例如：</p>
+		<pre><code>
+			<transition>
+				<button v-if="docState === 'saved'" key="saved">
+					Edit
+				</button>
+				<button v-if="docState === 'edited'" key="edited">
+					Save
+				</button>
+				<button v-if="docState === 'editing'" key="editing">
+					Cancel
+				</button>
+			</transition>			
+		</pre></code>
+		<p>也可以重寫為：</p>
+		<pre><code>
+			//HTML
+			<transition>
+				<button v-bind:key="docState">
+					{{ buttonMessage }}
+				</button>
+			</transition>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			...
+			computed: {
+				buttonMessage: function () {
+					switch (this.docState) {
+						case 'saved': return 'Edit'
+						case 'edited': return 'Save'
+						case 'editing': return 'Cancel'
+					}
+				}
+			}
+		</pre></code>
+		<br>
+		<p>以上即為多個元素過渡常見的用法，但實際製作時會發現兩個元素在切換的過程中位置不斷的被推擠，我們試著點擊下例的按鈕：</p>
+		<div class="example">
+			<div id="app85" class="app85">
+				<button v-on:click="show = !show">切換</button>
+				<transition name="toggle">
+					<h1 v-if="show">測試標題</h1>
+					<p v-else>測試文字</p>
+				</transition>
+				<hr>
+			</div>
+			<style>
+				.app85 h1, .app85 p {
+					height: 50px;
+					margin: 0;
+				}
+				.toggle-enter-active, .toggle-leave-active{
+					transition: opacity .5s;
+				}
+				.toggle-enter, .toggle-leave-to{
+					opacity: 0;
+				}
+			</style>
+			<script>
+				var vm85 = new Vue({
+					el: '#app85',
+					data: {
+						show: true
+					}
+				})
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<button v-on:click="show = !show">切換</button>
+				<transition name="toggle">
+					<h1 v-if="show">測試標題</h1>
+					<p v-else>測試文字</p>
+				</transition>
+				<hr>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					show: true
+				}
+			})
+		</pre></code>
+		<pre><code>
+			//CSS
+			h1, p {
+				height: 50px;
+				margin: 0;
+			}
+			.toggle-enter-active, .toggle-leave-active{
+				transition: opacity .5s;
+			}
+			.toggle-enter, .toggle-leave-to{
+				opacity: 0;
+			}
+		</pre></code>
+		<p>上面的現象是因為transition元件預設進入和離開的過渡是同時發生的，Vue另外提供了mode屬性來解決這個問題，讓當前元素和新元素分開過渡：</p>
+		<div class="example">
+			<div id="app86" class="app86">
+				<button v-on:click="show = !show">切換</button>
+				<transition name="toggle" mode="out-in">
+					<h1 v-if="show">測試標題</h1>
+					<p v-else>測試文字</p>
+				</transition>
+				<hr>
+			</div>
+			<style>
+				.app86 h1, .app86 p {
+					height: 50px;
+					margin: 0;
+				}
+				.toggle-enter-active, .toggle-leave-active{
+					transition: opacity .5s;
+				}
+				.toggle-enter, .toggle-leave-to{
+					opacity: 0;
+				}
+			</style>
+			<script>
+				var vm85 = new Vue({
+					el: '#app86',
+					data: {
+						show: true
+					}
+				})
+			</script>
+		</div>
+		<pre><code>
+			<transition name="toggle" mode="out-in">
+				...
+			</transition>
+		</pre></code>
+		<p>加上mode屬性並設定值為out-in，現在切換時就正常了；說明一下mode屬性可接受的值：</p>
+		<ul>
+			<li>in-out：新元素先進行過渡，完成之後當前元素過渡離開。</li>
+			<li>out-in：當前元素先進行過渡，完成之後新元素過渡進入。</li>
+		</ul>
+		<p>另外，如果我們的需求非得要進入和離開的過渡同時發生，可將要過渡的元素設定為絕對定位，如此就不需要設定mode屬性了。</p>
+	</section>
+
+
+	<section>
+		<span id="transition_multiple_comp" class="anchor-offset"></span>
+		<h2>多個元件的過渡</h2>
+		<p>多個元件的過渡寫法比較簡單，不需要使用keyattribute，我們只需要使用動態元件：</p>
+		<div class="example">
+			<div id="app87">
+				<input type="radio" value="compA" v-model="comp">元件A 
+				<input type="radio" value="compB" v-model="comp">元件B
+				<transition name="toggle-comp" mode="out-in">
+					<component v-bind:is="comp"></component>
+				</transition>
+			</div>
+			<style>
+				.toggle-comp-enter-active, .toggle-comp-leave-active{
+					transition: opacity .5s;
+				}
+				.toggle-comp-enter, .toggle-comp-leave-to{
+					opacity: 0;
+				}
+			</style>
+			<script>
+				var vm87 = new Vue({
+					el: '#app87',
+					components: {
+						compA: {
+							template: '<div>Component A</div>'
+						},
+						compB: {
+							template: '<div>Component B</div>'
+						}
+					},
+					data: {
+						comp: 'compA'
+					}
+				})
+			</script>
+		</div>
+		<pre><code>
+			//HTML
+			<div id="app">
+				<input type="radio" value="compA" v-model="comp">元件A 
+				<input type="radio" value="compB" v-model="comp">元件B
+				<transition name="toggle-comp" mode="out-in">
+					<component v-bind:is="comp"></component>
+				</transition>
+			</div>
+		</pre></code>
+		<pre><code>
+			//Javascript
+			var vm = new Vue({
+				el: '#app',
+				components: {
+					compA: {
+						template: '<div>Component A</div>'
+					},
+					compB: {
+						template: '<div>Component B</div>'
+					}
+				},
+				data: {
+					comp: 'compA'
+				}
+			})
+		</pre></code>
+		<pre><code>
+			//CSS
+			.toggle-comp-enter-active, .toggle-comp-leave-active{
+				transition: opacity .5s;
+			}
+			.toggle-comp-enter, .toggle-comp-leave-to{
+				opacity: 0;
+			}
 		</pre></code>
 	</section>
 
 
 	<section>
 		<span id="transition_custom_class" class="anchor-offset"></span>
-		<h2>自定義class名稱</h2>
+		<h2>自定義過渡的class名稱</h2>
+		<p>我們可以通過以下屬性來自定義過渡class名稱：</p>
+		<ul>
+			<li>enter-class</li>
+			<li>enter-active-class</li>
+			<li>enter-to-class</li>
+			<li>leave-class</li>
+			<li>leave-active-class</li>
+			<li>leave-to-class</li>
+		</ul>
+		<p>當transition元件設定以上的屬性，例如leave-to-class="custom-leave-to"，在過渡的leave-to階段就會以custom-leave-to取代原本的名字：</p>
+		<div class="example">
+			<div id="app88">
+				<button v-on:click="show = !show">切換</button>
+				<transition enter-class="custom-enter" leave-to-class="custom-leave-to">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
+			<style>
+				.v-enter-active, .v-leave-active{
+					transition: all 1s;
+				}
+				.custom-enter, .custom-leave-to{
+					opacity: 0;
+					color: lime;
+				}
+			</style>
+			<script>
+				var vm88 = new Vue({
+					el: '#app88',
+					data: {
+						show: true
+					}
+				})
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<div id="app">
+				<button v-on:click="show = !show">切換</button>
+				<transition enter-class="custom-enter" leave-to-class="custom-leave-to">
+					<p v-if="show">測試文字</p>
+				</transition>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					show: true
+				}
+			})
+		</pre></code>
+		<pre><code>
+			//CSS
+			.v-enter-active, .v-leave-active{
+				transition: all 1s;
+			}
+			.custom-enter, .custom-leave-to{
+				opacity: 0;
+				color: lime;
+			}
+		</pre></code>
+		<p>上例當&lt;p&gt;元素消失時他的class名稱就會是："v-leave-active custom-leave-to"。</p>
+		<p>這樣的作法很適合運用在有使用第三方CSS動畫的library，直接把library的class名稱直接代入，例如使用Animate.css時就可以做以下的設定：</p>
+		<pre><code>
+			<transition enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				...
+			</transition>
 		</pre></code>
 	</section>
 
 
 	<section>
-		<span id="transition_transition_animation" class="anchor-offset"></span>
-		<h2>同時使用過渡和動畫</h2>
+		<span id="transition_js_hooks" class="anchor-offset"></span>
+		<h2>Javascript勾子</h2>
+		<p>可以在attribute中聲明JavaScript鉤子：</p>
+		<pre><code>
+			<transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:after-enter="afterEnter" v-on:enter-cancelled="enterCancelled" v-on:before-leave="beforeLeave" v-on:leave="leave" v-on:after-leave="afterLeave" v-on:leave-cancelled="leaveCancelled">
+				<!-- ... -->
+			</transition>
+		</pre></code>
+		<pre><code>
+			// ...
+			methods: {
+				// --------
+				// 进入中
+				// --------
+
+				beforeEnter: function (el) {
+					// ...
+				},
+				// 当与 CSS 结合使用时
+				// 回调函数 done 是可选的
+				enter: function (el, done) {
+					// ...
+					done()
+				},
+				afterEnter: function (el) {
+					// ...
+				},
+				enterCancelled: function (el) {
+					// ...
+				},
+
+				// --------
+				// 离开时
+				// --------
+
+				beforeLeave: function (el) {
+					// ...
+				},
+				// 当与 CSS 结合使用时
+				// 回调函数 done 是可选的
+				leave: function (el, done) {
+					// ...
+					done()
+				},
+				afterLeave: function (el) {
+					// ...
+				},
+				// leaveCancelled 只用于 v-show 中
+				leaveCancelled: function (el) {
+					// ...
+				}
+			}
+		</pre></code>
+		<p>這些鉤子函數可以結合CSStransitions/animations使用，也可以單獨使用。</p>
+		<p>注意：當只用Javascript過渡的時候，在enter和leave中必須使用done進行回調。否則，它們將被同步調用，過渡會立即完成。</p>
+		<p>注意：推薦對於僅使用Javascript過渡的元素添加v-bind:css="false"，Vue會跳過CSS的檢測。這也可以避免過渡過程中CSS的影響。</p>
+		<br>
+		<p>一個使用Velocity.js的簡單例子：</p>
+		<div class="example">
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
+			<div id="app89">
+				<button @click="show = !show">Toggle</button>
+				<transition appear v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+					<p v-if="show">Demo</p>
+				</transition>
+			</div>
+			<script>
+				var vm89 = new Vue({
+					el: '#app89',
+					data: {
+						show: false
+					},
+					methods: {
+						beforeEnter: function (el) {
+							el.style.opacity = 0
+							el.style.transformOrigin = 'left'
+						},
+						enter: function (el, done) {
+							$.Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+							$.Velocity(el, { fontSize: '1em' }, { complete: done })
+						},
+						leave: function (el, done) {
+							$.Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+							$.Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+							$.Velocity(el, {
+								rotateZ: '45deg',
+								translateY: '30px',
+								translateX: '30px',
+								opacity: 0
+							}, { complete: done })
+						}
+					}
+				})
+			</script>
+		</div>
 		<pre><code>
 			//HTML
-			
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
+			<div id="app">
+				<button @click="show = !show">Toggle</button>
+				<transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+					<p v-if="show">Demo</p>
+				</transition>
+			</div>
 		</pre></code>
 		<pre><code>
 			//Javascript
-			
-		</pre></code>
-	</section>
-
-
-	<section>
-		<span id="transition_duration" class="anchor-offset"></span>
-		<h2>過渡的持續時間</h2>
-		<pre><code>
-			//HTML
-			
-		</pre></code>
-		<pre><code>
-			//Javascript
-			
-		</pre></code>
-	</section>
-
-
-	<section>
-		<span id="transition_......" class="anchor-offset"></span>
-		<h2>......</h2>
-		<pre><code>
-			//HTML
-			
-		</pre></code>
-		<pre><code>
-			//Javascript
-			
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					show: false
+				},
+				methods: {
+					beforeEnter: function (el) {
+						el.style.opacity = 0
+						el.style.transformOrigin = 'left'
+					},
+					enter: function (el, done) {
+						Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+						Velocity(el, { fontSize: '1em' }, { complete: done })
+					},
+					leave: function (el, done) {
+						Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+						Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+						Velocity(el, {
+							rotateZ: '45deg',
+							translateY: '30px',
+							translateX: '30px',
+							opacity: 0
+						}, { complete: done })
+					}
+				}
+			})
 		</pre></code>
 	</section>
 
