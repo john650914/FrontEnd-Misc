@@ -5,109 +5,87 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
 <title>HTML5</title>
-<style>
-.countdown div{
-	display: inline-block;
-}
-.countdown .unit{
-	width: 8px;
-	height: 17px;
-	overflow: hidden;
-	position: relative;
-}
-.countdown .unit span:nth-child(1){
-	position: absolute;
-	left: 0;
-	top: -17px;
-}
-.countdown .unit span:nth-child(2){
-	position: absolute;
-	left: 0;
-	top: 0px;
-}
-.ani span:nth-child(1){
-	animation: ani1 .5s forwards;
-}
-.ani span:nth-child(2){
-	animation: ani2 .5s forwards;
-}
-@keyframes ani1{
-	from	{top: -17px;}
-	to		{top: 0px;}
-}
-@keyframes ani2{
-	from	{top: 0px;}
-	to		{top: 17px;}
-}
-</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
 
+<link rel="stylesheet" href="h5countdown/default.css">
 <script>
-$('body').append('<div class="countdown"></div>');
-var html = '';
+(function(){
+	var url = 'https://tw.beanfun.com';
+	var nowTime = '2020/7/01 00:00:00';
+	var endTime = '2020/7/02 00:00:03';
+	document.addEventListener('DOMContentLoaded',function(){
+		var remained_ms = new Date(endTime) - new Date(nowTime);
+		if(remained_ms > 0){
+			$('body').append('<a class="h5-countdown" href="'+url+'"></a>');
+			var html = '';
+			var days = 0, hours = 0, minutes = 0, seconds = 0;
 
-var nowTime = '2020/7/8 00:00:00';
-var endTime = '2020/8/8 00:03:03';
-var remained_ms = new Date(endTime) - new Date(nowTime);
-var days = 0, hours = 0, minutes = 0, seconds = 0;
+			function DDHHMMSS(){
+				days = Math.floor(remained_ms / (1000 * 60 * 60 * 24)).toString();
+				hours = Math.floor((remained_ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				minutes = Math.floor((remained_ms % (1000 * 60 * 60)) / (1000 * 60));
+				seconds = Math.floor((remained_ms % (1000 * 60)) / 1000);
+				hours = hours < 10 ? "0" + hours : '' + hours;
+				minutes = minutes < 10 ? "0" + minutes : '' + minutes;
+				seconds = seconds < 10 ? "0" + seconds : '' + seconds;
+			}
+			DDHHMMSS();
+			if(days == '0'){
+				$('.h5-countdown').addClass('within-one-day');
+			}
 
-function DDHHMMSS(){
-	days = Math.floor(remained_ms / (1000 * 60 * 60 * 24)).toString();
-	hours = Math.floor((remained_ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	minutes = Math.floor((remained_ms % (1000 * 60 * 60)) / (1000 * 60));
-	seconds = Math.floor((remained_ms % (1000 * 60)) / 1000);
-	hours = hours < 10 ? "0" + hours : '' + hours;
-	minutes = minutes < 10 ? "0" + minutes : '' + minutes;
-	seconds = seconds < 10 ? "0" + seconds : '' + seconds;
-}
-DDHHMMSS();
+			html += '<div class="h5-wrap h5-wrap-day">';
+			for(var v of days){html += '<div class="h5-unit h5-day"><span data-digit="'+v+'">'+v+'</span></div>';}
+			html += '</div><div class="h5-unit-text">天</div><div class="h5-wrap h5-wrap-hour">';
+			for(var v of hours){html += '<div class="h5-unit h5-hour"><span data-digit="'+v+'">'+v+'</span></div>';}
+			html += '</div><div class="h5-unit-text">時</div><div class="h5-wrap h5-wrap-minute">';
+			for(var v of minutes){html += '<div class="h5-unit h5-minute"><span data-digit="'+v+'">'+v+'</span></div>';}
+			html += '</div><div class="h5-unit-text">分</div><div class="h5-wrap h5-wrap-second">';
+			for(var v of seconds){html += '<div class="h5-unit h5-second"><span data-digit="'+v+'">'+v+'</span></div>';}
+			html += '</div><div class="h5-unit-text">秒</div>';
+			$('.h5-countdown').html(html);
 
-html += '<div class="wrap">';
-for(var v of days){html += '<div class="unit day"><span>'+v+'</span></div>';}
-html += '</div><div class="unit-text">天</div><div class="wrap">';
-for(var v of hours){html += '<div class="unit hour"><span>'+v+'</span></div>';}
-html += '</div><div class="unit-text">時</div><div class="wrap">';
-for(var v of minutes){html += '<div class="unit minute"><span>'+v+'</span></div>';}
-html += '</div><div class="unit-text">分</div><div class="wrap">';
-for(var v of seconds){html += '<div class="unit second"><span>'+v+'</span></div>';}
-html += '</div><div class="unit-text">秒</div>';
+			var x = setInterval(function(){
+				$('.h5-countdown').addClass('started');
+				$('.h5-unit').removeClass('ani');
+				$('.h5-unit').each(function(i, v){
+					if($('span', this).length > 1){
+						$('span', this).eq(1).remove();
+					}
+				});
 
-$('.countdown').html(html);
+				remained_ms = remained_ms - 1000;
+				if(remained_ms < 0){
+					clearInterval(x);
+					$('.h5-countdown').remove();
+				}
 
-var x = setInterval(function(){
-	$('.unit').removeClass('ani');
-	$('.unit').each(function(i, v){
-		if($('span', this).length > 1){
-			$('span', this).eq(1).remove();
+				DDHHMMSS();
+				if(days == '0'){
+					$('.h5-countdown').addClass('within-one-day');
+				}
+
+				if($('.h5-wrap .h5-day').length - days.length == 1){
+					$('.h5-wrap .h5-day').eq(0).remove();
+				}
+				
+				[...days].forEach(function(v, i){$('.h5-countdown .h5-day').eq(i).prepend('<span data-digit="'+v+'">'+v+'</span>');});
+				[...hours].forEach(function(v, i){$('.h5-countdown .h5-hour').eq(i).prepend('<span data-digit="'+v+'">'+v+'</span>');});
+				[...minutes].forEach(function(v, i){$('.h5-countdown .h5-minute').eq(i).prepend('<span data-digit="'+v+'">'+v+'</span>');});
+				[...seconds].forEach(function(v, i){$('.h5-countdown .h5-second').eq(i).prepend('<span data-digit="'+v+'">'+v+'</span>');});
+
+				$('.h5-unit').each(function(i, v){
+					if($('span', this).length > 1 && $('span', this).eq(0).text() != $('span', this).eq(1).text()){
+						$(this).addClass('ani');
+					}
+				});
+			}, 1000);
 		}
 	});
-
-	remained_ms = remained_ms - 1000;
-	DDHHMMSS();
-	
-	[...days].forEach(function(v, i){
-		$('.countdown .day').eq(i).prepend('<span>'+v+'</span>');
-	});
-	[...hours].forEach(function(v, i){
-		$('.countdown .hour').eq(i).prepend('<span>'+v+'</span>');
-	});
-	[...minutes].forEach(function(v, i){
-		$('.countdown .minute').eq(i).prepend('<span>'+v+'</span>');
-	});
-	[...seconds].forEach(function(v, i){
-		$('.countdown .second').eq(i).prepend('<span>'+v+'</span>');
-	});
-
-	$('.unit').each(function(i, v){
-		if($('span', this).length > 1 && $('span', this).eq(0).text() != $('span', this).eq(1).text()){
-			$(this).addClass('ani');
-		}
-	});
-}, 1000);
-
-
+})();
 </script>
 </body>
 </html>
