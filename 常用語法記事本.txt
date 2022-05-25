@@ -145,6 +145,37 @@ selector{
 靠下的話就寫成：left 20px bottom 10px
 
 
+################################################# 垂值置中 #################################################
+<div class="container">
+	<div class="content">內容</div>
+</div>
+
+body, html{
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+.container{
+	width: 100px;
+	height: 100%;
+	font-size: 0; /** 重要（container和content寬度一樣的話就要設） **/
+	background: blue;
+}
+.container:before{
+	content: "";
+	height: 100%;
+	vertical-align: middle;
+	display: inline-block;
+}
+.content{
+	width: 100px;
+	font-size: 16px;
+	background: red;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+
 ################################################# background-position縮寫 #################################################
 selector{
 	background: url(bg_hhmmss.png) 50% 50%/cover no-repeat;
@@ -295,6 +326,7 @@ input[type=checkbox]:checked, input[type=radio]:checked{
 	text-decoration: none;
 	text-align: center;
 	line-height: 1;
+	vertical-align: middle;
 	outline: 0;
 	border: none;
 	border-radius: 200px;
@@ -452,7 +484,7 @@ span:before{
 
 
 ################################################# gbox 所有參數（大部份的值為預設值） #################################################
-$('.popupbox').gbox('<p>訊息內容可以放HTML</p>', {
+$('.popupbox').gbox('<p>訊息內容可以放HTML</p>', { //點擊.popupbox開啟
 	addClass: null, //接受字串
 	titleBar: null, //接受字串
 	fixedPos: true, //跳出Lightbox是否鎖定畫面捲動
@@ -483,6 +515,8 @@ $('.popupbox').gbox('<p>訊息內容可以放HTML</p>', {
 		}
 	]
 });
+
+$.gbox.open('直接開啟');
 
 
 ################################################# tiny-slider 範例 #################################################
@@ -538,6 +572,25 @@ var slide = tns({
 
 slide.destroy();
 $('.slide').empty(); //如果要在.slide繼續做tns()的話
+
+
+################################################# axio常用寫法 #################################################
+showLoading();
+axios({
+	method: 'post',
+	url: '/LineageM/api/Event/E20220615/Exchange',
+	data: { token: eventToken }
+}).then(function($res){
+	hideLoading();
+	let res = $res.data;
+	if(res.Code == 1){
+		console.log(res.Data);
+	}else if(res.Code == -1){
+		ifCodeIsMinusOne(res.Message, res.Url);
+	}else{
+		$.gbox.open(res.Message);
+	}
+}).catch(function(e){console.log(e)}).finally(function(){hideLoading()});
 
 
 ################################################# Owl Carousel 範例 #################################################
@@ -626,6 +679,9 @@ $('.go-top').on('click', function(){
 	$(window).animate({scrollTop:0},500);
 });
 
+//純javascript沒有動畫
+window.scrollTo(0, 0);
+
 
 ################################################# cookie教學 #################################################
 [建立cookie]
@@ -646,11 +702,11 @@ document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; /
 
 ################################################# 常用cookie function #################################################
 //建立一個cookie
-function setCookie(cookie_name, cvalue, exdays) {
+function setCookie(cookie_name, cookie_value, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = "expires="+ d.toUTCString();
-	document.cookie = cookie_name + "=" + cvalue + ";" + expires + ";path=/";
+	document.cookie = cookie_name + "=" + cookie_value + ";" + expires + ";path=/";
 }
 
 //取cookie的值
@@ -663,7 +719,7 @@ function getCookie(cookie_name) {
 			while (c.charAt(0) == ' ') {
 			c = c.substring(1);
 		}
-			if (c.indexOf(name) == 0) {`
+			if (c.indexOf(name) == 0) {
 			return c.substring(name.length, c.length);
 		}
 	}
