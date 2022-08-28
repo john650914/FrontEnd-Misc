@@ -1,0 +1,137 @@
+.h5-countdown{
+	width: 93.333vw;
+	height: 20vw;
+	background: url(bg_dd.png) 50% 50%/100% 100% no-repeat;
+	position: absolute;
+	top: 50vw;
+	left: 50%;
+	z-index: 99;
+	transform: translateX(-50%);
+}
+.h5-countdown div{
+	display: inline-block;
+}
+.h5-countdown .h5-unit-text{
+	display: none;
+}
+.h5-countdown .h5-wrap{
+	width: 10.666vw;
+	height: 8.4vw;
+	text-align: center;
+	position: absolute;
+	top: 5.5vw;
+	display: none;
+}
+.h5-countdown .h5-wrap-day{
+	left: 67vw;
+	display: block;
+}
+.h5-countdown.within-one-day{
+	background: url(bg_hhmmss.png) 50% 50%/100% 100% no-repeat;
+}
+.h5-countdown.within-one-day:before, .h5-countdown.within-one-day:after{
+	content: "";
+	width: 20.533vw;
+	height: 20vw;
+	position: absolute;
+	left: 10.7vw;
+	top: 0;
+}
+.h5-countdown.within-one-day:before{
+	background: url(slogan1.png) 50% 50%/100% 100% no-repeat;
+	animation: showHide 2s infinite;
+}
+.h5-countdown.within-one-day:after{
+	opacity: 0;
+	background: url(slogan2.png) 50% 50%/100% 100% no-repeat;
+	animation: showHide 2s 1s infinite;
+}
+@keyframes showHide{
+	0%		{opacity: 0;}
+	10%		{opacity: 1;}
+	50%		{opacity: 1;}
+	60%		{opacity: 0;}
+	100%	{opacity: 0;}
+}
+.h5-countdown .h5-wrap-hour{
+	left: 33.6vw;
+}
+.h5-countdown .h5-wrap-minute{
+	left: 52.5vw;
+}
+.h5-countdown .h5-wrap-second{
+	left: 71vw;
+}
+.h5-countdown.within-one-day .h5-wrap{
+	display: block;
+}
+.h5-countdown.within-one-day .h5-wrap-day{
+	display: none;
+}
+.h5-countdown .h5-unit{
+	width: 5.333vw;
+	height: 8.4vw;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+}
+.h5-countdown .h5-unit span{
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	position: absolute;
+	left: 0;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.h5-countdown span[data-digit="0"]{
+	background-image: url(number_0.png);
+}
+.h5-countdown span[data-digit="1"]{
+	background-image: url(number_1.png);
+}
+.h5-countdown span[data-digit="2"]{
+	background-image: url(number_2.png);
+}
+.h5-countdown span[data-digit="3"]{
+	background-image: url(number_3.png);
+}
+.h5-countdown span[data-digit="4"]{
+	background-image: url(number_4.png);
+}
+.h5-countdown span[data-digit="5"]{
+	background-image: url(number_5.png);
+}
+.h5-countdown span[data-digit="6"]{
+	background-image: url(number_6.png);
+}
+.h5-countdown span[data-digit="7"]{
+	background-image: url(number_7.png);
+}
+.h5-countdown span[data-digit="8"]{
+	background-image: url(number_8.png);
+}
+.h5-countdown span[data-digit="9"]{
+	background-image: url(number_9.png);
+}
+.started .h5-countdown .h5-unit span:nth-child(1){
+	top: -8.4vw;
+}
+.started .h5-countdown .h5-unit span:nth-child(2){
+	top: 0;
+}
+.ani span:nth-child(1){
+	animation: ani1 .5s forwards;
+}
+.ani span:nth-child(2){
+	animation: ani2 .5s forwards;
+}
+@keyframes ani1{
+	from	{top: -8.4vw;}
+	to		{top: 0px;}
+}
+@keyframes ani2{
+	from	{top: 0px;}
+	to		{top: 8.4vw;}
+}
