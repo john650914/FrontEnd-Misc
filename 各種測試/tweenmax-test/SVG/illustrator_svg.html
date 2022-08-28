@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML5</title>
+<script src="js/gsap.min.js"></script>
+<script src="js/MotionPathPlugin.min.js"></script>
+<style>
+svg{
+	border: 1px solid red;
+}
+.path {
+  stroke-width: 1;
+  stroke: gray;
+  fill: none;
+}
+</style>
+</head>
+
+<body>
+
+<svg x="0px" y="0px" width="30vw" height="30vw" viewBox="0 0 768 768" enable-background="new 0 0 768 768" xml:space="preserve">
+	<path class="path" id="path1" stroke-miterlimit="10" d="M41,171c0,0,450-96,700,254c0,0-468-62-654,256 c0,0,164-476,642-504c0,0-554-44-684,242c0,0,276-74,424,276"/>
+	<path class="path" id="path2" stroke-miterlimit="10" d="M559,485c0,0-360-36-496,252 c0,0,126-418,660-390c0,0-294-178-686-50c0,0,458,32,670,376"/>
+	<g id="BALL1">
+		<path fill="#FF2E96" stroke="#231815" stroke-width="7.1891" stroke-miterlimit="10" d="M107.197,222.508 c-12.943,33.465,2.016,71.733,34.982,87.264c32.965,15.53,71.997,2.698,89.56-28.592c-20.83-3.211-43.564-10.136-66.274-20.835 C142.754,249.646,122.938,236.524,107.197,222.508z" />
+		<path fill="#FFFFFF" stroke="#231815" stroke-width="7.1891" stroke-miterlimit="10" d="M201.006,184.902 c-34.482-16.244-75.604-1.46-91.848,33.021c-0.714,1.515-1.365,3.045-1.961,4.584c15.741,14.016,35.557,27.138,58.268,37.836 c22.71,10.7,45.444,17.624,66.274,20.835c0.807-1.437,1.573-2.914,2.287-4.429C250.27,242.269,235.486,201.148,201.006,184.902z" />
+	</g>
+	<g id="BALL2">
+		<path fill="#00E748" stroke="#231815" stroke-width="7.1891" stroke-miterlimit="10" d="M473.8,472.273 c6.688,35.252,39.606,59.843,75.802,55.613c36.193-4.229,62.555-35.744,60.938-71.588c-19.383,8.275-42.344,14.406-67.278,17.319 C518.326,476.532,494.569,475.859,473.8,472.273z" />
+		<path fill="#FFFFFF" stroke="#231815" stroke-width="7.1891" stroke-miterlimit="10" d="M533.584,390.787 c-37.859,4.425-64.965,38.699-60.541,76.559c0.193,1.664,0.449,3.307,0.757,4.928c20.77,3.586,44.526,4.259,69.461,1.345 c24.935-2.913,47.896-9.044,67.278-17.319c-0.074-1.647-0.204-3.306-0.398-4.97C605.718,413.471,571.442,386.366,533.584,390.787z" />
+	</g>
+</svg>
+<a id="aaa" href="javascript:;">按下去</a>
+
+<script>
+document.querySelector('#aaa').addEventListener('click', function(){
+	gsap.to("#BALL1", {
+		duration: 5, 
+		ease: "power1.inOut",
+		motionPath:{
+			path: "#path1",
+			align: "#path1",
+			autoRotate: true,
+			alignOrigin: [0.5, 0.5]
+		}
+	});
+	gsap.to("#BALL2", {
+		duration: 5, 
+		ease: "power1.inOut",
+		motionPath:{
+			path: "#path2",
+			align: "#path2",
+			autoRotate: true,
+			alignOrigin: [0.5, 0.5]
+		}
+	});
+});
+
+</script>
+
+</body>
+
+</html>
