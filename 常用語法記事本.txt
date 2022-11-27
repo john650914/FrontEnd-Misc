@@ -354,6 +354,7 @@ table {
 
 ################################################# animation #################################################
 ※IE9不支援
+※有的css屬性不支援animation要來補一下
 
 縮寫語法：
 selector{
@@ -883,6 +884,12 @@ clean(document.body);
 
 
 
+
+
+！！！ Javascript字典 要加入 insertAdjacentHTML()
+！！！ Javascript字典 要加入 document.*.classList
+！！！ Javascript字典 補上 querySelector() 跟 querySelectorAll() 的詳細說明
+！！！ $(dom).each() javascript 要怎麼寫？
 
 
 <!-- <div class="fixed-bg sec1 isPC"></div> -->
