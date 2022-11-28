@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<title>HTML5</title>
+<script src="https://client-sdk.kakaogames.com/publishing/js/kakaogamesdk-3.2.2.js"></script>
+</head>
+<body>
+
+<script>
+KG.Configuration = {
+	"appId": 107765,
+			"appVersion": "1.0.0",
+			"jsKey": "1c32abba9f348ca69788bc55aeb65209",
+			"googleClientId": "1002041625464-4ime9v3tenh4k1gvt9somolj1qlit7ub.apps.googleusercontent.com",
+			"appleClientId": "com.kakaogames.sdk.unity-service",
+			"twitterConsumerKey": "kyc0uGQY0l4Gwn5cnD0ybmQ8R",
+			"twitterConsumerSecret": "r2FtiOTbzEFon4SW9CNEbDe9PnFXJyhXdpwQKRHyVnjPXaglJE",
+			"facebookAppId": "367886311408409",
+			"loginRedirectUri": "https://kakao-sdk-dev.s3.amazonaws.com/js/login/index.html",
+			"gamaniaClientId": "b2999770-aa47-4d52-a0db-8f27f93b6f9c",
+			"market": "gameWeb",
+			"serverType": "qa",
+			"kakaoGameLoginPageUrl": "https://kakao-sdk-dev.s3.amazonaws.com/js/publishing/login/index.html",
+};
+
+// 需要登入時，移動到各IDP的登入頁面
+var idpCode = KG.IdpCode.Google; // Google
+// idpCode = KG.IdpCode.Kakao; // Kakao
+// idpCode = KG.IdpCode.Facebook; // FB
+// idpCode = KG.IdpCode.SigninWithApple; //Apple
+// idpCode = KG.IdpCode.Twitter; //  Twitter
+// idpCode = KG.IdpCode.Gamania; // beanfun!
+
+KG.Session.start(function (result) {
+	console.log('start:' + JSON.stringify(result));
+});
+
+
+KG.SessionForCustomUI.login(KG.IdpCode.Google, function (result) {
+	console.log('google:' + result.isSuccess);
+});
+
+
+KG.SessionForCustomUI.login(idpCode, function(result) {
+    if (result.isSuccess) {
+		console.log('已登入');
+        //已經登入的狀態
+    } else {
+		console.log('未登入');
+        // start api未被呼叫或是所需設定遺漏時
+    }
+});
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- https://docs.google.com/document/d/1dX1fqyjFzF10YznbNKKG4Q2ziFAk_t0sf_IaR5rwSRg/edit#
+https://kakaogames.atlassian.net/wiki/spaces/KS3GFP/pages/422281298/1.6.+JavaScript+SDK+Installation
+https://kakao-sdk-dev.s3.amazonaws.com/js/login/index.html
+https://kakaogames.atlassian.net/wiki/spaces/KS3GFP/pages/412878488/2.2.+Google+Google+Game
+https://kakaogames.atlassian.net/wiki/spaces/KS3GFP/pages/413239333/1.1.+Initialization+and+Status+Change+Processing+example#1.1.4.-Start -->

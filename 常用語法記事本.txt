@@ -64,14 +64,14 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 }
 
 @function stroke($stroke, $color) {
-    $shadow: ();
-    $from: $stroke*-1;
-    @for $i from $from through $stroke {
-     @for $j from $from through $stroke {
-            $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
-        }
-    }
-    @return $shadow;
+	$shadow: ();
+	$from: $stroke*-1;
+	@for $i from $from through $stroke {
+	 @for $j from $from through $stroke {
+			$shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+		}
+	}
+	@return $shadow;
 }
 
 @mixin media($breakpoint:768px){
@@ -84,7 +84,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 ################################################# css常用設定 #################################################
 body, input, button, textarea, select, optgroup{
 	font-family: "PingFangTC-Regular", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
+	font-size: 16px;
 	color: #000;
 	line-height: 1;
 }
@@ -574,7 +574,11 @@ slide.destroy();
 $('.slide').empty(); //如果要在.slide繼續做tns()的話
 
 
-################################################# axio常用寫法 #################################################
+################################################# axios #################################################
+//get帶參數的用法：axios({method:'get', url:'url/users', params:{ID:123}})，或是url直接寫成'url/users?ID=123'
+//axios回傳一個物件，包含data、status、statusText、headers、config，所以要取資料要寫成res.data
+
+//常用範例：
 showLoading();
 axios({
 	method: 'post',
@@ -586,11 +590,22 @@ axios({
 	if(res.Code == 1){
 		console.log(res.Data);
 	}else if(res.Code == -1){
-		ifCodeIsMinusOne(res.Message, res.Url);
-	}else{
 		$.gbox.open(res.Message);
+	}else{
+		ifCodeIsMinusOne(res.Message, res.Url);
 	}
-}).catch(function(e){console.log(e)}).finally(function(){hideLoading()});
+}).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
+
+function showLoading(){
+	$('#loadingProgress').show();
+}
+function hideLoading(){
+	$('#loadingProgress').hide();
+}
+
+
+################################################# promise #################################################
+################################################# await #################################################
 
 
 ################################################# Owl Carousel 範例 #################################################
@@ -676,11 +691,69 @@ $(window).on('scroll', function(){
 	}
 })
 $('.go-top').on('click', function(){
-	$(window).animate({scrollTop:0},500);
+	$('html, body').animate({scrollTop:0},500); //原本寫$(window)沒用
 });
 
 //純javascript沒有動畫
 window.scrollTo(0, 0);
+
+
+
+################################################# mCustomScrollbar #################################################
+<link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<script src="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<style>
+html, body{
+	height: 100%;
+	margin: 0;
+}
+.mCSB_inside>.mCSB_container {
+	margin-right: 16px;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	width: 10px;
+	border: 1px solid gray;
+	background: red;
+	box-sizing: border-box;
+}
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar{
+	background: orange;
+}
+.mCSB_scrollTools{
+	opacity: 1;
+}
+.mCSB_scrollTools .mCSB_draggerRail{
+	width: 10px;
+	background: gray;
+}
+.mCSB_scrollTools .mCSB_draggerContainer{
+	right: -6px;
+}
+.content{
+	width: 300px;
+	height: 50%;
+}
+</style>
+</head>
+<body>
+<div class="content">
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+	<p>段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字段落文字</p>
+</div>
+<script>
+$('.content').mCustomScrollbar({
+	scrollInertia: 200
+});
+</script>
+
 
 
 ################################################# cookie教學 #################################################
@@ -756,6 +829,18 @@ var myAry = [
 console.log(returnAryObjVal('b','22','f', myAry)); //傳回33
 
 
+################################################# 將A陣列的值分成好幾個區塊存入B陣列（Split array into chunks）（分頁 pagination） #################################################
+var Ary = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
+var chunkSize = 3;
+var R = [];
+for (var i = 0; i < Ary.length; i += chunkSize){
+	R.push(Ary.slice(i, i + chunkSize));
+}
+console.log(R); //[["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["10"]]
+
+
+
 ################################################# 取得剪貼簿資料 #################################################
 $(document).on('paste', function(e){
 	var clipboard = e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
@@ -824,6 +909,9 @@ if (!re.test(input.value)){
 電話號碼：
 /^[+]?[(]?[\d]{1,4}[)]?([\d]?[-\s]?[\d]+){2,}$/;
 
+手機號碼09開頭+8碼：
+/^09[0-9]{8}$/
+
 Email：
 /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
@@ -873,11 +961,56 @@ clean(document.body);
 &emsp; 全形空格
 
 
+################################################# 三位一撇 #################################################
+function three(num) {
+	const parts = num.toString().split('.');
+	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	return parts.join('.');// '$' +
+}
+
+
+################################################# 取radio的值 #################################################
+$('input[name=inputName]:checked').val();
+document.querySelector('input[type=radio]:checked').value
+
+沒有:checked的話jQuery會回undefined
+
+
+################################################# checkbox是否被選中 #################################################
+$('.myCheckbox').is(':checked');
+
+document.getElementById("myCheck").checked //true or false
+
+
+################################################# 設定checkbox選中狀態 #################################################
+$('.myCheckbox').prop('checked', true);
+$('.myCheckbox').prop('checked', false);
+
+
+################################################# 選取select的option #################################################
+$('.selDiv option[value="SEL1"]').attr("selected", "selected"); //用value選
+ //用索引不知道怎麼選
 
 
 
 
 
+
+
+
+
+
+
+			function hasCommonValue(arr1, arr2){
+				for(var i = 0; i < arr1.length; i++){
+					for(var j = 0; j < arr2.length; j++){
+						if(arr1[i] === arr2[j]) {
+							return true;
+						}
+					}
+				}
+				return false;
+			}
 
 
 
