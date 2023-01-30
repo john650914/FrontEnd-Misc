@@ -418,7 +418,7 @@ selector{
 }
 
 
-################################################# list counter 自訂義列表數字的樣式 #################################################
+################################################# list counter 自訂義有序列表數字的樣式 #################################################
 ol{
 	list-style: none;
 	counter-reset: myCounter;
@@ -593,7 +593,7 @@ axios({
 	}else if(res.Code == -1){
 		$.gbox.open(res.Message);
 	}else{
-		ifCodeIsMinusOne(res.Message, res.Url);
+		youWillBeRedirected(res.Message, res.Url);
 	}
 }).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
 
@@ -1019,10 +1019,21 @@ $('.selDiv option[value="SEL1"]').attr("selected", "selected"); //用value選
 
 
 
-！！！ Javascript字典 要加入 insertAdjacentHTML()
-！！！ Javascript字典 要加入 document.*.classList
-！！！ Javascript字典 補上 querySelector() 跟 querySelectorAll() 的詳細說明
-！！！ $(dom).each() javascript 要怎麼寫？
+！！！ promise()、await()
+！！！ Javascript字典 要加入 replaceAll()
+！！！ 宣告變數時加入判斷再給值
+！！！ https://john650914.github.io/Vue/index.html 加一個 v-for + :class
+！！！ NodeList
+
+！！！ 怎麼window.html跟DOM-Elements.html都有？
+！！！ attachEvent()
+！！！ detachEvent()
+！！！ addEventListener()
+！！！ removeEventListener()
+！！！ 搞清楚到底是window方法還是DOM方法，
+！！！ 另外syntax.html也要更新一下
+
+
 
 
 <!-- <div class="fixed-bg sec1 isPC"></div> -->
