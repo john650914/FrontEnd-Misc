@@ -990,7 +990,71 @@ $('.myCheckbox').prop('checked', false);
 
 ################################################# 選取select的option #################################################
 $('.selDiv option[value="SEL1"]').attr("selected", "selected"); //用value選
- //用索引不知道怎麼選
+//用索引不知道怎麼選
+
+
+################################################# 判斷變數是否存在 check variable exits #################################################
+情境1, 判斷完全沒有宣告的變數 | 有宣告但沒有賦值 | 或是變數被指派為undefined：
+	if(typeof var1 !== 'undefined'){
+		alert('變數存在');
+	}else{
+		alert('變數不存在、沒有賦值或是值為undefined'); //執行這邊的程式
+	}
+
+情境2, 有時候會看到有人會直接用 if(var1){} 的寫法，跟是判斷變數否存在有點不樣：
+	//目的是判斷有宣告的變數是否未被賦值，或是其值為null、''、0、NaN、false、undefined <= 以上都會判斷為false
+	var var1;
+	if(var1){
+		alert('變數存在且條件式結果為true');
+	}else{
+		alert('變數存在但條件式結果為false'); //執行這邊的程式
+	}
+
+	//下面展示一下各種typeof的值，其中一個最詭異的是null回傳'object'…
+	typeof null => 'object'
+	typeof '' => 'string'
+	typeof 0 => 'number'
+	typeof NaN => 'number'
+	typeof false => 'boolean'
+	typeof undefined => 'undefined'
+
+情境3, 使用window.hasOwnProperty()來判斷全域是否存在某個變數：
+	var aaa;
+	function myFN(){return 'YES';}
+	window.hasOwnProperty('aaa'); //true
+	window.hasOwnProperty('myFN'); //true
+	window.hasOwnProperty('bbb'); //false
+
+	//不過要注意let、const、class不會建立全域的變數：
+	const pi = 3.14;
+	let message = 'Hi!';
+	class MyClass {}
+	window.hasOwnProperty('pi'); //false
+	window.hasOwnProperty('message'); //false
+	window.hasOwnProperty('MyClass'); //false
+
+情境4, 物件中判斷某個key是否存在：
+	const car = {
+		color: 'blue'
+	}
+	'color' in car; //true
+	car.hasOwnProperty('color'); //true
+
+
+################################################# H5相關 #################################################
+BGO SDK：https://chat-content.beanfun.com/beango-static-prod/sdk/beanfun.min.js
+
+判斷是否在H5
+BGO.check_app_exist(function (rp) {
+	if (rp.result !== null && rp.result !== undefined && rp.result === "ok") {
+		//是H5
+	} else {
+		//不是H5
+	}
+});
+
+
+
 
 
 

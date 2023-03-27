@@ -1,0 +1,16 @@
+bot token：MTA4NTgzNDczMzAyOTY5OTY4Ng.GMwbpI.5UbSGEvsK6kdgObWwUbAzyd6CG9iXPJ5BC0nso
+
+
+OAuth2 scopes URL：https://discord.com/api/oauth2/authorize?client_id=1085834733029699686&permissions=2147485696&scope=bot%20applications.commands
+
+
+
+
+
+
+ # Scrubbed by Glitch 2023-03-17T08:19:11+0000
+
+DISCORD_TOKEN=MTA4NTgzNDczMzAyOTY5OTY4Ng.GMwbpI.5UbSGEvsK6kdgObWwUbAzyd6CG9iXPJ5BC0nso
+APP_ID=1085834733029699686
+PUBLIC_KEY=4c2992e48f308c26ac73aac099bc32bb4315b19113804043cdc7d4d5e9ba34ff
+GUILD_ID=508085725577871360
