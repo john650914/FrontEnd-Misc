@@ -801,7 +801,23 @@ function getCookie(cookie_name) {
 }
 
 
+################################################# 判斷querystring是否包含某個key #################################################
+function checkUrlParameter(keyName) {
+  var urlParams = new URLSearchParams(window.location.search);
+  return urlParams.has(keyName);
+}
+
+
 ################################################# 傳回querystring的值 #################################################
+function getParameterByName(name) {
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(window.location.href);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 function returnQuerystringValue(key, url) {
 	if (!url) url = window.location.href;
 	key = key.replace(/[\[\]]/g, '\\$&').toLowerCase();
@@ -810,6 +826,25 @@ function returnQuerystringValue(key, url) {
 	if (!results) return null;
 	if (!results[2]) return '';
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+################################################# 在網址中加入新的querystring參數 #################################################
+function addQueryString(key, val) {
+	var url = location.href;
+	var separator = url.indexOf('?') !== -1 ? '&' : '?';
+	var result = url + separator + key + '=' + val
+	history.pushState(null, null, result);
+}
+
+
+################################################# 在網址中移除某個querystring參數 #################################################
+function removeQueryParam(urlString, paramToRemove) {
+	var url = new URL(urlString);
+	var searchParams = new URLSearchParams(url.search);
+	searchParams.delete(paramToRemove);
+	url.search = searchParams.toString();
+	return url.toString();
 }
 
 
@@ -941,6 +976,36 @@ function doPlaceholder(){
 		}).blur();
 	}
 }
+
+
+################################################# 取得子元素的索引值 #################################################
+<div id="parent">
+	<p>Child 1</p>
+	<p>Child 2</p>
+	<p id="child3">Child 3</p>
+	<p>Child 4</p>
+</div>
+
+function getIndex(ele){
+	return Array.from(ele.parentElement.children).indexOf(ele);
+}
+
+var myEle = document.querySelector('#child3')
+console.log(getIndex(myEle)); //2
+
+
+################################################# 頁面向下捲動超過視窗高度時顯示某元素 #################################################
+var targetElement = document.querySelector('#target');
+
+window.addEventListener('scroll', function() {
+	var scrollHeight = window.scrollY;
+	var windowHeight = window.innerHeight;
+	if (scrollHeight >= windowHeight) {
+		targetElement.style.display = 'block';
+	} else {
+		targetElement.style.display = 'none';
+	}
+});
 
 
 ################################################# 清除空的node #################################################
@@ -1096,6 +1161,20 @@ BGO.check_app_exist(function (rp) {
 ！！！ removeEventListener()
 ！！！ 搞清楚到底是window方法還是DOM方法，
 ！！！ 另外syntax.html也要更新一下
+
+！！！ parentElement、children、Array.from
+
+！！！ CSS filter
+
+！！！ swiper slide
+
+const str = "Hello";
+const lastChar = str.slice(-1);
+console.log(lastChar); // Output: "o"
+
+const str = "Hello";
+const lastChar = str.substring(str.length - 1);
+console.log(lastChar); // Output: "o"
 
 
 
