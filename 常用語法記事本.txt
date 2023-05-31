@@ -604,6 +604,26 @@ function hideLoading(){
 	$('#loadingProgress').hide();
 }
 
+//回傳一個axios
+function doAxios(url, dataObj){
+	showLoading();
+	return axios({
+		method: 'post',
+		url: url,
+		data: dataObj
+	})
+}
+
+doAxios('/LineageM/api/Event/E20220615/Exchange', {
+	token: eventToken
+}).then(($res)=>{
+	hideLoading();
+	let res = $res.data;
+	....
+}).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
+
+
+
 
 ################################################# promise #################################################
 ################################################# await #################################################

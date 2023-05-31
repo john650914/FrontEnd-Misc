@@ -12,22 +12,10 @@
 <body>
 
 <div id="app">
-	<ul>
-		<li v-for="v in names">{{v}}</li>
-	</ul>
+	<h2>這是index.html的原始HTML</h2>
+	<comp01></comp01>
 </div>
 
-<script>
-var vm = new Vue({
-	el: '#app',
-	data: {
-		names: [
-			'JOHN',
-			'JOE',
-			'JOJO'
-		]
-	}
-});
-</script>
+<script type="module" src="js/default.js"></script>
 </body>
 </html>
