@@ -623,6 +623,38 @@ doAxios('/LineageM/api/Event/E20220615/Exchange', {
 }).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
 
 
+################################################# Axios搭配Vuex #################################################
+function doAxios(payload, fn){
+	showLoading();
+	axios({
+		method: 'post',
+		url: payload.url,
+		data: payload.dataObj
+	}).then(function($res){
+		hideLoading();
+		let res = $res.data;
+		if(res.Code == 1){
+			fn(res);
+		}else if(res.Code == -1){showGbox(res.Message);}else{showGbox(res.Message, res.Url);}
+	}).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
+}
+
+doAxios({
+	url: '../../api/E20230620/UpdateUserInvitationCodeLog',
+	dataObj: {Seq:8, Flag:2, Token:this.eventToken}
+}, function(res){
+	console.log(res);
+	store.dispatch('init_event', {Page:2, NestType:0, CharacterId:0, Commit:'init_event2'});
+});
+
+doAxios({
+	url: '../../api/E20230620/UpdateUserInvitationCodeLog',
+	dataObj: {Seq:8, Flag:2, Token:this.eventToken}
+}, function(res){
+	commit('GetAllGraveTeam', res);
+});
+
+
 
 
 ################################################# promise #################################################
@@ -1147,10 +1179,6 @@ BGO.check_app_exist(function (rp) {
 
 
 
-
-
-
-
 			function hasCommonValue(arr1, arr2){
 				for(var i = 0; i < arr1.length; i++){
 					for(var j = 0; j < arr2.length; j++){
@@ -1187,6 +1215,16 @@ BGO.check_app_exist(function (rp) {
 ！！！ CSS filter
 
 ！！！ swiper slide
+
+！！！ JSON的部份翻譯一下
+
+！！！ Object.keys()的部份翻譯一下
+
+！！！ clientTop、scrollY、pageYOffset、Cookie、localStorage、sessionStorage
+
+！！！ history.pushstate()、popstate事件
+https://developer.mozilla.org/zh-TW/docs/Web/API/History_API
+
 
 const str = "Hello";
 const lastChar = str.slice(-1);

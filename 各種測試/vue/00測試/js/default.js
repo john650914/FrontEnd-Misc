@@ -6,6 +6,10 @@ const store = new Vuex.Store({
 	}
 })
 
+Vue.component('mybutton', {
+	template: '<button>我是按鈕元件</button>'
+});
+
 export const vm = new Vue({
 	el: '#app',
 	store,

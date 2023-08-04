@@ -32,6 +32,7 @@ Vue.component('inner-comp', {
 		<div>
 			<h2>這是inner-comp的HTML</h2>
 			<div>{{myState}}</div>
+			<mybutton></mybutton>
 		</div>
 	`,
 	computed: Vuex.mapState([
