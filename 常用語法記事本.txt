@@ -58,6 +58,16 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 @media screen and (max-width: 768px) { /*小於等於768px*/ }
 
 
+################################################# CI/CD佈版 #################################################
+做一個要佈版的tag：
+Repository > Tags（找最新版的版號）> New tag（右邊藍色的按鈕）> 到表單(Tag name)後用剛剛看到最新版的版號再加0.0.1（例：0.0.239 > 0.0.240 或 0.0.23 > 0.0.24）、然後Message寫剛才commit的Message > Create tag的按鈕按下去
+
+要去佈版了：
+CI/CD > Pipelines 按下去 > 看我剛才新增的tag有沒有五個勾勾（這時候上面會多一個deploy的tag，代表內網已經佈好了） > 如果要佈外網就按一下 deploy的tag的勾勾旁邊的齒輪，會跳play的按鈕，就佈了
+
+如果卡在第三個圈圈，把第三個圈圈暫停，第二個再跑一次
+
+
 ################################################# sass常用function #################################################
 @function vw($size, $breakpoint:768) {
 	@return ($size / $breakpoint) * 100vw;
@@ -99,9 +109,6 @@ input, button, textarea, select, optgroup{
 	appearance: none;
 	background: none;
 }
-
-
-################################################# -ms-設定 #################################################
 
 
 
