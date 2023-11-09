@@ -1223,7 +1223,7 @@ BGO.check_app_exist(function (rp) {
 
 ！！！ swiper slide
 
-！！！ JSON的部份翻譯一下
+！！！ JSON的部份翻譯一下 蛤？
 
 ！！！ Object.keys()的部份翻譯一下
 
