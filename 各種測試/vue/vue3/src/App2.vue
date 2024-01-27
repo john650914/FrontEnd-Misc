@@ -259,11 +259,11 @@ const computedValue = computed({
 	}
 });
 function changeComputed(p){
-  computedValue.value = p;
+	computedValue.value = p;
 }
 </script>
 <template>
-  <button @click="changeComputed('醬')">點我</button>
+	<button @click="changeComputed('醬')">點我</button>
 	{{computedValue}}
 </template> -->
 
@@ -959,8 +959,28 @@ const msg = ref('');
 
 
 
-<!----------------------------------------- 组件 v-model ----------------------------------------->
+<!----------------------------------------- 组件 v-model -> 从 Vue 3.4 开始，推荐的实现方式是使用 defineModel() 宏 ----------------------------------------->
+<!-- <script setup>
+import Comp5 from './components/test/Comp5.vue';
+import { ref } from 'vue';
+const count = ref(0);
+</script>
 
+<template>
+	<Comp5 v-model="count" />
+</template> -->
+
+<!-- 可以用 v-model 把这个 ref 绑定到一个原生 input 元素上 -->
+<script setup>
+import Comp6 from './components/test/Comp6.vue';
+import { ref } from 'vue';
+const msg = ref('Hello World!');
+</script>
+
+<template>
+	<h1>{{ msg }}</h1>
+	<Comp6 v-model="msg" />
+</template>
 
 
 
