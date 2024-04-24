@@ -1316,7 +1316,7 @@ BGO.check_app_exist(function (rp) {
 
 
 
-！！！ DOM變更事件
+！！！ DOM變更事件 < 是不是在哪裡已經有做範例了？好像anydoor後台有用，然後有問chatGPT？
 
 ！！！ promise()、await()
 ！！！ Javascript字典 要加入 replaceAll()
