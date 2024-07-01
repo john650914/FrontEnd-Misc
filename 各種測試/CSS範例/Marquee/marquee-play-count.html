@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{border:1px solid red; width:300px; height:100px; margin-bottom:50px;}
+	
+	/*******CSS3標準寫法*******/
+	#div1{
+		overflow-style:auto;
+		marquee-play-count:1; /*值為正整數或是"infinite"*/
+	}
+	#div2{
+		overflow-style:marquee-line;
+		marquee-play-count:infinite; /*值為正整數或是"infinite"*/
+	}
+	
+	/*******webkit寫法*******/
+	#div1{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:auto;
+		-webkit-marquee-repetition:1;
+	}
+	#div2{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:left;
+		-webkit-marquee-repetition:infinite;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">marquee-play-count:1;</div>
+	<div id="div2">marquee-play-count:infinite;</div>
+</body>
+</html>

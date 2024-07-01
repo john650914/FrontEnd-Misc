@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Box Size</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	table{
+		font:13px arial;
+		border-collapse:collapse;
+		width:600px;
+		margin-bottom:25px;
+	}
+	caption{
+		border:1px solid gray;
+		border-bottom:none;
+		background:#e8e8e8;
+		text-align:left;
+		padding:6px;
+		-webkit-margin-end:-1px;
+	}
+	th{
+		border:1px solid gray;
+		text-align:left;
+		padding:6px;
+	}
+	td{
+		border:1px solid gray;
+		padding:6px;
+		word-wrap:break-word;
+	}
+	
+	#table1{table-layout:auto;}
+	#table2{table-layout:fixed;}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<table id="table1">
+		<caption>table-layout:auto;</caption>
+		<tr><th>值</th><th>描 述</th></tr>
+		<tr><td>auto</td><td>自動表格佈局算法。表格和單元格的寬度隨內容的多少而變化。</td></tr>
+		<tr><td>fixed</td><td>固定表格佈局算法。表格或者列的寬度由table 或者col 元素決定，或者根據第一行的單元格寬度而定。</td></tr>
+		<tr><td>inherit</td><td>繼承父元素的屬性值。</td></tr>
+		<tr><td>test</td><td>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td></tr>
+	</table>
+	<table id="table2">
+		<caption>table-layout:fixed;</caption>
+		<tr><th>值</th><th>描 述</th></tr>
+		<tr><td>auto</td><td>自動表格佈局算法。表格和單元格的寬度隨內容的多少而變化。</td></tr>
+		<tr><td>fixed</td><td>固定表格佈局算法。表格或者列的寬度由table 或者col 元素決定，或者根據第一行的單元格寬度而定。</td></tr>
+		<tr><td>inherit</td><td>繼承父元素的屬性值。</td></tr>
+		<tr><td>test</td><td>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td></tr>
+	</table>
+	<table id="table2">
+		<caption>table-layout:fixed;另外在th加寬度</caption>
+		<tr><th style="width:100px;">值</th><th>描 述</th></tr>
+		<tr><td>auto</td><td>自動表格佈局算法。表格和單元格的寬度隨內容的多少而變化。</td></tr>
+		<tr><td>fixed</td><td>固定表格佈局算法。表格或者列的寬度由table 或者col 元素決定，或者根據第一行的單元格寬度而定。</td></tr>
+		<tr><td>inherit</td><td>繼承父元素的屬性值。</td></tr>
+		<tr><td>test</td><td>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td></tr>
+	</table>
+</body>
+</html>

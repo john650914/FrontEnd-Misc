@@ -1,0 +1,780 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0094)http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        		<meta name="robots" content="all">
+        <meta name="author" content="Kei™">
+        <meta name="Creation-Date" content="23-Aug-2009 17:10:00">
+        <title>HTML特殊又少用的標籤：ruby, rb, rt, rp, bdo, nobr, wbr,marquee,blink, multicol | Kei.tw eBook</title>
+        <link rev="made" href="mailto:blog@kei.tw">
+        <link rev="made" href="http://www.kei.tw/">
+        <link rel="shortcut icon" type="image/ico" href="http://ebook.kei.tw/wp-content/themes/default/img/favicon.ico">
+        <link rel="Bookmark" type="image/ico" href="http://ebook.kei.tw/wp-content/themes/default/img/favicon.ico">
+        <link rel="alternate" type="application/rss+xml" title="Kei.tw eBook" href="http://blog.kei.tw/feed">
+        <link rel="pingback" href="http://ebook.kei.tw/xmlrpc.php">
+        <script type="text/javascript" async="" src="./HTML特殊又少用的標籤_files/ga.js"></script><script type="text/javascript" src="./HTML特殊又少用的標籤_files/AC_RunActiveContent.js"></script>
+        <script type="text/javascript" src="./HTML特殊又少用的標籤_files/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="./HTML特殊又少用的標籤_files/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="./HTML特殊又少用的標籤_files/jquery.effects.core.js"></script>
+        <script type="text/javascript" src="./HTML特殊又少用的標籤_files/smoothscroll.js"></script>
+        <link type="text/css" media="screen" rel="stylesheet" href="./HTML特殊又少用的標籤_files/layout.css">
+        <script type="text/javascript">
+            $(function(){
+                $('.topSwitch').toggle(
+                    function(){
+                        $('#navigation').animate({'top':'0px', 'opacity':'1'});
+                        $(this).html('隱藏功能列');
+                    },
+                    function(){
+                        $('#navigation').animate({'top':'-41px', 'opacity':'0.5'});
+                        $(this).html('開啟功能列');
+                    }
+                );
+            });
+        </script>
+        <!--[if lte IE 9]>
+        	<script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+        	<link type="text/css" media="screen" rel="stylesheet" href="http://ebook.kei.tw/wp-content/themes/default/css/ie.css" />
+        <![endif]-->
+        <!--[if lte IE 6]>
+        	<link type="text/css" media="screen" rel="stylesheet" href="http://ebook.kei.tw/wp-content/themes/default/css/ie6.css" />
+            <div id="ie6">
+            	<div class="ie6Title">
+                	<h1><a href="http://ebook.kei.tw/">Kei.tw eBook</a></h1>
+                    <p>這是我的辭典也是我的分享。eMail/MSN:blog@kei.tw</p>
+                </div>
+            	<p>如果您使用IE 6以下版本，此網站將不支援。如要觀看此Blog資訊，請升級您的IE瀏覽器版本，或是選擇其他非IE瀏覽器。</p>
+                <p>請選擇以下瀏覽器進行更新或更換：</p>
+                <ul class="clearfix listfix">
+                	<li><a href="http://moztw.org/" title="Mozilla Firefox">Mozilla Firefox</a></li>
+                    <li><a href="http://www.google.com/chrome" title="Mozilla Firefox">Google Chrome</a></li>
+                    <li><a href="http://www.apple.com/safari" title="Mozilla Firefox">Apple Safari</a></li>
+                    <li><a href="http://www.opera.com/browser/" title="Mozilla Firefox">Opera</a></li>
+                    <li><a href="http://www.microsoft.com/taiwan/windows/ie" title="Mozilla Firefox">Internet Explorer 8</a></li>
+                </ul>
+            </div>
+        <![endif]-->
+		<script type="text/javascript">	
+			function dayImg(){
+				var d = new Date();
+				var w = parseInt(d.getDay());
+				var imgUrl = "url(http://ebook.kei.tw/wp-content/themes/default/img/week/img"+w+".jpg)"
+				document.getElementById('out-wrapper').style.backgroundImage = imgUrl;
+			}
+        </script>
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-19160302-5']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>        	<link rel="archives" title="2011 年 四月" href="http://ebook.kei.tw/2011/04">
+	<link rel="archives" title="2011 年 二月" href="http://ebook.kei.tw/2011/02">
+	<link rel="archives" title="2010 年 十一月" href="http://ebook.kei.tw/2010/11">
+	<link rel="archives" title="2010 年 九月" href="http://ebook.kei.tw/2010/09">
+	<link rel="archives" title="2010 年 七月" href="http://ebook.kei.tw/2010/07">
+	<link rel="archives" title="2010 年 六月" href="http://ebook.kei.tw/2010/06">
+	<link rel="archives" title="2010 年 五月" href="http://ebook.kei.tw/2010/05">
+	<link rel="archives" title="2009 年 十二月" href="http://ebook.kei.tw/2009/12">
+	<link rel="archives" title="2009 年 十一月" href="http://ebook.kei.tw/2009/11">
+	<link rel="archives" title="2009 年 十月" href="http://ebook.kei.tw/2009/10">
+	<link rel="archives" title="2009 年 八月" href="http://ebook.kei.tw/2009/08">
+	<link rel="archives" title="2009 年 四月" href="http://ebook.kei.tw/2009/04">
+	<link rel="archives" title="2009 年 三月" href="http://ebook.kei.tw/2009/03">
+	<link rel="archives" title="2009 年 二月" href="http://ebook.kei.tw/2009/02">
+	<link rel="archives" title="2008 年 十二月" href="http://ebook.kei.tw/2008/12">
+	<link rel="archives" title="2008 年 十一月" href="http://ebook.kei.tw/2008/11">
+	<link rel="archives" title="2008 年 十月" href="http://ebook.kei.tw/2008/10">
+        <link rel="alternate" type="application/rss+xml" title="Kei.tw eBook » 源料" href="http://ebook.kei.tw/feed">
+<link rel="alternate" type="application/rss+xml" title="Kei.tw eBook » 迴響源料" href="http://ebook.kei.tw/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Kei.tw eBook » HTML特殊又少用的標籤：ruby, rb, rt, rp, bdo, nobr, wbr,marquee,blink, multicol 迴響源料" href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html/feed">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ebook.kei.tw/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ebook.kei.tw/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Kei.tw eBook" href="http://ebook.kei.tw/">
+<link rel="start" title="html 是？" href="http://ebook.kei.tw/webtech/html_20081029.html">
+<link rel="prev" title="HTML的通用屬性：id, class, style, dir, lang, title, xml:lang" href="http://ebook.kei.tw/webtech/html-id-class-style-dir-lang-title-xmllang_20090211.html">
+<link rel="next" title="HTML的內嵌物件embed與背景音樂bgsound" href="http://ebook.kei.tw/webtech/html-embed-bgsound_20090215.html">
+<meta name="generator" content="WordPress 3.1.3">
+<link rel="shortlink" href="http://ebook.kei.tw/?p=128">
+
+<!-- All in One SEO Pack 1.6.13.2 by Michael Torbert of Semper Fi Web Design[451,567] -->
+<meta name="description" content="學習html時，曾經發現了幾個非常少見又有點特殊的標籤元素，意思是...看看就好，基本上都用不太到。">
+<meta name="keywords" content="bdo,blink,html,marquee,multicol,nobr,rb,rp,rt,ruby,wbr,網頁技術">
+<link rel="canonical" href="./HTML特殊又少用的標籤_files/HTML特殊又少用的標籤.htm">
+<!-- /all in one seo pack -->
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+    </head>
+
+    <body onload="dayImg();">
+    	<a name="top"></a>
+    	<div id="out-wrapper" style="background-image: url(http://ebook.kei.tw/wp-content/themes/default/img/week/img5.jpg); ">
+        	<div id="navigation">
+                <div class="navigation-block clearfix">
+                	<div class="search">
+                        <form id="searchform" method="get" action="http://ebook.kei.tw/">
+                            <input type="text" name="s" id="s" value="輸入關鍵字後,請直接按下enter">
+                        </form>
+                    </div>
+                    <div class="topFunction">
+                    	<span><a href="http://ebook.kei.tw/" title="Kei eBook 首頁">首頁</a></span>
+                    </div>
+                    <div class="topFunction">
+                    	<span>Kei Links</span>
+                        <ol class="listfix">
+                        	<li><a href="http://www.kei.tw/" title="Kei Website" target="_blank">Website</a></li>
+                            <li><a href="http://www.facebook.com/Kei.tw" title="Kei Facebook" target="_blank">Facebook</a></li>
+                            <li><a href="http://www.anobii.com/darkei/books" title="Kei anobii" target="_blank">anobii</a></li>
+                        </ol>
+                    </div>
+                    <div class="topFunction">
+                    	<span>Blog資訊</span>
+                    	<div class="site-info">
+                        	<div id="tag_cloud-3" class="widget widget_tag_cloud side-block"><p>標籤雲</p><div class="tagcloud"><a href="http://ebook.kei.tw/tag/bgsound" class="tag-link-13" title="1 篇主題" style="font-size: 8pt;">bgsound</a>
+<a href="http://ebook.kei.tw/tag/body" class="tag-link-14" title="1 篇主題" style="font-size: 8pt;">body</a>
+<a href="http://ebook.kei.tw/tag/border" class="tag-link-76" title="2 篇主題" style="font-size: 10.172413793103pt;">border</a>
+<a href="http://ebook.kei.tw/tag/caption" class="tag-link-32" title="1 篇主題" style="font-size: 8pt;">caption</a>
+<a href="http://ebook.kei.tw/tag/chrome" class="tag-link-155" title="2 篇主題" style="font-size: 10.172413793103pt;">Chrome</a>
+<a href="http://ebook.kei.tw/tag/col" class="tag-link-33" title="1 篇主題" style="font-size: 8pt;">col</a>
+<a href="http://ebook.kei.tw/tag/colgroup" class="tag-link-34" title="1 篇主題" style="font-size: 8pt;">colgroup</a>
+<a href="http://ebook.kei.tw/tag/css" class="tag-link-5" title="28 篇主題" style="font-size: 22pt;">CSS</a>
+<a href="http://ebook.kei.tw/tag/dd" class="tag-link-24" title="1 篇主題" style="font-size: 8pt;">dd</a>
+<a href="http://ebook.kei.tw/tag/display" class="tag-link-103" title="2 篇主題" style="font-size: 10.172413793103pt;">display</a>
+<a href="http://ebook.kei.tw/tag/div" class="tag-link-21" title="1 篇主題" style="font-size: 8pt;">div</a>
+<a href="http://ebook.kei.tw/tag/dl" class="tag-link-22" title="1 篇主題" style="font-size: 8pt;">dl</a>
+<a href="http://ebook.kei.tw/tag/dt" class="tag-link-23" title="1 篇主題" style="font-size: 8pt;">dt</a>
+<a href="http://ebook.kei.tw/tag/embed" class="tag-link-12" title="1 篇主題" style="font-size: 8pt;">embed</a>
+<a href="http://ebook.kei.tw/tag/form" class="tag-link-36" title="5 篇主題" style="font-size: 13.793103448276pt;">form</a>
+<a href="http://ebook.kei.tw/tag/frame" class="tag-link-44" title="1 篇主題" style="font-size: 8pt;">frame</a>
+<a href="http://ebook.kei.tw/tag/frameset" class="tag-link-43" title="2 篇主題" style="font-size: 10.172413793103pt;">frameset</a>
+<a href="http://ebook.kei.tw/tag/head" class="tag-link-11" title="2 篇主題" style="font-size: 10.172413793103pt;">head</a>
+<a href="http://ebook.kei.tw/tag/height" class="tag-link-78" title="2 篇主題" style="font-size: 10.172413793103pt;">height</a>
+<a href="http://ebook.kei.tw/tag/html" class="tag-link-4" title="28 篇主題" style="font-size: 22pt;">HTML</a>
+<a href="http://ebook.kei.tw/tag/ie" class="tag-link-132" title="2 篇主題" style="font-size: 10.172413793103pt;">IE</a>
+<a href="http://ebook.kei.tw/tag/ie6" class="tag-link-82" title="2 篇主題" style="font-size: 10.172413793103pt;">IE6</a>
+<a href="http://ebook.kei.tw/tag/img" class="tag-link-35" title="1 篇主題" style="font-size: 8pt;">img</a>
+<a href="http://ebook.kei.tw/tag/input" class="tag-link-37" title="1 篇主題" style="font-size: 8pt;">input</a>
+<a href="http://ebook.kei.tw/tag/java-script" class="tag-link-84" title="2 篇主題" style="font-size: 10.172413793103pt;">Java script</a>
+<a href="http://ebook.kei.tw/tag/label" class="tag-link-42" title="1 篇主題" style="font-size: 8pt;">label</a>
+<a href="http://ebook.kei.tw/tag/li" class="tag-link-20" title="1 篇主題" style="font-size: 8pt;">li</a>
+<a href="http://ebook.kei.tw/tag/meta" class="tag-link-10" title="1 篇主題" style="font-size: 8pt;">meta</a>
+<a href="http://ebook.kei.tw/tag/ol" class="tag-link-18" title="1 篇主題" style="font-size: 8pt;">ol</a>
+<a href="http://ebook.kei.tw/tag/optgroup" class="tag-link-40" title="1 篇主題" style="font-size: 8pt;">optgroup</a>
+<a href="http://ebook.kei.tw/tag/option" class="tag-link-39" title="1 篇主題" style="font-size: 8pt;">option</a>
+<a href="http://ebook.kei.tw/tag/png" class="tag-link-83" title="2 篇主題" style="font-size: 10.172413793103pt;">png</a>
+<a href="http://ebook.kei.tw/tag/position" class="tag-link-90" title="2 篇主題" style="font-size: 10.172413793103pt;">position</a>
+<a href="http://ebook.kei.tw/tag/select" class="tag-link-38" title="1 篇主題" style="font-size: 8pt;">select</a>
+<a href="http://ebook.kei.tw/tag/table" class="tag-link-25" title="5 篇主題" style="font-size: 13.793103448276pt;">table</a>
+<a href="http://ebook.kei.tw/tag/tbody" class="tag-link-27" title="1 篇主題" style="font-size: 8pt;">tbody</a>
+<a href="http://ebook.kei.tw/tag/td" class="tag-link-30" title="2 篇主題" style="font-size: 10.172413793103pt;">td</a>
+<a href="http://ebook.kei.tw/tag/textarea" class="tag-link-41" title="1 篇主題" style="font-size: 8pt;">textarea</a>
+<a href="http://ebook.kei.tw/tag/tfoot" class="tag-link-28" title="1 篇主題" style="font-size: 8pt;">tfoot</a>
+<a href="http://ebook.kei.tw/tag/th" class="tag-link-31" title="2 篇主題" style="font-size: 10.172413793103pt;">th</a>
+<a href="http://ebook.kei.tw/tag/thead" class="tag-link-26" title="1 篇主題" style="font-size: 8pt;">thead</a>
+<a href="http://ebook.kei.tw/tag/tr" class="tag-link-29" title="1 篇主題" style="font-size: 8pt;">tr</a>
+<a href="http://ebook.kei.tw/tag/ul" class="tag-link-19" title="1 篇主題" style="font-size: 8pt;">ul</a>
+<a href="http://ebook.kei.tw/tag/windows" class="tag-link-126" title="3 篇主題" style="font-size: 11.620689655172pt;">windows</a>
+<a href="http://ebook.kei.tw/tag/wordpress" class="tag-link-135" title="2 篇主題" style="font-size: 10.172413793103pt;">wordpress</a></div>
+</div>		<div id="recent-posts-3" class="widget widget_recent_entries side-block">		<p>最新文章</p>		<ul>
+				<li><a href="http://ebook.kei.tw/webtech/browser-development-tools_20110423.html" title="淺談瀏覽器開發工具">淺談瀏覽器開發工具</a></li>
+				<li><a href="http://ebook.kei.tw/software/chrome-flash-player_20110219.html" title="Chrome X Flash Player">Chrome X Flash Player</a></li>
+				<li><a href="http://ebook.kei.tw/software/freesoftware/failed-to-create-direct-3d-device_20101112.html" title="經驗分享：顯卡驅動與無法建立DirectX裝置的問題">經驗分享：顯卡驅動與無法建立DirectX裝置的問題</a></li>
+				<li><a href="http://ebook.kei.tw/software/freesoftware/firewall-antivirus_20100920.html" title="防火牆與防毒軟體的愛情史">防火牆與防毒軟體的愛情史</a></li>
+				<li><a href="http://ebook.kei.tw/software/mac-os-x-on-virtualbox_20100719.html" title="Mac OS X on Virtualbox">Mac OS X on Virtualbox</a></li>
+				</ul>
+		</div><div id="recent-comments-3" class="widget widget_recent_comments side-block"><p>最新回應</p><ul id="recentcomments"><li class="recentcomments">marco 在 <a href="http://ebook.kei.tw/system/windows-7-autolink_20100601.html/comment-page-1#comment-388">Windows 7 網絡與網路磁碟機的自動連線</a></li><li class="recentcomments">Angela 在 <a href="http://ebook.kei.tw/webtech/html-ol-ul-li_20081215.html/comment-page-1#comment-385">HTML排版：清單之有序清單與無序清單</a></li><li class="recentcomments"><a href="http://dream-on.no-ip.org/~dreamon/?p=110" rel="external nofollow" class="url">ie6下使用透明度png與javasript互動 | 萌想多媒體數位設計</a> 在 <a href="http://ebook.kei.tw/webtech/css-ie6-png-2_20091027.html/comment-page-1#comment-364">煩人的IE6與png圖檔問題2</a></li><li class="recentcomments"><a href="http://ebook.kei.tw/software/mac-os-x-on-virtualbox_20100719.html" rel="external nofollow" class="url">Mac OS X on Virtualbox | Kei.tw eBook</a> 在 <a href="http://ebook.kei.tw/software/virtual-system_20100719.html/comment-page-1#comment-362">虛擬電腦的淺談</a></li><li class="recentcomments">Kei 在 <a href="http://ebook.kei.tw/system/ramdisk-plus-format_20100715.html/comment-page-1#comment-361">Ramdisk Plus 針對格式化問題做設定</a></li></ul></div><div id="archives-3" class="widget widget_archive side-block"><p>彙整</p>		<ul>
+			<li><a href="http://ebook.kei.tw/2011/04" title="2011 年 四月">2011 年 四月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2011/02" title="2011 年 二月">2011 年 二月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2010/11" title="2010 年 十一月">2010 年 十一月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2010/09" title="2010 年 九月">2010 年 九月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2010/07" title="2010 年 七月">2010 年 七月</a>&nbsp;(4)</li>
+	<li><a href="http://ebook.kei.tw/2010/06" title="2010 年 六月">2010 年 六月</a>&nbsp;(4)</li>
+	<li><a href="http://ebook.kei.tw/2010/05" title="2010 年 五月">2010 年 五月</a>&nbsp;(3)</li>
+	<li><a href="http://ebook.kei.tw/2009/12" title="2009 年 十二月">2009 年 十二月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2009/11" title="2009 年 十一月">2009 年 十一月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2009/10" title="2009 年 十月">2009 年 十月</a>&nbsp;(14)</li>
+	<li><a href="http://ebook.kei.tw/2009/08" title="2009 年 八月">2009 年 八月</a>&nbsp;(1)</li>
+	<li><a href="http://ebook.kei.tw/2009/04" title="2009 年 四月">2009 年 四月</a>&nbsp;(3)</li>
+	<li><a href="http://ebook.kei.tw/2009/03" title="2009 年 三月">2009 年 三月</a>&nbsp;(9)</li>
+	<li><a href="http://ebook.kei.tw/2009/02" title="2009 年 二月">2009 年 二月</a>&nbsp;(14)</li>
+	<li><a href="http://ebook.kei.tw/2008/12" title="2008 年 十二月">2008 年 十二月</a>&nbsp;(7)</li>
+	<li><a href="http://ebook.kei.tw/2008/11" title="2008 年 十一月">2008 年 十一月</a>&nbsp;(6)</li>
+	<li><a href="http://ebook.kei.tw/2008/10" title="2008 年 十月">2008 年 十月</a>&nbsp;(2)</li>
+		</ul>
+</div><div id="categories-3" class="widget widget_categories side-block"><p>文章分類</p>		<ul>
+	<li class="cat-item cat-item-1"><a href="http://ebook.kei.tw/category/uncategorized" title="觀看全部分類為「未分類」的文章">未分類</a> (3)
+</li>
+	<li class="cat-item cat-item-127"><a href="http://ebook.kei.tw/category/hardware" title="觀看全部分類為「硬體」的文章">硬體</a> (3)
+<ul class="children">
+	<li class="cat-item cat-item-128"><a href="http://ebook.kei.tw/category/hardware/others" title="觀看全部分類為「周邊」的文章">周邊</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-136"><a href="http://ebook.kei.tw/category/system" title="觀看全部分類為「系統設定」的文章">系統設定</a> (5)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://ebook.kei.tw/category/webtech" title="關於網頁製作相關的技術分享">網頁技術</a> (58)
+<ul class="children">
+	<li class="cat-item cat-item-5"><a href="http://ebook.kei.tw/category/webtech/css" title="CSS樣式相關技術">CSS</a> (29)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://ebook.kei.tw/category/webtech/html" title="html 相關技術">HTML</a> (33)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://ebook.kei.tw/category/webtech/javascript" title="Java Script 相關技術">Java Script</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://ebook.kei.tw/category/software" title="軟體介紹與心得分享">軟體分享</a> (8)
+<ul class="children">
+	<li class="cat-item cat-item-9"><a href="http://ebook.kei.tw/category/software/trysoftware" title="觀看全部分類為「付費軟體」的文章">付費軟體</a> (7)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://ebook.kei.tw/category/software/freesoftware" title="觀看全部分類為「免費軟體」的文章">免費軟體</a> (7)
+</li>
+</ul>
+</li>
+		</ul>
+</div>                        </div>
+                    </div>
+                    <div class="topFunction">
+                    	<span>Friend</span>
+                        <ol class="listfix">
+                        	<li><a href="http://audi.tw/" title="【卜維丰】HTML / CSS / JavaScript" target="_blank">卜維丰</a></li>
+                            <li><a href="http://blog.lamb-mei.com/search/label/Flash" title="羊小咩&#39;s 咩仔部落格" target="_blank">羊小咩</a></li>
+                            <li><a href="http://phpwrite.blogspot.com/" title="腦殘 PHP " target="_blank">腦殘 PHP</a></li>
+                            <li><a href="http://blog.mukispace.com/" title="MUKI space" target="_blank">MUKI space</a></li>
+                        </ol>
+                    </div>
+                    <div class="topFunction">
+                    	<span><a href="http://ebook.kei.tw/feed" title="Syndicate this site using RSS" target="_blank">RSS</a></span>
+                    </div>
+                    <div class="topSwitch">開啟功能列</div>
+                </div>
+            </div>
+            <div id="inner-wrapper">
+                <div id="head-wrapper">
+                    <div class="title">
+                        <h1><a href="http://ebook.kei.tw/">Kei.tw eBook</a></h1>
+                        <p>這是我的辭典也是我的分享。eMail/MSN:blog@kei.tw</p>
+                    </div>
+                </div>
+                <div id="body-wrapper">
+                	<div class="body-block">
+                <!-- end header -->
+	<div id="content" class="widecolumn" role="main">
+
+	
+		
+
+		<div class="post-128 post type-post status-publish format-standard hentry category-html category-webtech tag-bdo tag-blink tag-html tag-marquee tag-multicol tag-nobr tag-rb tag-rp tag-rt tag-ruby tag-wbr" id="post-128">
+			<h2>HTML特殊又少用的標籤：ruby, rb, rt, rp, bdo, nobr, wbr,marquee,blink, multicol</h2>
+
+			<div class="entry">
+				<p>學習html時，曾經發現了幾個非常少見又有點特殊的標籤元素，意思是...看看就好，基本上都用不太到。<span id="more-128"></span></p>
+<h2>Ruby 注音標示</h2>
+<p>此標籤元素屬於xhtml 1.1版本的一部分，但尚未廣泛使用，因此可能會有瀏覽器不支援的情形。但主要用於中文與日文的注音標示，必須配合rb, rt, rp三個子元素。需要起始標籤與結尾標籤。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">name</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定元素名稱。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">tabindex</td>
+<td align="center" valign="middle">0~32767</td>
+<td align="center" valign="middle"></td>
+<td>設定tab鑑的移動順序。無障礙網頁常使用屬性之一。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">accesskey</td>
+<td align="center" valign="middle">任何一個字元</td>
+<td align="center" valign="middle"></td>
+<td>設定快速鍵文字，當系統為windows時，則為alt+設定字元；如果是mac系統則為ctrl+設定字元。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">language</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定文字語言。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<h2>Rb 注音標示對象</h2>
+<p>設定被標示的元素對象，為ruby的子元素。可用於ruby以外的行內元素(例如：span)</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">name</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定元素名稱。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">tabindex</td>
+<td align="center" valign="middle">0~32767</td>
+<td align="center" valign="middle"></td>
+<td>設定tab鑑的移動順序。無障礙網頁常使用屬性之一。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">accesskey</td>
+<td align="center" valign="middle">任何一個字元</td>
+<td align="center" valign="middle"></td>
+<td>設定快速鍵文字，當系統為windows時，則為alt+設定字元；如果是mac系統則為ctrl+設定字元。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">language</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定文字語言。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<h2>Rt 標示文字</h2>
+<p>設定顯示的注音文字，為ruby的子元素。可用於ruby以外的行內元素(例如：span)</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">name</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定元素名稱。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">tabindex</td>
+<td align="center" valign="middle">0~32767</td>
+<td align="center" valign="middle"></td>
+<td>設定tab鑑的移動順序。無障礙網頁常使用屬性之一。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">accesskey</td>
+<td align="center" valign="middle">任何一個字元</td>
+<td align="center" valign="middle"></td>
+<td>設定快速鍵文字，當系統為windows時，則為alt+設定字元；如果是mac系統則為ctrl+設定字元。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">language</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定文字語言。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">rbspan</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定rt所對應的rb數量，必須為正整數，最小單位為1。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<h2>Rp 顯示無法對應的符號</h2>
+<p>設定無法顯示的符號，例如括號等等，當瀏覽器不支援ruby等元素時，可能會被當作文字顯示，此時rp用來顯示開頭與結尾，若瀏覽器支援ruby等元素，則不顯示rp元素。rp為ruby的子元素。只能用於ruby元素內。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="exsample">
+<ol>
+<h1>範例26-1：ruby, rb, rt, rp 基本範例</h1>
+</ol>
+<ul>新年快樂         (         ㄒㄧㄣ ㄋㄧㄢˊ ㄎㄨㄞˋ ㄌㄜˋ         )<p></p>
+<li> 語法範例：&lt;ruby&gt;<br>
+&lt;rb&gt;新年快樂&lt;/rb&gt;<br>
+&lt;rp&gt;(&lt;/rp&gt;<br>
+&lt;rt rbspan="1"&gt;ㄒㄧㄣ ㄋㄧㄢˊ ㄎㄨㄞˋ ㄌㄜˋ&lt;/rt&gt;<br>
+&lt;rp&gt;)&lt;/rp&gt;<br>
+&lt;/ruby&gt;<p></p>
+<p>測試結果：只有ie7可正常顯示！(所以...真的看看就好)</p></li>
+</ul>
+</div>
+<h2>bdo 改變文字方向</h2>
+<p>用於改變文字方向，利用unicode雙向算法根據字元排列順序做改變。必須要有起始標籤與結尾標籤。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">dir</td>
+<td align="center" valign="middle">ltr/rtl</td>
+<td align="center" valign="middle"></td>
+<td>設定文字方向，ltr為從左至右，rtl為由右至左。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="exsample">
+<ol>
+<h1>範例27-1：bdo 基本範例</h1>
+</ol>
+<ul>由左至右：<bdo dir="ltr">新年快樂</bdo>。<br>
+由右至左：<bdo dir="rtl">新年快樂</bdo>。<p></p>
+<li> 語法範例：由左至右：&lt;bdo dir="ltr"&gt;新年快樂&lt;/bdo&gt;。<br>
+由右至左：&lt;bdo dir="rtl"&gt;新年快樂&lt;/bdo&gt;。<p></p>
+<p>特殊設計專用？</p></li>
+</ul>
+</div>
+<h2>nobr 禁止斷行</h2>
+<p>設定文字不得自動換行。不過已不建議使用，理由是nobr元素並沒有被W3C列入規範，建議改以CSS樣式：white-space:nowarp來取代。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<h2>wbr 設定斷行處</h2>
+<p>設定文字在某處設定斷行，通常與nobr搭配使用。跟br元素其實差不多，只是不需要搭配nobr，感覺使用nobr與wbr...好像搞的很勞神一樣，且wbr元素並沒有被W3C列入規範，不建議使用，所以使用br即可。</p>
+<p>使用方式：&lt;wbr id=''屬性值/&gt;</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<h2>marquee 跑馬燈</h2>
+<p>設定文字或是圖片等製作跑馬燈效果，並且可搭配behavior、direction屬性設定來顯示不同效果，但marquee元素並沒有被W3C列入規範，不建議使用。必須使用起始標籤與結尾標籤。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">behavior</td>
+<td align="center" valign="middle">scroll/slide/alternate</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈效果，分別為：捲動、滑動以及交替。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">direction</td>
+<td align="center" valign="middle">left/right/up/down</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈移動方向。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">scrollamount</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定移動距離，數值必須為正整數。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">scrolldelay</td>
+<td align="center" valign="middle">毫秒</td>
+<td align="center" valign="middle"></td>
+<td>設定效果延遲時間。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">truespeed</td>
+<td align="center" valign="middle">毫秒</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈移動速度。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">loop</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈執行次數，如為-1時則為無限循環。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">bgclolor</td>
+<td align="center" valign="middle">顏色值</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈背景顏色。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">height</td>
+<td align="center" valign="middle">數值/百分比</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈區域高度，數值必須為正整數，如果使用百分比則必須加上「%」符號。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">width</td>
+<td align="center" valign="middle">數值/百分比</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈區域寬度，數值必須為正整數，如果使用百分比則必須加上「%」符號。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">hspace</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈區域左右預留空間，數值必須為正整數。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">vspace</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈區域上下預留空間，數值必須為正整數。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">tabindex</td>
+<td align="center" valign="middle">0~32767</td>
+<td align="center" valign="middle"></td>
+<td>設定tab鍵時移動順序。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">accesskey</td>
+<td align="center" valign="middle">任何一個字元</td>
+<td align="center" valign="middle"></td>
+<td>設定快速鍵文字，如果系統為windows時，則為atl+設定字元；如果系統為mac時，則為ctrl+設定字元。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">language</td>
+<td align="center" valign="middle">字串</td>
+<td align="center" valign="middle"></td>
+<td>設定跑馬燈的語言碼。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="exsample">
+<ol>
+<h1>範例28-1：marquee 基本範例</h1>
+</ol>
+<ul>祝大家新年快樂！<p></p>
+<li> 語法範例：&lt;marquee behavior="slide" bgcolor="#1a1a1a" direction="left" hspace="10" vspace="15" width="680" height="18" loop="-1" truespeed="100" scrollamount="10" scrolldelay="100" style="color:#9C0;"&gt;祝大家新年快樂！&lt;/marquee&gt;</li>
+</ul>
+</div>
+<h2>blink 閃爍文字</h2>
+<p>設定文字閃爍效果，blink元素並沒有被W3C列入規範，不建議使用。必須使用起始標籤與結尾標籤。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="exsample">
+<ol>
+<h1>範例29-1：blink 基本範例</h1>
+</ol>
+<ul>新年快樂<p></p>
+<li> 語法範例：&lt;blink&gt;新年快樂&lt;/blink&gt;</li>
+</ul>
+</div>
+<h2>multicol 多重欄位</h2>
+<p>設定內容產生分欄方式排列，成多欄顯示。multicol元素並沒有被W3C列入規範，不建議使用。必須使用起始標籤與結尾標籤。</p>
+<div class="tableOutline">
+<table border="0" cellspacing="0" cellpadding="0" width="700">
+<thead>
+<tr>
+<td width="100" height="25" align="center" valign="middle">屬性</td>
+<td width="80" height="25" align="center" valign="middle">屬性值</td>
+<td width="80" height="25" align="center" valign="middle">預設值</td>
+<td height="25" align="center" valign="middle">說明</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="middle">cols</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定分割欄位數，數值必須為正整數，且為必要屬性，不得小於1。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">gutter</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle">10</td>
+<td>設定欄位之間的距離，數值必須為正整數。</td>
+</tr>
+<tr>
+<td align="center" valign="middle">width</td>
+<td align="center" valign="middle">數值</td>
+<td align="center" valign="middle"></td>
+<td>設定整體寬度，數值必須為正整數。</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="4">通用屬性：id, class, style, title, dir, lang, xml:lang</td>
+</tr>
+</tfoot>
+</table>
+</div>
+
+								<p>Tags: <a href="http://ebook.kei.tw/tag/bdo" rel="tag">bdo</a>, <a href="http://ebook.kei.tw/tag/blink" rel="tag">blink</a>, <a href="http://ebook.kei.tw/tag/html" rel="tag">HTML</a>, <a href="http://ebook.kei.tw/tag/marquee" rel="tag">marquee</a>, <a href="http://ebook.kei.tw/tag/multicol" rel="tag">multicol</a>, <a href="http://ebook.kei.tw/tag/nobr" rel="tag">nobr</a>, <a href="http://ebook.kei.tw/tag/rb" rel="tag">rb</a>, <a href="http://ebook.kei.tw/tag/rp" rel="tag">rp</a>, <a href="http://ebook.kei.tw/tag/rt" rel="tag">rt</a>, <a href="http://ebook.kei.tw/tag/ruby" rel="tag">ruby</a>, <a href="http://ebook.kei.tw/tag/wbr" rel="tag">wbr</a></p>
+				<p class="postmetadata alt">
+					<small>
+						This entry was posted
+												on 星期五, 二月 13th, 2009 at 20:33:40						and is filed under <a href="http://ebook.kei.tw/category/webtech/html" title="觀看分類「HTML」的全部文章" rel="category tag">HTML</a>, <a href="http://ebook.kei.tw/category/webtech" title="觀看分類「網頁技術」的全部文章" rel="category tag">網頁技術</a>.
+						You can follow any responses to this entry through the <a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html/feed">RSS 2.0</a> feed.
+
+													You can <a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html#respond">leave a response</a>, or <a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html/trackback" rel="trackback">trackback</a> from your own site.
+
+						
+					</small>
+				</p>
+
+			</div>
+		</div>
+        <div class="navigation">
+			<div class="alignleft">上一篇：<a href="http://ebook.kei.tw/webtech/html-id-class-style-dir-lang-title-xmllang_20090211.html" rel="prev">HTML的通用屬性：id, class, style, dir, lang, title, xml:lang</a></div>
+			<div class="alignright">下一篇：<a href="http://ebook.kei.tw/webtech/html-embed-bgsound_20090215.html" rel="next">HTML的內嵌物件embed與背景音樂bgsound</a></div>
+		</div>
+
+	
+<h2 id="comments">無迴響	<a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html#postcomment" title="發表迴響">»</a>
+</h2>
+
+	<p>仍無迴響。</p>
+
+<p><a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html/feed">本篇文章迴響的訂閱<abbr title="RSS (Really Simple Syndication)">源料</abbr>。</a>	<a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html/trackback" rel="trackback">TrackBack <abbr title="Universal Resource Locator">URL</abbr></a>
+</p>
+
+<h2 id="postcomment">發表迴響</h2>
+
+
+<form action="http://ebook.kei.tw/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>名稱 (必)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>電子郵件位址（並不會被公開） (必)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>個人網站</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+<p><textarea name="comment" id="comment" cols="58" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="送出迴響">
+<input type="hidden" name="comment_post_ID" value="128">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="bea2403cdf"></p>
+</form>
+
+
+
+	
+	</div>
+
+                        <!-- begin footer 頁尾 -->
+                        </div>
+                    </div>
+                
+                	                    <div id="foot-wrapper">
+                    	<div class="foot-block">
+                        	<p align="right"><a href="http://ebook.kei.tw/webtech/html-ruby-rb-rt-rp-bdo-nobr-wbrmarqueeblink-multicol_20090213.html#top">Kei.tw Blog</a></p>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+        
+    
+</body></html>

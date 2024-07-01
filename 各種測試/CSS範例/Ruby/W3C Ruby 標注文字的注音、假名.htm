@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)http://blog.roodo.com/rocksaying/archives/2912837.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="googlebot" content="index,follow">
+<meta name="robots" content="index,follow">
+<meta property="og:site_name" content="樂多日誌">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.roodo.com/rocksaying/archives/2912837.html">
+<meta property="og:title" content="W3C Ruby 標注文字的注音、假名@石頭閒語">
+<meta property="og:image" content="http://blog.roodo.com/rocksaying/dfdf02ca.png">
+<meta property="fb:app_id" content="107286602645990">
+<link rel="stylesheet" href="./W3C Ruby 標注文字的注音、假名_files/site.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://blog.roodo.com/rocksaying/rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://blog.roodo.com/rocksaying/atom.xml">
+<title>石頭閒語:W3C Ruby 標注文字的注音、假名 - 樂多日誌</title>
+<meta name="keywords" content="電腦技術,"> 
+<meta name="description" content="w3c 中日韓文 cjk
+
+前幾天我在每天固定活動的某ACG論壇中，看到有人問如何在文章的漢字上標注假名。某元老人士說可以用 HTML..."> 
+<script type="text/javascript" async="" src="./W3C Ruby 標注文字的注音、假名_files/ga.js"></script><script language="JavaScript">
+<!--
+var HOST = 'blog.roodo.com';
+var PATH = '/rocksaying';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires.toGMTString() : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function setCommentAuthor(f) {
+	  if(f.myicon != undefined)
+        setCookie("myicon", f.myicon.checked, now, PATH, HOST, '');
+    if(f.bake != undefined)
+        setCookie("bake", f.bake.checked, now, PATH, HOST, '');
+    if(!f.bake.checked) {
+         deleteCookie("author", PATH, HOST);
+         deleteCookie("email", PATH, HOST);
+         deleteCookie("url", PATH, HOST);
+         return true;
+    }
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+    if(f.author != undefined)
+        setCookie("author", f.author.value, now, PATH, HOST, '');
+    if(f.email != undefined)
+        setCookie("email", f.email.value, now, PATH, HOST, '');
+    if(f.url != undefined)
+        setCookie("url", f.url.value, now, PATH, HOST, '');
+}
+
+function removeCommentAuthor(f) {
+    deleteCookie("author", PATH, HOST);
+    deleteCookie("email", PATH, HOST);
+    deleteCookie("url", PATH, HOST);
+    deleteCookie("myicon", PATH, HOST);
+    deleteCookie("bake", PATH, HOST);
+    f.author.value = '';
+    f.email.value = '';
+    f.url.value = '';
+    f.myicon.value = '';
+    f.bake.value = '';
+}
+
+function CopyText(text2copy) 
+{
+  if (window.clipboardData) 
+  {   
+    window.clipboardData.setData("Text",text2copy);   
+    alert('該文章引用網址已複製到系統剪貼簿。');
+  } else {   
+  	var flashcopier = 'flashcopier';
+    if(!document.getElementById(flashcopier)) 
+    {
+   		var divholder = document.createElement('div');
+      divholder.id = flashcopier;
+    	document.body.appendChild(divholder);
+  	}
+		document.getElementById(flashcopier).innerHTML = '';
+	  var divinfo = '<embed src="http://blog.roodo.com/_img/clipboard.swf" FlashVars="clipboard='+escape(text2copy)+'" width="0" height="0" type="application/x-shockwave-flash"></embed>';//?里是??
+	  document.getElementById(flashcopier).innerHTML = divinfo;
+	  alert('該文章引用網址已複製到系統剪貼簿。');
+  }
+}
+
+function calcHeight(the_iframe){
+var iframeElement = document.getElementById(the_iframe);
+if (document.all) {
+//ie
+iframeElement.style.height =iframeElement.contentWindow.document.body.scrollHeight+ 'px';}
+else{
+//ff
+iframeElement.style.height = iframeElement.contentDocument.height + 'px';
+}
+}
+-->
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1132258-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size: 12px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{background:rgba(82, 82, 82, .7);padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.fb_dialog_advanced.fb_mobile{background:rgba(82, 82, 82, .7);padding:3px;-moz-border-radius:2px;-webkit-border-radius:2px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_mobile .fb_dialog_close_icon{top:11px
+}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size: 25px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog.loading.fb_mobile .fb_dialog_iframe{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zQ/r/pQebR9nCkAT.gif) no-repeat 50% 50%}
+.fb_dialog.loading.fb_mobile iframe{visibility:hidden}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size: 15px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:right}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:relative;vertical-align:text-bottom}
+.fb_iframe_widget span{position:relative}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size: 25px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size: 14px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size: 12px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size: 11px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size: 11px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size: 23px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size: 11px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size: 12px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size: 14px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size: 14px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size: 12px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr{left:-4px}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_rtl{left:2px}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{left:0;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+#fb_social_bar_container{position:fixed;left:0;right:0;height:34px;padding:0 25px;z-index:999999999}
+.fb_social_bar_iframe{position:relative;float:right;opacity:0;-moz-opacity:0;filter:alpha(opacity=0)}
+.fb_social_bar_iframe_bottom_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+.fb_social_bar_iframe_top_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+</style></head><body>
+<!-- HEADER -->
+<a name="top"></a>
+<!-- 共用置頂區塊 start -->
+<div id="topBody">
+<div id="roodo_logo">
+<li class="sroodo" style="float:left;list-style-type:none;"><a href="http://www.roodo.com/" target="_blank"><img height="26" width="45" src="./W3C Ruby 標注文字的注音、假名_files/clear.gif" border="0"></a></li>
+<li class="sblog" style="float:left;list-style-type:none;"><a href="http://blog.roodo.com/" target="_blank"><img height="26" width="45" src="./W3C Ruby 標注文字的注音、假名_files/clear.gif" border="0"></a></li>
+<li style="float:left;list-style-type:none;padding-top: 4px;"><span style="color: #d6d6d6;"> │ </span></li>
+<li class="smagz" style="float:left;list-style-type:none;"><a href="http://magz.roodo.com/" target="_blank"><img height="26" width="60" src="./W3C Ruby 標注文字的注音、假名_files/clear.gif" border="0"></a></li>
+</div>
+<!-- 
+<A href="http://www.roodo.com/" target="_blank"><IMG alt="樂多首頁" src="http://cdn.rimg.tw/images/blog/toolbar/icon_roodo.gif" border="0" title="樂多首頁" align="top"></A>
+<A href="http://magz.roodo.com/" target="_blank"><IMG alt="樂多新文創" border="0" src="http://cdn.rimg.tw/images/blog/toolbar/icon_magz.gif" title="樂多新文創" align="top"></A><A href="http://blog.roodo.com/" target="_blank"><IMG alt="樂多日誌" border="0" src="http://cdn.rimg.tw/images/blog/toolbar/icon_blog.gif" title="樂多日誌" align="top"></A>
+ -->
+<div id="roodo_logo" style="padding-top: 4px; color: #d6d6d6;">
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://adv.roodo.com/www/delivery/ajs.php':'http://adv.roodo.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=91");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/ajs.php"></script><noscript>&lt;a href='http://adv.roodo.com/www/delivery/ck.php?n=a300088c&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='http://adv.roodo.com/www/delivery/avw.php?zoneid=91&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=a300088c' border='0' alt='' /&gt;&lt;/a&gt;</noscript>
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://adv.roodo.com/www/delivery/ajs.php':'http://adv.roodo.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=297");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/ajs(1).php"></script><noscript>&lt;a href='http://adv.roodo.com/www/delivery/ck.php?n=a17680d2&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='http://adv.roodo.com/www/delivery/avw.php?zoneid=297&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=a17680d2' border='0' alt='' /&gt;&lt;/a&gt;</noscript>
+</div>
+			<div id="topnav">
+			<ul>	
+									<li><a href="http://member.roodo.com/members/new" class="topside">建立Blog</a></li><li>│</li><li><a class="topside" href="http://adm.blog.roodo.com/login?PreURI=http://blog.roodo.com/rocksaying/archives/2912837.html">登入 »</a></li>
+
+							</ul>
+			</div>
+</div><span style="clear:both;"></span>
+<!-- 共用置頂區塊 end --><div id="container">
+	<div id="banner">
+		<h1 class="blogtitle"><a href="http://blog.roodo.com/rocksaying" accesskey="1">石頭閒語</a></h1>
+		<div class="description" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><div><a href="http://blog.roodo.com/rocksaying/archives/258097.html"><img alt="[Licensed by GNU FDL]" src="./W3C Ruby 標注文字的注音、假名_files/0db352d5.png"></a><br>
+Rock's Saying <br>
+遊手好閒的石頭成的部落格 <br>
+Open Your Mind, Use the Source! </div>
+<script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/myscript.js"></script><ul class="categories"><li><a href="http://blog.roodo.com/rocksaying/archives/cat_42836.html">電腦技術</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242545.html">Programming</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242667.html">C/C++/C#/Java</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242543.html">PHP</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242544.html">JavaScript</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_343491.html">Ruby</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242547.html">SQL/Database</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242578.html">Copyleft/Free Software</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_42837.html">經濟學/奧地利經濟學派</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_242558.html">老子與哲學</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_43946.html">閱讀隨筆</a></li>
+<li><a href="http://blog.roodo.com/rocksaying/archives/cat_42838.html">生活記事</a></li>
+<li><form style="display:inline;" action="http://search.blog.roodo.com/index.php" method="get"><button type="submit" value="搜尋" style="border:0;font-size:9pt;font-style:normal;margin:0;padding:0;cursor:pointer;" onclick="var q=this.nextSibling;if(/[^s]+/.test(q.value)) return true; q.focus(); return false;">搜尋&gt;</button><input type="text" name="q" size="8" style="border:1px solid black;background-color:#ffffcc;font-size:9pt;"><input type="hidden" name="blog" value="rocksaying"><input type="hidden" name="sort" value="c"></form></li></ul></div>
+	</div>
+	<div class="blog">
+	<div class="englishTrans">&lt;<a title="Translate this page by Google language tool" target="_blank" href="http://translate.google.com/translate?hl=en&langpair=zh%7Cen&ie=UTF-8&u=http://blog.roodo.com/rocksaying/archives/2912837.html">Translate to English</a>&gt;</div><div class="dir">
+	<a class="amenu" href="http://blog.roodo.com/rocksaying/archives/2911887.html" title="&lt;&lt; TWPUG問答 - 按了重新整理後又新增一筆相同資料?">&lt;&lt;&lt;</a>	| <a class="amenu" href="http://blog.roodo.com/rocksaying/" title="回blog首頁">首頁</a> |
+	<a class="amenu" href="http://blog.roodo.com/rocksaying/archives/2915815.html" title="走上程式設計之路是否須具備興趣? &gt;&gt;">&gt;&gt;&gt;</a>	</div>
+	<h2 class="blog_date2">2007<br><span style="font-size: 20px; ">26</span><br>三月</h2>
+		<div class="blogbody">
+		<h3 class="blogbogy_title2"><img class="blogbody_title_img" src="./W3C Ruby 標注文字的注音、假名_files/d6419aa1.png" title="電腦技術" alt="電腦技術">
+						W3C Ruby 標注文字的注音、假名
+		</h3>
+						<div class="main" style="clear: both; padding-bottom: 0px; padding-top: 0px; margin-bottom: 0px; ">
+										<div class="tags"><span><button class="tagItem" onclick="location.href=&#39;http://search.blog.roodo.com/index.php?blog=rocksaying&amp;sort=c&amp;q=w3c&#39;;">w3c</button><button class="tagItem" onclick="location.href=&#39;http://search.blog.roodo.com/index.php?blog=rocksaying&amp;sort=c&amp;q=%E4%B8%AD%E6%97%A5%E9%9F%93%E6%96%87&#39;;">中日韓文</button><button class="tagItem" onclick="location.href=&#39;http://search.blog.roodo.com/index.php?blog=rocksaying&amp;sort=c&amp;q=cjk&#39;;">cjk</button></span></div>
+<p>
+前幾天我在每天固定活動的某ACG論壇中，看到有人問如何在文章的漢字上標注假名。某元老人士說可以用 HTML 中的 Ruby 標籤。這我以前沒用過，當下就去搜尋相關資訊。
+</p>
+<p>
+Ruby 標籤屬於 W3C XHTML 1.1 規範項目，規範內容查閱《<a href="http://www.w3.org/TR/ruby/" class="outside" target="_blank" title="外部連結:http://www.w3.org/TR/ruby/">Ruby Annotation<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a>》。原本是 Micorsoft IE 5.5版加進的延伸功能，後來成為 W3C XHTML 1.1 規範項目之一，目前 IE 以外的瀏覽器仍未普遍支援此標籤。Firefox 的使用者可以安裝 ぴろ 氏提供的「<a href="http://piro.sakura.ne.jp/xul/_rubysupport.html.en" class="outside" target="_blank" title="外部連結:http://piro.sakura.ne.jp/xul/_rubysupport.html.en">XHTML Ruby Support<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a>」擴充套件。
+</p><div></div></div>
+				
+				<div class="main"><h3>Ruby 標籤語法</h3>
+<p>
+Ruby 標籤實際上由<code>&lt;ruby&gt;</code>, <code>&lt;rb&gt;</code>, <code>&lt;rt&gt;</code> 三個標籤元素構成，一般還會配合選用性的 <code>&lt;rp&gt;</code> 標籤。<code>&lt;ruby&gt;</code>標示文字區域；<code>&lt;rb&gt;</code>標示主要文字內容；<code>&lt;rt&gt;</code>標示旁注文字內容，即注音、假名等。<code>&lt;rp&gt;</code>則是不支援 Ruby 標籤之瀏覽器顯示的文字內容。
+</p>
+<pre>一個
+<code>&lt;ruby&gt;</code>
+    <code>&lt;rb&gt;</code>文字<code>&lt;/rb&gt;</code>
+    <code>&lt;rt&gt;</code>ㄨㄣˊㄗˋ<code>&lt;/rt&gt;</code>
+<code>&lt;/ruby&gt;</code>
+</pre>
+<h3>Ruby 使用範例</h3>
+<p style="font-family:標楷體;">
+  <ruby><rb>囧</rb><rt>ㄐㄩㄥˇ</rt></ruby>，大明也。<br>
+  江淹：「<ruby><rb>囧</rb><rt>ㄐㄩㄥˇ</rt></ruby><ruby><rb>囧</rb><rt>ㄐㄩㄥˇ</rt></ruby>秋月明，憑軒<ruby><rb>絰</rb><rt>ㄉㄧㄝˊ</rt></ruby><ruby><rb>麑</rb><rt>ㄋㄧˊ</rt></ruby>老。」
+</p>
+<p>
+  <ruby><rb>夏</rb><rt>なつ</rt></ruby>の<ruby><rb>向日葵</rb><rt>ひまわり</rt></ruby>
+</p>
+<h5>with &lt;rp&gt;</h5>
+<p>
+  <ruby><rb>夏</rb><rp>(</rp><rt>なつ</rt><rp>)</rp></ruby>の<ruby><rb>向日葵</rb><rp>(</rp><rt>ひまわり</rt><rp>)</rp></ruby>
+</p>
+
+<div><div id="highlighter_425228" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">p</code> <code class="xml color1">style</code><code class="xml plain">=</code><code class="xml string">"font-family:標楷體;"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;囧&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ㄐㄩㄥˇ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;，大明也。&lt;</code><code class="xml keyword">br</code><code class="xml plain">/&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">江淹：「&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;囧&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ㄐㄩㄥˇ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;囧&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ㄐㄩㄥˇ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;秋月明，</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">憑軒&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;絰&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ㄉㄧㄝˊ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;麑&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ㄋㄧˊ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;老。」</code></div><div class="line number5 index4 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">p</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">p</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;夏&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;なつ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;の&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;向日葵&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ひまわり&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">p</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">h5</code><code class="xml plain">&gt;with &lt;</code><code class="xml keyword">rp</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">h5</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">p</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;夏&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rp</code><code class="xml plain">&gt;(&lt;/</code><code class="xml keyword">rp</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;なつ&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rp</code><code class="xml plain">&gt;)&lt;/</code><code class="xml keyword">rp</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;の</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rb</code><code class="xml plain">&gt;向日葵&lt;/</code><code class="xml keyword">rb</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rp</code><code class="xml plain">&gt;(&lt;/</code><code class="xml keyword">rp</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rt</code><code class="xml plain">&gt;ひまわり&lt;/</code><code class="xml keyword">rt</code><code class="xml plain">&gt;&lt;</code><code class="xml keyword">rp</code><code class="xml plain">&gt;)&lt;/</code><code class="xml keyword">rp</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">ruby</code><code class="xml plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">p</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<br><br>
+<div align="center">
+<div class="img_frame " style="width: 500px; "><img src="./W3C Ruby 標注文字的注音、假名_files/dfdf02ca.png" title="IE 效果圖" alt="IE 可顯示 W3C Ruby 標籤的效果" class="" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; "><br><span style="color: rgb(204, 102, 0); ">圖1: IE 效果圖</span></div>
+<br><br>
+<div class="img_frame " style="width: 500px; "><img src="./W3C Ruby 標注文字的注音、假名_files/a0c1cb78.png" title="Firefox加裝Ruby Support 效果圖" alt="Firefox加裝Ruby Support 後可顯示 W3C Ruby 標籤的效果" class="" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; "><br><span style="color: rgb(204, 102, 0); ">圖2: Firefox加裝Ruby Support 效果圖</span></div>
+<br><br>
+<div class="img_frame " style="width: 500px; "><img src="./W3C Ruby 標注文字的注音、假名_files/6113455b.png" title="Opera 效果圖" alt="Opera不支援Ruby標籤，顯示替代效果" class="" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; "><br><span style="color: rgb(204, 102, 0); ">圖3: Opera 效果圖</span></div>
+</div>
+
+<ul>
+<li><a href="http://www.w3.org/TR/ruby/" class="outside" target="_blank" title="外部連結:http://www.w3.org/TR/ruby/">W3C: Ruby Annotation<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></li>
+<li><a href="http://zh.wikipedia.org/wiki/%E6%97%81%E8%A8%BB%E6%A8%99%E8%A8%98" class="outside" target="_blank" title="外部連結:http://zh.wikipedia.org/wiki/%E6%97%81%E8%A8%BB%E6%A8%99%E8%A8%98">Wiki: 旁注標記<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93" class="outside" target="_blank" title="外部連結:http://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93">Wiki: ルビ<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></li>
+<li><a href="http://piro.sakura.ne.jp/xul/_rubysupport.html.en" class="outside" target="_blank" title="外部連結:http://piro.sakura.ne.jp/xul/_rubysupport.html.en">XHTML Ruby Support<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></li>
+<li><a href="http://jedi.org/blog/archives/004813.html" class="outside" target="_blank" title="外部連結:http://jedi.org/blog/archives/004813.html">W3C Ruby | Jedi's BLOG<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></li>
+</ul><div></div></div>
+		 				<div class="main">	
+		<h3>您可能有興趣的文章：</h3><div><img style="vertical-align:middle;" src="./W3C Ruby 標注文字的注音、假名_files/icon_article.gif" border="0"> <a href="http://blog.roodo.com/rocksaying/archives/5895849.html" class="aposted">美化不可編輯的表單欄位</a></div><div><img style="vertical-align:middle;" src="./W3C Ruby 標注文字的注音、假名_files/icon_article.gif" border="0"> <a href="http://blog.roodo.com/rocksaying/archives/15639369.html" class="aposted">使用 PulseAudio 命令列工具切換應用程式使用的音效設備</a></div><div><img style="vertical-align:middle;" src="./W3C Ruby 標注文字的注音、假名_files/icon_article.gif" border="0"> <a href="http://blog.roodo.com/rocksaying/archives/12050023.html" class="aposted">NuForce Icon Mobile 與 Foobar2000/ASIO</a></div><div><img style="vertical-align:middle;" src="./W3C Ruby 標注文字的注音、假名_files/icon_article.gif" border="0"> <a href="http://blog.roodo.com/rocksaying/archives/333355.html" class="aposted">TerraTec Aureon Xfire 1723 輸出評測與個人使用經驗</a></div><img style="vertical-align:middle;" src="./W3C Ruby 標注文字的注音、假名_files/icon_article.gif" border="0"> <a href="http://blog.roodo.com/rocksaying/archives/12889415.html" class="aposted">XDG規範概念說明</a></div>	
+				<div class="posted"><a target="_blank" href="http://twitter.com/?status=W3C%20Ruby%20%E6%A8%99%E6%B3%A8%E6%96%87%E5%AD%97%E7%9A%84%E6%B3%A8%E9%9F%B3%E3%80%81%E5%81%87%E5%90%8D%20http%3A%2F%2Fblog.roodo.com%2Frocksaying%2Farchives%2F2912837.html" class="bookmarklet"><img src="./W3C Ruby 標注文字的注音、假名_files/de2c53c0.png" alt="[+]twitter" title="[+]twitter" border="0"></a> <a target="_blank" href="http://www.hemidemi.com/user_bookmark/new?copy=1&url=http%3A%2F%2Fblog.roodo.com%2Frocksaying%2Farchives%2F2912837.html&title=W3C%20Ruby%20%E6%A8%99%E6%B3%A8%E6%96%87%E5%AD%97%E7%9A%84%E6%B3%A8%E9%9F%B3%E3%80%81%E5%81%87%E5%90%8D&description=w3c%E4%B8%AD%E6%97%A5%E9%9F%93%E6%96%87cjk%E5%89%8D%E5%B9%BE%E5%A4%A9%E6%88%91%E5%9C%A8%E6%AF%8F%E5%A4%A9%E5%9B%BA%E5%AE%9A%E6%B4%BB%E5%8B%95%E7%9A%84%E6%9F%90ACG%E8%AB%96%E5%A3%87%E4%B8%AD%EF%BC%8C%E7%9C%8B%E5%88%B0%E6%9C%89%E4%BA%BA%E5%95%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E7%9A%84%E6%BC%A2%E5%AD%97%E4%B8%8A%E6%A8%99%E6%B3%A8%E5%81%87%E5%90%8D%E3%80%82%E6%9F%90%E5%85%83%E8%80%81%E4%BA%BA%E5%A3%AB%E8%AA%AA%E5%8F%AF%E4%BB%A5%E7%94%A8%20HTML%20%E4%B8%AD%E7%9A%84%20Ruby%20%E6%A8%99%E7%B1%A4%E3%80%82%E9%80%99%E6%88%91%E4%BB%A5%E5%89%8D%E6%B2%92%E7%94%A8%E9%81%8E%EF%BC%8C%E7%95%B6%E4%B8%8B%E5%B0%B1%E5%8E%BB%E6%90%9C%E5%B0%8B%E7%9B%B8%E9%97%9C%E8%B3%87%E8%A8%8A%E3%80%82Ruby%20%E6%A8%99%E7%B1%A4%E5%B1%AC%E6%96%BC%20W3C%20XHTML%201.1%20%E8%A6%8F%E7%AF%84%E9%A0%85%E7%9B%AE%EF%BC%8C%E8%A6%8F%E7%AF%84%E5%85%A7%E5%AE%B9%E6%9F%A5%E9%96%B1%E3%80%8ARuby%20Annotation%E3%80%8B%E3%80%82%E5%8E%9F%E6%9C%AC%E6%98%AF%20Micorsoft%20IE%205.5%E7%89%88%E5%8A%A0%E9%80%B2%E7%9A%84%E5%BB%B6%E4%BC%B8%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%BE%8C%E4%BE%86%E6%88%90%E7%82%BA%20W3C%20XHTML%201.1%20%E8%A6%8F%E7%AF%84%E9%A0%85%E7%9B%AE%E4%B9%8B%E4%B8%80%EF%BC%8C%E7%9B%AE%E5%89%8D%20IE%20%E4%BB%A5%E5%A4%96%E7%9A%84%E7%80%8F%E8%A6%BD%E5%99%A8%E4%BB%8D%E6%9C%AA%E6%99%AE%E9%81%8D%E6%94%AF%E6%8F%B4%E6%AD%A4%E6%A8%99%E7%B1%A4%E3%80%82Firefox%20%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%9D%20%E3%81%B4%E3%82%8D%20%E6%B0%8F%E6%8F%90%E4%BE%9B%E7%9A%84%E3%80%8CXHTML%20Ruby%20Support%E3%80%8D%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6%E3%80%82" class="bookmarklet"><img src="./W3C Ruby 標注文字的注音、假名_files/06dfdbf1.gif" alt="[+]HEMIDEMI" title="[+]HEMIDEMI" border="0"></a> <a target="_blank" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fblog.roodo.com%2Frocksaying%2Farchives%2F2912837.html&t=W3C%20Ruby%20%E6%A8%99%E6%B3%A8%E6%96%87%E5%AD%97%E7%9A%84%E6%B3%A8%E9%9F%B3%E3%80%81%E5%81%87%E5%90%8D" class="bookmarklet"><img src="./W3C Ruby 標注文字的注音、假名_files/d0030af7.png" alt="[+]Share on Facebook" title="[+]Share on Facebook" border="0"></a> <a target="_blank" href="http://www.plurk.com/?qualifier=shares&status=http%3A%2F%2Fblog.roodo.com%2Frocksaying%2Farchives%2F2912837.html+(W3C%20Ruby%20%E6%A8%99%E6%B3%A8%E6%96%87%E5%AD%97%E7%9A%84%E6%B3%A8%E9%9F%B3%E3%80%81%E5%81%87%E5%90%8D)" class="bookmarklet"><img src="./W3C Ruby 標注文字的注音、假名_files/b872d9e40dbce69e5cde4787ccb74e60.png" alt="[+]Plurk" title="[+]Plurk" border="0"></a> <a target="_blank" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fblog.roodo.com%2Frocksaying%2Farchives%2F2912837.html&title=W3C%20Ruby%20%E6%A8%99%E6%B3%A8%E6%96%87%E5%AD%97%E7%9A%84%E6%B3%A8%E9%9F%B3%E3%80%81%E5%81%87%E5%90%8D" class="bookmarklet"><img src="./W3C Ruby 標注文字的注音、假名_files/aab84445.gif" alt="[+]digg it!" title="[+]digg it!" border="0"></a> <br><div class="tools"> 
+		
+		</div>Posted by shirock at <a class="aposted" href="http://www.roodo.com/">樂多Roodo!</a> │16:32
+				 │<a class="aposted" href="http://blog.roodo.com/rocksaying/archives/2912837.html#comments">回應(3)</a>
+						 │<a class="aposted" href="http://blog.roodo.com/rocksaying/archives/2912837.html#trackback">引用(0)</a>
+						 │<a href="http://blog.roodo.com/rocksaying/archives/cat_42836.html" class="aposted">電腦技術</a>
+				<br>
+				
+				<div id="fb-root" class=" fb_reset"><script async="" src="./W3C Ruby 標注文字的注音、假名_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px; "></div></div>
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({appId: '107286602645990', status: true, cookie: true, xfbml: true});
+		    FB.Event.subscribe('edge.create', function(response) {
+			  	$.ajax({
+					   type: "GET",
+					   url: "http://blog.roodo.com/rocksaying/ajax/article_fblike&aID=2912837",
+					   error: function(msg){
+					     //alert( "error : " + msg );
+					   },
+					   success: function(msg){
+					     //alert( "Data Saved: " + msg );
+					   }
+					 });
+				});
+		  };
+		  (function() {
+		    var e = document.createElement('script'); e.async = true;
+		    e.src = document.location.protocol +
+		      '//connect.facebook.net/zh_TW/all.js';
+		    document.getElementById('fb-root').appendChild(e);
+		  }());
+		  
+		</script>
+		<fb:like href="http://blog.roodo.com/rocksaying/archives/2912837.html" layout="standard" show_faces="true" width="260" action="like" colorscheme="evil" class=" fb_edge_widget_with_comment fb_iframe_widget">
+				<span><iframe id="feaca4534" name="f176a5ffa4" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 24px; width: 260px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="./W3C Ruby 標注文字的注音、假名_files/like.htm"></iframe></span></fb:like><div class="dirBottom">
+	<a class="amenu" href="http://blog.roodo.com/rocksaying/archives/2911887.html">&lt;&lt; TWPUG問答 - 按了重新整理後又新增一筆相同資料?</a>	| <a class="amenu" href="http://blog.roodo.com/rocksaying/">回blog首頁</a> |
+	<a class="amenu" href="http://blog.roodo.com/rocksaying/archives/2915815.html">走上程式設計之路是否須具備興趣? &gt;&gt;</a>	</div></div>
+		
+		<div class="main">
+<div class="adbox">
+	<center>
+  <table cellspacing="0" cellpadding="0" border="0" align="center">
+    <tbody>
+      <tr>
+        <td>
+<!--/* Blog文章頁圖文A */-->
+
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://adv.roodo.com/www/delivery/ajs.php':'http://adv.roodo.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=139");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/ajs(2).php"></script><table cellspacing="0" width="100%" border="0">
+<tbody><tr>
+<td valign="top" width="1%"><a href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1881__zoneid=139__cb=b932d58ba8__maxdest=http://blog.roodo.com/brysonbo/archives/15871095.html" target="_blank">
+<img style="BORDER: #e1e1e1 1px solid; PADDING: 0px; BACKGROUND: #fff; MARGIN: 2px 2px 2px 5px; TEXT-ALIGN: center" alt=" Bryson&#39;s Blog
+" src="./W3C Ruby 標注文字的注音、假名_files/1032887_v85en2a_l.jpg" border="0" width="60" height="60" class="pic1"></a></td>
+<td valign="top" width="99%" align="left">
+<table border="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="100%"><a style="FONT-SIZE: 13px; LINE-HEIGHT: 130%;" class="aposted" href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1881__zoneid=139__cb=b932d58ba8__maxdest=http://blog.roodo.com/brysonbo/archives/15871095.html" target="_blank"> Bryson's Blog
+</a></td>
+</tr>
+<tr><td style="font-size: 12px; LINE-HEIGHT: 120%;" class="adtext" width="100%">改運一下，吃素消罪惡</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div id="beacon_1881" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./W3C Ruby 標注文字的注音、假名_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript>&lt;a href='http://adv.roodo.com/www/delivery/ck.php?n=ab2822a5&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='http://adv.roodo.com/www/delivery/avw.php?zoneid=139&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=ab2822a5' border='0' alt='' /&gt;&lt;/a&gt;</noscript>
+       
+        </td>
+        <td>
+<!--/* Blog文章頁圖文B */-->
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://adv.roodo.com/www/delivery/ajs.php':'http://adv.roodo.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=309");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/ajs(3).php"></script><table cellspacing="0" width="100%" border="0">
+<tbody><tr>
+<td valign="top" width="1%"><a href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1883__zoneid=309__cb=0c82ea7746__maxdest=http://blog.roodo.com/bluelqe/archives/15914851.html" target="_blank">
+<img style="BORDER: #e1e1e1 1px solid; PADDING: 0px; BACKGROUND: #fff; MARGIN: 2px 2px 2px 5px; TEXT-ALIGN: center" alt=" 卵生水筆仔
+" src="./W3C Ruby 標注文字的注音、假名_files/1032889_11wwxxv_l.jpg" border="0" width="60" height="60" class="pic1"></a></td>
+<td valign="top" width="99%" align="left">
+<table border="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="100%"><a style="FONT-SIZE: 13px; LINE-HEIGHT: 130%;" class="aposted" href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1883__zoneid=309__cb=0c82ea7746__maxdest=http://blog.roodo.com/bluelqe/archives/15914851.html" target="_blank">卵生水筆仔
+</a></td>
+</tr>
+<tr><td style="font-size: 12px; LINE-HEIGHT: 120%;" class="adtext" width="100%">吐司：敬！美味人生 Toast</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div id="beacon_1883" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./W3C Ruby 標注文字的注音、假名_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript>&lt;a href='http://adv.roodo.com/www/delivery/ck.php?n=ac3fa6ea&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='http://adv.roodo.com/www/delivery/avw.php?zoneid=309&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=ac3fa6ea' border='0' alt='' /&gt;&lt;/a&gt;</noscript>        
+        </td>
+        <td>
+        <script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://adv.roodo.com/www/delivery/ajs.php':'http://adv.roodo.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=311");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./W3C Ruby 標注文字的注音、假名_files/ajs(4).php"></script><table cellspacing="0" width="100%" border="0">
+<tbody><tr>
+<td valign="top" width="1%"><a href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1885__zoneid=311__cb=55cab012d1__maxdest=http://blog.roodo.com/ukkids/archives/15672557.html" target="_blank">
+<img style="BORDER: #e1e1e1 1px solid; PADDING: 0px; BACKGROUND: #fff; MARGIN: 2px 2px 2px 5px; TEXT-ALIGN: center" alt=" 老英加台妹" src="./W3C Ruby 標注文字的注音、假名_files/1032885_wsslmzs_l.jpg" border="0" width="60" height="60" class="pic1"></a></td>
+<td valign="top" width="99%" align="left">
+<table border="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="100%"><a style="FONT-SIZE: 13px; LINE-HEIGHT: 130%;" class="aposted" href="http://adv.roodo.com/www/delivery/ck.php?oaparams=2__bannerid=1885__zoneid=311__cb=55cab012d1__maxdest=http://blog.roodo.com/ukkids/archives/15672557.html" target="_blank">老英加台妹
+</a></td>
+</tr>
+<tr><td style="font-size: 12px; LINE-HEIGHT: 120%;" class="adtext" width="100%">Mooning</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div id="beacon_1885" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./W3C Ruby 標注文字的注音、假名_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript>&lt;a href='http://adv.roodo.com/www/delivery/ck.php?n=a259f9bf&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='http://adv.roodo.com/www/delivery/avw.php?zoneid=311&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=a259f9bf' border='0' alt='' /&gt;&lt;/a&gt;</noscript>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" colspan="3" class="adtext"><a href="http://www.roodo.com/" class="outside" target="_blank" title="外部連結:http://www.roodo.com/">Ads by Roodo!<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+</div></div>						<a name="trackback"></a>
+				
+				<div class="trackback-url"><label>引用: <input type="text" size="50" readonly="true"></label><input type="image" class="scopyurl" src="./W3C Ruby 標注文字的注音、假名_files/clear.gif" onclick="javascript:CopyText(&#39;http://cgi.blog.roodo.com/trackback/2912837&#39;);"></div>
+				
+								<script src="./W3C Ruby 標注文字的注音、假名_files/jquery.min.js" type="text/javascript"></script>
+<script src="./W3C Ruby 標注文字的注音、假名_files/jquery.editable-1.3.3.js" type="text/javascript"></script>
+<script>
+$(function(){
+function begin(){
+this.append('Click somewhere else to submit')
+}
+function end(content){
+	 $.ajax({
+	   type: "POST",
+	   url: "http://blog.roodo.com/rocksaying/reply",
+	   data: "act=reply&aID=2912837&218b5369177dd5dc882cda0361d2eeb0=68471f4b947c4682c951caf5340a6bb3&cID="+this.attr("id")+"&act=reply&reply="+content.current,
+	   error: function(msg){
+	     alert( "error : " + msg );
+	     window.location.replace("http://blog.roodo.com/rocksaying/archives/2912837.html#comments");
+	   },
+	   success: function(msg){
+	     //alert( "Data Saved: " + msg );
+	   }
+	 });
+}
+
+$('.editable').editable({
+									type:'textarea',
+									editClass:'editable_content',
+									submit:'儲存',
+									cancel:'取消',
+									onSubmit:end
+								});
+});
+function doReply(id)
+{
+		$("#reply-title-"+id).css('display','inline');
+		$("#reply-master-"+id).css('display','inline');
+		$("#editing_id").val(id);
+		$("#"+id).click();
+}
+function doDel(id,author){
+	ret=confirm("確認刪除  "+ author +" 的回應?");
+	if (ret)
+	{
+		 $.ajax({
+		   type: "POST",
+		   url: "http://blog.roodo.com/rocksaying/reply",
+		   data: "cID="+id+"&act=del&218b5369177dd5dc882cda0361d2eeb0=68471f4b947c4682c951caf5340a6bb3",
+		   error: function(msg){
+		     alert( "error : " + msg );
+		     location.replace("http://blog.roodo.com/rocksaying/archives/2912837.html#comments");
+		   },
+		   success: function(msg){
+		   		location.reload();
+		     //location.replace("http://blog.roodo.com/rocksaying/archives/2912837.html#comments");
+		   }
+		 });
+	}
+}
+function doConfirm(id,author){
+	
+		 $.ajax({
+		   type: "POST",
+		   url: "http://blog.roodo.com/rocksaying/reply",
+		   data: "cID="+id+"&act=confirm&218b5369177dd5dc882cda0361d2eeb0=68471f4b947c4682c951caf5340a6bb3",
+		   error: function(msg){
+		     alert( "error : " + msg );
+		     location.replace("http://blog.roodo.com/rocksaying/archives/2912837.html#comments");
+		   },
+		   success: function(msg){
+		   		location.reload();
+		     //location.replace("http://blog.roodo.com/rocksaying/archives/2912837.html#comments");
+		   }
+		 });
+}
+
+function doRecommend(id){
+		 $.ajax({
+		   type: "POST",
+		   url: "http://blog.roodo.com/rocksaying/recommend",
+		   data: "aID="+id+"&218b5369177dd5dc882cda0361d2eeb0=68471f4b947c4682c951caf5340a6bb3",
+		   error: function(msg){
+		     alert( "error : " + msg );
+		   },
+		   beforeSend: function(msg){
+		     $("#recommend_title").html("process...");
+		   },
+		   success: function(msg){
+		   	if (msg=='notLogin')
+		   	{
+		   		window.location.replace('http://adm.blog.roodo.com/login?PreURI=http://blog.roodo.com/rocksaying/archives/2912837.html');
+		  	}else{	
+		   		$("#recommend_title").html("<font color='red'>推薦完成！</font>");
+		   	}
+		   }
+		 });
+}
+function doReport(id,author){
+	ret=confirm("確認檢舉  "+ author +" 的回應?");
+	if (ret)
+	{
+		 $.ajax({
+		   type: "POST",
+		   url: "http://blog.roodo.com/rocksaying/spamreport",
+		   data: "cID="+id+"&218b5369177dd5dc882cda0361d2eeb0=68471f4b947c4682c951caf5340a6bb3",
+		   error: function(msg){
+		     alert( "error : " + msg );
+		   },
+		   beforeSend: function(msg){
+		     $("#recommend_title").html("process...");
+		   },
+		   success: function(msg){
+		   	if (msg=='notLogin')
+		   	{
+		   		window.location.replace('http://adm.blog.roodo.com/login?PreURI=http://blog.roodo.com/rocksaying/archives/2912837.html');
+		  	}else{	
+		  		if (msg == 'my')
+		  		{
+		  			location.reload();
+		  		}else{
+		  			alert('檢舉完成');
+		  		}
+		   	}
+		   }
+		 });
+	}
+}
+</script>
+<style type="text/css">
+.editable_content {
+height:100px;
+width:360px;
+}
+</style>
+<a name="comments"></a>
+<input type="hidden" id="editing_id">
+<div class="comments-head">回應文章 <a href="http://blog.roodo.com/rocksaying/archives/2912837-comment.xml"><img class="srss" src="./W3C Ruby 標注文字的注音、假名_files/clear.gif" align="top" border="0" width="27" height="15"></a></div>
+			<a name="comment-4276633"></a>
+					<div class="comments-postName">maniac<a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4276633" title="Permlink: http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4276633"><img src="./W3C Ruby 標注文字的注音、假名_files/7b6b4f4e.gif" alt=" 說"></a></div><div class="comments-body">
+								
+			<a href="http://www.w3.org/People/mimasa/test/schemas/NOTE-ruby-implementation" rel="nofollow nofollow" class="outside" target="_blank" title="外部連結:http://www.w3.org/People/mimasa/test/schemas/NOTE-ruby-implementation">http://www.w3.org/People/mimasa/test/schemas/NOTE-ruby-implementation<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a><br>
+在這裡頭有用 css inline-table 來模擬 ruby 的效果<br>
+<br>
+個人覺得會比要求使用者裝 XHTML Ruby Support 來的方便<br>
+--<br>
+節錄該部分的內容<br>
+ruby { display: inline-table }<br>
+ruby * {<br>
+	display: inline;<br>
+	line-height: 1.2;<br>
+	text-indent: 0;<br>
+	text-align: center;<br>
+	white-space: nowrap;<br>
+}<br>
+ruby &gt; * {<br>
+	display: table-row-group;<br>
+}<br>
+ruby &gt; rt, ruby rtc {<br>
+	display: table-header-group;<br>
+	font-size: 60%;<br>
+}<br>
+ruby rtc + rtc { display: table-footer-group }<br>
+ruby rbc &gt; *, ruby rtc &gt; * { display: table-cell }<br>
+/* this only works when an rt spans across all rb */<br>
+ruby rtc &gt; *[rbspan] { display: table-caption }<br>
+ruby rp { display: none }
+							
+						</div>
+				
+		<div class="comments-post">
+				 | <a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4276633" onclick="doReport(4276633,&#39;maniac&#39;)">檢舉</a> | 
+		
+				Posted by maniac
+		    
+				at	2007年03月27日 14:50
+				</div>
+				<a name="comment-4277527"></a>
+					<div class="comments-postName">遊手好閒的石頭成<a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4277527" title="Permlink: http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4277527"><img src="./W3C Ruby 標注文字的注音、假名_files/7b6b4f4e.gif" alt=" 說"></a></div><div class="comments-body">
+								
+			嗯，用 CSS 模擬的方式，看來是對瀏覽器 CSS2 支援度的大考驗。<br>
+<br>
+試了一下，以 Opera 9 觀看 CSS 模擬效果，雖然可以標注在上方，但效果不如預期。 rt 的注音內容跟一般內容同高，反而 rb 的本文內容處於下標位置。
+							
+						</div>
+				
+		<div class="comments-post">
+				 | <a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4277527" onclick="doReport(4277527,&#39;遊手好閒的石頭成&#39;)">檢舉</a> | 
+		
+				Posted by 遊手好閒的石頭成
+		    
+				at	2007年03月27日 17:37
+				</div>
+				<a name="comment-4356305"></a>
+					<div class="comments-postName">maniac<a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4356305" title="Permlink: http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4356305"><img src="./W3C Ruby 標注文字的注音、假名_files/7b6b4f4e.gif" alt=" 說"></a></div><div class="comments-body">
+								
+			這就是 inline-table 的解釋不一樣的後果<br>
+<br>
+像同一段 css 我在 mozilla 1.7 使用和到 seamonkey 1.0 上使用的結果就是有一個位置會跑掉...
+							
+						</div>
+				
+		<div class="comments-post">
+				 | <a href="http://blog.roodo.com/rocksaying/archives/2912837.html#comment-4356305" onclick="doReport(4356305,&#39;maniac&#39;)">檢舉</a> | 
+		
+				Posted by maniac
+		    
+				at	2007年04月6日 20:53
+				</div>
+						
+			<a name="commentForm"></a>
+		<table cellpadding="5" cellspacing="0" border="0" class="form">
+		<form name="comment_form" action="http://cgi.blog.roodo.com/comment#commentForm" method="POST" onsubmit="javacript:setCommentAuthor(this);"></form>
+		<input type="hidden" name="aID" value="2912837">
+		<input type="hidden" name="bID" value="25223">
+		<input type="hidden" name="security" value="8e0b42cf">
+		<input type="hidden" id="errorMsg" name="errorMsg" value="">
+		<input type="hidden" id="username" name="username" value="">
+		<tbody><tr>
+			<td><label for="author">姓名 : </label></td>
+			<td><input id="author" name="author"></td> 
+		</tr>
+		<tr>
+			<td valign="top"><label for="email">Email : </label></td>
+			<td><input id="email" name="email"></td>
+		</tr>
+		<tr>
+			<td valign="top"><label for="url">URL : </label></td>
+			<td><input id="url" name="url"></td>
+		</tr>
+		<tr>
+			<td valign="top"><label for="url">回應狀態: </label></td>
+			<td>
+								<input type="radio" name="cType" value="public" checked=""><label for="url">公開   </label>
+				<input type="radio" name="cType" value="private"><label for="url">私密   </label>
+							</td>
+		</tr>
+				<tr><td valign="top"><label for="url">驗證碼 : </label></td><td>
+		<img src="./W3C Ruby 標注文字的注音、假名_files/ccode" style="vertical-align: middle;">&nbsp;<br><input id="ccode_ans" name="ccode_ans">&nbsp;<label for="ccode_ans"><span class="ccode_info">( 請依顯示文字填入英文小寫 )<br><a href="JavaScript:rebuildimg()" class="outside" target="_blank" title="外部連結:javascript:rebuildimg()">重新產生驗證碼<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></span></label></td>
+		</tr>
+				<tr>
+			<td valign="top">
+											<img class="myicon" src="./W3C Ruby 標注文字的注音、假名_files/me.gif" border="0">
+										</td>
+			<td>
+			<input id="bake" type="checkbox" name="cookie" style="padding:0;margin:0px;"> <label for="bake">記住我的資訊</label><br>
+							<input id="myicon" type="checkbox" name="myicon" style="padding:0;margin:0px;"> <label for="myicon">顯示我的圖像 ( 
+								<a href="http://friends.roodo.com/" class="outside" target="_blank" title="外部連結:http://friends.roodo.com/">登入 或 申請個人圖像<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a> 
+								)</label>
+						</td>
+		</tr>		
+		<tr>
+			<td valign="top" colspan="2"><label for="text">回應內容 : </label><br>
+			<textarea id="text" name="comments" rows="10" cols="10"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input name="preview" type="submit" value=" 預覽內容 "> <input name="save" type="submit" value=" 直接送出 "></td>
+		</tr>
+		
+		</tbody></table>
+<script type="text/javascript">
+	function rebuildimg()
+	{
+		document.getElementById('errorMsg').value='hide';
+		document.comment_form.submit();
+	}
+</script>			<div class="pagetop"><a class="aposted" href="http://blog.roodo.com/rocksaying/archives/2912837.html#top">回最上方</a> / 工具:<a href="http://adm.blog.roodo.com/article/edit&aID=2912837" target="_blank" class="outside" title="外部連結:http://adm.blog.roodo.com/article/edit&amp;aID=2912837">[edit]<img src="./W3C Ruby 標注文字的注音、假名_files/e1b85375.png" alt="" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; "></a></div>
+
+	</div>
+
+</div>
+<div id="footer"><div class="footer_license"><a href="http://blog.roodo.com/rocksaying/archives/258097.html"><img src="./W3C Ruby 標注文字的注音、假名_files/bb398c64.png" border="0" alt="Licensed by GNU FDL" title="Licensed by GNU FDL"></a> Copyleft © <a href="mailto: shirock@educities.edu.tw">遊手好閒的石頭成</a>. 採用《<a href="http://blog.roodo.com/rocksaying/archives/258097.html">GNU 自由文件許可證</a>》授權予著作利用人.</div><div id="shinyDiv"><a href="http://s4.shinystat.com/cgi-bin/shinystatv.cgi?USER=rocksaying&NH=1" target="_blank"><img src="./W3C Ruby 標注文字的注音、假名_files/shinystat.cgi" border="0" alt="[ShinyStat]"></a></div></div>
+<div style="CLEAR: both">&nbsp;</div>
+
+</div>
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comment_form.author != undefined)
+    document.comment_form.author.value = getCookie("author");
+if (document.comment_form.email != undefined)
+    document.comment_form.email.value = getCookie("email");
+if (document.comment_form.url != undefined)
+    document.comment_form.url.value = getCookie("url");
+if (document.comment_form.myicon != undefined)
+{
+		if (getCookie("myicon") != 'false')
+    	document.comment_form.myicon.checked = true;
+}
+if (getCookie("bake") != 'false')
+    document.comment_form.bake.checked = true;		
+//-->
+</script>	
+
+</body></html>

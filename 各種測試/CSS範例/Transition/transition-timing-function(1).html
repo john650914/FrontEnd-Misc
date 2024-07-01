@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; font-family:arial;}
+	body{padding:10px;}
+	#instruction{
+		position:absolute;
+		top:60px;
+		padding:0 0 0 10px;
+	}
+	p{
+		margin-top:10px;
+		font-size:13px;
+	}
+	td{border:1px solid gray; height:80px;}
+	tr td:nth-child(1){width:100px; text-indent:8px;}
+	tr td:nth-child(2){border-bottom:1px solid #d6d6d6;}
+	tr:last-child td{border-bottom:1px solid gray;}
+	.move{background:crimson; width:60px; height:60px; margin-left:10px;}
+	table{width:800px; border-collapse:collapse; margin-top:15px;}
+	tr:nth-child(1) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:linear;
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:linear;
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:linear;
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:linear;
+		transition-delay:0;
+	}
+	tr:nth-child(2) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:ease;
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:ease;
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:ease;
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:ease;
+		transition-delay:0;
+	}
+	tr:nth-child(3) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:ease-in;
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:ease-in;
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:ease-in;
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:ease-in;
+		transition-delay:0;
+	}
+	tr:nth-child(4) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:ease-out;
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:ease-out;
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:ease-out;
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:ease-out;
+		transition-delay:0;
+	}
+	tr:nth-child(5) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:ease-in-out;
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:ease-in-out;
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:ease-in-out;
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:ease-in-out;
+		transition-delay:0;
+	}
+	table:hover .move{
+		background:blue;
+		 margin-left:627px;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h3>transition-timing-function：</h3>
+	<p>指定“轉換”過程中可用的效果，預設的有：ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(x1, y1, x2, y2)，預設值時easy。</p>
+	<p>linear 均速</p>
+	<p>ease 逐漸慢下來</p>
+	<p>ease-in 加速(漸入)</p>
+	<p>ease-out 減速(淡出)</p>
+	<p>ease-in-out 加速然後減速</p>
+	<p>cubic-bezier的設定方式請見transition-timing-function(2).html</p>
+	<table>
+		<tr>
+			<td>linear</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>ease</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>ease-in</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>ease-out</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>ease-in-out</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

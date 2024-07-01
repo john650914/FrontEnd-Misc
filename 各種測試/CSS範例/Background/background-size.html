@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Box Size</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		height:100%;
+		background:url(img/background-size.gif) center top no-repeat;
+		
+		background-size:cover;			/*撐滿整個畫面，固定比例*/
+		background-size:contain;		/*高度或寬度撐滿整個畫面，如果寬度大於高度則設置為高度100%，固定比例*/
+		background-size:50% 100%;		/*寬50% 高100%*/
+		background-size:100px 100px;	/*寬100px 高100px*/
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div>
+	</div>
+</body>
+</html>

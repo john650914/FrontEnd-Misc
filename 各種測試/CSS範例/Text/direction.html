@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	body{font:13px arial;}
+	
+	div{border:1px solid red;}
+	
+	#div1{direction:ltr; unicode-bidi:bidi-override;}
+	#div2{direction:rtl; unicode-bidi:bidi-override;}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<p>改變內文的走向，預設為ltr(left to right)；實際測試效果很軌異(要配合unicode-bidi屬性)。</p>
+	<div id="div1">
+		這是div1裡的文字<br />
+		this is the text in div1.
+	</div>
+	<div id="div2">
+		這是div2裡的文字<br />
+		this is the text in div2.
+	</div>
+</body>
+</html>

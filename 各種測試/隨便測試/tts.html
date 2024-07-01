@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+
+<button id="playButton">播放声音</button>
+
+<script>
+
+document.getElementById("playButton").addEventListener("click", function() {
+	var textToConvert = "說說中文吧，1 2 3 4 5 6 7，7 6 5 4 3 2 1，你說的不錯喔！say something in english!";
+	var apiKey = "AIzaSyA7v72QkAhEId9jVsQ-MVZyauK5RjnulxI";
+
+	fetch("https://texttospeech.googleapis.com/v1/text:synthesize?key=" + apiKey, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			input: {
+				text: textToConvert,
+			},
+			voice: {
+				languageCode: "cmn-TW",
+				ssmlGender: "FEMALE",
+			},
+			audioConfig: {
+				audioEncoding: "MP3",
+			},
+		}),
+	})
+	.then(response => response.json())
+	.then(data => {
+		var audioData = data.audioContent;
+		var audioUrl = "data:audio/mp3;base64," + audioData;
+
+		var audioElement = new Audio(audioUrl);
+		audioElement.play();
+	})
+	.catch(error => console.error("Error:", error));
+});
+
+</script>
+</body>
+</html>

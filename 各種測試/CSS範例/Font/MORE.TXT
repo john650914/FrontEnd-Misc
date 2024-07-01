@@ -1,0 +1,14 @@
+font-feature-settings 字體特性設置
+font-kerning 字距微調
+font-language-override 字體語言重寫，設置顯示的另外一種語言。
+font-size-adjust 調整字體aspect值，可以讓不同的字體有同樣的高度，目前只有firefox支援。
+font-stretch 設定字體寬度，目前沒有瀏覽器支援。
+font-synthesis 字體合成，當字體確實粗體或者斜體的時候，該屬性控制瀏覽器是否允許進行合成粗體或者斜體。如果weight 沒有指定，則不必合成字體，如果style 未指定，則不必合成斜體，如果設置為none ，則禁止合成字體。
+font-variant-alternates 字體變體交替
+font-variant-caps 字體變體頂部
+font-variant-east-asian 字體變體東亞
+font-variant-ligatures 字體變體連字
+font-variant-numeric 字體變體數位
+font-weight 字體粗細（有實做，其中許多值效果出不來）
+unicode-range Unicode 字元區間
+vertical-position 垂直位置

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{border:1px solid red; width:300px; height:100px; margin-bottom:50px; white-space:nowrap;}
+	
+	/*******CSS3標準寫法*******/
+	#div1{
+		overflow-style:auto;
+		marquee-play-count:infinite;
+		marquee-speed:slow;
+	}
+	#div2{
+		overflow-style:auto;
+		marquee-play-count:infinite;
+		marquee-speed:normal;
+	}
+	#div3{
+		overflow-style:auto;
+		marquee-play-count:infinite;
+		marquee-speed:fast;
+	}
+	
+	/*******webkit寫法*******/
+	#div1{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:auto; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+		-webkit-marquee-speed:slow;
+		-webkit-marquee-increment:small; /*webkit加上這個會跑的很順，值：small|medium|large*/
+	}
+	#div2{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:auto; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+		-webkit-marquee-speed:normal;
+		-webkit-marquee-increment:small; /*webkit加上這個會跑的很順，值：small|medium|large*/
+	}
+	#div3{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:auto; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+		-webkit-marquee-speed:fast;
+		-webkit-marquee-increment:small; /*webkit加上這個會跑的很順，值：small|medium|large*/
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">marquee-speed:slow; marquee-speed:slow; marquee-speed:slow; </div>
+	<div id="div2">marquee-speed:normal; marquee-speed:normal; marquee-speed:normal; </div>
+	<div id="div3">marquee-speed:fast; marquee-speed:fast; marquee-speed:fast; </div>
+</body>
+</html>

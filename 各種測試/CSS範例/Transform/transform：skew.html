@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		border:1px solid red;
+		width:100px;
+		height:100px;
+		margin:50px 0 50px 50px;
+	}
+	#div1{
+		transform:skew(20deg, 20deg);
+		-webkit-transform:skew(20deg, 10deg);
+		-moz-transform:skew(20deg, 10deg);
+		-o-transform:skew(20deg, 10deg);
+	}
+	#div2{
+		transform:skewX(20deg);
+		-webkit-transform:skewX(20deg);
+		-moz-transform:skewX(20deg);
+		-o-transform:skewX(20deg);
+	}
+	#div3{
+		transform:skewY(20deg);
+		-webkit-transform:skewY(20deg);
+		-moz-transform:skewY(20deg);
+		-o-transform:skewY(20deg);
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">skew</div>
+	<div id="div2">skewX</div>
+	<div id="div3">skewY</div>
+</body>
+</html>

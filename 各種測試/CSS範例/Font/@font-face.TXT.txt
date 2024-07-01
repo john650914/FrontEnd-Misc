@@ -1,0 +1,134 @@
+<style>
+@font-face {
+  font-family: MyHelvetica;
+  src: local("Helvetica Neue Bold"),
+  local("HelveticaNeue-Bold"),
+  url(MgOpenModernaBold.ttf);
+  font-weight: bold;
+}
+
+div {font-family:MyHelvetica;}
+</style>
+
+<div>使用 MyHelvetica 字體顯示。</div>
+
+
+這個例子中，首先使用本地的“Helvetica Neue Bold”字體，如果沒有找到，則使用本地的“HelveticaNeue-Bold”，
+如果還沒有找到，則下載 MgOpenModernaBold.ttf 字體。
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+<style>
+src: url(fonts.svg#simple); 
+</style>
+
+
+對於 svg 字體，URL 指向 SVG 字體文檔中的元素id="simple"，如果沒有設置引用的元素，則預設指定一個元素。
+上面的例子載入id為'simple' 的DVG字體。
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+<style>
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("http://developer.mozilla.org/@api/deki/files/2934/=VeraSeBd.ttf");
+}
+
+p { font-family: "Bitstream Vera Serif Bold", serif }
+</style>
+
+<p>這裡的文字將按照 “Bitstream Vera Serif Bold” 字體進行顯示。</p>
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+<style>
+@font-face {
+  font-family: bodytext;
+  src: url(ideal-sans-serif.woff) format("woff"),
+       url(basic-sans-serif.ttf) format("opentype");
+}
+</style>
+
+
+上面的例子首先載入 WOFF 字體，如果沒有找到，則載入 OpenType 字體。
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+大家都知道網頁中能使用的字型很有限，先列出常看到的字型：
+Arial
+Times New Roman
+Arial Black
+Arial Narrow
+Comic Sans MS
+Curier New
+Garamond
+Georgia
+Tahoma
+Trebuchet MS
+Verdana
+新細明體
+黑體
+宋体
+微軟正黑體
+以上幾乎就是所有能用的字體了，而且不一定每台電腦都有安裝，這時後想要用漂亮字型來裝飾你的網頁就變的很麻煩，
+可能要把字做成不易維護的圖型，好在 CSS 有一個特別的 @font-face 選擇器(小弟弟我不確定它是不是叫選擇器)，
+它有一個 src 的屬性，它可以讓 Client 端下載指定的字型，不過使用上還是有一些限制，以下為語法及簡單說明：
+@font-face{
+    font-family:"my font name";
+    src:url(amaze.ttf);
+}
+.my-font{
+    font-family:"my font name";
+    font-size:50px;
+}
+先在 @font-face 中的 font-family 給一個任意的名字將來要給 .my-font 這個 class 用的，
+注意有空格或是使用中文名稱記得把它加上雙引號，再從src屬性找到你字型的路徑；
+接下來只要在 .my-font 指定我們剛取好的名字就 OK 啦，馬上看看效果：
+
+是不是很棒，這是真的可以選取的文字，不過馬上用 IE 瀏覽器看就會失望了，在 IE9 之前的版本是無法顯示 ttf 字型的，
+我們必需使用微軟專用的 eot 字型才能正常顯示，可以在微軟的網站上下載轉換軟體，
+或是現在也有提供線上轉換服務的網站，轉好之後我們改寫下列代碼區隔一下 IE 瀏覽器：
+@font-face{
+    font-family:"my font name";
+    src:url(amaze.eot);
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    @font-face{src:url(amaze.ttf);
+    font-family:"my font name";}
+}
+@-moz-document url-prefix(){
+    @font-face{src:url(amaze.ttf);
+    font-family:"my font name";}
+}
+.my-font{
+    font-family:"my font name";
+    font-size:50px;
+}
+本來不用寫這麼長，但不知為何 IE8 會乎略 src:url(amaze.eot) \9; 這樣的 hack，實在是有點麻煩。 另外值得注意的是，
+這樣的作法雖然方便，但卻不適合載入中文字體，因為中文字型檔案比英文字型大很多，不適合在線上傳輸，
+這真是一個遺憾。
+

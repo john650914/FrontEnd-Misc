@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+body{font:13px arial;}
+	table{
+		border-collapse:collapse;
+		table-layout:fixed;
+		width:600px;
+	}
+	th, td{
+		border:1px solid black;
+		padding:3px 5px;
+	}
+	tr th:nth-child(1){
+		width:100px;
+	}
+	th{
+		background:#e8e8e8;
+	}
+	div{
+		width:165px;
+		margin-bottom:15px;
+	}
+	
+	#div1{
+		border:1px solid red;
+		word-break:hyphenate;
+	}
+	#div2{
+		border:1px solid blue;
+		word-break:break-all;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	這跟word-wrap好像有點不一樣，word-break會把每一個英文單字全部切斷立刻換行，所以每行未都是切齊的；而word-wrap只會把空間放不下的超長字做斷字，閱讀上比較自然。
+	<h2>word-break:</h2>
+	<p>The word-break property specifies line breaking rules for non-CJK scripts.</p>
+	<p>Tip: CJK scripts are Chinese, Japanese and Korean ("CJK") scripts.</p>
+	<p>Note: The word-break property is not supported in Firefox or Opera.</p>
+	<div id="div1">This paragraph contains some text. This line will-break-at-hyphenates. AAAAAAAAAAAAAAAAAAAAAAAAA</div>
+	<div id="div2">This paragraph contains some text: The lines will break at any character. AAAAAAAAAAAAAAAAAAAAAAAAA</div>
+	<table>
+		<tr><th>Value</th><th>Description</th></tr>
+		<tr><td>normal</td><td>Breaks non-CJK scripts according to their own rules</td></tr>
+		<tr><td>break-all</td><td>Lines may break between any two characters for non-CJK scripts</td></tr>
+		<tr><td>hyphenate</td><td>Words may be broken at an appropriate hyphenation point</td></tr>
+	</table>
+</body>
+</html>

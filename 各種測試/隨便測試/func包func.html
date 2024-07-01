@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<title>HTML5</title>
+<script>
+function fetchA(cb) {
+	setTimeout(function() {
+		// 模擬冗長運算
+		return cb(1);
+	}, 3000);
+}
+
+function fetchB(cb) {
+	return cb(2);
+}
+
+function add(getX, getY, cb) {
+	var x, y;
+
+	getX(function(xVal) {
+		x = xVal; // 得到 x
+		y && cb(x, y); // 若 y 也取到了，就執行加法運算
+	});
+
+	getY(function(yVal) {
+		y = yVal; // 得到 y
+		x && cb(x, y); // 若 x 也取到了，就執行加法運算
+	});
+}
+
+add(fetchA, fetchB, function(a, b) {
+	console.log(a + b); // 加法運算，印出相加結果
+});
+
+/*
+function showVal(cb){
+	cb(function(ar){ // 2. 執行cb()(就是returnVal) <- 帶入一個匿名的funtion
+		alert(ar); // 4. alert ar (ar = 2)
+	});
+}
+
+function returnVal(cb){
+	setTimeout(function(){
+		return cb(2); // 3. 執行匿名的funtion (anonymous(ar))() (3秒後才執行cb(2)，意思等於ajax成功取到料後才執行cb(2))
+	}, 3000);
+}
+
+showVal(returnVal); // 1. 執行alertVal <- 帶入fetchVal
+*/
+</script>
+</head>
+<body>
+</body>
+</html>

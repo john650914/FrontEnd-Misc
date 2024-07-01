@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.qianduan.net/css-transitions-101.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>CSS3變換入門| CSS | 前端觀察</title>
+<meta name="keywords" content="css3, CSS转换, ">
+<meta name="description" content="尽管人们期望在屏幕上有些改变，但是CSS和HTML对页面中的交互能做的实在太少了，而那些还需要用代码来实现。本文探讨CSS转换在页面元素的交互中的实现">
+<link rel="stylesheet" href="./CSS3變換入門 CSS 前端觀察_files/style.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" title="前端觀察RSS Feed" href="http://www.qianduan.net/feed">
+<link rel="pingback" href="http://www.qianduan.net/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="前端觀察» CSS3變換入門Comments Feed" href="http://www.qianduan.net/css-transitions-101.html/feed">
+<script type="text/javascript" async="" src="./CSS3變換入門 CSS 前端觀察_files/ga.js"></script><script type="text/javascript" src="./CSS3變換入門 CSS 前端觀察_files/l10n.js"></script>
+<script type="text/javascript" src="./CSS3變換入門 CSS 前端觀察_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.qianduan.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.qianduan.net/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="前端觀察" href="http://www.qianduan.net/">
+<link rel="start" title="前端觀察開放了" href="http://www.qianduan.net/opened-the-front-observation.html">
+<link rel="prev" title="20多個出色的藍色系網站設計" href="http://www.qianduan.net/24-more-blue-website-showcase.html">
+<link rel="next" title="Firefox 3.6容易崩潰的問題" href="http://www.qianduan.net/firefox-3-6-likely-crash-problem.html">
+<meta name="generator" content="WordPress 3.1.3">
+<link rel="canonical" href="./CSS3變換入門 CSS 前端觀察_files/CSS3變換入門 CSS 前端觀察.htm">
+<link rel="shortlink" href="http://www.qianduan.net/?p=11834">
+
+<link rel="stylesheet" href="./CSS3變換入門 CSS 前端觀察_files/wp-syntax.css" type="text/css" media="screen">
+<script type="text/javascript" src="./CSS3變換入門 CSS 前端觀察_files/jquery.js"></script>
+<!-- Wordpress Popular Posts v2.1.4 -->
+<script type="text/javascript" charset="utf-8">
+    /* <![CDATA[ */				
+	jQuery.post('http://www.qianduan.net/wp-admin/admin-ajax.php', {action: 'wpp_update', token: 'd67fa0b4c9', id: 11834});
+    /* ]]> */
+</script>
+<!-- End Wordpress Popular Posts v2.1.4 -->
+            <style>
+#header .inner h3.ie6{display:none;color:red;font-size:28px}
+</style>
+<!--[if lt IE 7]>
+<style>
+h3.normal{display:none}
+#header .inner h3.ie6{display:inline}
+</style>
+<![endif]-->
+<!--[if IE 9 ]>
+<meta name="application-name" content="前端观察——专注于网站前端设计与开发" />
+<meta name="msapplication-tooltip" content="前端观察——专注于网站前端设计与开发" />
+<meta name="msapplication-task" content="name=首页;action-uri=http://www.qianduan.net;icon-uri=http://www.qianduan.net/favicon.ico" />
+<meta name="msapplication-navbutton-color" content="#2C6288" />
+<![endif]-->
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./CSS3變換入門 CSS 前端觀察_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="./CSS3變換入門 CSS 前端觀察_files/main.js"></script><script type="text/javascript" charset="UTF-8" src="./CSS3變換入門 CSS 前端觀察_files/element_main.js"></script></head>
+<body><link href="./CSS3變換入門 CSS 前端觀察_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe style="position: absolute; opacity: 0; display: none; " frameborder="0"></iframe><div id="ckepop" style="position: absolute; z-index: 1000000000; top: 50%; left: 50%; overflow-x: auto; overflow-y: auto; display: none; "></div><div id="ckepop" style="position: absolute; z-index: 1000000000; display: none; overflow-x: auto; overflow-y: auto; "></div><iframe style="display: none; " frameborder="0" src="./CSS3變換入門 CSS 前端觀察_files/jiathis_utility.htm"></iframe>
+<div id="headbar" class="clearfix">
+	<div class="inner">
+		<ul>
+			<li class="page_item page-item-2"><a href="http://www.qianduan.net/about" title="關於我們"><font><font>關於我們</font></font></a></li>
+<li class="page_item page-item-8691"><a href="http://www.qianduan.net/copyright" title="版權聲明"><font><font>版權聲明</font></font></a></li>
+<li class="page_item page-item-120"><a href="http://www.qianduan.net/sitemap" title="網站地圖"><font><font>網站地圖</font></font></a></li>
+		</ul>
+		<div class="searchform">
+<form method="get" id="searchform" action="http://www.qianduan.net/">
+				<input type="search" value="" name="s" class="s" size="18" tabindex="1" placeholder="请输入关键词并回车搜索">
+			</form>
+			<!--<form method="get" id="searchform" action="http://www.qianduan.net" style="display:none">
+				<input type="text" value="站内搜索" name="s" class="s" size="18" tabindex="1" onfocus="if (this.value == '站内搜索') {this.value = '';}" onblur="if (this.value == '') {this.value = '站内搜索';}"/>
+				<input type="submit" class="button" tabindex="2" value="GO" alt="Submit button" />
+			</form>-->
+		</div>
+	</div>
+</div>
+<div id="header">
+	<div class="inner">
+				<h2><a href="http://www.qianduan.net/" title="前端觀察"><font><font>前端觀察</font></font></a></h2>
+				<h3 class="normal"><font><font>專注於網站前端設計與前端開發</font></font></h3>
+		<h3 class="ie6"><font><font>用IE6的都搶不到鹽和醬油!!!</font></font></h3>
+			</div>
+</div>
+<div id="head_nav" class="clearfix">
+	<div class="inner">
+		<ul id="secnav">
+			<li><a href="http://www.qianduan.net/"><font><font>Home </font><span><font>首頁</font></span></font><br>
+				<span><font></font></span></a> </li>
+						<li> <a href="http://www.qianduan.net/category/ajax-and-javascript-coding"><font><font>Ajax </font><span><font>Ajax與JS技術</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+						<li> <a href="http://www.qianduan.net/category/css-research"><font><font>CSS </font><span><font>樣式之美</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+						<li> <a href="http://www.qianduan.net/category/news-of-designs"><font><font>Front News </font><span><font>前端資訊</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+						<li> <a href="http://www.qianduan.net/category/sourcing-for-design"><font><font>Resource </font><span><font>前端資源</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+						<li> <a href="http://www.qianduan.net/category/beautiful-interface-and-designs"><font><font>ShowCase </font><span><font>優秀設計與界面展示</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+						<li> <a href="http://www.qianduan.net/category/tips"><font><font>Tips </font><span><font>前端技巧</font></span></font><br>
+				<span><font></font></span></a>
+							</li>
+					</ul>
+	</div>
+</div>
+<div id="container" class="clearfix"><div id="content">
+	<div class="breadCrumb clearfix"><font><font>您的位置：</font></font><a href="http://www.qianduan.net/" title="返回首頁"><font><font>首頁</font></font></a><font><font> &gt;	 </font></font><a href="http://www.qianduan.net/category/css-research" title="View all posts in CSS" rel="category tag"><font><font>CSS</font></font></a><font><font> , </font></font><a href="http://www.qianduan.net/category/tips" title="View all posts in Tips" rel="category tag"><font><font>Tips</font></font></a><font><font> &gt; </font></font><strong><font><font>CSS3變換入門</font></font></strong> </div>
+		<!--post title-->
+	<h1 id="post-11834" class="title"><a href="./CSS3變換入門 CSS 前端觀察_files/CSS3變換入門 CSS 前端觀察.htm" rel="bookmark" title="Permanent Link: CSS3變換入門"><font><font>CSS3變換入門</font></font></a></h1>
+	<div class="post-meta-top">
+		<a href="http://www.qianduan.net/author/mienflying" title="Posts by 神飛"><font><font>神飛</font></font></a><font><font>發表於28. Jan, 2010,分類: </font></font><a href="http://www.qianduan.net/category/css-research" title="View all posts in CSS" rel="category tag"><font><font>CSS</font></font></a><font><font> , </font></font><a href="http://www.qianduan.net/category/tips" title="View all posts in Tips" rel="category tag"><font><font>Tips</font></font></a><font><font> , </font></font><a href="http://www.qianduan.net/css-transitions-101.html#comments" title="Comment on CSS3變換入門"><font><font>34條評論»</font></font></a><br><font><font>標籤：</font></font><a href="http://www.qianduan.net/tag/css3" rel="tag"><font><font>css3</font></font></a><font><font> &amp; </font></font><a href="http://www.qianduan.net/tag/css%e8%bd%ac%e6%8d%a2" rel="tag"><font><font>CSS ​​轉換</font></font></a>	</div>
+<div class="inner_promot">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1139693219738371";
+/* 300x250, 创建于 09-1-7 前端内页 */
+google_ad_slot = "0191906296";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="./CSS3變換入門 CSS 前端觀察_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><iframe allowtransparency="true" frameborder="0" height="250" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="300" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+	<style type="text/css">
+.example {
+position: relative;
+padding: 1em; margin: 1em 0;}
+.example li a { text-decoration: none;}
+.example h4 {color: rgb(102,102,102); margin: 0;}
+#example1 p { text-align: left; }
+#example1 a:link {
+	font-size: 3em;
+	color: blue;
+	background-color: rgb(255,255,255);
+	-webkit-transition: color .5s linear, background-color .5s linear; 
+	transition: color .5s linear, background-color .5s linear;  
+}
+#example1 a:hover {
+	color: red;
+	background-color: rgb(255,204,255);
+	-webkit-transition: color .5s linear, background-color .5s linear; 
+	transition: color .5s linear, background-color .5s linear;  
+}
+#example1 a:active {
+	color: green;
+	-webkit-transition: color .5s linear; 
+	transition: color .5s linear; 
+}
+#example2 {
+	height:200px; 
+}
+#example2 a:link {
+color: blue;
+text-decoration: none;
+-webkit-transition: color .25s ease-in 0s;
+transition: color .25s ease-out 0s; 
+}
+#example2 a:hover {
+color: red;
+-webkit-transition: color .25s ease-in .1s;
+transition: color .25s ease-out .1s; 
+}
+#example2 a:active {
+color: green;
+transition: color .25s ease; 
+}
+#example2 ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+#example2 .menu {
+display: block;
+position: relative;
+top: .9em;
+left: 0;
+padding: 10px;
+height: auto;
+width: 100px;
+border: 8px solid rgba(204,204,204,.5);
+cursor: pointer;
+background-color: rgba(255,255,255,.75);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+#example2 ul.menu  li {
+font-weight: normal;
+list-style: none;
+margin:0
+}
+#example2 ul.menu  li a:link {
+font-weight: normal;
+list-style: none;
+font-size: 12px;
+margin-left: 0;
+padding-left: 0;
+}
+#example2 ul.menu ul li {
+font-weight: normal;
+padding: 5px 0;
+margin:0;
+border-top: 1px solid rgb(204,204,204);
+background-color: rgb(255,255,255);
+-webkit-transition: background-color .5s ease; 
+transition: background-color .2s ease; 
+}
+#example2 .drop {
+display: block;
+position: relative;
+height: 0;
+overflow: hidden;
+width: 100px;
+opacity: 0;
+-webkit-transition: opacity .25s linear 0s, height .25s ease-out .1s;
+transition: opacity .25s linear 0s, height .25s ease-out .1s;  
+}
+#example2 ul.menu ul li:hover {
+background-color: rgb(234,234,234);
+-webkit-transition: background-color .5s ease; 
+transition: background-color .2s ease; 
+}
+#example2 ul.menu:hover .drop {
+height: 140px;
+opacity: 1;
+-webkit-transition: opacity .25s linear 0s,  height .25s linear 0s;
+transition: opacity .25s linear 0s,  height .25s linear 0s; 
+}
+#example3 {
+	background-color: black;
+	color: white;
+}
+#example3 .control {
+	text-align: center; font-size: 3em;
+}
+#example3 .move { cursor: pointer;}
+#example3 .move>#astro {
+	position: relative;
+	top: 0;
+	left: 250px;
+	-webkit-transition: top 2s ease-in-out, left 2s ease;
+	transition: top 2s  ease-in-out, left 2s ease;
+}
+#example3 .move:active>#astro {
+	top: 10px;
+	left: 10px;
+	-webkit-transition: top 2s ease-in-out, left 2s ease;
+	transition: top 2s  ease-in-out, left 2s ease;
+}
+</style>
+<div><font><font>譯自：</font></font><a href="http://www.webdesignerdepot.com/2010/01/css-transitions-101/"><font><font>CSS transitions 101</font></font></a><br><font><font> 
+	中文：</font></font><a href="./CSS3變換入門 CSS 前端觀察_files/CSS3變換入門 CSS 前端觀察.htm"><font><font>CSS3變換入門</font></font></a><br><font><font> 
+	原作者：</font></font><a href="http://www.brighteyemedia.com/"><font><font>Jason Cranford Teague</font></font></a><br><font><font> 
+	譯者：</font></font><a href="http://www.qianduan.net/"><font><font>神飛</font></font></a><br><font><font> 
+	請尊重版權，轉載請註明出處，多謝！</font></font><br>
+<hr></div>
+<p><font><font>儘管人們期望在屏幕上有些改變，但是</font></font><strong><font><font>CSS</font></font></strong><font><font>和</font></font><strong><font><font>HTML</font></font></strong><font><font>對頁面中的交互能做的實在太少了，而那些還需要用代碼來實現。</font></font></p>
+<p><span id="more-11834"></span></p>
+<p><font><font>比如一個鏈接要么是這個顏色，要么是那個顏色；一個文本區域要么這麼大，要么那麼大；一張圖片要么是透明的要么是不透明的；它們是從一個狀態直接變到另一個狀態—— </font></font><strong><font><font>中間並沒有過渡</font></font></strong><font><font>。</font></font></p>
+<p><font><font>這導致大部分網頁有些生硬，因為元素只會很死板的切換或改變。</font></font></p>
+<p><font><font>是的，你可以使用DHTML、jQuery或者自己編寫JS來實現過度，但是這需要更多的代碼來實現本應該非常簡單的功能。</font></font></p>
+<p><font><font>我們需要的是快速而簡單的方法來給頁面添加簡單的變換(transition)效果。</font><font>在本文中，你會發現很有用的關於</font></font><strong><font><font>CSS變換(transition)</font></font></strong><font><font>以及如何使用它們的信息。</font></font></p>
+<p><font><font>幾個月之前，我就</font></font><a href="http://www.webdesignerdepot.com/2009/08/5-css3-design-enhancements-that-you-can-use-today/" target="_blank"><font><font>建議設計師應該開始使用新的CSS 3技術</font></font></a><font><font>來實現一些它們渴求已久的基本的功能了——唯一的問題就是，這些技術沒有一個能在IE中可用，包括IE8 。</font></font></p>
+<p><font><font>一些讀者認為的那些技術將會有75%的用戶看不到的觀點是不靠譜的。</font></font></p>
+<p><font><font>對那些讀者我想說，“坐穩了”，因為我將要向你介紹另一個新的CSS屬性，它允許你通過簡單的幾行代碼來為任意元素添加很酷的變換效果。</font></font></p>
+<p><font><font>CSS變換剛剛在CSS 3中被引入，但是已經被添加為webkit的擴展了。</font><font>也就是說，現在它們只能用於基於webkit內核的瀏覽器，包括Apple Safari和Google Chrome。</font><font>不過從Opera 10.5 pre-Alpha版本來看，Opera將在下一個10.5中支持CSS 3變換。</font><font>所以</font></font><span style="color:red;font-weight:700"><font><font>要看到本文中提到的實際效果，強烈建議你使用Chrome或者Safari 4來查看本文</font></font></span><font><font>。</font></font></p>
+<h2><font><font>CSS變換從哪裡來？</font></font></h2>
+<p><font><font>變換曾經只是Webkit的一部分，而且是Safari UI能做而其它瀏覽器不能實現的一些很酷的東東的基礎。</font></font></p>
+<p><font><font>但是W3C CSS工作組曾經拒絕將變換添加到它的官方特性裡面，一些成員堅持認為變換並非CSS屬性而通過腳本來處理會更好。</font><font>(內牛滿面啊，我前一段也有類似的觀點，也和</font></font><a href="http://gaowhen.com/" target="_blank"><font><font>高溫</font></font></a><font><font>討論過，我認為CSS動畫超出了表現的範圍，交互的東西應該有腳本來實現，不過後來在</font></font><a href="http://www.cssforest.org/" target="_blank"><font><font>鬼哥</font></font></a><font><font>的點撥下，才開始有了新的認識——神飛)</font></font></p>
+<p><font><font>但是很多設計師和開發人員，包括我自己，堅持認為這確實是樣式——只是</font></font><strong><font><font>動態</font></font></strong><font><font>樣式，而不是我們日常使用的傳統的靜態樣式。</font></font></p>
+<p><font><font>幸運的是，關於動態樣式的爭論已經成為過去。</font><font>去年三月份，來自Apple和Mozilla的代表們開始</font></font><a href="http://www.w3.org/TR/css3-transitions/" target="_blank"><font><font>將CSS變換模塊添加到CSS 3特性裡面</font></font></a><font><font>，非常接近Apple已經添加到webkit中的表現。</font></font></p>
+<h2><font><font>關於設計增強的一個簡要介紹</font></font></h2>
+<p><font><font>在我們繼續之前，讓我強調一點：永遠不要讓網站的功能依賴樣式，如果該樣式不是瀏覽器通用的話(也就是說，所有的常用瀏覽器都支持)。</font></font></p>
+<p><font><font style="">對錯過的同學再一次強調：</font></font><strong><font><font style="">永遠不要讓網站的功能依賴樣式，如果該樣式不是瀏覽器通用的話</font></font></strong><font><font style="">。</font></font></p>
+<p><font><font>這也就是說，你可以使用樣式，比如變換，作為</font></font><em><font><font>設計增強</font></font></em><font><font>以提高用戶體驗——在不犧牲看不到它們的用戶的可用性的前提下。</font><font>如果你不用CSS變換照樣能用而且用戶依然能夠完成他們的任務，就沒問題，你就可以使用CSS變換。</font></font></p>
+<h2><font><font>首先，一些變換的想法</font></font></h2>
+<p><font><font>CSS變換將不會替代所有的DHTML，不過它會提供一些支持過渡的方法來提高您在瀏覽器中的設計。</font></font></p>
+<p><font><font>你需要到下載</font></font><a href="http://www.apple.com/safari/" target="_blank"><font><font>Apple Safari 3+</font></font></a><font><font>或</font></font><a href="http://www.google.com/chrome" target="_blank"><font><font>Google Chrome</font></font></a><font><font>瀏覽器來查看這些變換效果。</font><font>這兩個瀏覽器都支持Mac和PC系統。</font></font></p>
+<h3><font><font>滾動效果</font></font></h3>
+<p><font><font style="">變換最常見的用法就是當用戶的鼠標懸放到元素上的時候將元素高亮(無論是鏈接、表格、表單還是其它的什麼元素)，變換是為頁面添加平滑的界面的非常棒的方法。</font></font></p>
+<p><strong><font><font>例一</font></font></strong></p>
+<div id="example1" class="example">
+<p><a href="http://www.qianduan.net/css-transitions-101.html#"><font><font style="">Link</font></font></a></p>
+</div>
+<h3><font><font>下拉菜單</font></font></h3>
+<p><font><font>純CSS菜單比較容易實現，而變換還可以讓你給菜單添加下拉和高亮效果。</font></font></p>
+<p><strong><font><font>例二</font></font></strong></p>
+<div id="example2" class="example">
+<ul class="menu">
+<li><font><font style="">About Us
+</font></font><ul class="drop">
+<li><a href="http://www.qianduan.net/css-transitions-101.html#"><font><font style="">Our Team</font></font></a></li>
+<li><a href="http://www.qianduan.net/css-transitions-101.html#"><font><font style="">News</font></font></a></li>
+<li><a href="http://www.qianduan.net/css-transitions-101.html#"><font><font>Reviews</font></font></a></li>
+<li><a href="http://www.qianduan.net/css-transitions-101.html#"><font><font style="">Contact</font></font></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h3><font><font>動畫</font></font></h3>
+<p><font><font style="">你可以在頁面上的兩點之間移動一個對象，然後使用變換給它添加動畫效果。</font></font></p>
+<div id="example3" class="example">
+<div class="move">
+<p><strong><font><font style="">例三</font></font></strong></p>
+<p class="control" style="color: rgb(255, 255, 255);"><font><font>點擊一下，不要放開!</font></font></p>
+<div id="astro"><img src="./CSS3變換入門 CSS 前端觀察_files/astro-127531.png" alt=""></div>
+<p></p></div>
+</div>
+<h2><font><font style="">變換、狀態與動作</font></font></h2>
+<p><font><font>但是請稍等一下。</font><font>在深入了解變換之前，我們需要理解一個元素能變換的不同的狀態。</font></font></p>
+<p><font><font>狀態定義當前頁面中相應的元素如何與用戶進行交互，它們在CSS中通過偽類來定義，比如當用戶的鼠標經過一個元素的時候，那個元素就會被hover偽類控制。</font></font></p>
+<table border="0" cellpadding="3" width="100%">
+<tbody>
+<tr>
+<td><strong><font><font>動態偽類</font></font></strong></td>
+<td><strong><font><font>起作用的元素</font></font></strong></td>
+<td><strong><font><font>描述</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>:link</font></font></td>
+<td><font><font>只有鏈接</font></font></td>
+<td><font><font>未訪問的鏈接</font></font></td>
+</tr>
+<tr>
+<td><font><font>:visited</font></font></td>
+<td><font><font>只有鏈接</font></font></td>
+<td><font><font>訪問過的鏈接</font></font></td>
+</tr>
+<tr>
+<td><font><font>:hover</font></font></td>
+<td><font><font>所有元素</font></font></td>
+<td><font><font>鼠標經過元素</font></font></td>
+</tr>
+<tr>
+<td><font><font>:active</font></font></td>
+<td><font><font>所有元素</font></font></td>
+<td><font><font>鼠標點擊元素</font></font></td>
+</tr>
+<tr>
+<td><font><font>:focus</font></font></td>
+<td><font><font>所有可被選中的元素</font></font></td>
+<td><font><font>元素被選中</font></font></td>
+</tr>
+<tr>
+<td><font><font>None</font></font></td>
+<td><font><font>所有元素</font></font></td>
+<td><font><font>所有元素的默認狀態</font></font></td>
+</tr>
+</tbody>
+</table>
+<p><font><font>變換通過改變不同元素狀態之間的一個時間段內的樣式來起作用。</font><font>比如，一個元素的默認狀態的顏色值將會在呈現hover狀態的色彩值之前逐漸顯示色盤中的中間顏色。</font></font></p>
+<h2><font><font>一個簡單的變換</font></font></h2>
+<p><font><font>讓我們假設一個簡單的變換，在用戶的鼠標經過一個鏈接的時候，將顏色從一個變換成另外一個。</font><font>與其它CSS屬性一樣，變換也是直接添加到要使用它的選擇器中。</font><font>該屬性可以採用下面的4個值。</font></font></p>
+<h4><font><font>CSS property</font></font></h4>
+<p><font><font>被變換的屬性(比如, color)。</font><font>看一下下面的表格了解所有可以被變換的CSS屬性列表。</font></font></p>
+<h4><font><font>Duration</font></font></h4>
+<p><font><font>變換持續的時間，通常以秒來計算(比如, .25s).</font></font></p>
+<h4><font><font>Timing function</font></font></h4>
+<p><font><font>允許你控制持續的時間的計算方式。</font><font>與其使用一個簡單的線性計算，你可以使變換加速(漸入)或者減速(淡出)，或者甚至specify a beat or count (比如，linear). More on this later in the article.</font></font></p>
+<h4><font><font>Delay</font></font></h4>
+<p><font><font>在動作和變換開始之間等待多久，通常用秒來表示(比如, .1s)。</font><font>如果你不想延遲，該值可省略。</font></font></p>
+<p><font><font>因為變換屬性始於Webkit擴展，我們不得不同時使用transition 和-webkit-transition 屬性以向後兼容。</font></font></p>
+<p><font><font>讓我們首先提阿賈這這些屬性到:hover 偽類中:</font></font></p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre><font><font>1 2 3 4 5
+</font></font></pre></td><td class="code"><pre class="css" style="font-family:monospace;"><font><font>a </font></font><span style="color: #3333ff;"><font><font>:hover </font></font></span><span style="color: #00AA00;"><font><font>{ </font></font></span>
+   <span style="color: #000000; font-weight: bold;"><font><font>color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #993333;"><font><font>red </font></font></span><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+   -webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+   transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>; </font></font></span>
+<span style="color: #00AA00;"><font><font>}</font></font></span></pre></td></tr></tbody></table></div>
+
+<p><font><font>那麼現在，當鼠標經過一個鏈接，不會直接從藍色跳轉到紅色，而是用四分之一秒的時間逐漸變換它們的中間顏色(過渡顏色)。</font></font></p>
+<p><img src="./CSS3變換入門 CSS 前端觀察_files/CSStransition.jpg" alt=""></p>
+<p><font><font>當然，我們也希望變換回到默認的鏈接顏色，那麼我們可以添加一個變換到:link (以及:visited)偽類上，並在它褪去之前添加一個簡單的延遲(十分之一秒) :</font></font></p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre><font><font>1 2 3 4 5
+</font></font></pre></td><td class="code"><pre class="css" style="font-family:monospace;"><font><font>a </font></font><span style="color: #3333ff;"><font><font>:link </font></font></span><span style="color: #00AA00;"><font><font>,</font></font></span><font><font> a </font></font><span style="color: #3333ff;"><font><font>:visited </font></font></span><span style="color: #00AA00;"><font><font>{ </font></font></span>
+   <span style="color: #000000; font-weight: bold;"><font><font>color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>blue </font></font></span><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+   -webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear .1s </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+   transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear .1s </font></font><span style="color: #00AA00;"><font><font>; </font></font></span>
+<span style="color: #00AA00;"><font><font>}</font></font></span></pre></td></tr></tbody></table></div>
+
+<h2><font><font>添加多重變換</font></font></h2>
+<p><font><font>因為一個變換就是一個CSS屬性，如果你在同一個CSS規則中添加多個變換的實例，那麼最後的那個將會覆蓋前面的，而不是添加它們。</font><font>所以在下面的規則中，唯一的變換將是背景色彩：</font></font></p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre><font><font>1 2 3 4 5 6 7 8
+</font></font></pre></td><td class="code"><pre class="css" style="font-family:monospace;"><font><font>a </font></font><span style="color: #3333ff;"><font><font>:hover </font></font></span><span style="color: #00AA00;"><font><font>{ </font></font></span>
+  <span style="color: #000000; font-weight: bold;"><font><font>color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #993333;"><font><font>red </font></font></span><span style="color: #00AA00;"><font><font>; </font></font></span>
+  <span style="color: #000000; font-weight: bold;"><font><font>background-color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #993333;"><font><font>rgb </font></font></span><span style="color: #00AA00;"><font><font>( </font></font></span><span style="color: #cc66cc;"><font><font>235 </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span><span style="color: #cc66cc;"><font><font>235 </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span><span style="color: #cc66cc;"><font><font>185 </font></font></span><span style="color: #00AA00;"><font><font>) </font></font></span><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+  -webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+  transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+  -webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .15s linear . 1 </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+  transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .15s linear .1 </font></font><span style="color: #00AA00;"><font><font>; </font></font></span>
+<span style="color: #00AA00;"><font><font>}</font></font></span></pre></td></tr></tbody></table></div>
+
+<p><font><font>當然，這並不是說，不能添加多重變換——多重變換可以在同一個變換屬性定義中用逗號隔開：</font></font></p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre><font><font>1 2 3 4 5 6
+</font></font></pre></td><td class="code"><pre class="css" style="font-family:monospace;"><font><font>a </font></font><span style="color: #3333ff;"><font><font>:hover </font></font></span><span style="color: #00AA00;"><font><font>{ </font></font></span>
+  <span style="color: #000000; font-weight: bold;"><font><font>color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #993333;"><font><font>red </font></font></span><span style="color: #00AA00;"><font><font>; </font></font></span>
+  <span style="color: #000000; font-weight: bold;"><font><font>background-color </font></font></span><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #993333;"><font><font>rgb </font></font></span><span style="color: #00AA00;"><font><font>( </font></font></span><span style="color: #cc66cc;"><font><font>235 </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span><span style="color: #cc66cc;"><font><font>235 </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span><span style="color: #cc66cc;"><font><font>185 </font></font></span><span style="color: #00AA00;"><font><font>) </font></font></span><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+   -webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .15s linear .1s </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+  transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .15s linear .1s </font></font><span style="color: #00AA00;"><font><font>; </font></font></span>
+ <span style="color: #00AA00;"><font><font>}</font></font></span></pre></td></tr></tbody></table></div>
+
+<p><font><font>這條定義將產生色彩和背景色的雙重變換。</font></font></p>
+<h2><font><font>什麼可以被變換？</font></font></h2>
+<p><font><font>幾乎所有的有色彩、大小或位置等組件的CSS屬性，包括許多新添加的CSS 3屬性， 都可以應用變換。</font><font>一個值得注意的例外是box-shadow。</font></font></p>
+<p><font><font>來自W3C的變換的說明，這裡是一個可以賦予變換的CSS屬性的列表，附帶轉變的對象，我也高亮了一些比較有用的屬性。</font></font></p>
+<table border="0" cellpadding="5" width="80%">
+<tbody>
+<tr>
+<td><strong><font><font>CSS屬性</font></font></strong></td>
+<td><strong><font><font>改變的對象</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>background-color</font></font></strong></td>
+<td><strong><font><font>色彩</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>background-image</font></font></td>
+<td><font><font>只是漸變</font></font></td>
+</tr>
+<tr>
+<td><font><font>background-position</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-bottom-color</font></font></td>
+<td><font><font>色彩</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-bottom-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>border-color</font></font></strong></td>
+<td><strong><font><font>色彩</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>border-left-color</font></font></td>
+<td><font><font>色彩</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-left-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-right-color</font></font></td>
+<td><font><font>色彩</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-right-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-spacing</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-top-color</font></font></td>
+<td><font><font>色彩</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-top-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>border-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>bottom</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>color</font></font></strong></td>
+<td><strong><font><font>色彩</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>crop</font></font></td>
+<td><font><font>百分比</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>font-size</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>font-weight</font></font></strong></td>
+<td><strong><font><font>數字</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>grid-*</font></font></td>
+<td><font><font>數量</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>height</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>left</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>letter-spacing</font></font></strong></td>
+<td><strong><font><font>長度</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>line-height</font></font></td>
+<td><font><font>百分比，長度，數字</font></font></td>
+</tr>
+<tr>
+<td><font><font>margin-bottom</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>margin-left</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>margin-right</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>margin-top</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>max-height</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>max-width</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>min-height</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>min-width</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>opacity</font></font></strong></td>
+<td><strong><font><font>數字</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>outline-color</font></font></td>
+<td><font><font>色彩</font></font></td>
+</tr>
+<tr>
+<td><font><font>outline-offset</font></font></td>
+<td><font><font>整數</font></font></td>
+</tr>
+<tr>
+<td><font><font>outline-width</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>padding-bottom</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>padding-left</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>padding-right</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>padding-top</font></font></td>
+<td><font><font>長度</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>right</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>text-indent</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>text-shadow</font></font></strong></td>
+<td><strong><font><font>陰影</font></font></strong></td>
+</tr>
+<tr>
+<td><strong><font><font>top</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>vertical-align</font></font></td>
+<td><font><font>百分比，長度，關鍵詞</font></font></td>
+</tr>
+<tr>
+<td><font><font>visibility</font></font></td>
+<td><font><font>可見性</font></font></td>
+</tr>
+<tr>
+<td><strong><font><font>width</font></font></strong></td>
+<td><strong><font><font>百分比，長度</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>word-spacing</font></font></td>
+<td><font><font>百分比，長度</font></font></td>
+</tr>
+<tr>
+<td><font><font>z-index</font></font></td>
+<td><font><font>正整數</font></font></td>
+</tr>
+<tr>
+<td><font><font>zoom</font></font></td>
+<td><font><font>數字</font></font></td>
+</tr>
+</tbody>
+</table>
+<h2><font><font>變換計時與延遲</font></font></h2>
+<p><font><font>使用變換，你可以改變變換的速率，在開始的時候較慢然後在結束的時候加速，反之亦然，或者之間的任何事情。</font><font>CSS變換有5個計時的關鍵詞，同時也允許你自己定義你自己的計時曲線。</font></font></p>
+<table border="0" cellpadding="5" width="80%">
+<tbody>
+<tr>
+<td><strong><font><font>名稱</font></font></strong></td>
+<td><strong><font><font>如何工作</font></font></strong></td>
+</tr>
+<tr>
+<td><font><font>cubic-bezier(x1, y1, x2, y2)</font></font></td>
+<td><font><font>X 和Y 值在0到1之間，以定義用於Time function的貝塞爾曲線的形狀。</font></font></td>
+</tr>
+<tr>
+<td><font><font>linear</font></font></td>
+<td><font><font>均速</font></font></td>
+</tr>
+<tr>
+<td><font><font>ease</font></font></td>
+<td><font><font>逐漸慢下來</font></font></td>
+</tr>
+<tr>
+<td><font><font>ease-in</font></font></td>
+<td><font><font>加速(漸入)</font></font></td>
+</tr>
+<tr>
+<td><font><font>ease-out</font></font></td>
+<td><font><font>減速(淡出)</font></font></td>
+</tr>
+<tr>
+<td><font><font>ease-in-out</font></font></td>
+<td><font><font>加速然後減速</font></font></td>
+</tr>
+</tbody>
+</table>
+<h2><font><font>全部變換？</font></font></h2>
+<p><font><font>變換將很快成為所有網站的標準操作方式，從而增強用戶界面的體驗。</font></font></p>
+<p><font><font>為了給你的整個網站添加一個普遍的變換，一個做法就是添加一個變換到全體選擇器，類似CSS reset。</font><font>下面的代碼會給頁面中的所有元素添加一個默認的變換，從而允許你保持一個統一的變換效果：</font></font></p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre><font><font>1 2 3 4 5 6 7 8 9 10
+</font></font></pre></td><td class="code"><pre class="css" style="font-family:monospace;"><span style="color: #00AA00;"><font><font>* </font></font></span><span style="color: #3333ff;"><font><font>:link </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #00AA00;"><font><font>* </font></font></span><span style="color: #3333ff;"><font><font>:visited </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #00AA00;"><font><font>* </font></font></span><span style="color: #3333ff;"><font><font>:hover </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #00AA00;"><font><font>* </font></font></span><span style="color: #3333ff;"><font><font>:active </font></font></span><span style="color: #00AA00;"><font><font>, </font></font></span> <span style="color: #00AA00;"><font><font>* </font></font></span><span style="color: #3333ff;"><font><font>:focus </font></font></span><span style="color: #00AA00;"><font><font>{</font></font></span><font><font> 
+-webkit-transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>border-color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>;</font></font></span><font><font> 
+transition </font></font><span style="color: #00AA00;"><font><font>: </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>background-color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>, </font></font></span>
+	<span style="color: #000000; font-weight: bold;"><font><font>border-color</font></font></span><font><font> .25s linear </font></font><span style="color: #00AA00;"><font><font>; </font></font></span>
+<span style="color: #00AA00;"><font><font>}</font></font></span></pre></td></tr></tbody></table></div>
+
+<p><font><font>一個反對全部變換，同時明確反對使用全體選擇器作為CSS reset的爭論是，將一個樣式用到頁面的所有元素會減緩頁面的渲染。</font><font>然而，我並沒有發現任何有關與此的證據。</font><font>有人知道嗎？</font></font></p>
+<p><font><font>OK，其實CSS 變換就這麼簡單，它並不難理解，而且你也不用些大量的JS腳本來實現它，這很方便實用，多做幾次練習，你就可以熟練的使用它了。</font></font></p>
+<p><font><font>譯註：本文原文題目為CSS transitions 101，101這個數字比較不好理解，其實美國大學第一門課程通常編號為101，所以101一般表示入門、初級的意思。</font><font>另外關於transition這個詞的翻譯，我之前是翻譯成“轉換”，但是這個翻譯很彆扭，在twitter上和</font></font><a href="http://twitter.com/gaowhen" target="_blank"><font><font>@gaowhen</font></font></a><font><font>、</font></font><a href="http://twitter.com/ghostzhang" target="_blank"><font><font>@ghostzhang</font></font></a><font><font>、</font></font><a href="http://twitter.com/ivane" target="_blank"><font><font>@ivane</font></font></a><font><font>、</font></font><a href="http://twitter.com/hiwanz" target="_blank"><font><font>@hiwanz</font></font></a><font><font>、</font></font><a href="http://twitter.com/cnjoel" target="_blank"><font><font>@cnjoel</font></font></a><font><font>等人討論後，覺得翻譯成“變換”更合適一些，多謝各位。</font><font>——神飛</font></font></p>
+	<div style="overflow: hidden;padding-right: 20px;">
+	<div id="jiathis_style_32x32" style="float:right;">
+		<a class="jiathis_button_qzone" title="分享到QQ空間"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+		<a class="jiathis_button_tqq" title="分享到騰訊微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+		<a class="jiathis_button_twitter" title="分享到Twitter"><span class="jiathis_txt jtico jtico_twitter"></span></a>
+		<a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+		<a class="jiathis_button_douban" title="分享到豆瓣"><span class="jiathis_txt jtico jtico_douban"></span></a>
+		<a class="jiathis_button_xianguo" title="分享到鮮果"><span class="jiathis_txt jtico jtico_xianguo"></span></a>
+		<a href="http://www.jiathis.com/share/?uid=1517372" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+</div>
+	<!--Author Info-->
+	<div class="post_author clearfix"> <img alt="" src="./CSS3變換入門 CSS 前端觀察_files/ec55fb52e946cc5891841f3d683c8135" class="avatar avatar-80 photo" height="80" width="80"><span><font><font>作者: </font></font></span> <a href="http://shenfei.me/" target="_blank" title="訪問神飛的博客"><font><font>	神飛</font></font></a><br><font><font> 
+		愛好前端設計與開發，崇尚一目了然的設計。</font><font>現居深圳。</font><font>Follow me on twitter </font></font><a href="http://twitter.com/qianduan"><font><font>@qianduan</font></font></a><font><font>。	</font></font></div>
+
+	<div class="post_bottom clearfix"><strong><font><font>如果你喜歡本文，歡迎</font></font><a href="http://feeds2.feedburner.com/qianduannet"><font><font>訂閱本站</font></font></a><font><font>以獲得本站最新內容。</font></font></strong></div>
+<h3 class="related_post_title"><font><font>您或許也會喜歡：</font></font></h3><ul class="related_post"><li><a href="http://www.qianduan.net/css-regions.html" title="CSS3 Region：基於HTML和CSS3的富頁面佈局"><font><font>CSS3 Region：基於HTML和CSS3的富頁面佈局</font></font></a></li><li><a href="http://www.qianduan.net/useful-nth-child-recipies.html" title="有用的:nth-child秘方"><font><font>有用的:nth-child秘方</font></font></a></li><li><a href="http://www.qianduan.net/the-future-of-css-experimental-css-properties.html" title="CSS的未來：一些試驗性CSS屬性"><font><font>CSS的未來：一些試驗性CSS屬性</font></font></a></li><li><a href="http://www.qianduan.net/official-version-of-opera-11-10-and-ie10-pre-release.html" title="Opera 11.10正式版以及IE10 pre版本發布"><font><font>Opera 11.10正式版以及IE10 pre版本發布</font></font></a></li><li><a href="http://www.qianduan.net/opera-11-10-enhanced-support-for-css3-etc.html" title="Opera 11.10 增強對CSS3等的支持"><font><font>Opera 11.10 增強對CSS3等的支持</font></font></a></li><li><a href="http://www.qianduan.net/ie9-released.html" title="IE9正式發布"><font><font>IE9正式發布</font></font></a></li><li><a href="http://www.qianduan.net/webkit-style-syntax-for-the-gradient-update-css3.html" title="webkit對於CSS3漸變樣式語法的更新"><font><font>webkit對於CSS3漸變樣式語法的更新</font></font></a></li><li><a href="http://www.qianduan.net/before-and-before-the-difference-between.html" title=":before和::before的區別"><font><font>:before和::before的區別</font></font></a></li><li><a href="http://www.qianduan.net/css3-target-pseudo-class-introduction.html" title="CSS3 target偽類簡介"><font><font>CSS3 target偽類簡介</font></font></a></li><li><a href="http://www.qianduan.net/ie9-beta-support-on-html5css3.html" title="IE9 beta對HTML5/CSS3的支持"><font><font>IE9 beta對HTML5/CSS3的支持</font></font></a></li></ul>	<!--include comments template-->
+	<div id="comments">
+		<h3><font><font>
+	34 個評論</font></font></h3>
+<ul class="commentlist">
+	<li class="comment even thread-even depth-1" id="li-comment-88580">	<div id="comment-88580">		<div class="gravatar"><img alt="" src="./CSS3變換入門 CSS 前端觀察_files/fdbd4915afd6c4896a10b83e2e4a9e9c" class="avatar avatar-32 photo" height="32" width="32"></div>		<div class="comment-meta commentmetadata"><span class="comment-author vcard"> <cite class="fn"> <em><font><font>巾</font></font></em> </cite></span><font><font>發表於</font></font><a href="http://www.qianduan.net/css-transitions-101.html/comment-page-2#comment-88580"><font><font>Jun 22, 2011 at 12:38</font></font></a>					</div>				<p><font><font>那個下拉菜單我都弄不出來..請問可以指教一下嗎</font></font></p>
+		<div class="reply">			<a class="comment-reply-link" href="http://www.qianduan.net/css-transitions-101.html?replytocom=88580#respond" onclick="return addComment.moveForm(&quot;comment-88580&quot;, &quot;88580&quot;, &quot;respond&quot;, &quot;11834&quot;)"><font><font>回复</font></font></a>		</div>	</div></li>
+</ul>
+<div class="comment-page clearfix">
+
+	<a class="prev page-numbers" href="http://www.qianduan.net/css-transitions-101.html/comment-page-1#comments"><font><font>« Previous </font></font></a>
+<a class="page-numbers" href="http://www.qianduan.net/css-transitions-101.html/comment-page-1#comments"><font><font>1 </font></font></a>
+<span class="page-numbers current"><font><font>2</font></font></span>
+</div>
+
+
+
+<div id="respond" class="box">
+
+	<h3><font><font>
+
+		發表評論
+	</font></font></h3>
+
+	<div class="cancel-comment-reply"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.qianduan.net/css-transitions-101.html#respond" style="display:none;"><font><font>取消回复</font></font></a></small> </div>
+
+	
+	<form action="http://www.qianduan.net/wp-comments-post.php" method="post" id="commentform">
+
+		
+		<p>
+			<label for="author"><font><font>暱稱 (必填)</font></font></label>
+
+			<input type="text" name="author" id="author" value="" size="22" tabindex="3" aria-required="true">
+
+		</p>
+
+		<p>
+
+			<label for="email"><font><font>EMail (必填) (不會被洩露)</font></font></label>
+
+			<input type="text" name="email" id="email" value="" size="22" tabindex="4" aria-required="true">
+
+		</p>
+
+		<p>
+
+			<label for="url"><font><font>個人網站</font></font></label>
+
+			<input type="text" name="url" id="url" value="" size="22" tabindex="5">		</p>
+				<p>
+
+			<textarea name="comment" id="comment" cols="50" rows="6" tabindex="7"></textarea>
+
+		</p>
+
+		<p>
+
+			<font><font><input name="submit" type="submit" id="submit" tabindex="8" value="提交" class="box"></font></font>
+
+			<input type="hidden" name="comment_post_ID" value="11834" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+
+		</p>
+
+		<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="02484bc0f0"></p>
+	</form>
+
+</div>
+
+
+
+	</div>
+		<!--single end-->
+</div>
+<!--include sidebar-->
+<div id="sidebar">
+<p><a href="http://feeds2.feedburner.com/qianduannet"><img src="./CSS3變換入門 CSS 前端觀察_files/qianduannet" height="26" width="88" style="border:0" alt=""></a></p>
+<!-- advt #end -->
+
+<h3><font><font>熱門文章</font></font></h3><ul>
+<li><a href="http://www.qianduan.net/zen-coding-a-new-way-to-write-html-code.html" title="Zen Coding: 一種快速編寫HTML/CSS代碼的方法"><span class="wpp-post-title"><font><font>Zen Coding: 一種快速編寫HTML/CSS代碼的方法</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/let-ie6-faster-dead.html" title="讓IE6更快的走向滅亡"><span class="wpp-post-title"><font><font>讓IE6更快的走向滅亡</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/china-university-web-design-top10.html" title="中國十佳大學網站設計"><span class="wpp-post-title"><font><font>中國十佳大學網站設計</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/tencent-isux-front-end-development.html" title="騰訊ISUX急招前端開發"><span class="wpp-post-title"><font><font>騰訊ISUX急招前端開發</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/div-css-please-do-not-play-tricks.html" title="DIV+CSS 請不要再忽悠人了"><span class="wpp-post-title"><font><font>DIV+CSS 請不要再忽悠人了</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/fresh-free-html-templates-2010.html" title="2010年最新的100個免費HTML模板"><span class="wpp-post-title"><font><font>2010年最新的100個免費HTML模板</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/47-amazing-css3-animation.html" title="47個驚人的CSS3動畫演示"><span class="wpp-post-title"><font><font>47個驚人的CSS3動畫演示</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/alibaba-japan-job-front-end-engineer.html" title="阿里巴巴日本招聘：前端工程師"><span class="wpp-post-title"><font><font>阿里巴巴日本招聘：前端工程師</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/new-clearfix.html" title="清除浮動新說"><span class="wpp-post-title"><font><font>清除浮動新說</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/zen-coding-for-dreamweaver-plug-in-tutorial.html" title="zen coding的dreamweaver插件安裝教程"><span class="wpp-post-title"><font><font>zen coding的dreamweaver插件安裝教程</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/firefox-bug-inline-inline-block-gap.html" title="Firefox Bug: inline/inline-block的間隙"><span class="wpp-post-title"><font><font>Firefox Bug: inline/inline-block的間隙</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/rediscovering-html-tables.html" title="重新發現HTML表格"><span class="wpp-post-title"><font><font>重新發現HTML表格</font></font></span></a> </li>
+<li><a href="./CSS3變換入門 CSS 前端觀察_files/CSS3變換入門 CSS 前端觀察.htm" title="CSS3變換入門"><span class="wpp-post-title"><font><font>CSS3變換入門</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/css-font-shorthand-attribute-handbook.html" title="CSS簡寫指南"><span class="wpp-post-title"><font><font>CSS簡寫指南</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/to-sprite-or-not-to-sprite.html" title="CSS雪碧:要還是不要？"><span class="wpp-post-title"><font><font>CSS雪碧:要還是不要？</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/google-font-api-web-font-and-chinese.html" title="Google font api、web font與中文"><span class="wpp-post-title"><font><font>Google font api、web font與中文</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/firefox-4-beta-1-released.html" title="Firefox 4 beta 1發布——前端開發者須知"><span class="wpp-post-title"><font><font>Firefox 4 beta 1發布——前端開發者須知</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/css-sprites-useful-technique-or-potential-nuisance.html" title="CSS Sprites：魚翅還是三鹿？"><span class="wpp-post-title"><font><font>CSS Sprites：魚翅還是三鹿？</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/mobile-web-development-markup-language.html" title="移動網站開發——標記語言"><span class="wpp-post-title"><font><font>移動網站開發——標記語言</font></font></span></a> </li>
+<li><a href="http://www.qianduan.net/front-end-observe-1-year.html" title="前端觀察一周年"><span class="wpp-post-title"><font><font>前端觀察一周年</font></font></span></a> </li>
+
+</ul>
+
+<h3><font><font>友情鏈接</font></font></h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.99css.com/" target="_blank"><font><font>99CSS</font></font></a></li>
+<li><a href="http://csshouse.net/" rel="friend" target="_blank"><font><font>CSS HOUSE</font></font></a></li>
+<li><a href="http://css9.net/" title="匯集優秀Web開發資源" target="_blank"><font><font>CSS9.NET</font></font></a></li>
+<li><a href="http://www.cssrain.cn/" title="前端技術– 讀者的進步速度遠大於博客的進步速度。" target="_blank"><font><font>CssRain</font></font></a></li>
+<li><a href="http://www.cssk8.com/" target="_blank"><font><font>CSS庫吧</font></font></a></li>
+<li><a href="http://www.drupalunion.com/" target="_blank"><font><font>Drupal博客聯盟</font></font></a></li>
+<li><a href="http://gaowhen.com/" rel="friend co-worker" title="高溫的博客" target="_blank"><font><font>GaoWhen高H溫</font></font></a></li>
+<li><a href="http://www.ihiro.org/" target="_blank"><font><font>Hiro技術站</font></font></a></li>
+<li><a href="http://www.iefans.net/" target="_blank"><font><font>IE瀏覽器</font></font></a></li>
+<li><a href="http://www.playgoogle.com/" title="玩轉谷歌" target="_blank"><font><font>Play Google</font></font></a></li>
+<li><a href="http://mysmallworld.cn/" target="_blank"><font><font>poor</font></font></a></li>
+<li><a href="http://rlog.cn/" title="robin 肉餅"><font><font>Time Machine</font></font></a></li>
+<li><a href="http://w3ctech.com/" rel="colleague" title="Web 標準化交流會"><font><font>Web 標準化交流會</font></font></a></li>
+<li><a href="http://www.css88.com/" rel="friend" title="專注前端開發，關注用戶體驗" target="_blank"><font><font>WEB前端開發</font></font></a></li>
+<li><a href="http://www.whyidc.com/" rel="friend" title="國內優質雙線全能空間" target="_blank"><font><font>WhyIDC 雙線全能空間</font></font></a></li>
+<li><a href="http://bestcss.net/" rel="friend" title="中文最佳網站設計收集" target="_blank"><font><font>中文最佳網站設計</font></font></a></li>
+<li><a href="http://yuanyun.me/" rel="friend" target="_blank"><font><font>元雲</font></font></a></li>
+<li><a href="http://www.qlstudio.cn/" target="_blank"><font><font>啟良工作室</font></font></a></li>
+<li><a href="http://www.osmn00.com/" title="堂主，WEB前端開發技術" target="_blank"><font><font>堂主</font></font></a></li>
+<li><a href="http://ooxx.me/" rel="friend"><font><font>大貓の意淫網誌</font></font></a></li>
+<li><a href="http://www.misuisui.com/" target="_blank"><font><font>米隨隨s5s5</font></font></a></li>
+<li><a href="http://www.mangguo.org/"><font><font>芒果</font></font></a></li>
+<li><a href="http://ofcss.com/" rel="friend" title="小李刀刀（kairee）的技術博客" target="_blank"><font><font>裁紙刀下</font></font></a></li>
+<li><a href="http://www.itstrike.cn/" target="_blank"><font><font>軟件開發網</font></font></a></li>
+<li><a href="http://pufen.net/" target="_blank"><font><font>飄飄的生活空間</font></font></a></li>
+<li><a href="http://ivane.net/" rel="friend" target="_blank"><font><font>黃老濕</font></font></a></li>
+
+	</ul>
+
+<h3><font><font>Meta</font></font></h3>			<ul>
+						<li><a href="http://www.qianduan.net/wp-login.php"><font><font>Log in</font></font></a></li>
+			<li><a href="http://www.qianduan.net/feed" title="Syndicate this site using RSS 2.0"><font><font>Entries </font></font><abbr title="Really Simple Syndication"><font><font>RSS</font></font></abbr></a></li>
+			<li><a href="http://www.qianduan.net/comments/feed" title="The latest comments to all posts in RSS"><font><font>Comments </font></font><abbr title="Really Simple Syndication"><font><font>RSS</font></font></abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform."><font><font>WordPress.org</font></font></a></li>
+						</ul>
+</div>
+<!--sidebar end--><!--include footer-->
+</div>
+<div id="footer">
+	<p><font><font>Powered by </font></font><a href="http://wordpress.org/"><font><font>Wordpress</font></font></a><br><font><font> 
+		Copyright 2008-2011前端觀察All rights reserved.</font></font></p>
+	<ul id="nav-footer">
+		<li class="page_item page-item-2"><a href="http://www.qianduan.net/about" title="關於我們"><font><font>關於我們</font></font></a></li>
+<li class="page_item page-item-8691"><a href="http://www.qianduan.net/copyright" title="版權聲明"><font><font>版權聲明</font></font></a></li>
+<li class="page_item page-item-120"><a href="http://www.qianduan.net/sitemap" title="網站地圖"><font><font>網站地圖</font></font></a></li>
+	</ul>
+	</div>
+<!--<script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>-->
+<script type="text/javascript" src="./CSS3變換入門 CSS 前端觀察_files/jia.js" charset="utf-8"></script>
+<!--google analytics code -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1948023-10']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!--google analytics code end-->
+<!-- footer #end -->
+
+<!-- Dynamic page generated in 2.347 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2011-06-27 14:49:50 -->
+<!-- Compression = gzip --><div style="position: absolute; z-index: 1073741824; width: 200px; height: 54px; left: 63.19444274902344px; top: -9999em; box-sizing: content-box; display: none; " id=":0.balloonContainer"><iframe id=":0.container" class="goog-te-balloon-frame skiptranslate" frameborder="0" src="javascript:''" style="visibility: visible; width: 200px; height: 54px; box-sizing: content-box; "></iframe></div></body></html>

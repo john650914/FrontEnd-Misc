@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	html, body{height:100%;}
+	body{font:13px arial;}
+	h2{
+		margin:130px 0 15px 0;
+	}
+	table{
+		width:900px;
+		border-collapse:collapse;
+		table-layout:fixed;
+		font-size:12px;
+		color:dimgray;
+	}
+	th{
+		border:1px solid black;
+		padding:5px;
+	}
+	th:nth-child(1){
+		width:160px;
+	}
+	th:nth-child(2){
+		width:440px;
+	}
+	td{
+		border:1px solid black;
+		padding:5px;
+	}
+	div{
+		width:100px;
+		height:100px;
+		background:dodgerblue;
+		position:absolute;
+		left:10px; top:10px;
+		
+		-webkit-animation-name:myMovement;
+		-webkit-animation-duration:1s;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-delay:0s;
+		-webkit-animation-iteration-count:infinite;
+		-webkit-animation-direction:normal;
+		-webkit-animation-play-state:paused;
+		
+		-moz-animation-name:myMovement;
+		-moz-animation-duration:1s;
+		-moz-animation-timing-function:linear;
+		-moz-animation-delay:0s;
+		-moz-animation-iteration-count:infinite;
+		-moz-animation-direction:normal;
+		-moz-animation-play-state:paused;
+	}
+	@-webkit-keyframes myMovement{
+		from{left:10px;}
+		to{left:210px; background:fuchsia;}
+	}
+	@-moz-keyframes myMovement{
+		from{left:10px;}
+		to{left:210px; background:fuchsia;}
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>animation-play-state:</h2>
+	<p>The animation-play-state property specifies whether the animation is running or paused.</p>
+	<p>Note: Use this property in a JavaScript to pause an animation in the middle of a cycle.</p>
+	<p>語法：animation-play-state:paused | running;</p>
+	<p>這個屬性目前只有google chrome、safari及Firefox有支援。</p>
+	<table>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>animation-name</td>
+			<td>Specifies the name of the keyframe you want to bind to the selector</td>
+			<td>keyframename | none</td>
+		</tr>
+		<tr>
+			<td>animation-duration</td>
+			<td>Specifies how many seconds or milliseconds an animation takes to complete</td>
+			<td>time</td>
+		</tr>
+		<tr>
+			<td>animation-timing-function</td>
+			<td>Specifies the speed curve of the animation</td>
+			<td>linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)</td>
+		</tr>
+		<tr>
+			<td>animation-delay</td>
+			<td>Specifies a delay before the animation will start</td>
+			<td>time</td>
+		</tr>
+		<tr>
+			<td>animation-iteration-count</td>
+			<td>Specifies how many times an animation should be played</td>
+			<td>number | infinite</td>
+		</tr>
+		<tr>
+			<td>animation-direction</td>
+			<td>Specifies whether or not the animation should play in reverse on alternate cycles</td>
+			<td>normal | alternate</td>
+		</tr>
+		<tr>
+			<td>animation-play-state</td>
+			<td>Specifies whether the animation is running or paused.</td>
+			<td>paused | running</td>
+		</tr>
+	</table>
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	html, body{height:100%;}
+	body{font:15px arial;}
+	div{
+		border:1px solid black;
+		width:380px;
+		padding:10px;
+		line-height:13px;
+	}
+	div span{
+		background:yellow;
+		border-bottom:1px solid black;
+	}
+	p{margin:0; border-bottom:1px dotted black;}
+	table{
+		width:900px;
+		border-collapse:collapse;
+		table-layout:fixed;
+		font-size:12px;
+		color:dimgray;
+	}
+	td{
+		border:1px solid black;
+		padding:5px;
+	}
+	tr:nth-child(1) td:nth-child(1){
+		width:200px;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>vertical-align:</h2>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:baseline;">baseline</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:sub;">sub</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:super;">super</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="span{vertical-align:top;">top</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="span{vertical-align:text-top;">text-top</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="span{vertical-align:middle;">middle</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:bottom;">bottom</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:text-bottom;">text-bottom</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:0px;">0px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:10px;">10px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:25px;">25px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:50px;">50px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:-25px;">-25px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:-50px;">-50px</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:1cm;">1cm</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:10%;">10%</span>.</p></div>
+	<div><p>The vertical-align property is set to:<span style="vertical-align:50%;">50%</span>.</p></div>
+	<br />
+	<br />
+	<br />
+	<h2>More Linebox Properties。Oh oh... 這是什麼啊？</h2>
+	<table>
+		<tr><td>alignment-adjust</td><td>Allows more precise alignment of elements</td></tr>
+		<tr><td>alignment-baseline</td><td>Specifies how an inline-level element is aligned with respect to its parent</td></tr>
+		<tr><td>baseline-shift</td><td>Allows repositioning of the dominant-baseline relative to the dominant-baseline</td></tr>
+		<tr><td>dominant-baseline</td><td>Specifies a scaled-baseline-table</td></tr>
+		<tr><td>drop-initial-after-adjust</td><td>Sets the alignment point of the drop initial for the primary connection point</td></tr>
+		<tr><td>drop-initial-after-align</td><td>Sets which alignment line within the initial line box is used at the primary connection point with the initial letter box</td></tr>
+		<tr><td>drop-initial-before-adjust</td><td>Sets the alignment point of the drop initial for the secondary connection point</td></tr>
+		<tr><td>drop-initial-before-align</td><td>Sets which alignment line within the initial line box is used at the secondary connection point with the initial letter box</td></tr>
+		<tr><td>drop-initial-size</td><td>Controls the partial sinking of the initial letter</td></tr>
+		<tr><td>drop-initial-value</td><td>Activates a drop-initial effect</td></tr>
+		<tr><td>inline-box-align</td><td>Sets which line of a multi-line inline block align with the previous and next inline elements within a line</td></tr>
+		<tr><td>line-stacking</td><td>A shorthand property for setting the line-stacking-strategy, line-stacking-ruby, and line-stacking-shift properties</td></tr>
+		<tr><td>line-stacking-ruby</td><td>Sets the line stacking method for block elements containing ruby annotation elements</td></tr>
+		<tr><td>line-stacking-shift</td><td>Sets the line stacking method for block elements containing elements with base-shift</td></tr>
+		<tr><td>line-stacking-strategy</td><td>Sets the line stacking strategy for stacked line boxes within a containing block element</td></tr>
+		<tr><td>text-height</td><td>Sets the block-progression dimension of the text content area of an inline box</td></tr>
+	</table>
+</body>
+</html>

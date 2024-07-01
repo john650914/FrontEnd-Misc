@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	body{font:13px arial;}
+	table{
+		border-collapse:collapse;
+		table-layout:fixed;
+		width:600px;
+	}
+	th, td{
+		border:1px solid black;
+		padding:3px 5px;
+	}
+	tr th:nth-child(1){
+		width:100px;
+	}
+	th{background:#e8e8e8;}
+	
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>text-transform:</h2>
+	<p>控制內文的大小寫設定。</p>
+	<table>
+		<tr><th>值</th><th>描述</th></tr>
+		<tr><td>none</td><td>預設值。不對文本進行轉換。</td></tr>
+		<tr><td style="text-transform:capitalize;">capitalize</td><td>將每個單詞的第一個字元轉換為大寫。</td></tr>
+		<tr><td style="text-transform:uppercase;">uppercase</td><td>將所有字元轉換為大寫。</td></tr>
+		<tr><td style="text-transform:lowercase;">lowercase</td><td>將所有字元轉換為小寫。</td></tr>
+		<tr><td style="text-transform:fullwidth;">fullwidth</td><td>將所有字元轉換成全形的形式。如果該字元沒有相應的全形形式，則按原格式顯示。</td></tr>
+		<tr><td style="text-transform:large-kana;">large-kana</td><td>將所有的小假名（small Kana）轉換成正常的假名（normal Kana）。</td></tr>
+		<tr><td>inherit</td><td>繼承父元素的屬性值。</td></tr>
+	</table>
+</body>
+</html>

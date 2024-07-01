@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; font-family:arial;}
+	ul{padding:0 0 0 10px;}
+	li{
+		font-size:11px;
+		font-weight:bold;
+		color:#fff;
+		background:black;
+		float:left;
+		border:1px solid gray;
+		list-style:none;
+		padding:25px 10px 5px 10px;
+		margin-top:-20px;
+		
+		-webkit-transition:margin 0.1s ease, background 0.1s linear 0.3s;
+		-moz-transition:margin 0.1s ease, background 0.1s linear 0.3s;
+		-o-transition:margin 0.1s ease, background 0.1s linear 0.3s;
+		transition:margin 0.1s ease, background 0.1s linear 0.3s;
+	}
+	li:hover{
+		background:crimson;
+		margin:0;
+	}
+	#instruction{
+		position:absolute;
+		top:60px;
+		padding:0 0 0 10px;
+	}
+	p{margin-top:10px; font-size:13px;}	
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<ul>
+		<li>HTML5</li>
+		<li>CSS3</li>
+		<li>Javascript</li>
+		<li>PHP</li>
+		<li>DHTML</li>
+	</ul>
+	<div id="instruction">
+		<h3>transition：</h3>
+		<p>設置用來進行過渡的CSS屬性。</p>
+		<p>The transition property is a shorthand property for the four transition properties:</p>
+		<p>transition-property, transition-duration, transition-timing-function, and transition-delay.</p>
+		<p>語法：transition:property duration timing-function delay，其實就是各種transition屬性的縮寫，可用","分隔設定多組transition值。</p>
+		<p>transition變換的效果在CSS中通過偽類來定義，比如當使用者的滑鼠經過一個元素的時候，那個元素就會被hover偽類控制。</p>
+		<p>值得注意的是，transition是當“屬性值”改變時才會激發transition效果，而不是所有“元素外觀”的改變都會激發的。</p>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

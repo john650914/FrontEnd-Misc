@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!-- 測試區 -->
+<!-- <script src="https://botsdk.stg.gim.beango.com/index.umd.js"></script> -->
+<!-- 正式區 -->
+<!-- <script src="https://botsdk.gamania.chat/index.umd.js"></script> -->
+
+<script>
+	var aaa = 'aaaaaaaaaaa';
+</script>
+</head>
+<body>
+
+TEST
+
+
+<script src="https://botsdk.stg.gim.beango.com/index.umd.js"></script>
+<script>
+window.GIMBotTool.init({
+	url: 'https://helpdesk.stg.gim.beango.com/beanfun', //測試區
+	//url: 'https://beanfun.gamania.chat', //正式區
+	position: 'bottom-right',
+	logoUrl: 'https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/footer/images/logos/logo-gama.png',
+	btnImgUrl: 'https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/footer/images/logos/logo-gama.png',
+	title: '我是自定義的Title'
+})
+</script>
+</body>
+</html>
+
+
+
+<!-- @if (Model._hostEnvironment.EnvironmentName == NetEnvironment.Development || Model._hostEnvironment.EnvironmentName == NetEnvironment.ALPHA){
+	<script src="https://botsdk.stg.gim.beango.com/index.umd.js"></script>
+	<script>
+	  var $bot_url = 'https://helpdesk.stg.gim.beango.com/prasia';
+	</script>
+  } else {
+	<script src="https://botsdk.gamania.chat/index.umd.js"></script>
+	<script>
+	  var $bot_url = 'https://warsofprasia.gamania.chat';
+	</script>
+  }
+  
+  <script>
+  window.GIMBotTool.init({
+	  url: $bot_url,
+	  position: 'bottom-right',
+	  logoUrl: 'https://images.beanfun.com/GamaAD_Image_2024/1717004792447.png',
+	  btnImgUrl: 'https://images.beanfun.com/GamaAD_Image_2024/1717004792447.png',
+	  title: '波拉支援小幫手'
+  })
+  </script> -->

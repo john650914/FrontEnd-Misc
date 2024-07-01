@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; font-family:arial;}
+	body{padding:10px;}
+	#instruction{
+		position:absolute;
+		top:60px;
+		padding:0 0 0 10px;
+	}
+	p{
+		margin-top:10px;
+		font-size:13px;
+	}
+	td{border:1px solid gray; height:80px;}
+	tr td:nth-child(1){width:100px; text-indent:8px;}
+	tr td:nth-child(2){border-bottom:1px solid #d6d6d6;}
+	tr:last-child td{border-bottom:1px solid gray;}
+	.move{background:crimson; width:60px; height:60px; margin-left:10px;}
+	table{width:800px; border-collapse:collapse; margin-top:15px; font-size:12px;}
+	tr:nth-child(1) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:cubic-bezier(0,1,1,0);
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:cubic-bezier(0,1,1,0);
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:cubic-bezier(0,1,1,0);
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:cubic-bezier(0,1,1,0);
+		transition-delay:0;
+	}
+	tr:nth-child(2) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:cubic-bezier(1,0,1,0);
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:cubic-bezier(1,0,1,0);
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:cubic-bezier(1,0,1,0);
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:cubic-bezier(1,0,1,0);
+		transition-delay:0;
+	}
+	tr:nth-child(3) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:cubic-bezier(0.5,0,0.5,0);
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:cubic-bezier(0.5,0,0.5,0);
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:cubic-bezier(0.5,0,0.5,0);
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:cubic-bezier(0.5,0,0.5,0);
+		transition-delay:0;
+	}
+	tr:nth-child(4) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:cubic-bezier(0,0.5,0,0.5);
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:cubic-bezier(0,0.5,0,0.5);
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:cubic-bezier(0,0.5,0,0.5);
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:cubic-bezier(0,0.5,0,0.5);
+		transition-delay:0;
+	}
+	tr:nth-child(5) .move{
+		-webkit-transition-property:all;
+		-webkit-transition-duration:2s;
+		-webkit-transition-timing-function:cubic-bezier(0.3,0.7,0.3,0.7);
+		-webkit-transition-delay:0;
+		
+		-moz-transition-property:all;
+		-moz-transition-duration:2s;
+		-moz-transition-timing-function:cubic-bezier(0.3,0.7,0.3,0.7);
+		-moz-transition-delay:0;
+		
+		-o-transition-property:all;
+		-o-transition-duration:2s;
+		-o-transition-timing-function:cubic-bezier(0.3,0.7,0.3,0.7);
+		-o-transition-delay:0;
+		
+		transition-property:all;
+		transition-duration:2s;
+		transition-timing-function:cubic-bezier(0.3,0.8,0.3,0.8);
+		transition-delay:0;
+	}
+	table:hover .move{
+		background:blue;
+		 margin-left:627px;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h3>transition-timing-function：cubic-bezier的設定方式</h3>
+	<p>cubic-bezier為通過貝茲曲線來計算“轉換”過程中的屬性值，如下曲線所示，通過改變P1(x1, y1)和P2(x2, y2)的座標可以改變整個過程的Output Percentage。</p>
+	<p><img src="TimingFunction.png" /></p>
+	<table>
+		<tr>
+			<td>0,1,1,0</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>1,0,1,0</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>0.5,0,0.5,0</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>0,0.5,0,0.5</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>0.3,0.8,0.3,0.8</td>
+			<td>
+				<div class="move"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

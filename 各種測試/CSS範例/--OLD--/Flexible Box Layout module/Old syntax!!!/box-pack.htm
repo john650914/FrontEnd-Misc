@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; width:100%;}
+	
+	#div1, #div2, #div3{
+		width:300px;
+		height:300px;
+		border:1px solid red;
+		/*float:left; 加float Firefox會有問題，不加的話又會怪怪的，3個div FF會自動排在同一排*/
+		display:box;
+		display:-webkit-box;
+		display:-moz-box;
+	}
+		
+	#div1{
+		box-pack:start;
+		-webkit-box-pack:start;
+		-moz-box-pack:start;
+	}
+	#div2{	
+		box-pack:center;
+		-webkit-box-pack:center;
+		-moz-box-pack:center;
+	}
+	#div3{
+		box-pack:end;
+		-webkit-box-pack:end;
+		-moz-box-pack:end;
+	}
+	
+	div div{
+		width:100px;
+		height:100px;
+		border:1px solid blue;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">AAA<div>AA</div></div>
+	<div id="div2">BBB<div>BB</div></div>
+	<div id="div3">CCC<div>CC</div></div>
+</body>
+</html>

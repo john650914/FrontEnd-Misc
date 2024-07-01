@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; font-family:arial;}
+	ul{padding:0 0 0 10px;}
+	li{
+		font-size:11px;
+		font-weight:bold;
+		color:#fff;
+		background:black;
+		float:left;
+		border:1px solid gray;
+		list-style:none;
+		padding:25px 10px 5px 10px;
+		margin-top:-20px;
+		
+		-webkit-transition-property:margin, background;
+		-webkit-transition-duration:0.1s, 0.1s;
+		-webkit-transition-timing-function:ease-out, linear;
+		-webkit-transition-delay:0s, 0.3s;
+		
+		-moz-transition-property:margin, background;
+		-moz-transition-duration:0.1s, 0.1s;
+		-moz-transition-timing-function:ease-out, linear;
+		-moz-transition-delay:0s, 0.3s;
+		
+		-o-transition-property:margin, background;
+		-o-transition-duration:0.1s, 0.1s;
+		-o-transition-timing-function:ease-out, linear;
+		-o-transition-delay:0s, 0.3s;
+		
+		transition-property:margin, background;
+		transition-duration:0.1s, 0.1s;
+		transition-timing-function:ease-out, linear;
+		transition-delay:0s, 0.3s;
+	}
+	li:hover{
+		background:crimson;
+		margin:0;
+	}
+	#instruction{
+		position:absolute;
+		top:60px;
+		padding:0 0 0 10px;
+	}
+	p{margin-top:10px; font-size:13px;}	
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<ul>
+		<li>HTML5</li>
+		<li>CSS3</li>
+		<li>Javascript</li>
+		<li>PHP</li>
+		<li>DHTML</li>
+	</ul>
+	<div id="instruction">
+		<h3>transition-property：</h3>
+		<p>被變換的屬性(比如color)。指定當元素哪個屬性改變時執行Transition效果，屬性可以時以下屬性：none、all以及其他可以觸發流覽器reflow或repaint的屬性。</p>
+		<p>當指定為none時，動畫立即停止，當指定為all的時候，則當元素產生任何屬性值變化時都將執行“轉換”效果，比如大小改變。</p>
+		<p>初始預設值為all.</p>
+		<p>可指定多個transition-property的值，如本範例中用","將每個值作分隔。</p>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

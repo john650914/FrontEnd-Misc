@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Box Size</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	table{
+		font:bold 17px "courier new";
+		border-collapse:separate;
+		border-spacing:0;
+		color:#fff;
+		border-right:1px solid black;
+		border-bottom:1px solid black;
+		background:black;
+		empty-cells:hide; /*預設是show*/
+	}
+	td{
+		border:1px solid black;
+		border-bottom:none;
+		border-right:none;
+		background:gray;
+		padding:10px 15px;
+	}
+	
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<table>
+		<tr><td>A</td><td>B</td><td>C</td></tr>
+		<tr><td>D</td><td></td><td></td></tr>
+		<tr><td>G</td><td>H</td><td>I</td></tr>
+	</table>
+	<p>這個屬性滿軌異的，可以控制沒有內容的table cells邊框或和背景顯示或是隱藏，不過只有在border-collapse:separate;的時候才有作用，什麼時候要用empty-cells這個屬性呢…？還要再想一想…</p>
+</body>
+</html>

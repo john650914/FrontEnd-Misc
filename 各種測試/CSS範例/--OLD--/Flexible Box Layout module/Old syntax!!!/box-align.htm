@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	body{font:13px arial;}
+	h2{
+		margin:0 0 5px 0;
+	}
+	p{
+		margin:0 0 10px 0;
+	}
+	table{
+		border-collapse:collapse;
+		table-layout:fixed;
+		color:dimgray;
+		font-size:12px;
+		width:700px;
+		margin-bottom:20px;
+	}
+	th, td{
+		border:1px solid black;
+		padding:3px 5px;
+		vertical-align:top;
+	}
+	tr th:nth-child(1){
+		width:100px;
+	}
+	
+	#div1, #div2, #div3{
+		width:300px;
+		height:200px;
+		border:1px solid red;
+		/*float:left; 加float Firefox會有問題，裡面的div會繼承float，而且不加的話又會怪怪的，3個div會自動排在同一排*/
+		
+		display:-webkit-box;
+		display:-moz-box;
+		display:-o-box;
+		display:box;
+	}
+	div div{
+		width:100px;
+		height:100px;
+		border:1px solid blue;
+	}
+		
+	#div1{
+		-webkit-box-align:start;
+		-moz-box-align:start;
+		-o-box-align:start;
+		box-align:start;
+	}
+	#div2{	
+		-webkit-box-align:center;
+		-moz-box-align:center;
+		-o-box-align:center;
+		box-align:center;
+	}
+	#div3{
+		-webkit-box-align:end;
+		-moz-box-align:end;
+		-o-box-align:end;
+		box-align:end;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>box-align:</h2>
+	<p>The box-align property specifies how to align the child elements of a box.</p>
+	<p>語法：box-align:start|end|center|baseline|stretch;</p>
+	<table>
+	<tr><th>Value</th><th>Description</th></tr>
+	<tr><td>start</td><td>For normal direction boxes, the top edge of each child is placed along the top of the box. For reverse direction boxes, the bottom edge of each child is placed along the bottom of the box</td></tr>
+	<tr><td>end</td><td>For normal direction boxes, the bottom edge of each child is placed along the bottom of the box. For reverse direction boxes, the top edge of each child is placed along the top of the box</td></tr>
+	<tr><td>center</td><td>Any extra space is divided evenly, with half placed above the child and the other half placed below the child</td></tr>
+	<tr><td>baseline</td><td>If box-orient is inline-axis or horizontal, all children are placed with their baselines aligned</td></tr>
+	<tr><td>stretch</td><td>The child elements are stretched to fill the containing block</td></tr>
+	</table>
+	<div id="div1">AAA<div>aa</div></div>
+	<div id="div2">BBB<div>bb</div></div>
+	<div id="div3">CCC<div>cc</div></div>
+</body>
+</html>
+
+
+
+
+
+
+
+

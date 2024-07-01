@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	body{}
+	div{
+		width:500px; padding:15px 15px 100px; margin:0 0 15px 0; border:1px solid black;
+		font:14px/26px arial,"微軟正黑體"; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.8);
+	}
+	h3{
+		margin:0;
+	}
+	table{
+		border-collapse:collapse;
+		table-layout:fixed;
+		width:530px;
+		font:12px/20px arial;
+		margin-bottom:200px;
+	}
+	td{
+		border:1px solid black;
+		padding:5px;
+		vertical-align:top
+	}
+	th{
+		border:1px solid black;
+		padding:5px;
+	}
+	tr th:nth-child(1){
+		width:100px;
+	}
+	
+	div:nth-child(1){
+		background:linear-gradient(#141d75, #00b4ff);
+	}
+	
+	div:nth-child(2){
+		background:linear-gradient(left, #141d75, #00b4ff);
+	}
+	div:nth-child(3){
+		background:linear-gradient(left, #141d75, #00b4ff, #141d75, #00b4ff, #141d75);
+	}
+	div:nth-child(4){
+		background:linear-gradient(#141d75, #141d75 48%, #00b4ff 52%, #00b4ff);
+	}
+	div:nth-child(5){
+		background:radial-gradient(circle, #00b4ff, #141d75);
+	}
+	div:nth-child(6){
+		background:radial-gradient(50% 0%, farthest-side, #00b4ff, #141d75);
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div>
+		<h3>Linear Gradient (Top > Bottom)</h3>
+		background:linear-gradient(#141d75, #00b4ff);
+	</div>
+	<div>
+		<h3>Linear Gradient (Left > Right)</h3>
+		background:linear-gradient(left, #141d75, #00b4ff);
+	</div>
+	<div>
+		<h3>Linear Gradient (with Even Stops)</h3>
+		background:linear-gradient(left, #141d75, #00b4ff, #141d75, #00b4ff, #141d75);
+	</div>
+	<div>
+		<h3>Linear Gradient (with Specified Arbitrary Stops)</h3>
+		background:linear-gradient(#141d75, #141d75 48%, #00b4ff 52%, #00b4ff);
+	</div>
+	<div>
+		<h3>Radial Gradient (Centered, Full Size)</h3>
+		background:radial-gradient(circle, #00b4ff, #141d75);
+	</div>
+	<div>
+		<h3>Radial Gradient (Positioned, Sized)</h3>
+		background:radial-gradient(50% 0%, farthest-side, #00b4ff, #141d75);<br />
+		size的選項還有其它的請見下表
+	</div>
+	<table>
+		<tr>
+			<th>Constant</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>closest-side</td>
+			<td>The gradient's shape meets the side of the box closest to its center (for circles) or meets both the vertical and horizontal sides closest to the center (for ellipses).</td>
+		</tr>
+		<tr>
+			<td>closest-corner</td>
+			<td>The gradient's shape is sized so it exactly meets the closest corner of the box from its center.</td>
+		</tr>
+		<tr>
+			<td>farthest-side</td>
+			<td>Similar to closest-side, except the shape is sized to meet the side of the box farthest from its center (or vertical and horizontal sides).</td>
+		</tr>
+		<tr>
+			<td>farthest-corner</td>
+			<td>The gradient's shape is sized so it exactly meets the farthest corner of the box from its center.</td>
+		</tr>
+		<tr>
+			<td>contain</td>
+			<td>A synonym for closest-side.</td>
+		</tr>
+		<tr>
+			<td>cover</td>
+			<td>A synonym for farthest-corner.</td>
+		</tr>
+	</table>
+</body>
+</html>

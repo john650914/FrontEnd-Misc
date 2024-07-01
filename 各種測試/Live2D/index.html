@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta name="viewport" content="width=750, user-scalable=0"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://unpkg.com/@esotericsoftware/spine-player@4.0.*/dist/iife/spine-player.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@esotericsoftware/spine-player@4.0.*/dist/spine-player.css">
+</head>
+<body style="background:#000;">
+
+<div id="player-container" style="width: 1024px; height: 1024px; margin: 0 auto; position: relative; top: -60px;"></div>
+
+<script>
+/* new spine.SpinePlayer("player-container", {
+	jsonUrl: "provided/dionyscon03.json",
+	atlasUrl: "provided/dionyscon03.atlas",
+}); */
+/* new spine.SpinePlayer("player-container", {
+	jsonUrl: "official/spineboy-pro.json",
+	atlasUrl: "official/spineboy.atlas",
+	alpha: true,
+	backgroundColor: "#00000000"
+}); */
+</script>
+<script>
+/* new spine.SpinePlayer("player-container", {
+	jsonUrl: "https://esotericsoftware.com/files/examples/4.0/spineboy/export/spineboy-pro.json",
+	atlasUrl: "https://esotericsoftware.com/files/examples/4.0/spineboy/export/spineboy.atlas",
+	alpha: true,
+	backgroundColor: "#00000000"
+}); */
+new spine.SpinePlayer("player-container", {
+	jsonUrl: "test/11.json",
+	atlasUrl: "test/11.atlas",
+	showControls: false,
+	animation: 'animation',
+	premultipliedAlpha: false
+});
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		border:1px solid red;
+		width:100px;
+		height:100px;
+		float:left;
+	}
+	#div1{
+		border:10px solid blue;
+		
+		transform:scale(0.3, 0.6); /*float跟inline的時候會佔空間*/
+		transform-origin:0px 0px;
+		
+		-webkit-transform:scale(0.3, 0.6);
+		-webkit-transform-origin:0px 0px;
+		
+		-moz-transform:scale(0.3, 0.6);
+		-moz-transform-origin:0px 0px;
+		
+		-o-transform:scale(0.3, 0.6);
+		-o-transform-origin:0px 0px;
+	}
+	#div2{
+		border:1px solid green;
+		width:500px;
+		height:100px;
+		clear:both;
+		margin-top:50px;
+	}
+	#div2 span{
+		border:2px solid lime;
+		
+		transform:scale(0.8, 0.8);
+		transform-origin:0px 0px;
+		
+		-webkit-transform:scale(0.8, 0.8); /*行內元素google又不顯示…*/
+		-webkit-transform-origin:0px 0px;
+		
+		-moz-transform:scale(0.8, 0.8);
+		-moz-transform-origin:0px 0px;
+		
+		-o-transform:scale(0.8, 0.8);
+		-o-transform-origin:0px 0px;
+	}
+	#div3{
+		border:2px solid fuchsia;
+		margin-top:50px;
+		clear:left;
+		
+		transform:scaleX(0.5);
+		-webkit-transform:scaleX(0.5);
+		-moz-transform:scaleX(0.5);
+		-o-transform:scaleX(0.5);
+	}
+	#div4{
+		border:2px solid aqua;
+		margin-top:50px;
+		
+		transform:scaleY(0.5);
+		-webkit-transform:scaleY(0.5);
+		-moz-transform:scaleY(0.5);
+		-o-transform:scaleY(0.5);
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div></div>
+	<div id="div1"></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	
+	<div id="div2">
+		這是文字，裡面包含<span>span標籤</span>，看看是否能正確顯示。
+	</div>
+	
+	<div id="div3"></div>
+	<div id="div4"></div>
+</body>
+</html>
+
+
+
+

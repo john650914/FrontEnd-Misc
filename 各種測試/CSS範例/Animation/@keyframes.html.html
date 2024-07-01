@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	html, body{height:100%;}
+	body{font:13px arial;}
+	h2{
+		margin:130px 0 15px 0;
+	}
+	table{
+		width:900px;
+		border-collapse:collapse;
+		table-layout:fixed;
+		font-size:12px;
+		color:dimgray;
+	}
+	th{
+		border:1px solid black;
+		padding:5px;
+	}
+	th:nth-child(1){
+		width:160px;
+	}
+	th:nth-child(2){
+		width:440px;
+	}
+	td{
+		border:1px solid black;
+		padding:5px;
+	}
+	div{
+		width:100px;
+		height:100px;
+		background:dodgerblue;
+		position:absolute;
+		left:10px; top:10px;
+		
+		-webkit-animation-name:myMovement;
+		-webkit-animation-duration:1s;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-delay:0s;
+		-webkit-animation-iteration-count:infinite;
+		-webkit-animation-direction:normal;
+		-webkit-animation-play-state:running;
+		
+		-moz-animation-name:myMovement;
+		-moz-animation-duration:1s;
+		-moz-animation-timing-function:linear;
+		-moz-animation-delay:0s;
+		-moz-animation-iteration-count:infinite;
+		-moz-animation-direction:normal;
+		-moz-animation-play-state:running;
+	}
+	@-webkit-keyframes myMovement{
+		from{left:10px;}
+		to{left:210px; background:fuchsia;}
+	}
+	@-moz-keyframes myMovement{
+		from{left:10px;}
+		to{left:210px; background:fuchsia;}
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>@keyframes:</h2>
+	<p>參考：<a href="https://msdn.microsoft.com/library/jj680076(v=vs.85).aspx">https://msdn.microsoft.com/library/jj680076(v=vs.85).aspx</a></p>
+	<p>With the @keyframes rule, you can create animations.</p>
+	<p>The animation is created by gradually changing from one set of CSS styles to another.</p>
+	<p>During the animation, you can change the set of CSS styles many times.</p>
+	<p>Specify when the change will happen in percent, or the keywords "from" and "to", which is the same as 0% and 100%.</p>
+	<p>0% is the beginning of the animation, 100% is when the animation is complete.</p>
+	<p>For best browser support, you should always define both the 0% and the 100% selectors.</p>
+	<p>Note: Use the animation properties to control the appearance of the animation, and also to bind the animation to selectors.</p>
+	<p>語法：@keyframes animationName{keyframes-selector1{css-styles} keyframes-selector2{css-styles} ...};</p>
+	<p>這個屬性目前只有google chrome、safari及Firefox有支援。</p>
+	<table>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>animationName</td>
+			<td>Required. Defines the name of the animation.</td>
+			<td>Any valid name of css rule.</td>
+		<tr>
+			<td>keyframes-selector</td>
+			<td>
+				Required. Percentage of the animation duration.<br />
+				Note: You can have many keyframes-selectors in one animation.<br />
+			</td>
+			<td>
+				0-100%<br /><br />
+				or<br /><br />
+				from (same as 0%)<br />
+				to (same as 100%)
+			</td>
+		<tr>
+			<td>css-styles</td>
+			<td>Required. One or more legal CSS style properties</td>
+			<td>css</td>
+		</tr>
+	</table>
+	<div></div>
+</body>
+</html>

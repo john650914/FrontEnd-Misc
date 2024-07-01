@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>YouTube IFrame API Example</title>
+</head>
+
+<body>
+	<!-- Div elements for each video player -->
+	<div id="player1"></div>
+	<div id="player2"></div>
+	<div id="player3"></div>
+
+	<!-- Buttons to control video playback -->
+	<button onclick="playVideo(0)">Play Video 1</button>
+	<button onclick="playVideo(1)">Play Video 2</button>
+	<button onclick="playVideo(2)">Play Video 3</button>
+	<button onclick="pauseAllVideo()">Pause All Video</button>
+
+	<!-- Load the IFrame Player API code asynchronously -->
+	<script src="https://www.youtube.com/iframe_api"></script>
+
+	<!-- Initialize the YouTube players when API is ready -->
+	<script>
+		var players = [];
+		var videoIds = ['NIRRIo47o1w', 'X1nqmEyzE4Y', 'R8gfgw8gL8w']; // Replace with your video IDs
+
+		function onYouTubeIframeAPIReady() {
+			for (var i = 0; i < videoIds.length; i++) {
+				players[i] = new YT.Player('player' + (i + 1), {
+					playsinline: 1,
+					height: '390',
+					width: '640',
+					videoId: videoIds[i],
+					/* events: {
+						'onReady': onPlayerReady,
+						'onStateChange': onPlayerStateChange
+					} */
+				});
+			}
+		}
+
+		/* function onPlayerReady(event) {
+			console.log('Player is ready:', event.target);
+		}
+
+		function onPlayerStateChange(event) {
+			console.log('Player state changed:', event.data);
+		} */
+
+		function playVideo(playerIndex) {
+			// Stop all players
+			for (var i = 0; i < players.length; i++) {
+				if (i !== playerIndex) {
+					players[i].pauseVideo();
+				}
+			}
+			// Play the selected player
+			players[playerIndex].playVideo();
+		}
+
+		function pauseAllVideo() {
+			for (var i = 0; i < players.length; i++) {
+				players[i].pauseVideo();
+			}
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Box Size</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	html, body{height:100%;}
+	body{font-size:13px; line-height:22px;}
+	
+	div{color:#003d64;}
+	
+	#div1{
+		border:1px solid gray;
+		width:500px;
+		padding:20px;
+		font:italic small-caps bold 16px/28px Arial,Times;
+	}
+	
+	#div2{
+		border:1px solid gray;
+		width:500px;
+		padding:20px;
+		margin-top:20px;
+		font:17px "微軟正黑體";
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<h2>font：</h2>
+	<p>用于指定或接收最多六个以下空格分隔属性值的字符串，或者是用于设置六种列出的文本字体的字符串：可以按顺序设置如下属性：</p>
+	<ul>
+		<li>font-style</li>
+		<li>font-variant</li>
+		<li>font-weight</li>
+		<li>font-size/line-height</li>
+		<li>font-family</li>
+	</ul>
+	<p>此屬性是複合屬性，最多可以指定6個值。font-style、font-variant 和 font-weight 值可按任何順序出現在 font-size 之前。但是，font-size、line-height 和 font-family 屬性必須按所列順序顯示。在設置 font 屬性時，同時會設置元件屬性。在這種情況下，字串必須是元件屬性的有效值的組合；只有 font-family 值才能具有多個值。如果字串不包含某個元件屬性的值，則該屬性將設置為其預設值，而不管該元件屬性以前的設置如何。由於有一些字體本身沒有斜體樣式,所以有時斜體顯示將被忽略。</p>
+	<div id="div1">範例1，這一段文字樣式設定為：Style:oblique，Variant:small-caps，Weight:bold，Size:16px，Height:28px，Family:Arial,Times。</div>
+	<div id="div2">範例2，也可以省略部份屬性值，例如這一段文字只有設定font-ize和font-family。</div>
+</body>
+</html>

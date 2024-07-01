@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		text-align:center;
+		line-height:100px;
+		font-family:arial;
+		font-weight:bold;
+		font-size:25px;
+		color:#fff;
+		text-shadow:black 0 0 5px;
+	}
+	#div1{
+		border:1px solid red;
+		width:100px;
+		height:100px;
+		position:absolute;
+		left:50px;
+		top:50px;
+		
+		transform:rotate(-25deg);
+		transform-origin:0px 0px;
+		
+		-webkit-transform:rotate(-25deg); /*目前只有Google Chrome對行內元素無效，display:inline-block; works*/
+		-webkit-transform-origin:0px 0px;
+		
+		-moz-transform:rotate(-25deg);
+		-moz-transform-origin:0px 0px;
+		
+		-o-transform:rotate(-25deg);
+		-o-transform-origin:0px 0px;
+	}
+	#div2{
+		border:1px solid black;
+		background:#a4a4a4;
+		width:100px;
+		height:100px;
+		position:absolute;
+		left:300px;
+		top:200px;
+		
+		transform:rotateX(-30deg) rotateY(-45deg) rotateZ(0deg);
+		-webkit-transform:rotateX(-30deg) rotateY(-45deg) rotateZ(0deg); /*其它瀏覽器都不支援*/
+		-moz-transform:rotateX(-30deg) rotateY(-45deg) rotateZ(0deg);
+		-o-transform:rotateX(-30deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	#div3{
+		border:1px solid black;
+		background:#686868;
+		width:100px;
+		height:100px;
+		position:absolute;
+		left:371px;
+		top:200px;
+		
+		transform:rotateX(30deg) rotateY(-45deg) rotateZ(0deg);
+		-webkit-transform:rotateX(30deg) rotateY(-45deg) rotateZ(0deg); /*其它瀏覽器都不支援*/
+		-moz-transform:rotateX(30deg) rotateY(-45deg) rotateZ(0deg);
+		-o-transform:rotateX(30deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	#div4{
+		border:1px solid black;
+		background:#d2d2d2;
+		width:100px;
+		height:100px;
+		position:absolute;
+		left:335px;
+		top:138px;
+		
+		transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+		-webkit-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg); /*其它瀏覽器都不支援*/
+		-moz-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+		-o-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+	}
+	#div5{
+		border:1px solid black;
+		background:#d2d2d2;
+		width:100px;
+		height:100px;
+		position:absolute;
+		left:336px;
+		top:225px;
+		z-index:-1;
+		box-shadow:#383838 8px 0 20px; 
+		
+		transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+		-webkit-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg); /*其它瀏覽器都不支援*/
+		-moz-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+		-o-transform:rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+	}
+
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2">Left</div>
+	<div id="div3">Right</div>
+	<div id="div4">Top</div>
+	<div id="div5"></div>
+</body>
+</html>

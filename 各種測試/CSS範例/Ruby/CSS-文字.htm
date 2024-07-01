@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0045)http://www.cis.nctu.edu.tw/~is91056/css_1.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=Big5">
+<title>CSS-文字</title>
+
+<link rel="stylesheet" type="text/css" href="./CSS-文字_files/WT.css">
+</head>
+
+<body>
+<center>
+<div>
+	<table cellpadding="2px">
+	<tbody><tr class="text" align="center">
+		<td height="27"><h2>CSS 語法參考辭典</h2></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css.htm">簡介</a></td>
+		<td><a style="color:#ff0000" href="./CSS-文字_files/CSS-文字.htm">文字</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_2.htm">字型</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_3.htm">背景</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_4.htm">框線</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_5.htm">位置</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_6.htm">清單</a></td>		
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_7.htm">表格</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_8.htm">濾鏡特效</a></td>		
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_9.htm">其他資訊</a></td>
+		<td><a href="http://www.cis.nctu.edu.tw/~is91056/css_10.htm">Sample</a></td>				
+	</tr>
+	</tbody></table>
+</div>	
+<div>
+<table border="1" width="85%">
+	<tbody><tr class="h3">
+		<td align="center">項目</td>
+		<td width="20%" align="center">變數</td>
+		<td width="40%" align="center">參數</td>
+		<td width="18%" align="center">範例</td>
+	</tr>
+	<tr>
+		<td align="center">字體顏色</td>
+		<td class="btext" title="字體顏色">color</td>
+		<td class="btext">關鍵字<br>
+          #rgb <span class="text">(以16個色階來設定)</span><br>
+          #rrggbb <span class="text">(以32個色階來設定)</span><br>
+          rgb(n%,n%,n%)<br>
+          rgb(n,n,n)</td>
+		<td><span style="color:gray">color:gray</span><br>
+          <span style="color:#DE0">color:#DE0</span><br>
+		  <span style="color:#FF0000">color:#FF0000</span><br>
+          <span style="color:rgb(100%,60%,20%)" )="">color:rgb(100%,60%,20%)</span><br>
+          color:rgb(128,0,128)</td>
+	</tr>
+	<tr>
+		<td align="center">水平對齊</td>
+		<td title="指定文字水平位置">text-align</td>
+		<td>left<br>
+          center<br>
+          right</td>
+		<td style="text-align:center">text-align:center</td>
+	</tr>	
+	<tr>
+		<td align="center">設定文字分散對齊</td>
+		<td class="btext" title="設定文字分散對齊">text-justify</td>
+		<td class="btext">auto<br>
+          distribute-all-lines <span class="text">(分散對齊)</span></td>
+		<td class="btext" style="text-justify:distribute-all-lines">text-justify:distribute-all-lines</td>
+	</tr>	
+	<tr>
+		<td height="37" align="center" class="btext">段落縮排</td>
+		<td class="btext" title="段落縮排">text-indent</td>
+		<td class="btext">數值+% <br>
+          數值+單位 <span class="text">(px,cm,em)</span></td>
+		<td class="btext" style="text-indent:20%">text-indent:20%</td>
+	</tr>	
+	<tr>
+		<td align="center" class="btext">垂直對齊</td>
+		<td class="btext" title="設定文字分散對齊">vertical-align</td>
+		<td class="btext">baseline <span class="text">(一般位置)</span><br>
+          super<span style="vertical-align:super" class="text"> (上標)</span><br>
+          sub <span style="vertical-align:sub" class="text">(下標)</span><br>
+          top<br>
+          middle<br>
+          botton</td>
+	    <td class="btext" style="vertical-align:top">vertical-align:top</td>
+	</tr>
+	<tr>
+		<td align="center">設定英文大小寫</td>
+		<td>text-transform</td>
+		<td>capitalize<span class="text"> (第一個為大寫)</span><br>
+          uppercase<span class="text"> (皆大寫)</span><br>
+          lowercase<span class="text"> (皆小寫)</span><br>
+          none<span class="text"> (預設)</span></td>
+		<td style="text-transform:capitalize">text-transform:capitalize</td>
+	</tr>
+	<tr>
+		<td align="center">調整字元間距</td>
+		<td>letter-spacing</td>
+		<td>normal <br>
+          數字+單位<span class="text"> (pt , px , em , 亦可為負值)</span></td>
+		<td style="letter-spacing:5pt">letter-spacing:5pt</td>
+	</tr>
+	<tr>
+		<td align="center">調整單字間距<br>
+          <span class="text" style="color:red ">只有Netscape支援</span></td>
+		<td>word-spacing</td>
+		<td>normal ;<br>
+          數字+單位<span class="text"> (pt , px , em)</span> </td>
+		<td scope="word-spacing:7pt">word spacing:7pt</td>
+	</tr>
+	<tr>
+		<td align="center">設定文字效果</td>
+		<td>text-decoration</td>
+		<td>none<br>
+          overline<span class="text" style="text-decoration:overline"> (上線)</span><br>
+          underline <span class="text">(底線)</span><br>
+          line-throughx <span class="text">(刪除線)</span><br>
+          blink<span class="text"> (閃爍效果)</span></td>
+		<td><span style="text-decoration:overline underline">text-decoration:overline underline</span><br>
+			<a href="./CSS-文字_files/CSS-文字.htm" style="text-decoration:none">text-decoration:none</a></td>
+	</tr>	
+	<tr>
+		<td align="center">設定空白或換行</td>
+		<td>white-space</td>
+		<td>normal<br>
+          pre <span class="text">(顯示輸入的換行,space,tab.<font color="red">IE不支援</font>)</span><br>
+          nowrap <span class="text">(不會自動換行)</span></td>
+		<td style="white-space:nowrap">white-space:nowrap儲純格內無法換行</td>
+	</tr>
+	<tr>
+		<td align="center">避頭尾字元</td>
+		<td>line-break</td>
+		<td>normal <span class="text">(要看瀏覽器支援與否)</span><br>
+          strict<span class="text"> (日文小的片假名,平假名或長音-不得至於行頭)</span></td>
+		<td style="line-break">style="line-break" </td>
+	</tr>	
+	<tr>
+		<td align="center">單字中的換行處理</td>
+		<td>word-break</td>
+		<td>normal<br>
+          break-all <span class="text">(英文中,到畫面右邊就換行,不保持單字完整性)</span><br>
+          keep-all<span class="text"> (中文中,保持單字或句子完整性.只是用於中日韓文)</span></td>
+		<td style="word-break:keep-all">word-break:keep-all (中文中,保持單字或句子完整性.只適用於中日韓文)</td>
+	</tr>
+	<tr>
+		<td align="center">指定在單字中換行</td>
+		<td>word-wrap</td>
+		<td>normal<br>
+          break-word <span class="text">(讓無法自動換行的單字進行自動換行)</span></td>
+		<td style="word-wrap:word-wrap">word-wrap:word-wrap thisisoursampleisitlongenough</td>
+	</tr>
+	<tr>
+		<td align="center">以直書方式顯示<br>
+		<span style="color:red" class="text">Netscape 不支援</span></td>
+		<td>writing-mode</td>
+		<td>lr-tb 橫書<br>
+        	tb-rl 直書</td>
+		<td style="writing-mode:tb-rl">writing-mode:tb-rl 直書</td>
+	</tr>
+	<tr>
+		<td align="center">設定底線位置<br>
+			<span class="text" style="color:red">此功能可用overline取代</span></td>
+		<td>text-underline-position</td>
+		<td>below <span class="text">(底線在下或在左)</span><br>
+          above<span class="text" style="text-underline-position:above"> (底線在上或在右)</span></td>
+		<td><span style="writing-mode:tb-rl;text-decoration:underline;text-underline-position:above">text-underline-position:below 直書
+          </span></td>
+	</tr>
+	<tr>
+		<td align="center">調整標注符號的位置<br>
+          <span class="text" style="color:red">只適用於&lt;Ruby&gt;標籤</span></td>
+		<td>ruby-align</td>
+		<td>auto <br>
+          left <span class="text">(從左端開始標注</span>)<br>
+          center <span class="text">(從中間開始標注</span>)<br>
+          right <span class="text">(從右端開始標注</span>)<br>
+          distribute-letter <span class="text">(平均地標注</span>)<br>
+          distribute-space <span class="text">(平均地標注,且空間足夠時會在左右再留一些空白.空間不足時兩者效果是一樣的.</span>)<br>
+          line-edge <span class="text">(只有在最左方或最右方有要標注的文字時,標注符號會從該文字的另一方開始標注</span>)</td>
+		<td><ruby style="ruby-align:left">左端標注<rt>left<br></rt></ruby>
+			<ruby style="ruby-align:center">中間標注<rt>center<br></rt></ruby>
+			<ruby style="ruby-align:right">右端標注<rt>right<br></rt></ruby>
+			<ruby style="ruby-align:distribute-letter">平均地標注<rt>ruby-align:distribute-letter<br></rt></ruby>
+			<ruby style="ruby-align:distribute-space">平均地標注,且空間足夠時會在左右再留一些空白<rt>ruby-align:distribute-space<br></rt></ruby>
+			edge<ruby style="ruby-align:line-edge">標<rt>edge</rt></ruby>注<br>
+			edge標<ruby style="ruby-align:line-edge">注<rt>edge</rt></ruby></td>
+	</tr>
+	<tr>
+		<td align="center">標注符號的位置</td>
+		<td>ruby-positon</td>
+		<td>above <span class="text">(置於文字之上,預設值)</span><br>
+          inline <span class="text">(至於文字之後)</span> </td>
+		<td><ruby style="ruby-position:inline">標注在後<st>inline</st></ruby></td>
+	</tr>
+	<tr>
+		<td align="center">將文字調整收編在格線內的方法</td>
+		<td>layout-grid-type</td>
+		<td>loose<span class="text"> (不改變字型,紙漿字與自之間空開.預設值)</span><br>
+          fixed<span class="text"> (僅對中日韓設定為一樣的字型大小,再調整收標於格線內)</span><br>
+          strict <span class="text">(將所有字型都設定為一樣的字型大小,再調整收標於格線內)</span> </td>
+		<td background="./CSS-文字_files/grid.gif" style="layout-grid-type:loose;layout-grid-line:20px;layout-grid-char:20px">layout-grid-type:loose;layout-grid-line:20px;layout-grid-char:20px</td>
+	</tr>
+	<tr>
+		<td align="center">字元,單行間距</td>
+		<td>layout-grid-char<br>
+          layout-grid-line</td>
+		<td>none <span class="text">(預設值)</span><br>
+          auto<span class="text"> (自動設定格線大小)</span><br>
+          文字大小的數值+單位 <span class="text">(無法指定為負值,px,pt,em)</span><br>
+          數值+% <span class="text">(無法指定為負值)</span></td>
+		<td background="./CSS-文字_files/grid.gif" style="layout-grid-type:loose;layout-grid-line:40px;layout-grid-char:20px;layout-grid-mode:line">調整單行距離<br>
+          layout-grid-type:loose;layout-grid-line:40px;layout-grid-char:20px;<span style="color:red">layout-grid-mode:line</span></td>
+	</tr>
+	<tr>
+		<td align="center">對齊格線的方向</td>
+		<td>layout-grid-mode</td>
+		<td>none <span class="text">(不與格線對齊)</span><br>
+          both <span class="text">(縱向,橫向都與格線對齊)</span><br>
+          line <span class="text">(只有縱向對齊)</span><br>
+          char <span class="text">(只有橫向對齊)</span></td>
+		<td background="./CSS-文字_files/grid.gif" style="layout-grid-type:loose;layout-grid-line:20px;layout-grid-char:10px;layout-grid-mode:char">調整字元距離<br>
+          layout-grid-type:loose;layout-grid-line:20px;layout-grid-char:10px;<span style="color:red">layout-grid-mode:char</span></td>
+	</tr>
+	<tr>
+		<td align="center">統一對格線的指定</td>
+		<td>layout-grid</td>
+		<td>依序為 mode , type , line , char 的值</td>
+		<td background="./CSS-文字_files/grid.gif" style="layout-grid:loose 15px 20px both">layout-grid:loose 15px 20px 
+          both</td>
+	</tr>
+</tbody></table>
+</div>
+</center>
+<div align="right" class="text" style="margin:10px">
+Powered by WT
+</div>
+
+
+
+</body></html>

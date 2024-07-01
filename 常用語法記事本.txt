@@ -60,7 +60,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 
 ################################################# sass常用function #################################################
 @function vw($size, $breakpoint:768) {
-	@return ($size / $breakpoint) * 100vw;
+	@return calc($size / $breakpoint) * 100vw;
 }
 
 @function stroke($stroke, $color) {
@@ -1260,15 +1260,18 @@ CI/CD > Pipelines 按下去 > 看我剛才新增的tag有沒有五個勾勾（�
 
 
 ################################################# sourcetree開dev分支 #################################################
-上方主選單 > Branch > New Branch > Create Branch > 輸入'dev' > Pull回來
+
+從左邊的選單 > REMOTES > origin > 右鍵 > checkout > OK 就直接pull回來了
 
 或是
 
-從左邊的選單 > REMOTES > origin > 右鍵 > checkout 就直接pull回來了
+上方主選單 > Branch > New Branch > Create Branch > 輸入'dev' > Pull回來
+
 
 
 ################################################# swagger路徑 #################################################
 https://127.0.0.1:44369/mabinogi/swagger/ui/index
+https://127.0.0.1:7224/swagger/index.html
 
 
 

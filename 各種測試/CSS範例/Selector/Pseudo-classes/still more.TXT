@@ -1,0 +1,24 @@
+參考：http://dotnet.aspx.cc/CSS3/Pseudo-Class.htm
+
+
+:link	未訪問的超連結。
+:visited	已經訪問過的超連結。
+:hover	滑鼠懸停在超連結上方時的樣式。
+:active	當前選中或者啟動的超連結。
+:indeterminate	匹配那些不確定的元素，如單選框和核取方塊既沒有 checked ，也沒有不 checked 的不確定狀態。
+:root	文檔的根項目，一般是 html 元素。
+:default	匹配一組元素中的預設元素，常用于按鈕、功能表、下拉清單等。例如表單的 type="submit" 按鈕。
+:valid	資料驗證有效的元素。常用於 HTML5 中的表單驗證。
+:invalid	資料驗證無效的元素。常用於 HTML5 中的表單驗證。
+:in-range	常用於有範圍限制的元素。
+:out-of-range	常用於有範圍限制的元素。
+:required	表單的必選項。
+:optional	表單的可選項。
+:selection	使用者選中的文檔部分。
+:read-only	唯讀元素。
+:read-write	可讀寫元素。
+:first	文檔列印第一頁。例如：@page :first {margin:2in 3in;} 
+:left	列印的左頁面的樣式。
+:right	列印的右頁面的樣式。
+
+

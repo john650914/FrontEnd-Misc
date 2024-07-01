@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{border:1px solid red; width:300px; height:100px; margin-bottom:50px;}
+	
+	/*******CSS3標準寫法*******/
+	#div1{
+		overflow-style:auto; /*設定跑馬燈為瀏覽器預設樣式*/
+		marquee-play-count:infinite;
+	}
+	#div2{
+		overflow-style:marquee-line; /*設定跑馬燈為水平移動*/
+		marquee-play-count:infinite;
+	}
+	#div3{
+		overflow-style:marquee-block; /*設定跑馬燈為垂直移動*/
+		marquee-play-count:infinite;
+	}
+	
+	/*******webkit寫法*******/
+	#div1{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:auto; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+	}
+	#div2{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:left; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+	}
+	#div3{
+		overflow:-webkit-marquee;
+		-webkit-marquee-direction:up; /*ahead|auto|backwards|down|forwards|inherit|left|reverse|right|up*/
+		-webkit-marquee-repetition:infinite;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">overflow-style:auto;</div>
+	<div id="div2">overflow-style:marquee-line;</div>
+	<div id="div3">overflow-style:marquee-block;</div>
+</body>
+</html>

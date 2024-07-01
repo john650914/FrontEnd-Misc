@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	
+	div{
+		width: 300px;
+		height: 300px;
+		box-sizing: border-box;
+		padding: 50px 0;
+		background-image: url(img/multi-top.png), url(img/multi-middle.png), url(img/multi-bottom.png);
+		background-clip: padding-box, content-box, padding-box;
+		background-repeat: no-repeat, repeat-y, no-repeat;
+		background-size: 100% 50px, 100% 100%, 100% 50px;
+		background-position: 0% 0%, 0% 0%, 0% 100%;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div></div>
+	<!-- 先設定的背景會疊在後設定的背景之上 -->
+</body>
+</html>

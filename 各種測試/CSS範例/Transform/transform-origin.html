@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		border:1px solid red;
+		width:200px;
+		height:200px;
+		position:absolute;
+		left:100px;
+		top:100px;
+		
+		transform:rotate(25deg);
+		transform-origin:0px 0px; /*預設為50% 50%，可指定各種單位，也可指定left, top, right, bottom*/
+		
+		-webkit-transform:rotate(25deg);
+		-webkit-transform-origin:0px 0px;
+		
+		-moz-transform:rotate(25deg);
+		-moz-transform-origin:0px 0px;
+		
+		-o-transform:rotate(25deg);
+		-o-transform-origin:0px 0px;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

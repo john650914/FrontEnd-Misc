@@ -1,0 +1,70 @@
+/* class=".abc"  id="#abc" 附屬性質="a:hover{}" */
+
+/* 全域開始 */
+body{
+	background: url(image/background.gif);		 	
+	background-attachment:fixed;
+	scrollbar-face-color:#99ccff;
+	scrollbar-shadow-color:#99ccff;
+	scrollbar-highlight-color:white;
+	scrollbar-3dlight-color:#99ccff;
+	scrollbar-darkshadow-color:#6699ff;
+	scrollbar-track-color:#66ccfff;
+	scrollbar-arrow-color:white;}
+	}
+a{text-decoration:none;font-weight:bold}
+a:link{text-decoration:none;font-family:"Arial","新細明體";color:#333399}
+a:visited{text-decoration:none;font-family:"Arial","新細明體";color:#333399}
+a:active{text-decoration:none;font-family:"Arial","新細明體";color:#333366}
+a:hover{text-decoration:none;font-family:"Arial","新細明體";color:#00cccc}
+p{font-size:12pt;text-indent:2em}
+h1, .h1{font-size:20pt;font-family:"標楷體","Arial";font-weight:bold}
+h2, .h2{font-size:16pt;font-family:"標楷體","Arial";font-weight:bold}
+h3, .h3{font-size:12pt;font-family:"標楷體","Arial";font-weight:bold}
+
+#stext{font-size:10px;font-family:"新細明體","Arial"}
+#btext{font-size:16px;font-family:"新細明體","Arial"}
+#text{font-size:12px;font-family:"新細明體","Arial"}
+#cstext{font-size:10px;font-family:"標楷體","Arial"}
+#cbtext{font-size:16px;font-family:"標楷體","Arial"}
+#ctext{font-size:12px;font-family:"標楷體","Arial"}
+.btext{font-size:16px;font-family:"新細明體","Arial"}
+.text{font-size:12px;font-family:"新細明體","Arial"}
+.stext{font-size:10px;font-family:"新細明體","Arial"}
+.news{font-size:14px;color:red}
+.LastModTime{text-align:right;font-size:8px;font-family:"Arial"}
+.errormsg{text-align:center;font-size:16px;color:black;}
+blockquote{border: 1px dotted;}
+/* 全域結束 */
+
+/* doc_start開始 */
+.head_bar{text-align:right;}
+.head_bar table{border:none;} 	
+.head_bar td{font-size:12 px;padding:1px 5px;border-bottom}
+.head_bar a:hover{border-width:0px 0px 1px; border-style:dashed;}
+/* doc_start結束 */
+
+/* 主頁面 index */
+.counter{position:absolute; top:20px; left:20px;}
+.announce{margin:10px;text-align:left;}
+.note{color:#FF99FF;font-size:12px;font-weight:bold;}
+
+/* 主頁面 */
+
+
+.banner{font-weight:bold}
+.banner:link{font-size:18px;filter: glow(color=#FF8000,strength=3); height:10px; color:white; padding:1px}
+.banner:visited{font-size:18px;filter: glow(color=#FF8000,strength=3); height:10px; color:white; padding:1px}
+.banner:active{font-size:18px;filter: glow(color=#FF8000,strength=3); height:10px; color:white; padding:1px}
+.banner:hover{font-size:18px;filter: glow(color=#FF0000,strength=3); height:10px; color:white; padding:1px}
+a.filter:link{filter: glow(color=#FF8000,strength=7)}
+a.filter:hover{filter: glow(color=#FF0000,strength=7)}
+#thin{font-weight:normal}
+#bold{font-weight:bold}
+
+/*mplayer*/
+.mplayer{position:absolute;top:1px; left:30px;}
+
+/* 開始 */
+/* 結束 */
+

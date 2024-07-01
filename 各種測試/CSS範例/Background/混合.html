@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Box Size</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	div{
+		width: 500px;
+		height: 500px;
+		padding: 100px;
+		border: 20px dashed red;
+		background: url(img/background-repeat.gif), url(img/background-clip.gif);
+		background-clip: border-box;
+		background-clip: padding-box;
+		background-clip: padding-box, content-box;
+		background-repeat: repeat-x, repeat;
+		background-size: 100% 100px, 100% 100%;
+		background-position: 0% 100%, 0% 0%;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div>
+	</div>
+</body>
+</html>

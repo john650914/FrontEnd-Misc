@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	
+	#table1 tr:nth-child(3n+1){background-color:pink;}
+	#table2 tr:nth-child(odd){background-color:aqua;}
+	li:nth-child(2){color:red;}
+	
+	/*	一些列子
+		:nth-child(10n-1) 等於 :nth-child(10n+9)
+		:nth-child(0n+5) 等於 :nth-child(5)
+		:nth-child(1n+0) 等於 :nth-child(n+0) 等於 nth-child(n)
+		:nth-child( 3n + 1 )
+		:nth-child( +3n - 2 )
+		:nth-child( -n+ 6)
+		:nth-child( +6 )
+	*/
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<p>選擇父元素下的第N個元素，同時該元素等於指定的元素</p>
+	<p style="color:red;">不要忘了還有nth-child()2.html</p><br>
+	<table id="table1" style="border-collapse:collapse; width:300px;">
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+	</table>
+	<br />
+	<br />
+	<br />
+	<table id="table2" style="border-collapse:collapse; width:300px;">
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+		<tr><td>td</td><td>td</td></tr>
+	</table>
+	<br />
+	<br />
+	<br />
+	<ul>
+		<li>li01</li>
+		<li>li02</li>
+		<li>li03</li>
+		<li>li04</li>
+		<li>li05</li>
+		<li>li06</li>
+		<li>li07</li>
+	</ul>
+</body>
+</html>

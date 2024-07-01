@@ -1,0 +1,1460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="height: 100%;" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head>
+
+<title>CSS3 Reference</title>
+ 
+<link rel="shortcut icon" href="http://www.w3schools.com/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="Keywords" content="xml,tutorial,html,dhtml,css,xsl,xhtml,javascript,asp,ado,vbscript,dom,sql,colors,soap,php,authoring,programming,training,learning,beginner's guide,primer,lessons,school,howto,reference,examples,samples,source code,tags,demos,tips,links,FAQ,tag list,forms,frames,color table,w3c,cascading style sheets,active server pages,dynamic html,internet,database,development,Web building,Webmaster,html guide">
+
+<meta name="Description" content="Free HTML XHTML CSS JavaScript DHTML XML DOM XSL XSLT RSS AJAX ASP ADO PHP SQL tutorials, references, examples for web building.">
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="-1">
+
+<link rel="stylesheet" type="text/css" href="css3_reference.asp_files/stdtheme.css">
+
+<script type="text/javascript">
+<!--
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+//-->
+</script><script src="css3_reference.asp_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+function searchfield_focus(obj)
+{
+obj.style.color=""
+obj.style.fontStyle=""
+if (obj.value=="Search w3schools.com")
+	{
+	obj.value=""
+	}
+}
+
+var pageTracker = _gat._getTracker("UA-3855518-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+
+var addr=document.location.href;
+function displayError()
+{
+document.getElementById("err_url").value=addr;
+document.getElementById("err_form").style.display="block";
+document.getElementById("err_desc").focus();
+hideSent();
+}
+function hideError()
+{
+document.getElementById("err_form").style.display="none";
+}
+function hideSent()
+{
+document.getElementById("err_sent").style.display="none";
+}
+function sendErr()
+{
+var xmlhttp;
+var err_url=document.getElementById("err_url").value;
+var err_email=document.getElementById("err_email").value;
+var err_desc=document.getElementById("err_desc").value;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.open("POST","/err_sup.asp",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("err_url=" + err_url + "&err_email=" + err_email + "&err_desc=" + escape(err_desc));
+hideError();
+document.getElementById("err_sent").style.display="block";
+}
+
+function click_expandingMenuHeader(obj,sectionName)
+{
+var x=document.getElementById("cssprop_" + sectionName).parentNode.className;
+if (x.indexOf("expandingMenuNotSelected")>-1)
+	{
+	x=x.replace("expandingMenuNotSelected","expandingMenuSelected");
+	document.getElementById("cssprop_" + sectionName).parentNode.className=x;
+	document.getElementById("cssprop_" + sectionName).style.display="block";
+	}
+else
+	{
+	x=x.replace("expandingMenuSelected","expandingMenuNotSelected");
+	document.getElementById("cssprop_" + sectionName).parentNode.className=x;
+	document.getElementById("cssprop_" + sectionName).style.display="none";
+	}
+}
+
+//-->
+</script>
+
+<!--[if gt IE 7]>
+<style>
+body
+{
+overflow-y:scroll;
+}
+</style>
+<![endif]-->
+<link href="css3_reference.asp_files/translateelement.css" charset="UTF-8" rel="stylesheet" type="text/css"><script src="css3_reference.asp_files/main_zh-TW.js" charset="UTF-8" type="text/javascript"></script><script src="css3_reference.asp_files/element_main.js" charset="UTF-8" type="text/javascript"></script></head>
+<body style="position: relative; min-height: 100%; top: 0px;">
+
+<center>
+<table style="width: 960px; margin-top: 0px; margin-bottom: 0px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td align="center"><a name="top"></a>
+<table style="margin-top: 5px;" border="0" cellpadding="0" cellspacing="0" width="960">
+<tbody><tr>
+<td align="left">
+<a href="http://www.w3schools.com/"><img src="css3_reference.asp_files/w3schoolslogo.gif" alt="W3Schools.com" style="margin-top: 5px;" border="0" width="336" height="69"></a>
+</td>
+<td align="right">
+<br>
+<div style="width:200px;height:25px;float:right;text-align:right">
+<div id="google_translate_element" style="display:none"><div style="" class="skiptranslate goog-te-gadget"><div class="goog-te-gadget-simple" style="white-space: nowrap;" id=":1.targetLanguage"><img style="background-image: url(&quot;http://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;" class="goog-te-gadget-icon" src="css3_reference.asp_files/cleardot.gif"><span style="vertical-align: middle;"><a href="javascript:void(0)" class="goog-te-menu-value"><span>&#35531;&#36984;&#21462;&#35486;&#35328;</span><img src="css3_reference.asp_files/cleardot.gif" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">&#8203;</span><img src="css3_reference.asp_files/cleardot.gif" width="1" height="1"><span style="color: rgb(155, 155, 155);">&#9660;</span></a></span></div></div></div>
+<div id="translate_link">
+<a href="#" class="topnav" onclick="document.getElementById('google_translate_element').style.display='inline';document.getElementById('translate_link').style.display='none';return false;">
+TRANSLATE
+</a>
+</div>
+</div>
+<br>
+<br>
+<form style="font-size:11px;" method="get" name="searchform" action="http://www.google.com/search" target="_blank">
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr>
+<td><input name="sitesearch" value="www.w3schools.com" type="hidden"></td>
+<td><input onfocus="searchfield_focus(this)" style="width: 150px; color: rgb(128, 128, 128); font-style: italic;" alt="search" name="as_q" size="20" value="Search w3schools.com" type="text"></td>
+<td><input value="Search" title="Search" type="submit"></td>
+</tr></tbody></table>
+</form>
+</td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</tbody></table>
+<table id="topnav" border="0" cellpadding="0" cellspacing="3" width="960">
+<tbody><tr>
+<td style="width: 500px; word-spacing: 12px; font-size: 90%; padding-left: 12px; padding-right: 10px; white-space: nowrap;" align="left">
+<a class="topnav" href="http://www.w3schools.com/default.asp" target="_top">HOME </a>
+<a class="topnav" href="http://www.w3schools.com/html/default.asp" target="_top">HTML </a>
+<a class="topnav" href="http://www.w3schools.com/css/default.asp" target="_top">CSS </a>
+<a class="topnav" href="http://www.w3schools.com/xml/default.asp" target="_top">XML </a>
+<a class="topnav" href="http://www.w3schools.com/js/default.asp" target="_top">JAVASCRIPT </a>
+<a class="topnav" href="http://www.w3schools.com/asp/default.asp" target="_top">ASP </a>
+<a class="topnav" href="http://www.w3schools.com/php/default.asp" target="_top">PHP </a>
+<a class="topnav" href="http://www.w3schools.com/sql/default.asp" target="_top">SQL </a>	
+<a class="topnav" href="http://www.w3schools.com/sitemap/default.asp" target="_top">MORE...</a>
+</td>
+<td style="word-spacing: 6px; font-size: 80%; padding-right: 10px; color: rgb(136, 136, 136); white-space: nowrap;" align="right">
+<a class="topnav" href="http://www.w3schools.com/sitemap/default.asp#references" target="_top">REFERENCES</a> |
+<a class="topnav" href="http://www.w3schools.com/sitemap/default.asp#examples" target="_top">EXAMPLES</a> |
+<a class="topnav" href="http://www.w3schools.com/forum/default.asp" target="_top">FORUM</a> |
+<a class="topnav" href="http://www.w3schools.com/about/default.asp" target="_top">ABOUT</a>	
+</td>
+</tr>
+</tbody></table>
+
+<div style="width:960px;height:94px;position:relative;margin-left:auto;margin-right:auto;margin:0px;padding:0px;overflow:hidden">
+
+<div class="toprect_img">
+<a target="_blank" rel="nofollow" href="http://www.doteasy.com/domain-and-hosting-deals/">
+<img src="css3_reference.asp_files/doteasy_062011_v2.gif" alt="Doteasy" border="0" width="227" height="90"></a><br>
+</div>
+
+<div style="width:728px;height:90px;position:absolute;right:0px;top:0px;">
+<iframe id="leaderframe" style="background-color: rgb(255, 255, 255); height: 90px; width: 728px;" src="css3_reference.asp_files/leaderframe.htm" marginwidth="0" marginheight="0" scrolling="no" width="728" frameborder="0" height="90">
+Your browser does not support inline frames or is currently configured not to display inline frames.
+</iframe>
+</div></div>
+
+<table style="padding: 0pt;" border="0" cellpadding="0" cellspacing="0" width="960">
+<tbody><tr><td id="leftcolumn" align="left" valign="top" width="171">
+<div style="margin-left:1px;margin-top:5px"><h2 class="left"><span class="left_h2">CSS3</span> Tutorial</h2>
+<a target="_top" href="http://www.w3schools.com/css3/default.asp">CSS3 HOME</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_intro.asp">CSS3 Introduction</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_borders.asp">CSS3 Borders</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_backgrounds.asp">CSS3 Backgrounds</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_text_effects.asp">CSS3 Text Effects</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_fonts.asp">CSS3 Fonts</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_2dtransforms.asp">CSS3 2D Transforms</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_3dtransforms.asp">CSS3 3D Transforms</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_transitions.asp">CSS3 Transitions</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_animations.asp">CSS3 Animations</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_multiple_columns.asp">CSS3 Multiple Columns</a><br>
+<a target="_top" href="http://www.w3schools.com/css3/css3_user_interface.asp">CSS3 User Interface</a><br>
+<br>
+<h2 class="left"><span class="left_h2">CSS3</span> References</h2>
+<a target="_top" href="http://www.w3schools.com/cssref/default.asp" style="font-weight: bold;">CSS Reference</a><br>
+<a target="_top" href="http://www.w3schools.com/cssref/css3_browsersupport.asp">CSS3 Browser Support</a><br>
+<a target="_top" href="http://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors</a><br>
+<a target="_top" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS Colornames</a><br>
+</div>
+</td>
+<td align="left" valign="top">
+<table style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); padding-bottom: 8px; padding-right: 5px;" border="0" cellpadding="0" cellspacing="0" width="639">
+<tbody><tr>
+<td style="padding-top: 4px;">
+
+<h1>CSS3 <span class="color_h1">Reference</span></h1>
+<table class="chapter" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr>
+<td class="prev"><a class="chapter" href="http://www.w3schools.com/css3/css3_user_interface.asp">« Previous</a></td>
+<td class="next"><a class="chapter" href="http://www.w3schools.com/css3/css3_browsersupport.asp">Next Reference »</a></td>
+</tr></tbody></table>
+<hr>
+<p><img style="float: left; margin-right: 6px;" alt="Note" src="css3_reference.asp_files/icon_small_star.gif" border="0"> 
+W3Schools' CSS3 reference is tested regularly with all major browsers.<br>
+Tested: 31 March, 2011.</p>
+<hr>
+
+<h3>CSS3 Property Groups</h3>
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td>
+<ul style="margin-top:0px;margin-bottom:0px">
+  <li><a href="#background">Background</a></li>
+  <li><a href="#border">Border</a></li>
+  <li><a href="#text">Text</a></li>
+  <li><a href="#font">Font</a></li>  
+  <li><a href="#color">Color</a></li>
+  <li><a href="#3Dtransform">2D/3D Transform</a></li>
+  <li><a href="#transition">Transition</a></li>    
+  <li><a href="#animation">Animation</a></li>
+</ul>
+</td>
+<td>
+<ul style="margin-top:0px;margin-bottom:0px">
+  <li><a href="#box">Box</a></li>  
+  <li><a href="#linebox">Linebox</a></li>  
+  <li><a href="#flexbox">Flexible Box</a></li>  
+  <li><a href="#hyperlink">Hyperlink</a></li>  
+  <li><a href="#grid">Grid</a></li>
+  <li><a href="#multicol">Multi-column</a></li>
+  <li><a href="#userinterface">User-interface</a></li>
+</ul>
+</td>
+<td>
+<ul style="margin-top:0px;margin-bottom:0px">
+  <li><a href="#marquee">Marquee</a></li>
+  <li><a href="#content">Generated Content</a></li>
+  <li><a href="#page">Paged Media</a></li>
+  <li><a href="#contentPM">Content Paged Media</a></li>
+  <li><a href="#ruby">Ruby</a></li>  
+  <li><a href="#speech">Speech</a></li>  
+
+</ul>
+</td>
+</tr>
+</tbody></table>
+
+<p>The links in the "Property" column point to syntax, examples, browser support, etc.</p>
+
+<h2><a name="background">Background Properties</a></h2>
+<table class="reference" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_background.asp">background</a></td>
+    <td>A shorthand property for setting all the (CSS1, CSS2 and CSS3) background properties in one declaration</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_background-clip.asp">background-clip</a></td>
+    <td>Specifies the painting area of the background</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_background-origin.asp">background-origin</a></td>
+    <td>Specifies the positioning area of the background images</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_background-size.asp">background-size</a></td>
+    <td>Specifies the size of the background images</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="border">Border Properties</a></h2>
+<table class="reference" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="30%">Property</th>
+    <th align="left" width="65%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-bottom-left-radius.asp">border-bottom-left-radius</a></td>
+    <td>Defines the shape of the border of the bottom-left corner</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-bottom-right-radius.asp">border-bottom-right-radius</a></td>
+    <td>Defines the shape of the border of the bottom-right corner</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image.asp">border-image</a></td>
+    <td>A shorthand property for setting all the border-image-* properties</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image-outset.asp">border-image-outset</a></td>
+    <td>Specifies the amount by which the border image area extends beyond the border box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image-repeat.asp">border-image-repeat</a></td>
+    <td>Specifies whether the image-border should be repeated, rounded or stretched</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image-slice.asp">border-image-slice</a></td>
+    <td>Specifies the inward offsets of the image-border</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image-source.asp">border-image-source</a></td>
+    <td>Specifies an image to be used as a border</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-image-width.asp">border-image-width</a></td>
+    <td>Specifies the widths of the image-border</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-radius.asp">border-radius</a></td>
+    <td>A shorthand property for setting all the four border-*-radius properties</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-top-left-radius.asp">border-top-left-radius</a></td>
+    <td>Defines the shape of the border of the top-left corner</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_border-top-right-radius.asp">border-top-right-radius</a></td>
+    <td>Defines the shape of the border of the top-right corner</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>box-decoration-break</td>
+    <td>&nbsp;</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-shadow.asp">box-shadow</a></td>
+    <td>Attaches one or more drop-shadows to the box</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="text">Text Properties</a></h2>
+<table class="reference" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_hanging-punctuation.asp">hanging-punctuation</a></td>
+    <td>Specifies whether a punctuation character may be placed outside the line box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_punctuation-trim.asp">punctuation-trim</a></td>
+    <td>Specifies whether a punctuation character should be trimmed </td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>text-align-last</td>
+    <td>Describes how the last line of a block or a line right before a forced line break is aligned when text-align is "justify"</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-emphasis.asp">text-emphasis</a></td>
+    <td>Applies emphasis marks, and the foreground color of the emphasis marks, 
+	to the element's text </td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-justify.asp">text-justify</a></td>
+    <td>Specifies the justification method used when text-align is  
+	"justify"</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-outline.asp">text-outline</a></td>
+    <td>Specifies a text outline</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-overflow.asp">text-overflow</a></td>
+    <td>Specifies what should happen when text overflows the containing element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-shadow.asp">text-shadow</a></td>
+    <td>Adds shadow to text </td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_text-wrap.asp">text-wrap</a></td>
+    <td>Specifies line breaking rules for text</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_word-break.asp">word-break</a></td>
+    <td>Specifies line breaking rules for non-CJK scripts</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_word-wrap.asp">word-wrap</a></td>
+    <td>Allows long, unbreakable words to be broken and wrap to the next line</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="font">Font Properties</a></h2>
+<table class="reference" id="table15" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_font-face_rule.asp">@font-face</a></td>
+    <td>A rule that allows websites to download and use fonts other than the "web-safe" fonts</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_font-size-adjust.asp">font-size-adjust</a></td>
+    <td>Preserves the readability of text when font fallback occurs</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_font-stretch.asp">font-stretch</a></td>
+    <td>Selects a normal, condensed, or expanded face from a font family</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="color">Color Properties</a></h2>
+<table class="reference" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>color-profile</td>
+    <td>Permits the specification of a source color profile other than the default</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_opacity.asp">opacity</a></td>
+    <td>Sets the opacity level for an element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>rendering-intent</td>
+    <td>Permits the specification of a color profile rendering intent other than the default</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="3Dtransform">2D/3D Transform Properties</a></h2>
+<table class="reference" id="table13" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transform.asp">transform</a></td>
+    <td>Applies a 2D or 3D transformation to an element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transform-origin.asp">transform-origin</a></td>
+    <td>Allows you to change the position on transformed elements</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transform-style.asp">transform-style</a></td>
+    <td>Specifies how nested elements are rendered in 3D space</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_perspective.asp">perspective</a></td>
+    <td>Specifies the perspective on how 3D elements are viewed</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_perspective-origin.asp">perspective-origin</a></td>
+    <td>Specifies the bottom position of 3D elements</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_backface-visibility.asp">backface-visibility</a></td>
+    <td>Defines whether or not an element should be visible when not facing the screen</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+  
+<h2><a name="transition">Transition Properties</a></h2>
+<table class="reference" id="table4" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transition.asp">transition</a></td>
+    <td>A shorthand property for setting the four transition properties</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transition-property.asp">transition-property</a></td>
+    <td>Specifies the name of the CSS property the transition effect is for</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transition-duration.asp">transition-duration</a></td>
+    <td>Specifies how many seconds or milliseconds a transition effect takes to 
+	complete</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transition-timing-function.asp">transition-timing-function</a></td>
+    <td>Specifies the speed curve of the transition effect</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_transition-delay.asp">transition-delay</a></td>
+    <td>Specifies when the transition effect will start</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="animation">Animation Properties</a></h2>
+<table class="reference" id="table1" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_keyframes.asp">@keyframes</a></td>
+    <td>Specifies the animation</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation.asp">animation</a></td>
+    <td>A shorthand property for all the animation properties below, except the animation-play-state property</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-name.asp">animation-name</a></td>
+    <td>Specifies a name for the @keyframes animation</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-duration.asp">animation-duration</a></td>
+    <td>Specifies how many seconds or milliseconds an animation takes to complete one cycle</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-timing-function.asp">animation-timing-function</a></td>
+    <td>Specifies the speed curve of the animation</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-delay.asp">animation-delay</a></td>
+    <td>Specifies when the animation will start</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-iteration-count.asp">animation-iteration-count</a></td>
+    <td>Specifies the number of times an animation should be played</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-direction.asp">animation-direction</a></td>
+    <td>Specifies whether or not the animation should play in reverse on alternate cycles</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_animation-play-state.asp">animation-play-state</a></td>
+    <td>Specifies whether the animation is running or paused</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="box">Box Properties</a></h2>
+<table class="reference" id="table6" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_overflow-x.asp">overflow-x</a></td>
+    <td>Specifies whether or not to clip the left/right edges of the content, if it overflows the element's content area</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_overflow-y.asp">overflow-y</a></td>
+    <td>Specifies whether or not to clip the top/bottom edges of the content, if it overflows the element's content area</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_overflow-style.asp">overflow-style</a></td>
+    <td>Specifies the preferred scrolling method for elements that overflow</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_rotation.asp">rotation</a></td>
+    <td>Rotates an element around a given point defined by the rotation-point property</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_rotation-point.asp">rotation-point</a></td>
+    <td>Defines a point as an offset from the top left border edge</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="linebox">Linebox Properties</a></h2>
+<table class="reference" id="table7" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>alignment-adjust</td>
+    <td>Allows more precise alignment of elements</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>alignment-baseline</td>
+    <td>Specifies how an inline-level element is aligned with respect to its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>baseline-shift</td>
+    <td>Allows repositioning of the dominant-baseline relative to the dominant-baseline</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>dominant-baseline</td>
+    <td>Specifies a scaled-baseline-table</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-after-adjust</td>
+    <td>Sets the alignment point of the drop initial for the primary connection point</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-after-align</td>
+    <td>Sets which alignment line within the initial line box is used at the primary connection point with the initial letter box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-before-adjust</td>
+    <td>Sets the alignment point of the drop initial for the secondary connection point</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-before-align</td>
+    <td>Sets which alignment line within the initial line box is used at the secondary connection point with the initial letter box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-size</td>
+    <td>Controls the partial sinking of the initial letter</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>drop-initial-value</td>
+    <td>Activates a drop-initial effect</td>
+    <td>3&nbsp;</td>
+  </tr>
+  <tr>
+    <td>inline-box-align</td>
+    <td>Sets which line of a multi-line inline block align with the previous and next inline elements within a line</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>line-stacking</td>
+    <td>A shorthand property for setting the line-stacking-strategy, line-stacking-ruby, and line-stacking-shift properties</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>line-stacking-ruby</td>
+    <td>Sets the line stacking method for block elements containing ruby annotation elements</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>line-stacking-shift</td>
+    <td>Sets the line stacking method for block elements containing elements with base-shift</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>line-stacking-strategy</td>
+    <td>Sets the line stacking strategy for stacked line boxes within a containing block element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>text-height</td>
+    <td>Sets the block-progression dimension of the text content area of an inline box</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="flexbox">Flexible Box Properties</a></h2>
+<table class="reference" id="table11" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-align.asp">box-align</a></td>
+    <td>Specifies how to align the child elements of a box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-direction.asp">box-direction</a></td>
+    <td>Specifies in which direction the children of a box are displayed</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-flex.asp">box-flex</a></td>
+    <td>Specifies whether the children of a box is flexible or inflexible in size</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-flex-group.asp">box-flex-group</a></td>
+    <td>Assigns flexible elements to flex groups</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-lines.asp">box-lines</a></td>
+    <td>Specifies whether columns will go onto a new line whenever it runs out of space in the parent box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-ordinal-group.asp">box-ordinal-group</a></td>
+    <td>Specifies the display order of the child elements of a box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-orient.asp">box-orient</a></td>
+    <td>Specifies whether the children of a box should be laid out horizontally	or vertically</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-pack.asp">box-pack</a></td>
+    <td>Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="hyperlink">Hyperlink Properties</a></h2>
+<table class="reference" id="table9" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_target.asp">target</a></td>
+    <td>A shorthand property for setting the target-name, target-new, and target-position properties</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_target-name.asp">target-name</a></td>
+    <td>Specifies where to open links (target destination)</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_target-new.asp">target-new</a></td>
+    <td>Specifies whether new destination links should open in a new window or in a new tab of an existing window</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_target-position.asp">target-position</a></td>
+    <td>Specifies where new destination links should be placed</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="grid">Grid Properties</a></h2>
+<table class="reference" id="table17" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_grid-columns.asp">grid-columns</a></td>
+    <td>Specifies the width of each column in a grid</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_grid-rows.asp">grid-rows</a></td>
+    <td>Specifies the height of each column in a grid</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="multicol">Multi-column Properties</a></h2>
+<table class="reference" id="table3" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-count.asp">column-count</a></td>
+    <td>Specifies the number of columns an element should be divided into</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-fill.asp">column-fill</a></td>
+    <td>Specifies how to fill columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-gap.asp">column-gap</a></td>
+    <td>Specifies the gap between the columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-rule.asp">column-rule</a></td>
+    <td>A shorthand property for setting all the column-rule-* properties</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-rule-color.asp">column-rule-color</a></td>
+    <td>Specifies the color of the rule between columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-rule-style.asp">column-rule-style</a></td>
+    <td>Specifies the style of the rule between columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-rule-width.asp">column-rule-width</a></td>
+    <td>Specifies the width of the rule between columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-span.asp">column-span</a></td>
+    <td>Specifies how many columns an element should span across</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_column-width.asp">column-width</a></td>
+    <td>Specifies the width of the columns</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_columns.asp">columns</a></td>
+    <td>A shorthand property for setting column-width and column-count</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="userinterface">User-interface Properties</a></h2>
+<table class="reference" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_appearance.asp">appearance</a></td>
+    <td>Allows you to make an element look like a standard user interface element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_box-sizing.asp">box-sizing</a></td>
+    <td>Allows you to define certain elements to fit an area in a certain way</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_icon.asp">icon</a></td>
+    <td>Provides the author the ability to style an element with an iconic equivalent</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_nav-down.asp">nav-down</a></td>
+    <td>Specifies where to navigate when using the arrow-down navigation key</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_nav-index.asp">nav-index</a></td>
+    <td>Specifies the tabbing order for an element</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_nav-left.asp">nav-left</a></td>
+    <td>Specifies where to navigate when using the arrow-left navigation key</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_nav-right.asp">nav-right</a></td>
+    <td>Specifies where to navigate when using the arrow-right navigation key</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_nav-up.asp">nav-up</a></td>
+    <td>Specifies where to navigate when using the arrow-up navigation key</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_outline-offset.asp">outline-offset</a></td>
+    <td>Offsets an outline, and draws it beyond the border edge</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.w3schools.com/css3/css3_pr_resize.asp">resize</a></td>
+    <td>Specifies whether or not an element is resizable by the user</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="marquee">Marquee Properties</a></h2>
+<table class="reference" id="table18" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>marquee-direction</td>
+    <td>Sets the direction of the moving content</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>marquee-play-count</td>
+    <td>Sets how many times the content move</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>marquee-speed</td>
+    <td>Sets how fast the content scrolls</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>marquee-style</td>
+    <td>Sets the style of the moving content</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="content">Generated Content Properties</a></h2>
+<table class="reference" id="table19" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>crop</td>
+    <td>Allows a replaced element to be just a rectangular area of an object, instead of the whole object</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>move-to</td>
+    <td>Causes an element to be removed from the flow and reinserted at a later point in the document</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>page-policy</td>
+    <td>Determines which page-based occurance of a given element is applied to a counter or string value</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="page">Paged Media Properties</a></h2>
+<table class="reference" id="table14" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>fit</td>
+    <td>Gives a hint for how to scale a replaced element if neither its width nor its height property is auto</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>fit-position</td>
+    <td>Determines the alignment of the object inside the box</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>image-orientation</td>
+    <td>Specifies a rotation in the right or clockwise direction that a user agent applies to an image</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>page</td>
+    <td>Specifies a particular type of page where an element SHOULD be displayed</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Specifies the size and orientation of the containing box for page content</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="contentPM">Content for Paged Media Properties</a></h2>
+<table class="reference" id="table10" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>bookmark-label</td>
+    <td>Specifies the label of the bookmark</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>bookmark-level</td>
+    <td>Specifies the level of the bookmark</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>bookmark-target</td>
+    <td>Specifies the target of the bookmark link</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>float-offset</td>
+    <td>Pushes floated elements in the opposite direction of the where they have been floated with float</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>hyphenate-after</td>
+    <td>Specifies the minimum number of characters in a hyphenated word after the hyphenation character</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>hyphenate-before</td>
+    <td>Specifies the minimum number of characters in a hyphenated word before the hyphenation character</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>hyphenate-character</td>
+    <td>Specifies a string that is shown when a hyphenate-break occurs</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>hyphenate-lines</td>
+    <td>Indicates the maximum number of successive hyphenated lines in an element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>hyphenate-resource</td>
+    <td>Specifies a comma-separated list of external resources that can help the browser determine hyphenation points</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>hyphens</td>
+    <td>Sets how to split words to improve the layout of paragraphs</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>image-resolution</td>
+    <td>Specifies the correct resolution of images</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>marks</td>
+    <td>Adds crop and/or cross marks to the document</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>string-set</td>
+    <td>&nbsp;</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="ruby">Ruby Properties</a></h2>
+<table class="reference" id="table8" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>ruby-align</td>
+    <td>Controls the text alignment of the ruby text and ruby base contents relative to each other</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>ruby-overhang</td>
+    <td>Determines whether, and on which side, ruby text is allowed to 
+partially overhang any adjacent text in addition to its own base, when 
+the ruby text is wider than the ruby base</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>ruby-position</td>
+    <td>Controls the position of the ruby text with respect to its base</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>ruby-span</td>
+    <td>Controls the spanning behavior of annotation elements</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+
+<h2><a name="speech">Speech Properties</a></h2>
+<table class="reference" id="table12" border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <th align="left" width="28%">Property</th>
+    <th align="left" width="67%">Description</th>
+    <th align="left" width="5%">CSS</th>
+  </tr>
+  <tr>
+    <td>mark</td>
+    <td>A shorthand property for setting the mark-before and mark-after properties</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>mark-after</td>
+    <td>Allows named markers to be attached to the audio stream</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>mark-before</td>
+    <td>Allows named markers to be attached to the audio stream</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>phonemes</td>
+    <td>Specifies a phonetic pronunciation for the text contained by the corresponding element</td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>rest</td>
+    <td>A shorthand property for setting the rest-before and rest-after properties </td>
+    <td>3</td>
+  </tr>
+	<tr>
+    <td>rest-after</td>
+    <td>Specifies a rest or prosodic boundary to be observed after speaking an element's content</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>rest-before</td>
+    <td>Specifies a rest or prosodic boundary to be observed before speaking an element's content</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-balance</td>
+    <td>Specifies the balance between left and right channels</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-duration</td>
+    <td>Specifies how long it should take to render the selected element's content</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-pitch</td>
+    <td>Specifies the average pitch (a frequency) of the speaking voice</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-pitch-range</td>
+    <td>Specifies variation in average pitch</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-rate</td>
+    <td>Controls the speaking rate</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-stress</td>
+    <td>Indicates the strength of emphasis to be applied</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>voice-volume</td>
+    <td>Refers to the amplitude of the waveform output by the speech synthesises</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+<br>
+
+<br>
+<table class="chapter" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr>
+<td class="prev"><a class="chapter" href="http://www.w3schools.com/css3/css3_user_interface.asp">« Previous</a></td>
+<td class="next"><a class="chapter" href="http://www.w3schools.com/css3/css3_browsersupport.asp">Next Reference »</a></td>
+</tr></tbody></table>
+
+<hr>
+
+<!-- **** SPOTLIGHTS 1 **** -->
+
+<h2><a class="header" target="_blank" rel="nofollow" href="http://www.altova.com/ref/?s=w3s_smspotlight&amp;q=fo">
+Altova StyleVision &#8211; XSLT Stylesheet Design Tool</a></h2>
+<p>Generate advanced XSLT stylesheets, Web pages, and reports using intuitive drag-and-drop functionality,
+intelligent entry-helpers, and more. See how easy it is to work with XSLT in this tool from the makers of XMLSpy.</p>
+<p><a target="_blank" rel="nofollow" href="http://www.altova.com/ref/?s=w3s_smspotlight&amp;q=fo">
+Download a free, 30-day trial!</a></p>
+<hr>
+
+
+<!-- **** SPOTLIGHTS 2 **** -->
+
+<h2><a class="header" target="_blank" rel="nofollow" href="http://www.wix.com/flash_design/fish_new?utm_campaign=ma_w3schools.com&amp;experiment_id=ma_w3schools.com400">
+1,050,724 Sites built with Wix. Make your own!</a></h2>
+<p><a target="_blank" rel="nofollow" href="http://www.wix.com/flash_design/fish_new?utm_campaign=ma_w3schools.com&amp;experiment_id=ma_w3schools.com400">
+Click here</a> to design a Stunning Flash Website for Free</p>
+<p>Wix is a revolutionary web design tool that provides anyone with the 
+possibility to create professional and beautiful websites for free.</p>
+<p>With e-commerce features, search engine visibility and many more 
+professional tools, Wix is the ultimate solution for creating a 
+spectacular site while saving tons of money.</p>
+<hr>
+
+
+<!-- **** SPOTLIGHTS 3 **** -->
+<table cellpadding="0" cellspacing="0"><tbody><tr><td width="108">&nbsp;</td><td>
+<script type="text/javascript">
+<!--
+google_ad_client = "pub-3440800076797949";
+/*txt*/
+google_ad_slot = "1699448869";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="css3_reference.asp_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_0" name="aswift_0" style="left: 0pt; position: absolute; top: 0pt;" scrolling="no" width="336" frameborder="0" height="280"></iframe></ins></ins>
+</td></tr></tbody></table>
+
+<hr>
+<table>
+<tbody><tr>
+<td width="220"><a href="http://www.w3schools.com/cert/default.asp"><img src="css3_reference.asp_files/w3cert.gif" alt="W3Schools Certification" border="0"></a></td>
+<td valign="middle">
+<h2>W3Schools' Online Certification</h2>
+<p>The perfect solution for professionals who need to balance work, family, and career building.</p>
+<p>More than 6000 certificates already issued!</p>
+<p><a class="tryitbtn" style="width: 200px; font-size: 120%; margin-top: 5px;" href="http://www.w3schools.com/cert/default.asp">Get Your Certificate »</a></p>
+</td>
+</tr>
+</tbody></table>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">HTML Certificate</a> documents your knowledge of HTML.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">CSS Certificate</a> documents your knowledge of advanced CSS.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">JavaScript Certificate</a> documents your knowledge of JavaScript and HTML DOM.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">jQuery Certificate</a> documents your knowledge of jQuery.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">XML Certificate</a> documents your knowledge of XML, XML DOM and XSLT.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">ASP Certificate</a> documents your knowledge of ASP, SQL, and ADO.</p>
+<p>The <a href="http://www.w3schools.com/cert/default.asp">PHP Certificate</a> documents your knowledge of PHP and SQL (MySQL).</p>
+
+
+
+<div id="err_form" style="display:none">
+<h2>Your suggestion:</h2>
+<p><label for="err_email">Your E-mail (optional):</label> <input id="err_email" name="err_email" type="text"></p>
+<p><label for="err_url">Page address:</label> <input disabled="disabled" id="err_url" name="err_url" type="text"></p>
+<p><label for="err_desc">Description:</label> <textarea name="err_desc" id="err_desc" cols="92" rows="20"></textarea></p>
+<p class="submit"><input value="Submit" onclick="sendErr()" type="button"></p>
+<div class="err_close" onclick="hideError()">Close [X]</div>
+</div>
+<div id="err_sent" style="display:none">
+<h2>Thank you for your support.</h2>
+<div class="err_close" onclick="hideSent()">Close [X]</div>
+</div>
+
+</td></tr>
+</tbody></table>
+</td>
+
+<td id="rightcolumn" align="center" valign="top" width="150">
+<table cellspacing="0">
+<tbody><tr><th>WEB HOSTING</th></tr>
+<tr><td>
+
+<a target="_blank" rel="nofollow" href="http://www.lunarpages.com/id/w3schools/goto/w3schools">Best Web Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.eukhost.com/">PHP MySQL Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.web-hosting-top.com/">Top 10 Web Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.heartinternet.co.uk/index.shtml">UK Reseller Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.webhosting.uk.com/cloud-hosting.php">Cloud Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://stats.justhost.com/track?c878c3580275f4db3720fbc777a282233">Top Web Hosting</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.doteasy.com/domain-and-hosting-deals/">&lt;.COM Domain for $1&gt;</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.greengeeks.com/cgi-bin/affiliates/clickthru.cgi?id=w3stxt&amp;page=1">Wordpress Hosting</a>
+</td></tr>
+</tbody></table>
+
+<table cellspacing="0">
+<tbody><tr><th>WEB BUILDING</th></tr>
+<tr><td>
+
+<a target="_blank" rel="nofollow" href="http://www.altova.com/ref/?s=w3s_text&amp;q=xmlspy">Download XML Editor</a>
+
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.wix.com/start/wfree?utm_campaign=ma_w3schools.com&amp;experiment_id=ma_w3schools.com300">FREE Flash Website</a>
+</td></tr>
+<tr><td>
+<a target="_blank" rel="nofollow" href="http://www.dreamtemplate.com/">Free Website Templates</a>
+<a target="_blank" rel="nofollow" href="http://www.templatesold.com/">Free WordPress Themes</a>
+</td></tr>
+</tbody></table>
+
+<table cellspacing="0">
+<tbody><tr><th>W3SCHOOLS EXAMS</th></tr>
+<tr><td>
+<a target="_blank" href="http://www.w3schools.com/cert/default.asp">Get Certified in:<br>HTML, CSS, JavaScript, XML, PHP, and ASP</a>
+</td></tr>
+</tbody></table>
+
+<table cellspacing="0">
+<tbody><tr><th>W3SCHOOLS BOOKS</th></tr>
+<tr><td>
+<a target="_blank" href="http://www.w3schools.com/books/default.asp">
+New Books:<br>HTML, CSS<br>
+JavaScript, and Ajax</a>
+</td></tr>
+</tbody></table>
+
+<table cellspacing="0">
+<tbody><tr><th>STATISTICS</th></tr>
+<tr><td>
+<a target="_top" href="http://www.w3schools.com/browsers/browsers_stats.asp">Browser Statistics</a><br>
+<a target="_top" href="http://www.w3schools.com/browsers/browsers_os.asp">Browser OS</a><br>
+<a target="_top" href="http://www.w3schools.com/browsers/browsers_display.asp">Browser Display</a>
+</td></tr></tbody></table>
+
+<script type="text/javascript">
+<!--
+function sharethis()
+{
+txt='<a href="http://www.facebook.com/sharer.php?u='+document.URL+'" target="_blank" title="Facebook">'
+txt=txt+'<img src="/images/share_facebook.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="http://twitter.com/home?status=Currently reading '+document.URL+'" target="_blank" title="Twitter">';
+txt=txt+'<img src="/images/share_twitter.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="mailto:?&amp;subject='+document.title+'&amp;body=Take%20a%20look%20at%20this%20page%20at%20W3Schools.com:%20'+document.URL+'" target="_blank" title="E-mail">';
+txt=txt+'<img src="/images/share_email.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="http://delicious.com/save?v=5&noui&jump=close&url='+document.URL+'&title='+document.title+'" target="_blank" title="Delicious">';
+txt=txt+'<img src="/images/share_delicious.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="http://www.reddit.com/submit?url='+document.URL+'" target="_blank" title="Reddit">';
+txt=txt+'<img src="/images/share_reddit.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="http://digg.com/submit?url='+document.URL+'&amp;title='+document.title+'" target="_blank" title="Digg">';
+txt=txt+'<img src="/images/share_digg.gif" border="0" width="16px" height="16px" style="margin-right:4px" /></a>';
+txt=txt+'<a href="http://www.stumbleupon.com/submit?url='+document.URL+'%26title%3D'+document.title+'" target="_blank" title="Stumbleupon">';
+txt=txt+'<img src="/images/share_stumbleupon.gif" border="0" width="16px" height="16px" /></a>';
+document.getElementById("sharethis").innerHTML=txt;
+}
+//-->
+</script>
+<table cellspacing="0">
+<tbody><tr><th>SHARE THIS PAGE</th></tr>
+<tr>
+<td id="sharethis">
+<div style="height:16px">
+<a href="#" onclick="sharethis();return false;">Share with »</a>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+
+</td></tr></tbody></table>
+
+</td>
+</tr></tbody></table>
+</center>
+
+<table id="footer" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center">
+	<table align="center" border="0" width="960">
+	<tbody><tr>
+	<td align="left" width="200">
+		<a href="http://www.w3schools.com/"><img src="css3_reference.asp_files/w3schoolscom_gray.gif" alt="W3Schools.com" border="0"></a>
+	</td>
+	<td style="word-spacing: 6px; font-size: 80%; padding-right: 10px;" align="right">
+		<a href="http://www.w3schools.com/default.asp" target="_top">HOME</a> |
+		<a href="#top" target="_top">TOP</a> |
+		<a href="http://www.w3schools.com/css3/css3_reference.asp?output=print" target="_blank">PRINT</a> |
+		<a href="http://www.w3schools.com/forum/default.asp" target="_blank">FORUM</a> |
+		<a href="http://www.w3schools.com/about/default.asp" target="_top">ABOUT</a>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="2" style="color: rgb(64, 64, 64);" align="center" valign="top">
+			<a href="" onclick="displayError();return false">Help W3Schools. Suggest corrections to this page.</a>
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2" style="padding-top: 7px; color: rgb(64, 64, 64);" align="center" valign="top">
+		W3Schools is optimized for learning, testing, and training. Examples 
+might be simplified to improve reading and basic understanding.<br>
+		Tutorials, references, and examples are constantly reviewed to avoid 
+errors, but we cannot warrant full correctness of all content.<br>
+		While using this site, you agree to have read and accepted our
+		<a href="http://www.w3schools.com/about/about_copyright.asp">terms of use</a> and
+		<a href="http://www.w3schools.com/about/about_privacy.asp">privacy policy</a>.<br>
+		<a href="http://www.w3schools.com/about/about_copyright.asp">Copyright 1999-2011</a> by Refsnes Data. All Rights Reserved.
+	</td>
+	</tr>
+	</tbody></table>
+	<br>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+<!--
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,    
+    gaTrack: true,
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+//-->
+</script><script src="css3_reference.asp_files/element.js" type="text/javascript"></script>
+
+
+<div id=":0.balloonContainer" style="position: absolute; z-index: 1073741824; top: -9999em; display: none;"><iframe id=":0.container" class="goog-te-balloon-frame skiptranslate" src="javascript:''" style="visibility: visible;" frameborder="0"></iframe></div><div style="position: absolute; top: -1000px; height: 1px; width: 1px;"><object id="fI0gpksg2lc" name="fI0gpksg2lc" type="application/x-shockwave-flash" data="css3_reference.asp_files/hrs.swf" width="400" height="500"><param name="allowScriptAccess" value="always"></object></div><iframe style="visibility: visible; -moz-box-sizing: content-box; width: 568px; height: 285px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe></body></html>

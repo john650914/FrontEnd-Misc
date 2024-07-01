@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	
+	[title~='title']{color:red;}
+	span[class~="myspan"]{color:lime;}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	IE7可用！<br><br><br>
+	屬性值中比對到指定的字串，跟*=不一樣，~=一定要完全符合<br><br><br>
+	<h2 title="this heading is with a title attr">這個h2 title屬性的值有「title」這個字串</h2>
+	<h2 title="a titled heading">這個h2 title屬性的值有「titled」這個字眼，但它沒有完全符合「title」</h2>
+	<span class="span1 myspan">這個span有「myspan」的class</span>
+	<div class="span1 myspan">這個div也有「myspan」的class，但它終究不是span</div>
+</body>
+</html>

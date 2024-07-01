@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	
+	div{color:red; padding:10px;}
+	.outer > div{color:blue;}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+選擇到某元素的子元素，但不包含孫元素；有沒有空格都可以接受：<br>
+h1 &gt; strong<br>
+h1&gt; strong<br>
+h1 &gt;strong<br>
+h1&gt;strong<br><br>
+IE7可用！
+<br><br><br><hr>
+	<div class="outer">
+		第一層DIV
+		<div>
+			選到的DIV
+			<div>
+				最裡面的DIV
+			</div>
+		</div>
+	</div>
+</body>
+</html>

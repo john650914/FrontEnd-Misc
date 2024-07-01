@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%;}
+	
+	div{
+		border:1px solid red;
+		width:100px;
+		height:100px;
+		float:left;
+	}
+	
+	#div1{
+		border:1px solid blue;
+		
+		transform:translate(15px,15px);
+		-webkit-transform:translate(15px,15px);
+		-moz-transform:translate(15px,15px);
+		-o-transform:translate(15px,15px);
+	}
+	
+	#div2{
+		border:1px solid green;
+		width:500px;
+		height:100px;
+		margin-top:100px;
+		clear:both;
+	}
+	#div2 span{
+		border:1px solid lime;
+		
+		transform:translate(15px,15px); /*目前只有Google Chrome對行內元素無效，display:inline-block; works*/
+		-webkit-transform:translate(15px,15px) rotate(15deg);
+		-moz-transform:translate(15px,15px) rotate(15deg);
+		-o-transform:translate(15px,15px) rotate(15deg);
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div></div>
+	<div id="div1"></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	
+	<div id="div2">
+		這是一段文字，文字裡有<span>span標籤</span>，看看是不是對行內元素有效果。
+	</div>
+</body>
+</html>

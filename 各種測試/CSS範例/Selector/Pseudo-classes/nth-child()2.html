@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+<style>
+	div{border:1px solid red; width:100px; height:100px;}
+	:nth-child(2){border:1px solid black;}
+</style>
+</head>
+<body>
+	如果把body :nth-child(2)改成:nth-child(2)的話，body也會變成黑框，因為父元素(html)的第二個元素就是body(第一個是head)。
+	<p>p</p>
+	<p>p</p>
+	<p>p</p>
+	<p>p</p>
+	<p>p</p>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

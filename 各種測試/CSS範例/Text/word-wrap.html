@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<link rel="stylesheet" href="" type="text/css" />
+<style type="text/css">
+	body{font:15px arial;}
+	div{
+		border:1px solid red;
+		width:200px;
+		margin:0 0 15px 0;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<p>這跟word-break有點不一樣，word-wrap只會把空間放不下的超長字做斷字，閱讀上比較自然；而word-break會把每一個英文單字全部切斷立刻換行，所以每行未都是切齊的。<p>
+	<div style="word-wrap:normal;">This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will brake and wrap to the next line.</div>
+	<div style="word-wrap:break-word;">This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will brake and wrap to the next line.</div>
+</body>
+</html>

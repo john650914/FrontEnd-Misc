@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://ethantw.net/projects/han/ -->
+<html lang="zh-hant-TW" class="han-js win webkit hasFontSmoothing-unknown columnwidth textemphasis no-quotes writingmode"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>漢字標準格式・CSS Reset</title>
+
+    <link rel="stylesheet" href="http://ethantw.net/projects/han/css/han.min.css">
+    <link rel="stylesheet" href="http://ethantw.net/projects/han/css/style.css">
+    <link rel="shortcut icon" href="http://ethantw.net/projects/han/img/favicon.png">
+
+    <meta name="author" content="Tan I-kun (Ethan)">
+    <meta name="created" content="2011/3/1">
+    <meta name="revised" content="2011/5/12">
+
+    <script type="text/javascript" async="" src="./漢字標準格式・CSS Reset_files/ga.js"></script><script src="./漢字標準格式・CSS Reset_files/jquery.min.js"></script>
+    <script src="./漢字標準格式・CSS Reset_files/han.min.js"></script>
+</head>
+
+
+<body>
+
+<header class="blog">
+    <h1><a href="./漢字標準格式・CSS Reset_files/漢字標準格式・CSS Reset.htm">漢字標準格式・<span lang="en">CSS Reset</span></a><sup><a href="http://ethantw.net/projects/han/#banben_zixun" title="版本資訊">1.1.1</a></sup></h1>
+    <p class="des">同印刷品般的<u class="pn">漢</u>字網頁排版框架。</p>
+</header>
+
+
+<nav id="sidebar">
+    <ul>
+        <li><a href="http://ethantw.net/projects/han/#qianyan">前言</a></li>
+
+        <li>
+            <a href="http://ethantw.net/projects/han/#daima_jieshuo">代碼解說</a>
+            <ol>
+                <li><a href="http://ethantw.net/projects/han/#muqian_yibei_guangfan_shiyong_de_css_reset">目前已被廣泛使用的<span lang="en">CSS reset</span></a></li>
+                <li><a href="http://ethantw.net/projects/han/#zhuanwei_hanzi_jiaru_de_yushe_yangshi">專為<u class="pn">漢</u>字加入／取消的樣式</a></li>
+                <li><a href="http://ethantw.net/projects/han/#qita">其它</a></li>
+            </ol>
+        </li>
+
+        <li><a href="http://ethantw.net/projects/han/#download">下載</a></li>
+        <li><a href="http://ethantw.net/projects/han/#shiyong_huanjing">適用環境</a></li>
+        <li><a href="http://ethantw.net/projects/han/#reference">參考文獻</a></li>
+        <li><a href="http://ethantw.net/projects/han/#contact">聯繫作者</a></li>
+    </ul>
+</nav>
+
+
+<article id="content">
+    <h2 id="qianyan">前言</h2>
+    <p>現今的瀏覽器預設樣式都是以顯示「西文」為主，忽略了其排版方式與<u class="pn">漢</u>字間的差異。加上出版者、網頁設計師和文章作者對此技術的妥協，導致<u class="pn">漢</u>字「螢幕文章」與正式文章書寫規則有愈來愈大的出入。</p>
+    <p>本<abbr title="Cascading Style Sheets">CSS</abbr>框架以「重設」為概念，套用合適於<u class="pn">漢</u>字文章及排版格式的樣式至各種<a href="http://www.w3.org/TR/html5/text-level-semantics.html">字級語意元素</a>（<span lang="en">text-level semantics</span>）、<a href="http://www.w3.org/TR/html5/grouping-content.html">內容群組元素</a>（grouping content）、<a href="http://www.w3.org/TR/html5/sections.html">區塊元素</a>（sections）中，藉此降低正式文書與網頁格式的差異，設計師亦無需再為此類元素設置預設樣式，增強一致性。目前可完整支援<u class="pn">台</u><u class="pn">港</u>繁體、大陸簡體、<u class="pn">日</u>文網頁的需求。</p>
+
+
+    <h2 id="daima_jieshuo">代碼解說</h2>
+    <p>全代碼共分三大部，其<a href="http://ethantw.net/projects/han/#muqian_yibei_guangfan_shiyong_de_css_reset">一、目前已被廣泛使用的<span lang="en">CSS reset</span></a>；<a href="http://ethantw.net/projects/han/#zhuanwei_hanzi_jiaru_de_yushe_yangshi">二、專為<u class="pn">漢</u>字加入（或取消）的樣式</a>；及<a href="http://ethantw.net/projects/han/#qita">三、其它</a>。</p>
+
+    <section>
+        <h3 id="muqian_yibei_guangfan_shiyong_de_css_reset">目前已被廣泛使用的<span lang="en">CSS reset</span></h3>
+        <p><dfn>目前已被廣泛使用的<span lang="en">CSS reset</span></dfn>採用<span class="pn" lang="en"><a href="http://meyerweb.com/" lang="en">Eric Meyer</a></span>提出的 <cite class="piece" lang="en"><a href="http://meyerweb.com/eric/tools/css/reset/">CSS Tools: Reset CSS</a></cite> 加以修改而成。與該<span lang="en">CSS</span>重設框架不同處為，保留<code>h1-h6, ol, ul</code>等元素的邊界值（<span lang="en">margin</span>）、<code>sup, sub</code>的垂直對齊位置（<span lang="en">vertical align</span>）、<code>abbr, del</code>的預設邊框及文字裝飾樣式等等。</p>
+    </section>
+
+
+    <section>
+        <h3 id="zhuanwei_hanzi_jiaru_de_yushe_yangshi">專為<u class="pn">漢</u>字加入（或取消）的樣式</h3>
+        <p><dfn>專為<u class="pn">漢</u>字加入（或取消）的樣式</dfn>共有下列十項：</p>
+
+        <ol class="sections-menu">
+            <li>
+                <a href="http://ethantw.net/projects/han/#dixian">底線</a>
+                <ol>
+                    <li><a href="http://ethantw.net/projects/han/#dixian-lianjie_charu_deng_yuansu">連結、插入等元素</a></li>
+                    <li><a href="http://ethantw.net/projects/han/#dixian-xianglin_zhuji_yuansu">相鄰註記元素</a></li>
+                </ol>
+            </li>
+                
+            <li>
+                <a href="http://ethantw.net/projects/han/#wenzhang_nei_duanluo">文章內段落</a>
+                <ol>
+                    <li><a href="http://ethantw.net/projects/han/#wenzhang_nei_duanluo-shipian">詩篇</a></li>
+                </ol>
+            </li>
+            <li><a href="http://ethantw.net/projects/han/#shuminghao">書名號</a></li>
+            <li><a href="http://ethantw.net/projects/han/#zhuozhonghao">著重號</a></li>
+            <li><a href="http://ethantw.net/projects/han/#wenzi_de_bianyin">文字的變音</a></li>
+            <li><a href="http://ethantw.net/projects/han/#wenzhang_nei_zhongdian">文章內重點</a></li>
+            <li><a href="http://ethantw.net/projects/han/#hangnei_yinyan">行內引言</a></li>
+            <li><a href="http://ethantw.net/projects/han/#wenzhang_nei_de_qukuai_yinyong">文章內的區塊引用</a></li>
+            <li><a href="http://ethantw.net/projects/han/#hanzi_zhuyin"><u class="pn">漢</u>字註音</a></li>
+            <!--<li><a href="#shouxieti_zitizu">手寫體字體集</a></li>-->
+            <li><a href="http://ethantw.net/projects/han/#daima_biaoqian_li_de_hanzi">代碼元素裡的<u class="pn">漢</u>字</a></li>
+        </ol>
+
+
+
+        <h4 id="dixian">底線</h4>
+        <h5 id="dixian-lianjie_charu_deng_yuansu">連結<code>&lt;a&gt;</code>、插入<code>&lt;ins&gt;</code>等元素</h5>
+        <p><a href="http://ethantw.net/projects/han/#lianjie_charu_deng_yuansu">連結</a>、<ins>插入</ins>等元素。為不影響「<u class="pn">專名號</u>」的使用，凡語系設定為「<u class="pn">中</u>文」的網頁（<code>&lt;html lang="zh-TW/HK/CN"&gt;</code>），皆取消了連結<code>&lt;a&gt;</code>、插入<code>&lt;ins&gt;</code>等元素的預設下劃線，並以其它樣式取代。</p>
+
+        <h5 id="dixian-xianglin_zhuji_yuansu">相鄰註記元素</h5>
+        <p>在兩個<u>相鄰</u><u>註記元素</u><code>&lt;u&gt;</code>（舊稱底線元素）之間，毋需以空白相隔即可得到（視覺上的）間隔效果。例如在不同卻相鄰的兩專名間，專名號不相連<sup><a id="ref-1" href="http://ethantw.net/projects/han/#ref-note-1">[1]</a></sup>。</p>
+
+        <blockquote class="example">
+            <p><u class="pn">英國</u><!--注意：中間毋需插入任何空白--><u class="pn">倫敦</u>是個世上少有、數一數二，且融合古典及現代的大城市。</p>
+        </blockquote>
+
+        <p>上方的例子由以下代碼實現：</p>
+        <pre><code>&lt;u&gt;英國&lt;/u&gt;&lt;!--<strong>注意：中間毋需插入任何空白</strong>--&gt;&lt;u&gt;倫敦&lt;/u&gt;是個世上少有、數一數二，且融合古典及現代的大城市。</code></pre>
+
+        <p><strong>提示：</strong>當前版本仍支援<a href="http://ethantw.net/projects/han/archives/201103/#zhuanminghao">舊版的專名號用法</a><strong>（不建議）</strong>。</p>
+
+
+        <h4 id="wenzhang_nei_duanluo">文章內段落</h4>
+        <p>將<code>&lt;article&gt;</code>文章元素中的<code>&lt;p&gt;</code>段落調整至兩倍行高（<code>2em</code>），且每段開頭縮排兩字元。</p>
+
+        <h5 id="wenzhang_nei_duanluo-shipian">詩篇</h5>
+        <p>一段落屬於「詩篇」時，各行皆縮排兩字元。</p>
+        <blockquote class="example poem-like">
+            <p>橫看成嶺側成峰，遠近高低各不同。<br>
+            不識廬山真面目，只緣身在此山中。</p>
+            <p class="cite"><u class="pn">蘇軾</u><cite class="piece">題西林寺壁</cite></p>
+        </blockquote>
+
+        <p><strong>需在<code>article</code>、<code>blockquote</code>或<code>p</code>元素中手動套用類別<code>.poem-like</code></strong>（使用前二者將作用於其內<em>所有<!----></em>段落<code>p</code>子元素），<strong>再以<code>&lt;br&gt;</code>標籤換行。</strong>例如：</p>
+        <pre><code>&lt;blockquote <strong>class="poem-like"</strong> cite="http://zh.wikisource.org/wiki/長恨歌"&gt;
+    &lt;p&gt;金屋妝成嬌侍夜，玉樓宴罷醉和春。<strong>&lt;br&gt;</strong>
+    姊妹弟兄皆列土，可憐光彩生門戶。&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+
+
+        <h4 id="shuminghao">書名號</h4>
+        <p><cite>書名號</cite>及<cite class="piece">篇名號</cite>為大陸地區、<u class="pn">台灣</u>的標點符號標準（<u class="pn">台灣教育部</u>稱作乙式）<sup><a id="ref-2" href="http://ethantw.net/projects/han/#ref-note-2">[2]</a></sup>，用以突顯文章內的著作名稱，不致混淆。使用方式如下：</p>
+        <pre><code>&lt;cite&gt;書名、電影名、電視劇名、專輯名等&lt;/cite&gt;
+&lt;cite <strong>class="piece"</strong>&gt;文章篇名、歌名、劇集名等&lt;/cite&gt;
+
+&lt;cite <strong>class="no-cite-mark"</strong>&gt;不使用書名號，如遇國際標準書號（<abbr lang="en" title="International Standard Book Number">ISBN</abbr>）時&lt;/cite&gt;
+
+&lt;foo <strong>class="no-cite-mark"</strong>&gt;
+    &lt;cite&gt;特定範圍內不使用書名號&lt;/cite&gt;
+&lt;/foo&gt;</code></pre>
+
+        <blockquote class="example">
+            <p>最近在看<u class="pn">張愛玲</u>的小說<cite>傾城之戀</cite>。閱讀時搭配<u class="pn">諾拉・瓊絲</u>收錄於<cite lang="en">Come Away with Me</cite>專輯的<cite class="piece" lang="en">Don't Know Why</cite>，隨著同故事情節波動的音符起舞，真是一大享受！</p>
+
+            <p><u class="pn">朱自清</u>的<cite class="piece">背影</cite>是篇跨時代的鉅作啊。在中學時期讀過的課文，我到現在竟仍能倒背如流。</p>
+        </blockquote>
+
+        <p>支援繁、簡<u class="pn">中</u>文、<u class="pn">日</u>語<sup><a id="ref-3-0" href="http://ethantw.net/projects/han/#ref-note-3">[3]</a></sup>、<u class="pn">英</u>文<sup><a id="ref-3-1" href="http://ethantw.net/projects/han/#ref-note-3">[3]</a></sup>等語言的書名號用法。套用語言屬性​<code>lang="zh/​ja/​en"</code>​即可。</p>
+
+
+        <h4 id="zhuozhonghao">著重號</h4>
+        <p><em>著重號<!----></em>用以取代<code>&lt;em&gt;</code>強調元素預設的<span style="font-style: italic;">斜體</span>樣式。可用於一段文字中需要特別強調之處<sup><a id="ref-4" href="http://ethantw.net/projects/han/#ref-note-4">[4]</a></sup>。需要注意的是「『強調』並不等於『重點』」，重點請用​<code>&lt;strong&gt;</code>​元素表示——而閱讀時容易誤會、判斷錯誤或需要加深印象、特意突出的字詞較適合使用此元素。<sup><a id="ref-5" href="http://ethantw.net/projects/han/#ref-note-5">[5]</a></sup></p>
+        <blockquote class="example">
+            <p><em><span class="cjk punc open">「</span>數大<span class="cjk punc close">」</span>便是美<!----></em>，碧綠的山坡前幾千隻綿羊，挨成一片的雪絨，是美；一天的繁星，千萬隻閃亮的眼神，從無極的藍空中下窺大地，是美；<u class="pn">泰山</u>頂上的雲海，巨萬的雲峰在晨光裏靜定著，是美；大海萬頃的波浪，戴著各式的白帽，在日光裏動盪著、起落著，是美；<u class="pn">愛爾蘭</u>附近的那個「<u class="pn">羽毛島</u>」上棲著幾千萬的飛禽，夕陽西沉時只見一個「羽化」的大空，只是萬鳥齊鳴的大聲，是美；⋯⋯<em>數大便是美<!----></em>。數大了似乎按照著一種自然律，自然的會有一種特別的排列，一種特別的節奏，一種特殊的式樣，激動我們審美的本能，激發我們審美的情緒。</p>
+            <p class="cite"><u class="pn">徐志摩</u><cite>徐志摩日記西湖記・「數大」便是美</cite></p>
+        </blockquote>
+
+        <p>標點符號及所有類型的空白預設不使用著重號。若<code>&lt;em&gt;</code>中帶有西文（如<u class="pn">英</u>文）字符，則：</p>
+        <blockquote class="example">
+            <p>「不只是<em><span lang="en">Little People</span><span class="cjk punc">。</span>還有空氣蛹<span class="cjk punc">、</span><span lang="en">Mother</span>和<span lang="en">Daughter</span><span class="cjk punc">、</span>兩個月亮<!----></em>，在這個世界都是實際存在的。」<u class="pn">青豆</u>說。</p>
+            <p class="cite"><u class="pn">村上春樹</u><cite>IQ84</cite></p>
+        </blockquote>
+
+        <p><strong>瀏覽器需支援<span lang="en">JavaScript</span>方能正確顯示</strong>，否則將以如下的「虛底線」樣式代替：</p>
+        <blockquote class="example">
+            <p>隔天她穿上最炫的洋裝，是她母親特別為開學日縫製的衣服。她離開家裡去上學，心裡不斷感謝上帝暑假終於結束。但是，小男生卻沒有出現。熬過了一個星期她才從同學口中得知，原來他已經搬到外地了。「<span style="border-bottom: 2px dotted; padding-bottom: .05em;">他搬去很遠很遠的地方</span>，」有人說。</p>
+            <p class="cite"><u class="pn">保羅・科爾賀</u><cite>愛的十一分鐘</cite></p>
+        </blockquote>
+
+
+        <h4 id="wenzi_de_bianyin">文字的變音</h4>
+        <p><i>文字的變音（示例用拼音：<span lang="zh-latn">wénzì de biànyīn</span>）</i>是以「差別於原行間的字體」取代<code>&lt;i&gt;</code>變音元素預設的<span style="font-style: italic;">斜體</span>樣式<sup><a id="ref-6" href="http://ethantw.net/projects/han/#ref-note-6">[6]</a></sup>。在<u class="pn">中</u>文（或<u class="pn">漢</u>字）裡可用於<em>語氣的轉換<!----></em>，例如：外語的夾雜、嘲諷或興奮處音調的改變，一個不需要強調亦非重點的「想法」。</p>
+        <p>在一般情況下，變音元素的字體順序為「西文襯線斜體（<span lang="en" style="font-family: &#39;Times New Roman&#39;, serif; font-style: italic;">Times New Roman Italic</span>）、<span style="font-family: &#39;华文仿宋&#39;, STFangsong, serif;">仿宋體</span>、<span style="font-family: &#39;华文楷体&#39;, STKaiti, &#39;標楷體&#39;, &#39;DFKaiShu-SB-Estd-BF&#39;, Kai, serif;">楷體</span>」；而在以仿宋體（或楷體）為主要字體的​<code>article blockquote</code>​<b>文章內區塊引用元素</b>中，則使用「西文非襯線斜體（<span lang="en" style="font-family: Helvetica, sans-serif; font-style: italic;">Helvetica Oblique</span>、<span lang="en" style="font-family: Arial, sans-serif; font-style: italic;">Arial Italic</span>）、<span style="font-family: sans-serif;">黑體</span>」。</p>
+        <p>範例如下：</p>
+
+        <blockquote class="example">
+            <p>「⋯⋯我們知道的並不多。我們只知道在很遠的地方，越過許多山脈和河流，有一群矮小的生物居住在洞穴或是沙丘中。但沒有任何關於他們的傳說，<i>因為據說他們游手好閒，躲避人類的目光，可以在一瞬間消失，</i>而且他們還可以將嗓音偽裝成飛鳥的啁啾聲。不過，看來並不是這樣。」</p>
+            <p class="cite"><u class="pn">J. R. R.・托爾金</u><cite>魔戒之王・雙城奇謀</cite></p>
+        </blockquote>
+
+        <blockquote class="example">
+            <p>此時我靈機一動，<i>如果我們在<span lang="en">microwave</span>內加上一層散熱片會如何？</i>也許幫助我們脫離這個窘境，說不準還能一舉拿下發明比賽的名次呢！</p>
+        </blockquote>
+
+
+        <h4 id="wenzhang_nei_zhongdian">文章內重點</h4>
+        <p><strong>文章內重點</strong>元素使用「黑體（<span lang="en">sans-serif</span>）」無襯線字集，並搭配字體重量「600」（粗體）。</p>
+        <p><strong>注意：</strong>只適用於文章<code>&lt;article&gt;</code>內的<code>&lt;strong&gt;</code>元素。</p>
+
+
+        <h4 id="hangnei_yinyan">行內引言</h4>
+        <p><q>以繁體<u class="pn">中</u>文之<q class="double">引號</q>取代<code>&lt;q&gt;</code>行內引言元素預設的“西文‘引號’”</q>，適用於繁體<u class="pn">中</u>文及<u class="pn">日</u>文<code>&lt;html lang="zh/zh-TW/HK/hant/ja"&gt;</code>網頁。</p>
+
+
+        <h4 id="wenzhang_nei_de_qukuai_yinyong">文章內的區塊引用</h4>
+        <p><code>article blockquote</code>文章內的區塊引用元素向內縮排兩個<u class="pn">漢</u>字字寬（<code>2em</code>），並使用「<span style="font-family: &#39;华文仿宋&#39;, STFangsong, &#39;華康仿宋體 Std&#39;, DFFangSongStd-W4, cursive, serif;">仿宋體</span>、<span style="font-family: &#39;华文楷体&#39;, STKaiti, Kai, &#39;標楷體&#39;, DFKaiShu-SB-Estd-BF, cursive, serif;">楷體</span>」等手寫體（<span lang="en">cursive</span>）以區別。</p>
+
+
+        <h4 id="hanzi_zhuyin"><u class="pn">漢</u>字註音</h4>
+        <p><dfn><ruby class="reading romanization"><u class="pn">漢</u>字<rt>hànzì</rt>註音<rt>zhùyīn</rt></ruby></dfn>使用<code>&lt;ruby&gt;</code>元素，適用於語言教科書或為難字標註音標。<span lang="en">Webkit</span>已「部分」支援此元素。</p>
+
+        <blockquote class="example">
+            <p class="poem-like"><ruby class="reading romanization">春光<rt>chūnguāng</rt>好<rt>hăo</rt>，<rt></rt>風和<rt>fēnghé</rt>日暖<rt>rìnuăn</rt>春光<rt>chūnguāng</rt>好<rt>hăo</rt>，<rt></rt>結伴<rt>jiébàn</rt>遊<rt>yóu</rt>春郊<rt>chūnjiāo</rt>。<rt></rt></ruby>
+            <br><ruby class="reading romanization">你<rt>nĭ</rt>瞧<rt>qiáo</rt>！<rt></rt>一彎<rt>yìwān</rt>流水<rt>liúshuĭ</rt>架<rt>jià</rt>小橋<rt>xiăoqiáo</rt>，<rt></rt>兩岸<rt>liăng'àn</rt>楊柳<rt>yángliŭ</rt>隨風<rt>suífēng</rt>飄<rt>piāo</rt>。<rt></rt></ruby></p>
+            <p class="cite"><cite class="piece">春光好</cite></p>
+        </blockquote>
+
+        <p>下方以「<a href="http://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%96%A9%E5%8D%97%E8%AA%9E%E7%BE%85%E9%A6%AC%E5%AD%97%E6%8B%BC%E9%9F%B3%E6%96%B9%E6%A1%88"><u class="pn">台灣</u><u class="pn">閩南</u>語<u class="pn">羅馬</u>字拼音方案</a>」示例。</p>
+        <blockquote class="example">
+            <p class="poem-like"><ruby class="reading romanization" lang="zh-nan">我<rt>guá</rt>有<rt>ū</rt>一个<rt>tsi̍t ê</rt>朋友<rt>pîng-iú</rt>，<rt></rt>伊<rt>i</rt>真有<rt>tsin-ū</rt>志氣<rt>tsì-khì</rt>，<rt></rt></ruby>
+            <br><ruby class="reading romanization">自<rt>tsū</rt>細漢<rt>sè-hàn</rt>著<rt>tio̍h </rt>立志<rt>li̍p-tsì</rt>講<rt>kóng</rt>欲<rt>beh</rt>寫歌<rt>siá-kua</rt>唱歌<rt>tshiùnn-kua</rt>趁錢<rt>thàn-tsînn</rt>；<rt></rt></ruby>
+            <br><ruby class="reading romanization">伊<rt>i</rt>逐工<rt>ta̍k-kang</rt>攏咧<rt>lóng-the</rt>笑<rt>siàu</rt>電影<rt>tiān-iánn</rt>，<rt></rt>聽<rt>thiann</rt>阿啄仔<rt>a-tok-á</rt>的<rt>ê</rt><abbr lang="en" title="compact disc">CD</abbr>。<rt></rt></ruby></p>
+            <p class="cite"><u class="pn">朱約信</u><cite class="piece">歡迎來唱我的歌</cite></p>
+        </blockquote>
+
+        <p>國語注音符號：</p>
+        <!--<blockquote class="example">
+            <p><ruby class="reading mps">人<rt>ㄖㄣˊ</rt>人<rt>ㄖㄣˊ</rt>的<rt>˙ㄉㄜ</rt>欣<rt>ㄒㄧㄣ</rt>賞<rt>ㄕㄤˇ</rt>觀<rt>ㄍㄨㄢ</rt>點<rt>ㄉㄧㄢˇ</rt>不<rt>ㄅㄨˊ</rt>盡<rt>ㄐㄧㄣˋ</rt>相<rt>ㄒㄧㄤ</rt>同<rt>ㄊㄨㄥˊ</rt>，<rt></rt>那<rt>ㄋㄚˋ</rt>是<rt>ㄕˋ</rt>和<rt>ㄏㄜˊ</rt>個<rt>ㄍㄜˋ</rt>人<rt>ㄖㄣˊ</rt>的<rt>˙ㄉㄜ</rt>性<rt>ㄒㄧㄥˋ</rt>格<rt>ㄍㄜˊ</rt>與<rt>ㄩˇ</rt>生<rt>ㄕㄥ</rt>活<rt>ㄏㄨㄛˊ</rt>環<rt>ㄏㄨㄢˊ</rt>境<rt>ㄐㄧㄥˋ</rt>有<rt>ㄧㄡˇ</rt>關<rt>ㄍㄨㄢ</rt>。<rt></rt></ruby></p>
+            <p class="cite"><u class="pn">宋晶宜</u><cite class="piece">雅量</cite></p>
+        </blockquote>-->
+
+        <blockquote class="example">
+        	<p>那美麗的高塔竟在瞬間<ruby class="mps reading"><span class="rb">化<span class="rt">ㄏㄨㄚ<span class="tone">ˋ</span></span></span><span class="rb">作<span class="rt">ㄗㄨㄛ<span class="tone">ˋ</span></span></span><span class="rb">齏<span class="rt">ㄐㄧ</span></span><span class="rb">粉<span class="rt">ㄈㄣ<span class="tone">ˇ</span></span></span><span class="rb"></span></ruby>，曾經令人<ruby class="mps reading"><span class="rb">齰<span class="rt">ㄗㄜ<span class="tone">ˊ</span></span></span><span class="rb">舌<span class="rt">ㄕㄜ<span class="tone">ˊ</span></span></span><span class="rb"></span></ruby>的鬼斧神工最後只能長存在人們心中。</p>
+        </blockquote>
+
+        <p>使用<b><u class="pn">羅馬</u>拼音</b>時，請在<code>ruby</code>標籤上套用類別<code>romaization</code>或<code><abbr title="拼音">pinyin</abbr></code>。</p>
+        <pre><code>&lt;ruby <strong>class="romanization/pinyin"</strong>&gt;
+    一彎&lt;rt&gt;yìwān&lt;/rt&gt;
+    流水&lt;rt&gt;liúshuĭ&lt;/rt&gt;
+&lt;/ruby&gt;</code></pre>
+
+        <p><strong>請注意</strong>：類別<code>pinyin</code>僅代表用於拼寫國語（即普通話）<u class="pn">漢</u>字的「<a href="http://zh.wikipedia.org/wiki/%E6%BC%A2%E8%AA%9E%E6%8B%BC%E9%9F%B3"><u class="pn">漢</u>語拼音</a>」。僅管最終所得的顯示結果相同，為了<em>正確地表達語意<!----></em>，其餘形式的<u class="pn">羅馬</u>拼音請使用類別<code>romanization</code>。</p>
+
+        <p><b>注音符號</b>則套用<code><abbr lang="en" title="Mandarin Phonetic Symbols">mps</abbr></code>或<code><abbr lang="en" title="注音">zhuyin</abbr></code>分類。</p>
+        <pre><code>&lt;ruby <strong>class="mps/zhuyin"</strong>&gt;
+    齰&lt;rt&gt;ㄗㄜˊ&lt;/rt&gt;
+    舌&lt;rt&gt;ㄕㄜˊ&lt;/rt&gt;
+&lt;/ruby&gt;</code></pre>
+
+
+        <!--<h4 id="shouxieti_zitizu">手寫體字體集</h4>
+        <p><dfn style="font: 300 1em cursive-han, serif;">手寫體字體集</dfn></p>-->
+
+
+        <h4 id="daima_biaoqian_li_de_hanzi">代碼元素裡的<u class="pn">漢</u>字</h4>
+        <p><code>變更<b>&lt;code&gt;代碼元素</b>的字體順序（"monospace, sans-serif"）</code>，使瀏覽器能以其預設的「無襯線字集」（sans-serif）顯示漢字，便於閱讀。</p>
+    </section>
+
+
+    <section>
+        <h3 id="qita">其它</h3>
+        <p><dfn>其它</dfn>部分共包含二小節：</p>
+        <ol class="sections-menu">
+            <li><a href="http://ethantw.net/projects/han/#IE_de_zhiyuan"><span lang="en">IE</span>的支援</a></li>
+            <li>
+                <a href="http://ethantw.net/projects/han/#modernizr_de_buchong"><span lang="en">Modernizr</span>的補充</a>
+                <ol>
+                    <li><a href="http://ethantw.net/projects/han/#modernizr-xitong_ji_liulanqi_de_zhence">系統及瀏覽器的偵測</a></li>
+                    <li><a href="http://ethantw.net/projects/han/#modernizr-hanzibiaozhungeshi_suoyong_de_CSS3_mozu_shuxing"><cite>漢字標準格式</cite>所用的<abbr lang="en">CSS3</abbr>模組屬性</a></li>
+                    <li><a href="http://ethantw.net/projects/han/#modernizr-ziti_yuanhua_jishu">字體圓滑技術</a></li>
+                </ol>
+            </li>
+        </ol>
+
+        <h4 id="IE_de_zhiyuan"><abbr lang="en" title="Internet Explorer">IE</abbr>的支援</h4>
+        <p>使<span lang="en">IE8</span>（及以下版本）支援<span lang="en">HTML5</span>元素。</p>
+
+
+        <h4 id="modernizr_de_buchong"><span lang="en">Modernizr</span>的補充</h4>
+        <p><dfn><span lang="en">Modernizr</span>的補充</dfn>係<abbr lang="en">CSS</abbr>框架「<a href="http://www.modernizr.com/" lang="en">Modernizr</a>」概念的延伸（但不包含<span lang="en">Modernizr</span>提供的內容）。使用<span lang="en">JavaScript</span>偵測系統、瀏覽器版本及特殊功能的支援與否，並在<code>&lt;html&gt;</code>上加入相應的類別，方便以<abbr lang="en">CSS</abbr>編寫相容於不同環境或支援條件的代碼。</p>
+
+        <h5 id="modernizr-xitong_ji_liulanqi_de_zhence">系統及瀏覽器的偵測</h5>
+        <p>自動偵測使用者的系統、瀏覽器，您可用下列<abbr lang="en">CSS</abbr>類別設定不同平台或瀏覽器的樣式。</p>
+
+        <div>
+            <style scoped="">
+table {
+    font: .8em sans-serif;
+    margin-left: 2.5em;
+    text-align: center;
+    width: 95%;
+}
+
+table,
+table th,
+table td {  border: 1px solid #000;  } 
+
+table thead th {  background-color: #ccc;  }
+table th {  background-color: #eee;  }
+
+table th,
+table td {  padding: 2px 3px;  }
+
+table th small {  color: brown;  font-size: .5em;  }
+
+table thead th {  width: 100px;  }
+table thead th.narrower {  width: 80px;  }
+table thead th.wider {  width: 100px;  }
+            </style>
+
+
+            <table id="cond-detector">
+                <tbody><tr>
+                    <th>排版引擎<br><small>瀏覽器</small></th>
+                    <th>Gecko<br><small>Mozilla Firefox</small></th>
+                    <th class="wider" colspan="2">Internet <br>Explorer</th>
+                    <th class="narrower">Opera</th>
+                    <th class="wider">Webkit<br><small>Google Chrome或Safari</small></th>
+                    <th>末知</th>
+                </tr>
+
+                <tr>
+                    <th>類別</th>
+                    <td rowspan="3"><code>mozilla</code></td>
+                    <td colspan="2"><code>msie</code></td>
+                    <td rowspan="3"><code>opera</code></td>
+                    <td rowspan="3"><code>webkit</code></td>
+                    <td rowspan="3"><code>browser-unknown</code></td>
+                </tr>
+                <tr>
+                    <th rowspan="2">特殊版本類別</th>
+                    <th>版本</th>
+                    <td><code>ie-版本號</code></td>
+                </tr>
+                <tr>
+                    <th>IE7以下</th>
+                    <td><code>msie-old</code></td>
+                </tr>
+
+
+                <tr>
+                    <th>作業系統</th>
+                    <th>Linux</th>
+                    <th colspan="2">Mac OS</th>
+                    <th>Unix</th>
+                    <th>Windows</th>
+                    <th>末知</th>
+                </tr>
+                <tr>
+                    <th>類別</th>
+                    <td><code>linux</code></td>
+                    <td colspan="2"><code>mac</code></td>
+                    <td><code>unix</code></td>
+                    <td><code>win</code></td>
+                    <td><code>os-unknown</code></td>
+                </tr>
+            </tbody></table>
+        </div>
+
+
+        <p>使用範例：</p>
+        <pre><code><strong>.ie-6</strong> #new-tech {  display: none;  }
+
+<strong>.mac</strong><strong>.webkit</strong> dl dt {
+    font: 600 1em/1.5em Helvetica, "Hiragino Kaku Gothic Pro", "Hiragino Sans GB", sans-serif;
+    -webkit-text-shadow: pink 1px 3px;
+}</code></pre>
+
+
+
+        <h5 id="modernizr-hanzibiaozhungeshi_suoyong_de_CSS3_mozu_shuxing"><cite>漢字標準格式</cite>所用的<abbr lang="en">CSS3</abbr>模組屬性</h5>
+        <p><dfn><cite>漢字標準格式</cite>所用的<abbr lang="en">CSS3</abbr>模組屬性</dfn>包括著重號<code>text-emphasis</code>、引號<code>quotes</code>、文字方向<code>writing-mode</code>、欄位寛度<code>column-width</code>。以下為使用範例：</p>
+        <pre><code><strong>.textemphasis</strong> [id^=lyrics-] .singing_loudlier {
+    text-emphasis:              dot;
+        -moz-text-emphasis:     dot;
+        -o-text-emphasis:       dot;
+        -webkit-text-emphasis:  dot;
+}
+
+<strong>.no-textemphasis</strong> [id^=lyrics-] .singing_loudlier {
+    color: red;
+    font-weight: bolder;
+}</code></pre>
+
+
+        <pre><code><strong>.quotes</strong> .stands_out {  quotes: "~~" "~~" "*" "*";  }
+<strong>.quotes</strong> .stands_out:before {  content: open-quote;  }
+<strong>.quotes</strong> .stands_out:after {  content: close-quote;  }
+
+<strong>.no-quotes</strong> .stands_out:before {  content: "~~";  }
+<strong>.no-quotes</strong> .stands_out:after {  content: "~~";  }
+</code></pre>
+
+
+        <h5 id="modernizr-ziti_yuanhua_jishu">字體圓滑技術</h5>
+        <p>自動偵測系統是否支援字體圓滑技術（如​<span lang="en">Windows</span>​上的​<span lang="en">ClearType</span>）。可用下列的<span lang="en">CSS</span>選擇器設定不同支援情況時的字體或樣式。</p>
+        <pre><code>.win<strong>.hasFontSmoothing-true</strong> {  font-family: "微軟正黑體", sans-serif;  }
+
+.win<strong>.hasFontSmoothing-false</strong>,
+.win<strong>.hasFontSmoothing-unknown</strong> {  font-family: PMingLiU, serif;  }</code></pre>
+        <p>詳細設定方式可參考由<span class="pn" lang="en">othree</span>所撰寫的<cite class="piece"><a href="http://blog.othree.net/log/2011/03/04/detect-clear-type/">偵測Clear Type</a></cite>及<cite class="piece"><a href="http://blog.othree.net/log/2011/03/06/default-font-style/">預設字型樣式</a></cite>二文。</p>
+    </section>
+
+
+    <h2 id="download">下載</h2>
+    <p>您可以直接<strong><a id="download_button" href="https://github.com/ethantw/Han/zipball/master">下載最新版本</a></strong>，或<a href="https://github.com/ethantw/Han">前往<span lang="en">GitHub</span></a>瞭解更多資訊。</p>
+
+
+    <h3 id="shezhi_buzou">設置步驟</h3>
+    <ol class="paragraphic">
+        <li>
+            <p>解壓縮後開啟檔案「<code>han.min.css</code>」，更改「14及15行」的<code>.eot</code>與<code>.ttf</code>注音符號字體路徑。</p>
+
+            <p><strong>請注意：</strong>此處使用的注音符號字體係<u class="pn">中華民國教育部</u>研發的「<a href="http://www.edu.tw/mandr/content.aspx?site_content_sn=3591">教育部標準楷書</a>」，並<strong>採<a href="http://creativecommons.org/licenses/by-nd/3.0/tw/">創用CC 「姓名標示—禁止改作—3.0<u class="pn">台灣</u>版」</a>授權</strong>。若您有著作權的疑慮，或是沒有使用注音符號的需求，請直接刪除上述提及之二行代碼及檔案。</p>
+        </li>
+
+        <li>
+            <p>在欲套用此<span lang="en">CSS</span>重設框架的網頁<code>&lt;head&gt;</code>內、所有樣式宣告<em>之前<!----></em>導入下列外連樣式表：</p>
+            <pre><code>&lt;link rel="stylesheet" media="all" href="./han.min.css"&gt;</code></pre>
+
+            <p>同上，於<code>&lt;head&gt;</code>中加入以下<span lang="en">JavaScript</span>語法：</p>
+
+            <pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js&gt;&lt;/script&gt;
+&lt;script src="./han.min.js"&gt;&lt;/script&gt;</code></pre>
+
+            <p><strong>注意：</strong>請不要將上述<span lang="en">JavaScript</span>語法放於網頁底部。否則舊版<span lang="en">IE</span>瀏覽器將無法正確顯示<span lang="en">HTML5</span>元素。</p>
+        </li>
+
+        <li><p>留意<code>&lt;html&gt;</code>標籤上是否設置了正確的語言屬性<code>lang</code>。此框架多數功能僅支援中文<code><abbr title="zh-CN、zh-Hans、zh-Hant、zh-HK、zh-TW等">zh-*</abbr></code>及日語<code>ja</code>。</p></li>
+
+        <li><p>在瀏覽器中開啓已套用本框架的網頁測試是否正確運作。</p></li>
+    </ol>
+
+
+    <h3 id="banben_zixun">版本資訊</h3>
+    <dl>
+        <dt lang="en">version 1.1.1</dt>
+        <dd>新增<span lang="en">Modernizr</span>包括文字方向<code>writing-mode</code>、欄目寛度<code>column-width</code>等<abbr>CSS</abbr>類別。</dd>
+
+        <dt lang="en">version 1.1</dt>
+        <dd>加入了<a href="http://ethantw.net/projects/han/#wenzhang_nei_zhongdian">文章內重點</a><code>article strong</code>元素的樣式；</dd>
+        <dd>修正<a href="http://ethantw.net/projects/han/#zhuozhonghao">著重號</a>的表示方式；</dd>
+        <dd>修正<code>&lt;ruby&gt;</code>的顯示問題；</dd>
+        <dd>停止使用「華康仿宋體」；</dd>
+        <dd>加入<span lang="en">IE</span>「版本」偵測類別；</dd>
+        <dd>開放了可於外部呼叫的<span lang="en">JS</span>函數（請參考檔案<code><a href="https://github.com/ethantw/Han/blob/master/han.js">han.js</a></code>）。</dd>
+    </dl>
+
+
+    <h2 id="shiyong_huanjing">適用環境</h2>
+    <p>經過測試，本<span lang="en">CSS</span>重設框架可在下列瀏覽器及（含）以上版本中正常運作：</p>
+    <ul lang="en" id="conditions">
+        <li>Chrome 8</li>
+        <li>Firefox 3.6</li>
+        <li>Internet Explorer 8</li>
+        <li>Opera 9.5<small lang="zh-Hant-TW">（可能發生字體錯誤渲染的問題）</small></li>
+        <li>Safari 5</li>
+    </ul>
+
+
+    <h2 id="reference">參考文獻</h2>
+    <ol id="reference-list">
+        <li id="ref-note-1"><a href="http://ethantw.net/projects/han/#ref-1">^</a><cite><a href="http://zh.wikipedia.org/wiki/%E5%B0%88%E5%90%8D%E8%99%9F">維基百科・專名號</a></cite>（網頁）。</li>
+        <li id="ref-note-2"><a href="http://ethantw.net/projects/han/#ref-2">^</a><cite><a href="http://zh.wikipedia.org/wiki/%E6%9B%B8%E5%90%8D%E8%99%9F">維基百科・書名號</a></cite>（網頁）。</li>
+        <li id="ref-note-3">^ <sup><a href="http://ethantw.net/projects/han/#ref-3-0">3.1</a> <a href="http://ethantw.net/projects/han/#ref-3-1">3.2</a></sup> <cite><a href="http://zh.wikipedia.org/wiki/%E6%9B%B8%E5%90%8D%E8%99%9F#.E5.85.B6.E4.BB.96.E8.AA.9E.E8.A8.80">維基百科・書名號#其他語言</a></cite>（網頁）。</li>
+        <li id="ref-note-4"><a href="http://ethantw.net/projects/han/#ref-4">^</a><cite><a href="http://zh.wikipedia.org/wiki/%E8%91%97%E9%87%8D%E8%99%9F">維基百科・著重號</a></cite>（網頁）。</li>
+        <li id="ref-note-5"><a href="http://ethantw.net/projects/han/#ref-5">^</a> <span class="pn" lang="en">Ian 'Hixie' Hickson, et al</span>. <cite lang="en" class="piece"><a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-em-element">4.6 Text-level semantics — HTML5#The <code>em</code> element</a></cite> (webpage).</li>
+        <li id="ref-note-6"><a href="http://ethantw.net/projects/han/#ref-6">^</a> <span class="pn" lang="en">Edward G.J. Lee</span>。<cite class="piece"><a href="http://blog.bs2.to/post/EdwardLee/1158">中英文字體的配合</a></cite>（網頁），2005年。</li>
+    </ol>
+
+
+    <h2 id="contact">聯繫作者</h2>
+    <p>歡迎使用<a href="mailto:chief+hanzibiaozhungeshi@ethantw.net">電子郵件</a>與我聯繫，或在<a lang="en" href="http://twitter.com/ethantw/">Twitter</a>上觀看我的動向。</p>
+</article>
+
+
+<footer>
+</footer>
+
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-18673404-2']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+
+
+</body></html>

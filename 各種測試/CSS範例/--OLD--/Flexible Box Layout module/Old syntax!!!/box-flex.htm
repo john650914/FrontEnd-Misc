@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3</title>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	html, body{height:100%; width:100%;}
+	
+	#div1{
+		width:600px;
+		height:300px;
+		border:1px solid red;
+		display:box;
+		display:-webkit-box;
+		display:-moz-box;
+		-moz-box-align:start; /*Firefox預設是把內容物變stretch，加寬度也沒用…，所以要加上box-align*/
+	}
+	
+	#div1 div{
+		height:50px;
+		border:1px solid blue;
+		font-size:12px;
+	}
+	
+	#div1 div:nth-child(1){
+		box-flex:3;
+		-webkit-box-flex:3;
+		-moz-box-flex:3;
+	}
+	
+	#div1 div:nth-child(2){
+		box-flex:2;
+		-webkit-box-flex:2;
+		-moz-box-flex:2;
+	}
+	
+	#div1 div:nth-child(3){
+		box-flex:1;
+		-webkit-box-flex:1;
+		-moz-box-flex:1;
+	}
+	#div1 div:nth-child(4){
+		width:30px;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="div1">
+		<div>01</div>
+		<div>02</div>
+		<div>03</div>
+		<div>04</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
