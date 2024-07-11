@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/swiper/9.1.0/swiper-bundle.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/swiper/9.1.0/swiper-bundle.min.js"></script>
+</head>
+<body>
+<style>
+body{
+	margin: 0;
+}
+.swiper{
+	height: 100vh;
+}
+.swiper-slide{
+	height: 100vh !important;
+}
+.slide4{
+	height: 20vh !important;
+}
+.slide1{
+	background: red;
+}
+.slide2{
+	background: orange;
+}
+.slide3{
+	background: yellow;
+}
+.slide4{
+	background: green;
+}
+</style>
+
+<div class="swiper">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide slide1">Slide 1</div>
+		<div class="swiper-slide slide2">Slide 2</div>
+		<div class="swiper-slide slide3">Slide 3</div>
+		<div class="swiper-slide slide4">Slide 4</div>
+	</div>
+	<div class="swiper-pagination"></div>
+	<!-- <div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div> -->
+</div>
+<script>
+const swiper = new Swiper('.swiper', {
+	speed: 400,
+	direction: "vertical",
+	slidesPerView: "auto",
+	mousewheel: true,
+	/*navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev'
+    },*/
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true
+	},
+    on:{
+      init:function(){
+        setSlideHeight(this);
+      },
+      slideChangeTransitionEnd:function(){
+        setSlideHeight(this);
+      }
+    }
+});
+
+function setSlideHeight(that){
+    $('.swiper-slide').css({height:'auto'});
+        var currentSlide = that.activeIndex;
+        var newHeight = $(that.slides[currentSlide]).height();
+
+        $('.swiper-wrapper,.swiper-slide').css({ height : newHeight })
+        that.update();
+   }
+</script>
+
+</body>
+</html>

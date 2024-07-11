@@ -5,45 +5,51 @@
 <title>TITLE</title>
 <meta name="description" content="DESCRIPTION">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
 <!-- <meta name="viewport" content="width=1200"> -->
-<meta name="format-detection" content="telephone=no">
-<meta name="open-default-browser" content="true">
+<meta name="format-detection" content="telephone=no,email=no,adress=no,date=no,url=no">
 
 <!-- 社群資訊 -->
 <meta property="og:title" content="TITLE" />
 <meta property="og:description" content="DESCRIPTION" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="" />
-<meta property="og:image" content="f_b.jpg" /><!-- 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 要改絕對路徑 -->
+<!-- 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 要改路徑 -->
+<meta property="og:image" content="https://tw.hicdn.beanfun.com/beanfun/event/[PRODUCT]/20240702J/assets/img/f_b.jpg" />
 
-<!-- 外連檔案 -->
+<!-- <link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/swiper/8.3.2/swiper-bundle.min.css">
+<link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/fullpage/fullpage.min.css"> -->
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
-<script src="https://tw.hicdn.beanfun.com/plugins/isMobile/isMobile.min.js"></script>
-<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
-<script src="https://tw.hicdn.beanfun.com/jquery/jquery-migrate.min.js"></script>
-<script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/gbox/gbox.js"></script>
-<script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/game-footer.js" id="game-footer" prod="" theme="dark"></script>
-<script type="text/javascript" src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/topBar/topbar.js" id="top-bar" prod="" ></script>
-<script src="https://tw.hicdn.beanfun.com/plugins/loadingProgress/loadingProgress.js"></script>
-<script src="https://tw.beanfun.com/js/GA_CodeNew.js"></script>
+<!-- CDN CSS： <link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/beanfun/event/[PRODUCT]/20240702J/assets/css/default.css"> -->
 
-<!-- GTM -->
-<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-1234567');</script> -->
+<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
+<!-- <script src="https://tw.hicdn.beanfun.com/plugins/isMobile/isMobile_update.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/axios/0.21.1/axios.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/vue/2.6.10/vue.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/vue/2.6.10/vue.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/vuex/3.1.1/vuex.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/twbs-pagination1.4.2/twbsPagination.min.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/fullpage/fullpage.js"></script>
+<script src="https://tw.hicdn.beanfun.com/plugins/swiper/8.3.2/swiper-bundle.min.js"></script>
+<script src="https://frontend.beanfun.com/plugins/g-share/g-share.js"></script>
+<script src="https://frontend.beanfun.com/plugins/gtime/gtime.js"></script>
+<script src="https://frontend.beanfun.com/plugins/cookie-bar/cookie-bar.js"></script>
+<script src="https://frontend.beanfun.com/plugins/g-calendar/g-calendar.js"></script>
+<script src="https://frontend.beanfun.com/plugins/gbox/gbox.js"></script>
+<script src="https://frontend.beanfun.com/plugins/topBar/topbar.js" id="top-bar" prod="[PRODUCT]" ></script> -->
+<script src="https://frontend.beanfun.com/plugins/game-footer/game-footer.js" id="game-footer" prod="[PRODUCT]" theme="dark"></script>
+<script src="https://frontend.beanfun.com/plugins/loadingProgress/loadingProgress.js"></script>
+<script src="https://tw.beanfun.com/js/GA_CodeNew.js"></script>
 
 </head>
 <body>
-<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-1234567" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
 
 <div class="container">web template</div>
 
-<script src="assets/js/default.js"></script>
+<script src="js/common.js"></script>
+<script src="js/default.js"></script>
 </body>
 </html>
 
@@ -357,7 +363,6 @@ filter: drop-shadow(8px 8px 10px gray); //image only
 
 
 ################################################# animation #################################################
-※IE9不支援
 ※有的css屬性不支援animation要來補一下
 
 縮寫語法：
@@ -417,6 +422,8 @@ https://webcode.tools/css-generator/perspective
 
 
 ################################################# transition #################################################
+transition: css_property duration timing-function delay|initial|inherit;
+
 selector{
 	transition: all 1s; //基本用法；漸變前、後的選擇器都加才會有「來、回」的效果
 }
@@ -660,37 +667,51 @@ doAxios('/LineageM/api/Event/E20220615/Exchange', {
 }).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
 
 
-################################################# Axios搭配Vuex #################################################
-function doAxios(payload, fn){
-	showLoading();
-	axios({
-		method: 'post',
-		url: payload.url,
-		data: payload.dataObj
-	}).then(function($res){
-		hideLoading();
-		let res = $res.data;
-		if(res.Code == 1){
-			fn(res);
-		}else if(res.Code == -1){showGbox(res.Message);}else{showGbox(res.Message, res.Url);}
-	}).catch(function(e){console.log(e);}).finally(function(){hideLoading();});
-}
+################################################# fullpage #################################################
+<div id="fullpage" class="container">
+	<div class="section">...</div>
+	<div class="section">...</div>
+	<div class="section">...</div>
+	<div class="section fp-auto-height footer">...</div> <<<<<<< fp-auto-height會在一屏內自動適應高度
+</div>
 
-doAxios({
-	url: '../../api/E20230620/UpdateUserInvitationCodeLog',
-	dataObj: {Seq:8, Flag:2, Token:this.eventToken}
-}, function(res){
-	console.log(res);
-	store.dispatch('init_event', {Page:2, NestType:0, CharacterId:0, Commit:'init_event2'});
+$('#fullpage').fullpage({
+	scrollOverflow: true,
+	verticalCentered: false
 });
 
-在dispatch中使用
-doAxios({
-	url: '../../api/E20230620/UpdateUserInvitationCodeLog',
-	dataObj: {Seq:8, Flag:2, Token:this.eventToken}
-}, function(res){
-	commit('GetAllGraveTeam', res);
+$.fn.fullpage.setAllowScrolling(boolean);
+$.fn.fullpage.setKeyboardScrolling(boolean);
+$.fn.fullpage.moveTo(1);
+
+//有網址的範例：
+<ul id="menu">
+    <li data-menuanchor="sec1"><a href="#sec1">1st slide</a></li>
+    <li data-menuanchor="sec2"><a href="#sec2">2nd slide</a></li>
+    <li data-menuanchor="sec3"><a href="#sec3">3rd slide</a></li>
+</ul>
+<div id="fullpage">
+    <div class="section"><h1>Section 1</h1></div>
+	<div class="section"><h1>Section 2</h1></div>
+    <div class="section"><h1>Section 3</h1></div>
+</div>
+$('#fullpage').fullpage({
+	anchors: ['sec1', 'sec2', 'sec3']
 });
+
+//超過一屏的畫面：
+<script src="https://tw.hicdn.beanfun.com/plugins/fullpage/scrolloverflow.js"></script>
+$('#fullpage').fullpage({
+	scrollOverflow: true,
+});
+
+//有左邊點點點選單的範例：
+$('#fullpage').fullpage({
+	navigationTooltips: ['First Section', 'Second Section', 'Third Section'], <<<<<<< 這些是顯示的文字
+	navigation: true,
+});
+
+
 
 
 
@@ -998,7 +1019,7 @@ Array.prototype.contains = function(val){
 
 ################################################# 橘子footer #################################################
 <script src="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/allProducts/script/game-footer.js" id="game-footer" prod="新瑪奇B" theme="dark"></script>
-天堂M | 魔力寶貝M | 天堂 | 天堂國際服 | 天堂免服 | 新楓之谷 | 絕對武力 | 絕對武力2 | 新瑪奇B | 跑跑卡丁車 | 艾爾之光 | 爆爆王 | 泡泡大亂鬥 | 勁舞團 | 召喚圖板 | 發射吧少女 | 便利商店口袋版 | bf!遊戲 | 新龍之谷 | AURORA7 | 龍之谷新世界 | 月光雕刻師 | 彈射世界
+天堂M | 魔力寶貝M | 天堂 | 天堂國際服 | 天堂免服 | 新楓之谷 | 絕對武力 | 絕對武力2 | 新瑪奇B | 跑跑卡丁車 | 艾爾之光 | 爆爆王 | 泡泡大亂鬥 | 勁舞團 | 召喚圖板 | 發射吧少女 | 便利商店口袋版 | bf!遊戲 | 新龍之谷 | AURORA7 | 龍之谷新世界 | 月光雕刻師 | 彈射世界 | 波拉西亞
 
 
 ################################################# topbar.js #################################################
@@ -1223,10 +1244,10 @@ $('#pagination').twbsPagination({
 		<div class="swiper-slide">Slide 2</div>
 		<div class="swiper-slide">Slide 3</div>
 	</div>
-	<div class="swiper-pagination"></div>
-	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
 </div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
 
 const swiper = new Swiper('.swiper', {
 	speed: 400,
@@ -1238,8 +1259,20 @@ const swiper = new Swiper('.swiper', {
 		el: '.swiper-pagination',
 		clickable: true
 	},
-	loop: true
+	loop: true,
+	direction: "vertical",
+	on: {
+		init: function(){
+			this.on('slideChangeTransitionEnd', function(){
+				console.log(this.realIndex);
+			});
+		}
+	}
 });
+
+//這裡有一個用swiper做fullpage的範例
+D:\github(john650914)\FrontEnd-Misc\各種測試\index2.html
+
 
 ################################################# CI/CD佈版之前 #################################################
 git push後就會更新到alpha了
@@ -1271,6 +1304,7 @@ CI/CD > Pipelines 按下去 > 看我剛才新增的tag有沒有五個勾勾（�
 
 ################################################# swagger路徑 #################################################
 https://127.0.0.1:44369/mabinogi/swagger/ui/index
+https://127.0.0.1:7224/Event/E20240702/index
 https://127.0.0.1:7224/swagger/index.html
 
 
