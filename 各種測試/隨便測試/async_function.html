@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://tw.hicdn.beanfun.com/plugins/axios/0.21.1/axios.min.js"></script>
+<title>HTML5</title>
+<script>
+async function postData1() {
+  try {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('postData1發生錯誤');
+  }
+}
+
+async function postData2() {
+  try {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+      title: 'baz',
+      body: 'qux',
+      userId: 2
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('postData2發生錯誤');
+  }
+}
+
+async function example() {
+  try {
+    console.log('正在發送第1個POST請求...');
+    const result1 = await postData1();
+    console.log('第1個POST請求結果:', result1);
+
+    console.log('正在發送第2個POST請求...');
+    const result2 = await postData2();
+    console.log('第2個POST請求結果:', result2);
+    console.log(result1.title + result2.body);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+example();
+console.log('最後的example函數調用完成');
+
+</script>
+</head>
+<body>
+</body>
+</html>
