@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>index</title>
+	<meta name="viewport" content="width=device-width">
+	<!-- JS -->
+	<script src="oriCheck.js"></script>
+</head>
+<body>
+<script>
+	oriCheck({
+		oriChange: function(oriObj) {
+			/* if(oriData.device == 'desktop'){
+				oriDesktop();
+			}else{
+				switch (oriData.orientation) {
+					case 'landscape':
+						oriLandscape();
+						break;
+					case 'portrait':
+						oriPortrait();
+						break;
+					default:
+						break;
+				}
+			} */
+			console.log(oriObj.orientation);
+		},
+		blockLandscapeContent: true
+	});
+</script>
+</body>
+</html>
