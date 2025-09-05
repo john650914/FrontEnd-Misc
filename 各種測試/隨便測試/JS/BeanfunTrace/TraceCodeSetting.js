@@ -1,6 +1,13 @@
 ﻿var TraceCodes = {
     //自己站台全域(所有頁面都會出現的區塊)
-    "Global": {},
+    "Global": {
+        "MenuClick": {
+            eventId: 4004,
+            event: 'gtw_home_page_item_click',
+            pageInfo: { page: "h5_home" },
+            clickInfo: { type: "menu_icon" }
+        }
+    },
     //首頁
     "/index.aspx": {
         //17-13 登入後進站提示頁 出現

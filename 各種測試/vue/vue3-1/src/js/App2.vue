@@ -399,6 +399,62 @@ import Comp1 from './components/test/Comp1.vue'
 	<Comp1 class="three four" />
 </template> -->
 
+<!-- 另外的教學 App.vue -->
+<!-- <script setup>
+import Comp1 from './test/Comp1.vue'
+</script>
+<template>
+	<div class="app-container">
+		<h1>Vue 3 类绑定入门</h1>
+		<h2>在组件上使用静态 class</h2>
+		<Comp1 class="three four" />
+	</div>
+</template>
+<style scoped>
+.app-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+h1, h2{
+	color: #2c3e50;
+}
+:global(.three) {
+	background-color: lightblue;
+	padding: 10px;
+}
+:global(.four) {
+	border: 2px solid navy;
+	border-radius: 5px;
+}
+</style> -->
+<!-- 另外的教學 test/Comp1.vue -->
+<!-- <script setup>
+// 这个组件不需要特别处理，会自动接收父组件传递的 class
+</script>
+<template>
+	<div class="comp-base">
+		<h3>我是 Comp1 组件</h3>
+		<p>我接收了父组件传递的 class: "three four"</p>
+		<p>最终我的 class 会是: "comp-base three four"</p>
+	</div>
+</template>
+<style scoped>
+.comp-base {
+	margin: 15px 0;
+	min-height: 60px;
+}
+h3 {
+	margin-top: 0;
+	color: #34495e;
+}
+p {
+	margin: 8px 0;
+	color: #666;
+}
+</style> -->
+
 <!-- Class 的绑定也是同样的 -->
 <!-- <script setup>
 import Comp1 from './components/test/Comp1.vue'
@@ -1070,6 +1126,92 @@ const lastname = ref('zhang');
 <template>
 	<Comp9 v-model:firstname.capitalize="firstname" v-model:lastname.capitalize="lastname" />
 </template> -->
+
+<!-- 另外的範例 App.vue -->
+<!-- <script setup>
+import CustomInput from './components/CustomInput.vue'
+import { ref } from 'vue'
+// 父组件管理所有的值
+const username = ref('')
+const email = ref('')
+const password = ref('')
+// 简单的验证逻辑
+const usernameError = ref('')
+const emailError = ref('')
+const passwordError = ref('')
+// 验证函数
+function validateUsername() {
+if (username.value.length < 3) { usernameError.value='用户名至少需要3个字符' } else { usernameError.value='' } } function
+	validateEmail() { const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/ if (!emailPattern.test(email.value)) {
+	emailError.value='请输入有效的邮箱地址' } else { emailError.value='' } } function validatePassword() { if
+	(password.value.length < 6) { passwordError.value='密码至少需要6个字符' } else { passwordError.value='' } } function
+	handleSubmit() { validateUsername() validateEmail() validatePassword() if (!usernameError.value && !emailError.value
+	&& !passwordError.value) { alert('表单验证通过！') } } </script>
+	<template>
+<div class="app">
+    <h1>父元件</h1>
+    <form @submit.prevent="handleSubmit" class="form">
+		<CustomInput v-model="username" label="用户名" placeholder="请输入用户名" :error="usernameError" @blur="validateUsername" />
+		<CustomInput v-model="email" label="邮箱" type="email" placeholder="请输入邮箱" :error="emailError" @blur="validateEmail" />
+		<CustomInput v-model="password" label="密码" type="password" placeholder="请输入密码" :error="passwordError" @blur="validatePassword" />
+		<button type="submit" class="submit-btn">提交</button>
+    </form>
+    <div class="debug">
+		<h3>当前值：</h3>
+		<p>用户名: {{ username }}</p>
+		<p>邮箱: {{ email }}</p>
+		<p>密码: {{ password }}</p>
+    </div>
+</div>
+</template> -->
+<!-- 另外的範例 components/CustomInput.vue -->
+<!-- <script setup>
+// defineModel 处理 v-model
+const value = defineModel()
+// 接收其他 props
+const props = defineProps({
+	label: {
+		type: String,
+		required: true
+	},
+	type: {
+		type: String,
+		default: 'text'
+	},
+	placeholder: {
+		type: String,
+		default: ''
+	},
+	error: {
+		type: String,
+		default: ''
+	}
+})
+// 定义可以发出的事件
+const emit = defineEmits(['blur', 'focus'])
+// 处理事件
+function handleBlur(event) {
+	emit('blur', event)
+}
+function handleFocus(event) {
+	emit('focus', event)
+}
+</script>
+<template>
+<div class="input-group">
+    <label class="label">{{ label }}</label>
+    <input v-model="value" :type="type" :placeholder="placeholder" :class="['input', { 'input-error': error }]" @blur="handleBlur" @focus="handleFocus" />
+    <div v-if="error" class="error-message">
+		{{ error }}
+    </div>
+</div>
+</template>
+<style scoped>
+.error-message {
+	color: red;
+}
+</style> -->
+
 
 
 

@@ -1,0 +1,36 @@
+﻿@page
+@model FrontEnd.Pages.IndexModel
+@{
+}
+
+
+<!DOCTYPE HTML>
+<html lang="zh-Hant">
+<head>
+	<title>TEST</title>
+	<meta name="description" content="">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<script src="https://tw.hicdn.beanfun.com/plugins/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+<script>
+	axios({
+		method: 'post',
+			url: '/api/GNN/LoveBanana',
+			data: { "bananaCount": 999999 }
+	}).then(function ($res) {
+		let res = $res.data;
+		if (res.code == 1) {
+			console.log(res.data.eatBanana);
+		} else if (res.code == -1) {
+			console.log(res);
+		}
+	}).catch(function (e) {
+		console.log(e);
+	}).finally(function () {
+		console.log('axios.finally');
+	});
+</script>
+</body>
+</html>

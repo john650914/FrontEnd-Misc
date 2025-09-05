@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
+<!-- <script src="https://tw.hicdn.beanfun.com/plugins/axios/0.21.1/axios.min.js"></script> -->
+<script>
+
+</script>
+
+
+<title>HTML5</title>
+<script>
+class SimpleAxios {
+  constructor(baseURL = '') {
+      this.baseURL = baseURL;
+  }
+
+  request({ url, method = 'GET', data = null, headers = {} }) {
+      const options = {
+          method,
+          headers: {
+              'Content-Type': 'application/json',
+              ...headers
+          },
+          body: data ? JSON.stringify(data) : null
+      };
+
+      return fetch(this.baseURL + url, options)
+          .then(response => {
+              if (!response.ok) {
+                  return response.json().then(err => Promise.reject(err));
+              }
+              return response.json();
+          })
+          .catch(error => {
+              console.error('Request failed:', error);
+              return Promise.reject(error);
+          });
+  }
+
+  get(url, headers = {}) {
+      return this.request({ url, method: 'GET', headers });
+  }
+
+  post(url, data = {}, headers = {}) {
+      return this.request({ url, method: 'POST', data, headers });
+  }
+
+  put(url, data = {}, headers = {}) {
+      return this.request({ url, method: 'PUT', data, headers });
+  }
+
+  delete(url, headers = {}) {
+      return this.request({ url, method: 'DELETE', headers });
+  }
+}
+window.myAxios = new SimpleAxios();
+
+
+async function postData1() {
+  try {
+    const response = await myAxios.post('https://jsonplaceholder.typicode.com/posts', {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    });
+    return response;
+  } catch (error) {
+    throw new Error('postData1發生錯誤');
+  }
+}
+
+async function postData2() {
+  try {
+    const response = await myAxios.post('https://jsonplaceholder.typicode.com/posts', {
+      title: 'baz',
+      body: 'qux',
+      userId: 2
+    });
+    return response;
+  } catch (error) {
+    throw new Error('postData2發生錯誤');
+  }
+}
+
+async function example() {
+  try {
+    console.log('正在發送第1個POST請求...');
+    const result1 = await postData1();
+    console.log('第1個POST請求結果:', result1);
+
+    console.log('正在發送第2個POST請求...');
+    const result2 = await postData2();
+    console.log('第2個POST請求結果:', result2);
+    console.log(result1.title + result2.body);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+example();
+console.log('最後的example函數調用完成');
+
+</script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+要處理的事：
+1.自訂義送出請求的headers，其中'Content-Type'預設為'application/json'，可提供修改，並且可自行設定其他headers
+2.處理回傳response的data type，再使用json()轉換成json格式，或是其他格式（例如text()、blob()、formData()、arrayBuffer()）
+3.如果回傳response的data是json格式，將回傳的資料轉換成和Axios一樣的格式，即
+{
+  data:{
+    config: {
+      data: "{\"title\":\"foo\",\"body\":\"bar\",\"userId\":1}",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        Content-Type: "application/json"
+      },
+      maxBodyLength: -1
+      maxContentLength: -1,
+      method: "POST",
+      timeout: 0,
+      url: "https://jsonplaceholder.typicode.com/posts",
+    },
+    data: {
+      title: "foo",
+      body: "bar",
+      userId: 1,
+      id: 101
+    },
+    headers: {
+      cache-control: "no-cache"
+      content-length: "65"
+      content-type: "application/json; charset=utf-8"
+      expires: "-1"
+      location: "https://jsonplaceholder.typicode.com/posts/101"
+      pragma: "no-cache"
+    },
+    request: {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …},
+    status: 200,
+    statusText: "OK"
+  }
+  ........................
+}
+4.處理錯誤的情況，如果response不是200，則拋出錯誤，並且將錯誤訊息轉換成json格式
