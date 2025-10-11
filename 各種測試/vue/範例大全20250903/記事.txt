@@ -1,0 +1,18 @@
+送出時驗證
+input時驗證
+check時驗證
+select時驗證
+
+請給我各種元素支持的事件，例如input[type=text]的 input blur focus...
+input[type=text]
+input[type=file]
+input[type=radio]
+input[type=checkbox]
+select
+textarea
+
+元件
+props
+emit
+
+store

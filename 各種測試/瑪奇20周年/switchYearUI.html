@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>HTML + CSS</title>
+</head>
+
+<body>
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			width: 600px;
+			height: 300px;
+			font-size: 24px;
+			border: 1px solid red;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.nav {
+			width: 150px;
+			background: silver;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.nav .btn {
+			height: 30px;
+			color: #fff;
+			background: #303030;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+			flex: none;
+		}
+
+		.nav .years {
+			flex: 1;
+			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.nav .years::-webkit-scrollbar {
+			display: none;
+		}
+
+		.nav .year {
+			height: 30px;
+			text-align: center;
+		}
+
+		.nav .year.active {
+			color: blue;
+		}
+
+		.content {
+			flex: 1;
+			background: pink;
+			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.content::-webkit-scrollbar {
+			display: none;
+		}
+
+		.content-item {
+			width: 100%;
+			height: 300px;
+			flex: none;
+		}
+
+		.content-item.active {
+			color: #fff;
+			background: #c40079;
+		}
+
+		@media (max-width: 768px) {
+			.container {
+				flex-direction: column;
+				height: auto;
+			}
+
+			.nav {
+				width: 100%;
+				flex-direction: row;
+				align-items: center;
+				overflow-x: auto;
+			}
+
+			.nav .years {
+				flex-direction: row;
+				overflow-x: auto;
+				overflow-y: hidden;
+				white-space: nowrap;
+				height: auto;
+			}
+
+			.nav .year {
+				display: inline-block;
+				min-width: 60px;
+				padding: 0 6px;
+			}
+
+			.content {
+				flex-direction: row;
+				overflow-x: auto;
+				overflow-y: hidden;
+			}
+
+			.content-item {
+				width: 100%;
+				height: 300px;
+			}
+		}
+	</style>
+
+	<div class="container">
+		<div class="nav">
+			<div class="btn prev">Prev</div>
+			<div class="years">
+				<div class="year active">2005</div>
+				<div class="year">2006</div>
+				<div class="year">2007</div>
+				<div class="year">2008</div>
+				<div class="year">2009</div>
+				<div class="year">2010</div>
+				<div class="year">2011</div>
+				<div class="year">2012</div>
+				<div class="year">2013</div>
+				<div class="year">2014</div>
+				<div class="year">2015</div>
+				<div class="year">2016</div>
+				<div class="year">2017</div>
+				<div class="year">2018</div>
+				<div class="year">2019</div>
+				<div class="year">2020</div>
+				<div class="year">2021</div>
+				<div class="year">2022</div>
+				<div class="year">2023</div>
+				<div class="year">2024</div>
+				<div class="year">2025</div>
+			</div>
+			<div class="btn next">Next</div>
+		</div>
+		<div class="content">
+			<div class="content-item active">2005</div>
+			<div class="content-item">2006</div>
+			<div class="content-item">2007</div>
+			<div class="content-item">2008</div>
+			<div class="content-item">2009</div>
+			<div class="content-item">2010</div>
+			<div class="content-item">2011</div>
+			<div class="content-item">2012</div>
+			<div class="content-item">2013</div>
+			<div class="content-item">2014</div>
+			<div class="content-item">2015</div>
+			<div class="content-item">2016</div>
+			<div class="content-item">2017</div>
+			<div class="content-item">2018</div>
+			<div class="content-item">2019</div>
+			<div class="content-item">2020</div>
+			<div class="content-item">2021</div>
+			<div class="content-item">2022</div>
+			<div class="content-item">2023</div>
+			<div class="content-item">2024</div>
+			<div class="content-item">2025</div>
+		</div>
+	</div>
+
+	<script>
+		// 判斷是否為手機裝置
+		function isMobile() {
+			return /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent);
+		}
+
+		const years = document.querySelectorAll('.year');
+		const contentItems = document.querySelectorAll('.content-item');
+		const yearsContainer = document.querySelector('.years');
+		const content = document.querySelector('.content');
+		const prevBtn = document.querySelector('.prev');
+		const nextBtn = document.querySelector('.next');
+
+		let isAutoScrolling = false;
+
+		function getActiveIndex() {
+			return [...years].findIndex(y => y.classList.contains('active'));
+		}
+
+		function updateActive(index) {
+			document.querySelector('.year.active')?.classList.remove('active');
+			document.querySelector('.content-item.active')?.classList.remove('active');
+			years[index].classList.add('active');
+			contentItems[index].classList.add('active');
+		}
+
+		function scrollToBoth(index) {
+			isAutoScrolling = true;
+			updateActive(index);
+
+			const horizontal = isMobile();
+
+			const contentTarget = horizontal
+				? contentItems[index].offsetLeft - content.offsetLeft
+				: contentItems[index].offsetTop - content.offsetTop;
+
+			const yearTarget = horizontal
+				? years[index].offsetLeft - yearsContainer.offsetLeft
+				: years[index].offsetTop - yearsContainer.offsetTop;
+
+			let done = 0;
+			const finish = () => { if (++done === 2) isAutoScrolling = false; };
+
+			smoothScroll(content, contentTarget, 1000, finish, horizontal);
+			smoothScroll(yearsContainer, yearTarget, 1000, finish, horizontal);
+		}
+
+		function smoothScroll(container, to, duration = 1000, callback, horizontal = false) {
+			const start = horizontal ? container.scrollLeft : container.scrollTop;
+			const change = to - start;
+			const startTime = performance.now();
+
+			function animate(currentTime) {
+				const time = Math.min(1, (currentTime - startTime) / duration);
+				const eased = time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time;
+				const value = start + change * eased;
+
+				if (horizontal) {
+					container.scrollLeft = value;
+				} else {
+					container.scrollTop = value;
+				}
+
+				if (time < 1) {
+					requestAnimationFrame(animate);
+				} else {
+					callback?.();
+				}
+			}
+
+			requestAnimationFrame(animate);
+		}
+
+		// 滾動事件處理
+		content.addEventListener('scroll', () => {
+			if (isAutoScrolling) return;
+
+			const horizontal = isMobile();
+			const scrollPos = horizontal ? content.scrollLeft : content.scrollTop;
+
+			for (let i = 0; i < contentItems.length; i++) {
+				const item = contentItems[i];
+				const itemPos = horizontal
+					? item.offsetLeft - content.offsetLeft
+					: item.offsetTop - content.offsetTop;
+				const size = horizontal ? item.offsetWidth : item.offsetHeight;
+
+				if (itemPos - scrollPos <= 100 && itemPos + size - scrollPos > 100) {
+					updateActive(i);
+					const yearTarget = horizontal
+						? years[i].offsetLeft - yearsContainer.offsetLeft
+						: years[i].offsetTop - yearsContainer.offsetTop;
+					smoothScroll(yearsContainer, yearTarget, 500, null, horizontal);
+					break;
+				}
+			}
+		});
+
+		years.forEach((year, index) => {
+			year.addEventListener('click', () => {
+				scrollToBoth(index);
+			});
+		});
+
+		prevBtn.addEventListener('click', () => {
+			const i = getActiveIndex();
+			if (i > 0) scrollToBoth(i - 1);
+		});
+
+		nextBtn.addEventListener('click', () => {
+			const i = getActiveIndex();
+			if (i < years.length - 1) scrollToBoth(i + 1);
+		});
+
+	</script>
+</body>
+
+</html>

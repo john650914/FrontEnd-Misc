@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<script src="assets/js/pageLoading.js"></script>
+
+<h1>pageLoading.js</h1>
+
+<picture>
+	<source media="(min-width:650px)" srcset="https://www.w3schools.com/tags/img_pink_flowers.jpg">
+	<source media="(min-width:465px)" srcset="https://www.w3schools.com/tags/img_white_flower.jpg">
+	<img src="https://www.w3schools.com/tags/img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
+</picture>
+
+<h3>img src :</h3>
+<div class="nobi">
+	<img src="assets/img/nobi.png" />
+	<img src="assets/img/nobi.png" />
+</div>
+	<img src="assets/css/img/dora.png" />
+	<img src="http://127.0.0.1:62715/assets/css/img/dora.png" />
+	<img src="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+<h3>css background img :</h3>
+<div class="dora"></div>
+
+<h3>inline css background img :</h3>
+<div class="gian" style="background: url(assets/css/img/gian.jpg) 0 0 no-repeat;"></div>
+<div class="nobi" style="background: url(assets/css/img/dora.png) 0 0 no-repeat;"></div>
+
+<h3>video :</h3>
+<video width="400" controls>
+	<source src="https://www.w3schools.com/html/mov_bbb.mp4?1webp" type="video/mp4">
+</video>
+
+<!-- <img src="https://cdn.cybassets.com/s/files/17430/ckeditor/pictures/content_58ae2b7d-c7c1-465e-81ea-a93525dbfbd9.png" />
+<img src="https://news.agentm.tw/wp-content/uploads/%E3%80%8A%E5%8A%87%E5%A0%B4%E7%89%88-%E5%92%92%E8%A1%93%E8%BF%B4%E6%88%B0-0%E3%80%8B%E6%97%A5%E6%9C%AC%E7%A5%A8%E6%88%BF%E6%9A%B4%E8%A1%9D%E5%8F%B0%E7%81%A3%E4%B8%8A%E6%98%A0%E7%A2%BA%E5%AE%9A%EF%BC%8C%E8%A6%8B%E8%AD%89%E7%B4%94%E6%84%9B%E6%88%B0%E7%A5%9E%E4%B9%99%E9%AA%A8%E6%86%82%E5%A4%AA%E8%88%87%E9%87%8C%E9%A6%99%E6%84%9B%E8%88%87%E8%A9%9B%E5%92%92%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%81-1.png" />
+<img src="https://hips.hearstapps.com/hmg-prod/images/%E5%A4%8F%E6%B2%B9%E5%82%91-64be34e80ba47.jpeg" />
+<img src="https://img.hdbz.net/thumbs/2023/0523/104707.png" />
+<img src="https://gw.alicdn.com/imgextra/i3/275109901/O1CN01RnPIa42N0iJYFsrOb_!!275109901.jpg_Q75.jpg_.webp" />
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*2OIrAImja3nwgBqUl_ZxlQ@2x.jpeg" />
+<img src="https://www.boredpanda.com/blog/wp-content/uploads/2023/08/WildCats-13-64dc5245842d9__880.jpg" />
+<img src="https://blog.nature.org/wp-content/uploads/2022/05/15043543439_efae1ca964_k.jpg" />
+<img src="https://greatcatsworldpark.com/wp-content/uploads/2019/01/Black-footed-Cat.jpg" />
+<img src="https://catinaflat.blog/wp-content/uploads/2022/05/famous-tabby-cats.jpg" /> -->
+
+<!-- <img src="assets/img/01.webp" />
+<img src="assets/img/02.jpg" />
+<img src="assets/img/03.jpg" />
+<img src="assets/img/04.jpg" />
+<img src="assets/img/05.jpg" />
+<img src="assets/img/06.avif" />
+<img src="assets/img/07.jpg" />
+<img src="assets/img/08.png" />
+<img src="assets/img/09.avif" />
+<img src="assets/img/10.png" />
+
+<div class="dora_bell"></div> -->
+
+
+<style>
+	body{
+    background: url(assets/css/img/bg.png) 0 0 #ebf3f5;
+}
+.dora{
+    width: 205px;
+    height: 204px;
+    background: url(assets/css/img/dora.png) 0 0 no-repeat;
+    position: relative;
+}
+.dora:after{
+    content: '';
+    width: 60px;
+    height: 60px;
+    background-image: url(assets/css/img/bell.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -30px;
+    top: -30px;
+}
+.gian{
+    width: 175px;
+    height: 235px;
+}
+.nobi{
+    width: 200px;
+    height: 193px;
+}
+
+.dora_bell{
+    width: 205px;
+    height: 204px;
+    background:
+        url(assets/css/img/bell.png) 0 0 no-repeat,
+        url(assets/css/img/dora.png) 0 0 no-repeat;
+}
+
+img{
+    width: 200px;
+}
+</style>
+
+
+<script>
+pageLoading({
+	onProgress: (count, total) => {
+		console.log(`載入進度: ${Math.round(count / total * 100)}%`);
+	},
+	onComplete: () => {
+		console.log('所有資源處理完畢（包含成功或失敗）');
+	}
+});
+//pageLoading();
+
+/* {
+	onProgress: fn,			// 載入中的function
+	onComplete: fn,			// 載入完成的function
+	autoHide: true,         // 所有資源載入完畢後自動關閉 loading 畫面（預設 true）
+	showOnStart: true,      // 一進來就顯示 loading 畫面（預設 true）
+	detectVideo: true,      // 是否偵測影片資源（預設 true）
+	videoEvent: 'loadeddata'// 可自定影片的觸發事件（預設 loadeddata）
+} */
+</script>
+
+</body>
+</html>

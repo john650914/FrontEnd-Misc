@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>動態 clipPath 遮罩 + drop shadow</title>
+	<style>
+		.test-content{
+			width: 250px;
+			height: 250px;
+			border: 10px solid gray;
+			border-radius: 30px;
+			background: #fff;
+		}
+		h2{
+			text-align: center;
+			color: blue;
+		}
+		img{
+			width: 100px;
+		}
+		p{
+			padding: 0 20px;
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<div class="test-content">
+	<h2>測試標題</h2>
+	<img src="https://tw.hicdn.beanfun.com/beanfun/promo/MapleStory/20250319F/assets3/css/images/logo1.png" />
+	<p>測試內容測試內容測試內容測試內容</p>
+</div>
+<br><br>
+<button>下載</button>
+
+<script>
+document.querySelector("button").addEventListener("click", () => {
+	html2canvas(document.querySelector(".test-content"), {
+		backgroundColor: null,
+		useCORS: true
+	}).then(canvas => {
+		const link = document.createElement('a');
+		link.download = 'content.png';
+		link.href = canvas.toDataURL('image/png');
+		link.click();
+	});
+});
+</script>
+</body>
+
+</html>

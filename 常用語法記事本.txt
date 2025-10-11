@@ -1,3 +1,36 @@
+################################################# 波拉西亞開發 #################################################
+開啟Fiddler ScriptEditor > Rules > Customize Rules >
+    static function OnBeforeRequest(oSession: Session) {
+        if (oSession.host.toLowerCase() == "alpha-warsofprasia.beanfun.com:443") { oSession.host = "127.0.0.1:7154";}
+		if (oSession.host.toLowerCase() == "alpha-warsofprasia-event.beanfun.com:443") { oSession.host = "127.0.0.1:7154";}
+        if (oSession.host.toLowerCase() == "warsofprasia-event.beanfun.com:443") { oSession.host = "127.0.0.1:7154";}
+用alpha-warsofprasia.beanfun.com或是warsofprasia-event.beanfun.com取帶網址的localhost
+
+
+################################################# frontend測試API #################################################
+https://localhost:7230/TestEvent/Index
+
+/api/GNN/LoveBanana
+
+{
+  "bananaCount": 0
+}
+
+{
+  "code": 0,
+  "message": "string",
+  "url": "string",
+  "listData": [
+    {
+      "eatBanana": 0
+    }
+  ],
+  "data": {
+    "eatBanana": 0
+  }
+}
+
+
 ################################################# html template #################################################
 <!DOCTYPE HTML>
 <html lang="zh-Hant">
@@ -18,18 +51,15 @@
 <meta property="og:image" content="https://tw.hicdn.beanfun.com/beanfun/event/[PRODUCT]/20240702J/assets/img/f_b.jpg" />
 
 <!-- <link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/swiper/8.3.2/swiper-bundle.min.css">
-<link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/plugins/fullpage/fullpage.min.css"> -->
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <!-- CDN CSS： <link rel="stylesheet" type="text/css" href="https://tw.hicdn.beanfun.com/beanfun/event/[PRODUCT]/20240702J/assets/css/default.css"> -->
 
-<script src="https://tw.hicdn.beanfun.com/jquery/jquery.min.js"></script>
 <!-- <script src="https://tw.hicdn.beanfun.com/plugins/isMobile/isMobile_update.min.js"></script>
-<script src="https://tw.hicdn.beanfun.com/plugins/axios/0.21.1/axios.min.js"></script>
+<script src="https://frontend.beanfun.com/plugins/Fech/Fech.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/vue/2.6.10/vue.min.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/vue/2.6.10/vue.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/vuex/3.1.1/vuex.min.js"></script>
-<script src="https://tw.hicdn.beanfun.com/plugins/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/twbs-pagination1.4.2/twbsPagination.min.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/fullpage/fullpage.js"></script>
 <script src="https://tw.hicdn.beanfun.com/plugins/swiper/8.3.2/swiper-bundle.min.js"></script>
@@ -37,14 +67,14 @@
 <script src="https://frontend.beanfun.com/plugins/gtime/gtime.js"></script>
 <script src="https://frontend.beanfun.com/plugins/cookie-bar/cookie-bar.js"></script>
 <script src="https://frontend.beanfun.com/plugins/g-calendar/g-calendar.js"></script>
-<script src="https://frontend.beanfun.com/plugins/gbox/gbox.js"></script>
+<script src="https://frontend.beanfun.com/plugins/gbox/1.0/gbox.js"></script>
 <script src="https://frontend.beanfun.com/plugins/topBar/topbar.js" id="top-bar" prod="[PRODUCT]" ></script> -->
 <script src="https://frontend.beanfun.com/plugins/game-footer/game-footer.js" id="game-footer" prod="[PRODUCT]" theme="dark"></script>
-<script src="https://frontend.beanfun.com/plugins/loadingProgress/loadingProgress.js"></script>
 <script src="https://tw.beanfun.com/js/GA_CodeNew.js"></script>
 
 </head>
 <body>
+<script src="https://frontend.beanfun.com/plugins/pageLoading/pageLoading.js"></script>
 
 <div class="container">web template</div>
 
@@ -359,7 +389,7 @@ table {
 
 ################################################# filter #################################################
 filter: contrast(200%) brightness(150%);
-filter: drop-shadow(8px 8px 10px gray); //image only
+filter: drop-shadow(8px 8px 10px gray); //image only < ?
 
 
 ################################################# animation #################################################
@@ -486,6 +516,18 @@ div{
 span:before{
 	counter-increment: num;
 	content: counter(num) '. ';
+}
+
+//中文的counter
+ol{
+	list-style: none;
+	counter-reset: myCounter;
+	li{
+		counter-increment: myCounter;
+		&:before{
+			content: "("counter(myCounter, cjk-ideographic)") ";
+		}
+	}
 }
 
 
@@ -680,9 +722,22 @@ $('#fullpage').fullpage({
 	verticalCentered: false
 });
 
-$.fn.fullpage.setAllowScrolling(boolean);
-$.fn.fullpage.setKeyboardScrolling(boolean);
-$.fn.fullpage.moveTo(1);
+//事件
+onLeave: function(index, nextIndex, direction){},
+afterLoad: function(anchorLink, index){},
+afterRender: function(){},
+afterResize: function(){},
+afterResponsive: function(isResponsive){},
+afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+
+//相關方法
+$.fn.fullpage.setAllowScrolling(boolean); //设置是否允许滚动
+$.fn.fullpage.setKeyboardScrolling(boolean); //设置是否允许键盘滚动
+$.fn.fullpage.moveTo(1); //滚动到第几屏
+$.fn.fullpage.moveTo('data-anchor-name'); //滚动到指定锚点 //範例：<div class="section" data-anchor="data-anchor-name">
+$.fn.fullpage.moveSectionDown(); //向下滚动一屏
+$.fn.fullpage.moveSectionUp(); //向上滚动一屏
 
 //有網址的範例：
 <ul id="menu">
@@ -1013,7 +1068,7 @@ Array.prototype.contains = function(val){
   var IOS_SITE = "fb://page/?id=103801226391404";
 //Android
   var Android_SITE = "fb://page/103801226391404";
-  
+
 查ID：https://tw.piliapp.com/facebook/id/?url=https%3A%2F%2Fwww.facebook.com%2FkartriderTW%2F
 
 
@@ -1223,6 +1278,33 @@ $('.selDiv option[value="SEL1"]').attr("selected", "selected"); //用value選
 	'color' in car; //true
 	car.hasOwnProperty('color'); //true
 
+情境5, function參數中的變數是否存在：
+	同樣可使用 typeof arg !== 'undefined'來判斷
+	但有更短的寫法：
+	function myFN(arg){
+		if(arg === undefined){
+			alert('沒有arg');
+			return;
+		}
+	}
+	或是
+	function myFN(arg){
+		if(!arg){
+			alert('沒有arg');
+			return;
+		}
+	}
+	上述的原理是因為呼叫該function時arg就會被宣告，在沒有賦值的情況下它會是undefined，undefined同時也是false
+
+情境6, 不知道物件是否存在時，需要直接判斷某個key
+	if (typeof obj !== 'undefined' && 'key' in obj) {
+		console.log('obj 和 obj.key 存在');
+	} else {
+		console.log('obj 或 obj.key 不存在');
+	}
+	Chat說這樣更好：(typeof obj !== 'undefined' && Object.hasOwn(obj, 'key'))
+	說什麼 Object.hasOwn 更適合用於檢查「物件自身屬性」，避免因原型鏈上的屬性導致誤判。
+
 
 ################################################# twbsPagination.min.js #################################################
 <ul id="pagination" class="pagination"></ul>
@@ -1293,13 +1375,17 @@ CI/CD > Pipelines 按下去 > 看我剛才新增的tag有沒有五個勾勾（�
 
 
 ################################################# sourcetree開dev分支 #################################################
-
 從左邊的選單 > REMOTES > origin > 右鍵 > checkout > OK 就直接pull回來了
 
 或是
 
 上方主選單 > Branch > New Branch > Create Branch > 輸入'dev' > Pull回來
 
+
+################################################# swagger路徑 #################################################
+>>>>>>>>>>>>>> 登入報錯可能是不能用localhost，要用127.0.0.1 <<<<<<<<<<<<<<
+>>>>>>>>>>>>>> 登入報錯可能是不能用localhost，要用127.0.0.1 <<<<<<<<<<<<<<
+>>>>>>>>>>>>>> 登入報錯可能是不能用localhost，要用127.0.0.1 <<<<<<<<<<<<<<
 
 
 ################################################# swagger路徑 #################################################
@@ -1308,13 +1394,18 @@ https://127.0.0.1:7224/Event/E20240702/index
 https://127.0.0.1:7224/swagger/index.html
 
 
-
 ################################################# git分支設定 #################################################
 ● settings > repo > protected > push > [no one] <<< 好像是main
 ● repo > branches new > [dev] > create
 ● 要再加dev的protected
 ● settings > default > dev
 
+
+################################################# JS壓縮 #################################################
+terser filename.js -o minified/filename.min.js --compress --mangle
+例：
+terser Stage-beanfunTrace.js -o minified/Stage-beanfunTrace.min.js --compress --mangle
+terser Stage-beanfunTrace_main.js -o minified/Stage-beanfunTrace_main.min.js --compress --mangle
 
 
 ################################################# H5相關 #################################################
@@ -1428,3 +1519,37 @@ prependChild(head_d,link_d);
   left: 80px;
   top: -15px;
 }
+
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100">
+  <text
+  	x="50%"
+    y="50%"
+    text-anchor="middle"
+    fill="blue"
+    stroke="red"
+    stroke-width="20"
+    stroke-linejoin="round"
+    font-size="60"
+    font-weight="bold"
+    dominant-baseline="middle"
+    paint-order="stroke"
+    font-family="微軟正黑體"
+  >I love SVG!</text>
+  <text
+  	x="50%"
+    y="50%"
+    text-anchor="middle"
+    fill="blue"
+    stroke="lime"
+    stroke-width="10"
+    stroke-linejoin="round"
+    font-size="60"
+    font-weight="bold"
+    dominant-baseline="middle"
+    paint-order="stroke"
+    font-family="微軟正黑體"
+  >I love SVG!</text>
+</svg>

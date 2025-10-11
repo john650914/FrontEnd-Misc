@@ -1,0 +1,114 @@
+﻿<!DOCTYPE HTML>
+<html lang="zh-Hant">
+<head>
+<title>TITLE</title>
+<meta name="description" content="DESCRIPTION">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width">
+</head>
+
+
+
+
+<body>
+
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      height: 100vh;
+    }
+    video {
+      display: none;
+    }
+    canvas {
+      width: 1000px;
+      height: 500px;
+      background-color: transparent;
+    }
+  </style>
+
+  <video id="video1" preload="auto" muted>
+    <source src="intro.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video id="video2" preload="auto" loop muted>
+    <source src="loop.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <canvas id="canvas"></canvas>
+
+  <script>
+const video1 = document.getElementById('video1');
+const video2 = document.getElementById('video2');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 1000;
+canvas.height = 500;
+
+let currentVideo = video1;
+
+video1.play();
+
+function applyMask(video) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 創建臨時畫布來處理遮罩
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+
+    // 在臨時畫布上繪製遮罩部分（影片下半部分）
+    tempCtx.drawImage(
+        video,
+        0, video.videoHeight / 2, video.videoWidth, video.videoHeight / 2,
+        0, 0, canvas.width, canvas.height
+    );
+
+    // 獲取遮罩的像素數據
+    const maskData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+
+    // 在主畫布上繪製上半部分的影片內容
+    ctx.drawImage(
+        video,
+        0, 0, video.videoWidth, video.videoHeight / 2,
+        0, 0, canvas.width, canvas.height
+    );
+
+    // 獲取主影片內容的像素數據
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    // 根據遮罩調整 alpha 值
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        // 計算遮罩的亮度
+        const maskBrightness = (maskData.data[i] + maskData.data[i + 1] + maskData.data[i + 2]) / 3;
+        // 將亮度值用作 alpha 值
+        imageData.data[i + 3] = maskBrightness;
+    }
+
+    // 將處理後的圖像放回畫布
+    ctx.putImageData(imageData, 0, 0);
+}
+
+function renderFrame() {
+    if (currentVideo.readyState >= 2) {
+        applyMask(currentVideo);
+    }
+    requestAnimationFrame(renderFrame);
+}
+
+video1.addEventListener('ended', () => {
+    currentVideo = video2;
+    video2.play();
+});
+
+renderFrame();
+  </script>
+
+</body>
+</html>

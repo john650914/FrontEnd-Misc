@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.box {
+				width: 300px;
+				height: 300px;
+				background-size: cover;
+				background-image: url("./pexels-frans-van-heerden-201846-631317.jpg");
+				position: relative;
+			}
+			.box:before {
+				content: "";
+				width: 300px;
+				height: 300px;
+				display: inline-block;
+				background-size: cover;
+				background-image: url("./1.jpg");
+			}
+			.box:after {
+				content: "";
+				width: 300px;
+				height: 300px;
+				display: inline-block;
+				background-size: cover;
+				background-image: url("./2.jpg");
+			}
+		</style>
+	</head>
+	<body>
+		<script src="./pageLoading.js"></script>
+		<div>
+			<img src="https://images.pexels.com/photos/32204934/pexels-photo-32204934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+			<img src="https://images.pexels.com/photos/15596171/pexels-photo-15596171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+			<img src="./pexels-hsapir-1054666.jpg" alt="" />
+			<div class="box"></div>
+		</div>
+
+		<script>
+			
+
+/* pageLoading({
+	onProgress: (count, total) => {
+		console.log(`載入進度: ${Math.round(count / total * 100)}%`);
+	},
+	onComplete: () => {
+		console.log('所有資源處理完畢（包含成功或失敗）');
+	}
+}); */
+		</script>
+	</body>
+</html>
