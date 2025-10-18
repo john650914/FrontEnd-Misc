@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+<style>
+html, body{
+	height: 100%;
+}
+.mydiv{
+	width: 50%;
+	height: 50%;
+	border-style: solid;
+	border-width: 40px 80px; /* top/bottom 40px, left/right 80px */
+	border-image-source: url('border.png');
+	border-image-slice: 40 80 fill; /* top/bottom 40px, left/right 80px */
+	border-image-repeat: stretch;
+	border-image-outset: 0;
+	border-image-width: auto; /* 也可以設定為相同的 40 80，看需求 */
+	box-sizing: border-box;
+	/* background: url(bg.png) 0 0 / 100% 100% no-repeat; */
+}
+</style>
+
+<div class="mydiv"></div>
+</body>
+</html>
